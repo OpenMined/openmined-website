@@ -11,12 +11,7 @@ import ExternalLink from '../../../components/external-link';
 
 import logo from '../../../assets/logo-gradientbg.svg';
 
-const version = 'V 0.1.0 - “Hydrogen”';
-const screenname = 'open-miner';
-const code =
-  'curl -s https://raw.githubusercontent.com/OpenMined/mine.js/hydrogen/.docker/docker-compose.yml | docker-compose -f - up';
-
-const copyText = ({ code, addNotification }) => {
+const copyText = (code, addNotification) => {
   var textArea = document.createElement('textarea');
 
   textArea.className = 'hidden';
@@ -30,6 +25,7 @@ const copyText = ({ code, addNotification }) => {
     document.execCommand('copy');
     document.body.removeChild(textArea);
 
+    // TODO: We should really improve the look and animation of notifications in openmined-ui
     addNotification({
       text: 'Copied to clipboard!',
       type: 'success'
@@ -42,9 +38,9 @@ const copyText = ({ code, addNotification }) => {
   }
 };
 
-const Console = props => (
+const Console = ({ content, addNotification }) => (
   <div id="console-container">
-    <div id="version">{props.version}</div>
+    <div id="version">{content.version}</div>
     <div id="console">
       <div className="header">
         <span />
@@ -53,11 +49,14 @@ const Console = props => (
       </div>
       <div className="content">
         <p>
-          <span className="screenname">[{props.screenname}]&nbsp;</span>
-          {props.code}
+          <span className="screenname">[{content.screenname}]&nbsp;</span>
+          {content.code}
         </p>
       </div>
-      <Button onClick={() => copyText(props)} className="medium-gray small">
+      <Button
+        onClick={() => copyText(content.code, addNotification)}
+        className="medium-gray small"
+      >
         Copy Code
       </Button>
     </div>
@@ -72,26 +71,15 @@ const Hero = props => (
         <Column sizes={{ small: 12 }}>
           <img src={logo} id="logo" alt="OpenMined" />
           <Heading id="tagline" level={2}>
-            Decentralized Artificial Intelligence
+            {props.content.tagline}
           </Heading>
-          <p id="description">
-            OpenMined is an open-source project that allows for encrypted
-            federated learning through blockchain technology.
-          </p>
+          <p id="description">{props.content.description}</p>
           <div id="cta">
-            <ExternalLink
-              to="https://github.com/openmined"
-              className="button white"
-            >
-              Start Contributing
+            <ExternalLink to={props.content.ctaLink} className="button white">
+              {props.content.ctaText}
             </ExternalLink>
           </div>
-          <Console
-            screenname={screenname}
-            code={code}
-            version={version}
-            {...props}
-          />
+          <Console {...props} />
         </Column>
       </Row>
     </Container>
