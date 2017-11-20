@@ -1,0 +1,58 @@
+@import 'variables';
+
+$notification-width: 300px;
+$notification-close-size: 20px;
+$notification-padding: 10px;
+
+#notifications {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  margin: 0px;
+  padding: 0px $notification-padding;
+  z-index: $notifications-zindex;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  @include tablet-up {
+    width: $notification-width;
+  }
+  .notification {
+    position: relative;
+    background: $primary-color;
+    color: $white;
+    padding: $notification-padding $notification-padding $notification-padding ($notification-padding +
+          $notification-close-size);
+    margin-bottom: $notification-padding;
+    border-radius: $border-radius;
+    cursor: default;
+    &.success {
+      background: $success-color;
+      color: $black;
+      .close {
+        background: darken($success-color, 5%);
+        color: $black;
+      }
+    }
+    &.error {
+      background: $alert-color;
+      .close {
+        background: darken($alert-color, 5%);
+      }
+    }
+    .close {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: $notification-close-size;
+      padding: 0px;
+      background: darken($primary-color, 5%);
+      color: $white;
+      border: 0px;
+      border-radius: $border-radius 0px 0px $border-radius;
+      cursor: pointer;
+    }
+  }
+}

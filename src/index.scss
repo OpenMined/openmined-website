@@ -1,0 +1,32 @@
+@import 'variables';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+*,
+*:focus {
+  outline: none;
+}
+
+body {
+  background: $white;
+  color: $black;
+
+  font-family: $body-font;
+  font-weight: $normal-weight;
+  font-size: 16px;
+  line-height: 1.5;
+  direction: ltr;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
+}

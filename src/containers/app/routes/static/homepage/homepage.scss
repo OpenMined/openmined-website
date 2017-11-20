@@ -1,0 +1,16 @@
+@import 'variables';
+
+#homepage {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  .small-text {
+    @include capped-text();
+    color: rgba($white, 0.25);
+    text-align: center;
+    margin-top: $large-space;
+    font-size: 0.9rem;
+  }
+}
