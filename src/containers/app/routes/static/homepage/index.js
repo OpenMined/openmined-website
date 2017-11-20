@@ -7,6 +7,7 @@ import { Page } from 'openmined-ui';
 
 import Hero from './hero';
 import Mission from './mission';
+import Process from './process';
 
 import './homepage.css';
 
@@ -16,13 +17,13 @@ class Homepage extends Component {
   }
 
   render() {
+    const { hero, mission, process } = this.props.content;
+
     return (
       <Page id="homepage">
-        <Hero
-          addNotification={this.props.addNotification}
-          content={this.props.content.hero}
-        />
-        <Mission content={this.props.content.mission} />
+        <Hero addNotification={this.props.addNotification} content={hero} />
+        <Mission content={mission} />
+        <Process content={process} />
       </Page>
     );
   }

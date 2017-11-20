@@ -6,10 +6,10 @@ const Mission = ({ content }) => (
   <div id="mission">
     <Container>
       <Row>
-        <Column sizes={{ small: 12 }}>
+        <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
           <Heading level={3}>{content.heading}</Heading>
-          {content.copy &&
-            content.copy.map((paragraph, index) => {
+          {content.paragraphs &&
+            content.paragraphs.map((paragraph, index) => {
               if (index === 0) {
                 let sentences = paragraph.match(/[^\.!\?]+[\.!\?]+/g);
 
