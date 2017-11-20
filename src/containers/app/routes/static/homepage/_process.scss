@@ -17,58 +17,112 @@ $process-arrow: 5px;
       line-height: 2.5rem;
     }
   }
-  #process-graph {
-    .step-selector {
+  .step-selector {
+    padding: 0px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $medium-space 0px;
+    @include tablet-up {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    @include desktop-up {
+      margin: $medium-space 0px $large-space 0px;
+    }
+    li {
+      @include capped-text(2px);
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 5px;
+      cursor: pointer;
+      color: rgba($white, 0.5);
+      transition: color $anim-time $anim-func;
+      @include desktop-up {
+        margin-bottom: 0px;
+      }
+      &.active {
+        color: $white;
+      }
+      &.arrow-hold {
+        display: none;
+        @include desktop-up {
+          cursor: default;
+          display: block;
+          .arrow {
+            display: block;
+            opacity: 0.15;
+            position: relative;
+            width: 0;
+            height: 0;
+            border-top: $process-arrow solid transparent;
+            border-left: ($process-arrow * 2) solid white;
+            border-bottom: $process-arrow solid transparent;
+            margin-left: $process-arrow * 12;
+            &:before {
+              content: '';
+              position: absolute;
+              width: $process-arrow * 12;
+              height: $process-arrow / 2;
+              background: white;
+              left: $process-arrow * -14;
+              top: $process-arrow / -4;
+            }
+          }
+        }
+      }
+    }
+  }
+  .graph {
+    display: none;
+    @include desktop-up {
+      display: block;
+    }
+  }
+  .info {
+    h5 {
+      color: $white;
+    }
+    .description {
+      color: $light-gray;
+    }
+    h6 {
+      font-size: 0.9rem;
+      color: $medium-gray;
+    }
+    .repos {
       padding: 0px;
       list-style-type: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: $medium-space 0px;
-      @include tablet-up {
-        flex-direction: row;
-        justify-content: space-between;
-        margin: $medium-space 0px $large-space 0px;
-      }
-      li {
-        @include capped-text(2px);
-        font-size: 1.1rem;
-        font-style: italic;
-        margin-bottom: 5px;
-        cursor: pointer;
-        color: rgba($white, 0.5);
-        transition: color $anim-time $anim-func;
-        @include desktop-up {
-          margin-bottom: 0px;
+      a {
+        display: flex;
+        align-items: center;
+        margin-bottom: $small-space;
+        &:hover .name:after {
+          opacity: 0.25;
+          right: -30px;
         }
-        &.active {
+        .icon {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          margin-right: $small-space;
+          padding: $small-space / 1.5;
+          background: $black;
+          border-radius: $border-radius;
+        }
+        .name {
+          @include capped-text(1px);
           color: $white;
-        }
-        &.arrow-hold {
-          display: none;
-          @include desktop-up {
-            cursor: default;
-            display: block;
-            .arrow {
-              display: block;
-              opacity: 0.15;
-              position: relative;
-              width: 0;
-              height: 0;
-              border-top: $process-arrow solid transparent;
-              border-left: ($process-arrow * 2) solid white;
-              border-bottom: $process-arrow solid transparent;
-              margin-left: $process-arrow * 12;
-              &:before {
-                content: '';
-                position: absolute;
-                width: $process-arrow * 12;
-                height: $process-arrow / 2;
-                background: white;
-                left: $process-arrow * -14;
-                top: $process-arrow / -4;
-              }
-            }
+          position: relative;
+          &:after {
+            position: absolute;
+            top: 1px;
+            right: -25px;
+            opacity: 0;
+            transition: opacity $anim-time $anim-func,
+              right $anim-time $anim-func;
+            content: '▶';
           }
         }
       }

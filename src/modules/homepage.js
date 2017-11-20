@@ -44,7 +44,8 @@ const TEMP_CONTENT = {
       {
         name: 'Distribute',
         title: 'Distribute model over blockchain',
-        description: 'This should be filled in right here...',
+        description:
+          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
         repos: [
           {
             name: 'PySyft',
@@ -59,7 +60,8 @@ const TEMP_CONTENT = {
       {
         name: 'Train',
         title: 'Users train (mine) the model',
-        description: 'This should be filled in right here...',
+        description:
+          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
         repos: [
           {
             name: 'PySyft',
@@ -74,7 +76,8 @@ const TEMP_CONTENT = {
       {
         name: 'Reward',
         title: 'Reward the miners',
-        description: 'This should be filled in right here...',
+        description:
+          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
         repos: [
           {
             name: 'PySyft',
@@ -89,7 +92,8 @@ const TEMP_CONTENT = {
       {
         name: 'Deliver',
         title: 'Deliver the results securely',
-        description: 'This should be filled in right here...',
+        description:
+          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
         repos: [
           {
             name: 'PySyft',
@@ -104,6 +108,8 @@ const TEMP_CONTENT = {
     ]
   }
 };
+
+// TODO: Have real information written for the five steps on the graph
 
 const initialState = {
   content: {
