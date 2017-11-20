@@ -1,0 +1,146 @@
+$hero-height: 900px;
+$console-width: 640px;
+$console-height: 400px;
+$console-header-height: 40px;
+$console-header-button: $console-header-height / 2.5;
+
+#hero {
+  position: relative;
+  height: auto;
+  @include desktop-up {
+    height: $hero-height;
+  }
+  &:after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 10px;
+    background: rgba($white, 0.25);
+    z-index: -1;
+    content: '';
+  }
+  #logo {
+    display: block;
+    width: 160px;
+    margin: $large-space auto;
+    @include desktop-up {
+      margin: $xlarge-space auto;
+      width: 200px;
+    }
+  }
+  #tagline {
+    text-align: center;
+    color: $white;
+    font-size: 1.35rem;
+    @include desktop-up {
+      font-size: 2rem;
+    }
+  }
+  #description {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 2rem;
+    color: $white;
+    width: 100%;
+    display: block;
+    margin: $medium-space auto;
+    @include tablet-up {
+      width: 80%;
+      line-height: 2.5rem;
+    }
+    @include desktop-up {
+      width: 50%;
+    }
+    @include widescreen-up {
+      width: 40%;
+    }
+  }
+  #cta {
+    text-align: center;
+    .button {
+      display: inline-block;
+      margin-top: $medium-space;
+      margin-bottom: $large-space;
+      @include desktop-up {
+        margin-bottom: $xlarge-space;
+      }
+    }
+  }
+  #console-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: $large-space + $medium-space;
+    @include desktop-up {
+      position: absolute;
+      bottom: -$large-space;
+      left: 50%;
+      width: $console-width;
+      margin-left: -$console-width / 2;
+      margin-bottom: 0px;
+    }
+    #version {
+      text-align: center;
+      font-weight: $extra-bold-weight;
+      font-size: 0.8rem;
+      color: rgba($white, 0.25);
+      @include capped-text(1px);
+      margin-bottom: $medium-space;
+    }
+    #console {
+      background: $dark-gray;
+      border-radius: $extra-border-radius;
+      overflow: hidden;
+      width: 100%;
+      height: $console-height / 1.25;
+      display: block;
+      box-shadow: 0px $small-space $large-space rgba($black, 0.25);
+      @include desktop-up {
+        height: $console-height;
+      }
+      .header {
+        width: 100%;
+        height: $console-header-height;
+        background: $black;
+        overflow: hidden;
+        span {
+          float: left;
+          display: block;
+          width: $console-header-button;
+          height: $console-header-button;
+          background: rgba($white, 0.15);
+          margin-left: $small-space;
+          margin-top: ($console-header-height - $console-header-button) / 2;
+          border-radius: $round-radius;
+          &:first-of-type {
+            margin-left: $medium-space;
+          }
+        }
+      }
+      .content {
+        position: relative;
+        padding: $medium-space;
+        p {
+          color: $white;
+          letter-spacing: 0.5px;
+          margin: 0px;
+          word-wrap: break-word;
+          // TODO: We should put PT Mono inside of the openmined-ui repo and reference the SASS variable
+          // NOTE: Bold weight (700) is not available on GWF... we're faking it below, maybe find a replacement?
+          font-family: 'PT Mono', monospace;
+          font-weight: 700;
+          .screenname {
+            user-select: none;
+            color: $success-color;
+          }
+        }
+      }
+      button {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        margin: $medium-space;
+      }
+    }
+  }
+}
