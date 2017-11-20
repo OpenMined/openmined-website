@@ -6,6 +6,7 @@ import { getContent } from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
 import Hero from './hero';
+import Mission from './mission';
 
 import './homepage.css';
 
@@ -21,7 +22,7 @@ class Homepage extends Component {
           addNotification={this.props.addNotification}
           content={this.props.content.hero}
         />
-        <div id="hello" />
+        <Mission content={this.props.content.mission} />
       </Page>
     );
   }

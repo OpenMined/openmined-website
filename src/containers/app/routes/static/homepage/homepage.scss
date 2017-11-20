@@ -2,7 +2,5 @@
 
 #homepage {
   @import 'hero';
-  #hello {
-    margin-top: 200px;
-  }
+  @import 'mission';
 }
