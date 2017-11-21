@@ -1,4 +1,7 @@
 $process-arrow: 5px;
+$process-height: 360px;
+$process-node: 80px;
+$process-node-icon: 60%;
 
 #process {
   background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
@@ -77,12 +80,131 @@ $process-arrow: 5px;
   .graph {
     display: none;
     @include desktop-up {
-      display: block;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      height: $process-height * 0.8;
+      @include widescreen-up {
+        height: $process-height;
+      }
+      .items {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        &.data-scientists {
+          justify-content: center;
+        }
+        &.sonar {
+          .big {
+            width: $process-node / 2;
+            height: $process-node / 2;
+          }
+          .small {
+            width: $process-node / 4;
+            height: $process-node / 4;
+          }
+        }
+        .item {
+          position: relative;
+          display: block;
+          width: $process-node;
+          height: $process-node;
+          background: $black;
+          border-radius: $border-radius;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: $process-node-icon;
+            height: $process-node-icon;
+            margin-left: -0.5 * $process-node-icon;
+            margin-top: -0.5 * $process-node-icon;
+          }
+        }
+      }
+      .lines {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 100%;
+        &.first {
+          li {
+            &:after {
+              background: linear-gradient(
+                to right,
+                $success-color,
+                $warning-color
+              );
+              clip-path: url(#circles-clip);
+            }
+          }
+        }
+        &.second {
+          li {
+            &:first-of-type {
+              transform-origin: 0% 0%;
+              transform: skewY(-34deg);
+              @include widescreen-up {
+                transform: skewY(-29deg);
+              }
+            }
+            &:last-of-type {
+              transform-origin: 0% 0%;
+              transform: skewY(34deg);
+              @include widescreen-up {
+                transform: skewY(29deg);
+              }
+            }
+            &:after {
+              background: linear-gradient(
+                to right,
+                $warning-color,
+                $alert-color
+              );
+              clip-path: url(#circles-clip);
+            }
+          }
+        }
+        li {
+          display: block;
+          width: 100%;
+          height: 20px;
+          position: relative;
+          &:before {
+            position: absolute;
+            top: 50%;
+            left: 0px;
+            width: 100%;
+            height: 2px;
+            border: 2px solid rgba($white, 0.1);
+            overflow: hidden;
+            margin-top: -2px;
+            content: '';
+          }
+          &:after {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            content: '';
+          }
+        }
+      }
     }
   }
   .info {
     h5 {
       color: $white;
+      margin-top: 0px;
     }
     .description {
       color: $light-gray;

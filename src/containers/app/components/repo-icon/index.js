@@ -4,7 +4,7 @@ import pysyftIcon from './assets/pysyft.svg';
 import sonarIcon from './assets/sonar.svg';
 import mineIcon from './assets/mine.svg';
 import adaptersIcon from './assets/adapters.svg';
-import openminedIcon from '../../assets/logo-square-white.svg';
+import openminedIcon from '../../assets/logo-square-color.svg';
 
 const RepoIcon = ({ repo }) => {
   let icon;

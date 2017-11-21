@@ -5,7 +5,55 @@ import ExternalLink from '../../../components/external-link';
 import RepoIcon from '../../../components/repo-icon';
 
 const Graph = ({ current }) => (
-  <div className="graph">Here's an awesome graph... {current}</div>
+  <div className={'graph ' + current}>
+    <ul className="items data-scientists">
+      <li className="item data-scientist">
+        <RepoIcon repo="data-scientist" />
+      </li>
+    </ul>
+    <ul className="lines first">
+      <li className="line" />
+    </ul>
+    <ul className="items sonar">
+      <li className="item small" />
+      <li className="item big" />
+      <li className="item sonar">
+        <RepoIcon repo="sonar" />
+      </li>
+      <li className="item big" />
+      <li className="item small" />
+    </ul>
+    <ul className="lines second">
+      <li className="line" />
+      <li className="line" />
+      <li className="line" />
+    </ul>
+    <ul className="items mines">
+      <li className="item mine">
+        <RepoIcon repo="mine" />
+      </li>
+      <li className="item mine">
+        <RepoIcon repo="mine" />
+      </li>
+      <li className="item mine">
+        <RepoIcon repo="mine" />
+      </li>
+    </ul>
+    <svg width="0" height="0">
+      <defs>
+        <clipPath id="circles-clip">
+          <circle cx="10" cy="10" r="6" />
+          <circle cx="40" cy="10" r="6" />
+          <circle cx="70" cy="10" r="6" />
+          <circle cx="100" cy="10" r="6" />
+          <circle cx="130" cy="10" r="6" />
+          <circle cx="160" cy="10" r="6" />
+          <circle cx="190" cy="10" r="6" />
+          <circle cx="220" cy="10" r="6" />
+        </clipPath>
+      </defs>
+    </svg>
+  </div>
 );
 
 const Info = ({ current, data }) => {
@@ -110,32 +158,36 @@ class Process extends Component {
               <p className="description">{content.description}</p>
             </Column>
           </Row>
-          {content.graph && (
-            <Row>
-              <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-                <StepSelector
-                  current={this.state.current}
-                  data={content.graph}
-                  changeCurrent={newCurrent =>
-                    this.setState({ current: newCurrent })}
-                />
-              </Column>
-              <Column
-                sizes={{ small: 12, large: 6, xlarge: 5 }}
-                offsets={{ xlarge: 1 }}
-              >
-                <Graph current={this.state.current} />
-              </Column>
-              <Column
-                sizes={{ small: 12, large: 5, xlarge: 4 }}
-                offsets={{ large: 1, xlarge: 2 }}
-              >
-                {this.state.current && (
-                  <Info current={this.state.current} data={content.graph} />
-                )}
-              </Column>
-            </Row>
-          )}
+          {content.graph &&
+            this.state.current && (
+              <Row>
+                <Column
+                  sizes={{ small: 12, xlarge: 10 }}
+                  offsets={{ xlarge: 1 }}
+                >
+                  <StepSelector
+                    current={this.state.current}
+                    data={content.graph}
+                    changeCurrent={newCurrent =>
+                      this.setState({ current: newCurrent })}
+                  />
+                </Column>
+                <Column
+                  sizes={{ small: 12, large: 6, xlarge: 6 }}
+                  offsets={{ xlarge: 1 }}
+                >
+                  <Graph current={this.state.current.toLowerCase()} />
+                </Column>
+                <Column
+                  sizes={{ small: 12, large: 5, xlarge: 4 }}
+                  offsets={{ large: 1, xlarge: 1 }}
+                >
+                  {this.state.current && (
+                    <Info current={this.state.current} data={content.graph} />
+                  )}
+                </Column>
+              </Row>
+            )}
         </Container>
       </div>
     );
