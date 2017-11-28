@@ -151,16 +151,16 @@ $process-node-icon: 60%;
           li {
             &:first-of-type {
               transform-origin: 0% 0%;
-              transform: skewY(-34deg);
+              transform: rotate(-35deg) scaleX(1.2);
               @include widescreen-up {
-                transform: skewY(-29deg);
+                transform: rotate(-28deg) scaleX(1.125);
               }
             }
             &:last-of-type {
               transform-origin: 0% 0%;
-              transform: skewY(34deg);
+              transform: translateX(9px) rotate(35deg) scaleX(1.2);
               @include widescreen-up {
-                transform: skewY(29deg);
+                transform: translateX(9px) rotate(28deg) scaleX(1.125);
               }
             }
             &:after {
