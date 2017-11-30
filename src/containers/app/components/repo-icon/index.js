@@ -18,6 +18,10 @@ const RepoIcon = ({ repo }) => {
       icon = sonarIcon;
       break;
 
+    case 'pysonar':
+      icon = sonarIcon;
+      break;
+
     case 'mine':
       icon = mineIcon;
       break;

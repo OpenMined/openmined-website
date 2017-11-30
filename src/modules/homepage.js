@@ -29,15 +29,11 @@ const TEMP_CONTENT = {
         name: 'Create',
         title: 'Create a model',
         description:
-          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
+          'A data scientist creates a model, defines a training bounty, requests specific user data. This could be anything from personal health information to social media posts.',
         repos: [
           {
-            name: 'PySyft',
-            link: 'https://github.com/OpenMined/PySyft'
-          },
-          {
-            name: 'Sonar',
-            link: 'https://github.com/OpenMined/Sonar'
+            name: 'PySonar',
+            link: 'https://github.com/OpenMined/PySonar'
           }
         ]
       },
@@ -45,31 +41,51 @@ const TEMP_CONTENT = {
         name: 'Distribute',
         title: 'Distribute model over blockchain',
         description:
-          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
+          "Upon submission, the model is encrypted and distributed throughout Sonar, Open Mine's decentralized blockchain. It's now available for training.",
         repos: [
-          {
-            name: 'PySyft',
-            link: 'https://github.com/OpenMined/PySyft'
-          },
           {
             name: 'Sonar',
             link: 'https://github.com/OpenMined/Sonar'
+          },
+          {
+            name: 'PyYashe',
+            link: 'https://github.com/OpenMined/PyYashe'
+          },
+          {
+            name: 'PyBV',
+            link: 'https://github.com/OpenMined/PyBV'
+          },
+          {
+            name: 'PyAono',
+            link: 'https://github.com/OpenMined/PyAono'
           }
         ]
       },
       {
         name: 'Train',
-        title: 'Users train (mine) the model',
+        title: 'Users train the model',
         description:
-          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
+          'The general public, who we call "miners", anonymously pull down the encrypted model from Sonar should they have the correct data required by the model.',
         repos: [
+          {
+            name: 'OpenMined',
+            link: 'https://github.com/OpenMined/OpenMined'
+          },
           {
             name: 'PySyft',
             link: 'https://github.com/OpenMined/PySyft'
           },
           {
-            name: 'Sonar',
-            link: 'https://github.com/OpenMined/Sonar'
+            name: 'Adapters',
+            link: 'https://github.com/OpenMined/Adapters'
+          },
+          {
+            name: 'Mine UI',
+            link: 'https://github.com/OpenMined/mine-ui'
+          },
+          {
+            name: 'OpenMined UI',
+            link: 'https://github.com/OpenMined/openmined-ui'
           }
         ]
       },
@@ -77,15 +93,15 @@ const TEMP_CONTENT = {
         name: 'Reward',
         title: 'Reward the miners',
         description:
-          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
+          'With each party remaining unknown to the other, the miner uploads their change gradient and is rewarded proportionate to how much they improve the model.',
         repos: [
-          {
-            name: 'PySyft',
-            link: 'https://github.com/OpenMined/PySyft'
-          },
           {
             name: 'Sonar',
             link: 'https://github.com/OpenMined/Sonar'
+          },
+          {
+            name: 'Mine UI',
+            link: 'https://github.com/OpenMined/mine-ui'
           }
         ]
       },
@@ -93,11 +109,11 @@ const TEMP_CONTENT = {
         name: 'Deliver',
         title: 'Deliver the results securely',
         description:
-          'A data scientist creates a model and requests specific user data. This could be anything from personal health information to social media posts.',
+          "Once a success criteria is met, the model is decrypted by a private key held only by the data scientist. All the while, neither party has access to each other's data or intellectual property.",
         repos: [
           {
-            name: 'PySyft',
-            link: 'https://github.com/OpenMined/PySyft'
+            name: 'PySonar',
+            link: 'https://github.com/OpenMined/PySonar'
           },
           {
             name: 'Sonar',

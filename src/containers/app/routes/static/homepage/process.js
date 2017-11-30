@@ -4,17 +4,87 @@ import ExternalLink from '../../../components/external-link';
 
 import RepoIcon from '../../../components/repo-icon';
 
+const getGraphDisabledClasses = (current, classes) => {
+  classes = classes.split(' ');
+
+  switch (current) {
+    case 'create':
+      if (~classes.indexOf('second') || ~classes.indexOf('mines')) {
+        classes.push('disabled');
+      }
+      break;
+
+    case 'distribute':
+      if (
+        ~classes.indexOf('data-scientists') ||
+        ~classes.indexOf('first') ||
+        ~classes.indexOf('second') ||
+        ~classes.indexOf('mines')
+      ) {
+        classes.push('disabled');
+      }
+      if (~classes.indexOf('sonar')) {
+        classes.push('distributing');
+      }
+      break;
+
+    case 'train':
+      if (~classes.indexOf('data-scientists') || ~classes.indexOf('first')) {
+        classes.push('disabled');
+      }
+      if (~classes.indexOf('sonar')) {
+        classes.push('distributed');
+      }
+      break;
+
+    case 'reward':
+      if (~classes.indexOf('data-scientists') || ~classes.indexOf('first')) {
+        classes.push('disabled');
+      }
+      if (~classes.indexOf('sonar')) {
+        classes.push('distributed');
+      }
+      if (~classes.indexOf('second')) {
+        classes.push('rewarded');
+      }
+      if (~classes.indexOf('mines')) {
+        classes.push('money');
+      }
+      break;
+
+    case 'deliver':
+      if (~classes.indexOf('data-scientists')) {
+        classes.push('finished');
+      }
+      if (~classes.indexOf('second') || ~classes.indexOf('mines')) {
+        classes.push('disabled');
+      }
+      if (~classes.indexOf('first')) {
+        classes.push('returned');
+      }
+      if (~classes.indexOf('sonar')) {
+        classes.push('distributed');
+      }
+      break;
+
+    default:
+      break;
+  }
+
+  return classes.join(' ');
+};
+
 const Graph = ({ current }) => (
   <div className={'graph ' + current}>
-    <ul className="items data-scientists">
+    <ul className={getGraphDisabledClasses(current, 'items data-scientists')}>
       <li className="item data-scientist">
         <RepoIcon repo="data-scientist" />
       </li>
     </ul>
-    <ul className="lines first">
+    <ul className={getGraphDisabledClasses(current, 'lines first')}>
       <li className="line" />
     </ul>
-    <ul className="items sonar">
+    <ul className={getGraphDisabledClasses(current, 'items sonar')}>
       <li className="item small" />
       <li className="item big" />
       <li className="item sonar">
@@ -23,12 +93,12 @@ const Graph = ({ current }) => (
       <li className="item big" />
       <li className="item small" />
     </ul>
-    <ul className="lines second">
+    <ul className={getGraphDisabledClasses(current, 'lines second')}>
       <li className="line" />
       <li className="line" />
       <li className="line" />
     </ul>
-    <ul className="items mines">
+    <ul className={getGraphDisabledClasses(current, 'items mines')}>
       <li className="item mine">
         <RepoIcon repo="mine" />
       </li>
