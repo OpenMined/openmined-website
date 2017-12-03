@@ -26,6 +26,10 @@ const RepoIcon = ({ repo }) => {
       icon = mineIcon;
       break;
 
+    case 'mine-ui':
+      icon = mineIcon;
+      break;
+
     case 'adapters':
       icon = adaptersIcon;
       break;

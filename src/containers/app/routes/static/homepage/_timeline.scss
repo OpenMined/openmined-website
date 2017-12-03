@@ -1,4 +1,5 @@
 $timeline-item-height: 20px;
+$github-project-size: 270px;
 
 #timeline {
   padding: $large-space 0px;
@@ -72,6 +73,58 @@ $timeline-item-height: 20px;
         z-index: -1;
         background: $light-gray;
         content: '';
+      }
+    }
+  }
+  #github-projects {
+    .projects {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: $medium-space;
+      @include desktop-up {
+        margin-top: $large-space;
+      }
+      .project {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: $medium-space;
+        background: $white;
+        border-radius: $extra-border-radius;
+        box-shadow: 0px $small-space $large-space rgba($black, 0.1);
+        cursor: pointer;
+        width: $github-project-size;
+        height: $github-project-size;
+        transition: opacity $anim-time $anim-func,
+          transform $anim-time $anim-func;
+        opacity: 0.35;
+        @include tablet-up {
+          flex-basis: 45%;
+        }
+        @include widescreen-up {
+          flex-basis: auto;
+          width: $github-project-size;
+          height: $github-project-size;
+        }
+        &:hover {
+          transform: scale(1.05);
+        }
+        &.current {
+          opacity: 1;
+          &:hover {
+            transform: none;
+          }
+        }
+        .repo-icon {
+          height: 48px;
+        }
+        .description {
+          margin-top: 0px;
+          font-size: 0.9rem;
+          color: $medium-gray;
+        }
       }
     }
   }

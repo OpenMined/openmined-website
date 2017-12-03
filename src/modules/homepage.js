@@ -1,4 +1,5 @@
-export const GET_CONTENT = 'auth/GET_CONTENT';
+export const GET_CONTENT = 'homepage/GET_CONTENT';
+export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
 
 // TODO: Match this up to a hosted Wordpress API
 const TEMP_CONTENT = {
@@ -146,6 +147,36 @@ const TEMP_CONTENT = {
         date: 'TBD',
         status: 'future'
       }
+    ],
+    repos: [
+      {
+        name: 'PySyft',
+        description: 'Encrypted Deep Learning Library',
+        repo: 'PySyft',
+        contributors: [],
+        issues: []
+      },
+      {
+        name: 'Sonar',
+        description: 'Machine Learning Blockchain',
+        repo: 'Sonar',
+        contributors: [],
+        issues: []
+      },
+      {
+        name: 'MineUI',
+        description: 'Federated Learning Client',
+        repo: 'mine-ui',
+        contributors: [],
+        issues: []
+      },
+      {
+        name: 'Adapters',
+        description: 'Data Schema Conversion',
+        repo: 'adapters',
+        contributors: [],
+        issues: []
+      }
     ]
   }
 };
@@ -169,6 +200,18 @@ export default (state = initialState, action) => {
         content: action.content
       };
 
+    case GET_GITHUB_PROJECTS:
+      return {
+        ...state,
+        content: {
+          ...state.content,
+          timeline: {
+            ...state.content.timeline,
+            repos: action.content
+          }
+        }
+      };
+
     default:
       return state;
   }
@@ -180,5 +223,53 @@ export const getContent = () => {
       type: GET_CONTENT,
       content: TEMP_CONTENT
     });
+  };
+};
+
+export const getGithubProjects = () => {
+  return (dispatch, getState) => {
+    let repos = getState().homepage.content.timeline.repos;
+
+    if (repos) {
+      let repoContributors = [];
+      let repoIssues = [];
+
+      repos.forEach(repo => {
+        repoContributors.push(
+          'https://api.github.com/repos/OpenMined/' +
+            repo.repo +
+            '/stats/contributors'
+        );
+
+        repoIssues.push(
+          'https://api.github.com/repos/OpenMined/' + repo.repo + '/issues'
+        );
+      });
+
+      Promise.all([
+        Promise.all(
+          repoContributors.map(url =>
+            fetch(url)
+              .then(resp => resp.json())
+              .then(resp => resp.reverse().slice(0, 5))
+          )
+        ),
+        Promise.all(repoIssues.map(url => fetch(url).then(resp => resp.json())))
+      ]).then(response => {
+        let newReposArray = [];
+
+        repos.forEach((repo, index) => {
+          repo.contributors = response[0][index];
+          repo.issues = response[1][index];
+
+          newReposArray.push(repo);
+        });
+
+        dispatch({
+          type: GET_GITHUB_PROJECTS,
+          content: newReposArray
+        });
+      });
+    }
   };
 };
