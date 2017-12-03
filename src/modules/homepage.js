@@ -122,6 +122,31 @@ const TEMP_CONTENT = {
         ]
       }
     ]
+  },
+  timeline: {
+    heading: 'Project Timeline',
+    events: [
+      {
+        title: 'Project Launched',
+        date: 'July 2017',
+        status: 'past'
+      },
+      {
+        title: 'Hydrogen Release',
+        date: 'September 2017',
+        status: 'past'
+      },
+      {
+        title: 'Helium Release',
+        date: 'December 2017',
+        status: 'current'
+      },
+      {
+        title: 'Lithium Release',
+        date: 'TBD',
+        status: 'future'
+      }
+    ]
   }
 };
 
@@ -131,7 +156,8 @@ const initialState = {
   content: {
     hero: {},
     mission: {},
-    process: {}
+    process: {},
+    timeline: {}
   }
 };
 
