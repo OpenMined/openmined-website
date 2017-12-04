@@ -81,9 +81,9 @@ $github-project-size: 270px;
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
-      margin-top: $medium-space;
+      margin: $medium-space auto;
       @include desktop-up {
-        margin-top: $large-space;
+        margin: $large-space auto;
       }
       .project {
         display: flex;
@@ -125,6 +125,114 @@ $github-project-size: 270px;
           font-size: 0.9rem;
           color: $medium-gray;
         }
+      }
+    }
+    .contributors {
+      list-style-type: none;
+      padding: 0px;
+      .contributor {
+        a {
+          display: flex;
+          align-items: center;
+          margin-bottom: $medium-space;
+          &:hover .login {
+            color: $primary-color;
+          }
+          .avatar {
+            height: 48px;
+            width: 48px;
+            display: block;
+            border-radius: $round-radius;
+            background-size: cover;
+            background-position: 50% 50%;
+          }
+          .login {
+            font-weight: $bold-weight;
+            margin: 0px;
+            margin-left: $small-space;
+            color: $black;
+            transition: color $anim-time $anim-func;
+          }
+        }
+      }
+    }
+    .issues {
+      list-style-type: none;
+      padding: 0px;
+      .issue {
+        display: flex;
+        align-items: center;
+        margin-bottom: $medium-space;
+        .fa-github {
+          font-size: 1.5rem;
+          height: 24px;
+          display: block;
+          margin-right: $medium-space;
+          opacity: 0.25;
+        }
+        a {
+          display: block;
+          &:hover .title {
+            color: $primary-color;
+          }
+          .title {
+            margin: 0px;
+            font-size: 1.1rem;
+            font-weight: $bold-weight;
+            color: $black;
+            transition: color $anim-time $anim-func;
+          }
+          .meta {
+            margin: 0px;
+            font-size: 0.9rem;
+            color: $medium-gray;
+          }
+        }
+      }
+    }
+  }
+  .cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: $medium-space;
+    @include desktop-up {
+      margin-top: $large-space;
+    }
+    .button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      // TODO: Fix below line in openmined-ui
+      &:hover {
+        color: $white;
+      }
+      &:before,
+      &:after {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+        content: '';
+      }
+      &:before {
+        left: -260px;
+        background: linear-gradient(
+          to right,
+          rgba($light-gray, 0),
+          rgba($light-gray, 1)
+        );
+      }
+      &:after {
+        right: -260px;
+        background: linear-gradient(
+          to left,
+          rgba($light-gray, 0),
+          rgba($light-gray, 1)
+        );
+      }
+      i {
+        margin-right: $small-space;
+        font-size: 1.1rem;
       }
     }
   }

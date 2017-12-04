@@ -143,7 +143,7 @@ const Info = ({ current, data }) => {
       <ul className="repos">
         {info.repos.map(repo => {
           return (
-            <li>
+            <li key={`repo-${repo.name}`}>
               <ExternalLink to={repo.link}>
                 <div className="icon">
                   <RepoIcon repo={repo.name} />

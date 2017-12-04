@@ -9,6 +9,7 @@ import Hero from './hero';
 import Mission from './mission';
 import Process from './process';
 import Timeline from './timeline';
+import Footer from './footer';
 
 import './homepage.css';
 
@@ -19,7 +20,7 @@ class Homepage extends Component {
   }
 
   render() {
-    const { hero, mission, process, timeline } = this.props.content;
+    const { hero, mission, process, timeline, footer } = this.props.content;
 
     return (
       <Page id="homepage">
@@ -27,6 +28,7 @@ class Homepage extends Component {
         <Mission content={mission} />
         <Process content={process} />
         <Timeline content={timeline} />
+        <Footer content={footer} />
       </Page>
     );
   }

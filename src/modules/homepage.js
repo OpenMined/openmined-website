@@ -178,6 +178,12 @@ const TEMP_CONTENT = {
         issues: []
       }
     ]
+  },
+  footer: {
+    questions: {
+      heading: 'Common Questions',
+      questions: []
+    }
   }
 };
 
@@ -188,7 +194,8 @@ const initialState = {
     hero: {},
     mission: {},
     process: {},
-    timeline: {}
+    timeline: {},
+    footer: {}
   }
 };
 
@@ -242,7 +249,9 @@ export const getGithubProjects = () => {
         );
 
         repoIssues.push(
-          'https://api.github.com/repos/OpenMined/' + repo.repo + '/issues'
+          'https://api.github.com/repos/OpenMined/' +
+            repo.repo +
+            '/issues?sort=comments'
         );
       });
 
@@ -254,7 +263,13 @@ export const getGithubProjects = () => {
               .then(resp => resp.reverse().slice(0, 5))
           )
         ),
-        Promise.all(repoIssues.map(url => fetch(url).then(resp => resp.json())))
+        Promise.all(
+          repoIssues.map(url =>
+            fetch(url)
+              .then(resp => resp.json())
+              .then(resp => resp.slice(0, 5))
+          )
+        )
       ]).then(response => {
         let newReposArray = [];
 

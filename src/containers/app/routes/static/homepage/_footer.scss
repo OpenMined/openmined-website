@@ -1,0 +1,10 @@
+#footer {
+  background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
+  padding: $large-space 0px;
+  @include desktop-up {
+    padding: $xlarge-space + $medium-space 0px;
+  }
+  h3 {
+    color: $white;
+  }
+}
