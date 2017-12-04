@@ -95,13 +95,15 @@ $github-project-size: 270px;
         border-radius: $extra-border-radius;
         box-shadow: 0px $small-space $large-space rgba($black, 0.1);
         cursor: pointer;
-        width: $github-project-size;
-        height: $github-project-size;
+        width: 100%;
+        height: $github-project-size * 0.75;
         transition: opacity $anim-time $anim-func,
           transform $anim-time $anim-func;
         opacity: 0.35;
         @include tablet-up {
           flex-basis: 45%;
+          width: $github-project-size;
+          height: $github-project-size;
         }
         @include widescreen-up {
           flex-basis: auto;

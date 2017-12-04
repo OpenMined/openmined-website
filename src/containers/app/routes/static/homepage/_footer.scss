@@ -7,4 +7,139 @@
   h3 {
     color: $white;
   }
+  .questions {
+    margin-top: $small-space;
+    @include desktop-up {
+      margin-top: $medium-space;
+    }
+    .question {
+      margin-bottom: $medium-space;
+      @include desktop-up {
+        margin-bottom: $large-space;
+      }
+      .query {
+        color: $white;
+        font-weight: $bold-weight;
+      }
+      .answer {
+        margin-top: 0px;
+        color: $light-gray;
+        line-height: 2rem;
+      }
+    }
+  }
+  .ctas {
+    margin-top: $medium-space;
+    @include desktop-up {
+      display: flex;
+      margin-top: $large-space;
+    }
+    .button-container {
+      display: block;
+      margin-bottom: $medium-space;
+      @include desktop-up {
+        margin-right: $medium-space;
+      }
+      .button {
+        display: flex;
+        align-items: center;
+        i {
+          margin-right: $small-space;
+          font-size: 1.1rem;
+          color: rgba($black, 0.25);
+        }
+      }
+      .count {
+        color: $medium-gray;
+        font-size: 0.9rem;
+        display: block;
+        @include capped-text(1px);
+      }
+    }
+  }
+  .members {
+    display: none;
+    @include desktop-up {
+      list-style-type: none;
+      padding: 0px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: $large-space;
+      justify-content: flex-start;
+    }
+    .member {
+      margin-right: $small-space;
+      margin-bottom: $small-space;
+      a {
+        &:hover .avatar {
+          opacity: 1;
+        }
+        .avatar {
+          height: 40px;
+          width: 40px;
+          display: block;
+          border-radius: $round-radius;
+          background-size: cover;
+          background-position: 50% 50%;
+          opacity: 0.25;
+          transition: opacity $anim-time $anim-func;
+        }
+      }
+    }
+  }
+  .footer {
+    margin-top: $small-space;
+    @include tablet-up {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: $medium-space;
+    }
+    .footer-items {
+      list-style-type: none;
+      padding: 0px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      li {
+        &.logo {
+          img {
+            height: 40px;
+            margin-right: $medium-space;
+          }
+        }
+        &.text,
+        &.icon {
+          span {
+            @include capped-text(1px);
+            margin: 0px $medium-space;
+          }
+          i {
+            margin: 0px $small-space;
+          }
+          span,
+          i {
+            font-size: 0.9rem;
+            color: $white;
+            transition: color $anim-time $anim-func;
+            &:hover {
+              color: $primary-color;
+            }
+          }
+        }
+        &.icon {
+          height: 20px;
+          i {
+            font-size: 1.25rem;
+          }
+        }
+      }
+    }
+    .tagline {
+      margin: 0px;
+      color: $medium-gray;
+      font-size: 0.9rem;
+    }
+  }
 }

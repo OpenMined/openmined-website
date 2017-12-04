@@ -121,7 +121,7 @@ class Timeline extends Component {
 
   componentDidUpdate() {
     if (this.props.content.repos && !this.state.currentProject) {
-      // TODO: Is there a safer way to set the state of the first item?=
+      // TODO: Is there a safer way to set the state of the first item?
       this.setState({
         currentProject: this.props.content.repos[0].name
       });
@@ -198,10 +198,7 @@ class Timeline extends Component {
         <Container>
           <Row>
             <Column sizes={{ small: 12 }} className="cta-container">
-              <ExternalLink
-                to="https://github.com/OpenMined"
-                className="button black"
-              >
+              <ExternalLink to={content.ctaLink} className="button black">
                 <i className="fa fa-github" />
                 <span>Start Contributing</span>
               </ExternalLink>

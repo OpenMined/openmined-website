@@ -1,5 +1,8 @@
+import { all as fetchAll } from 'fetch-link';
+
 export const GET_CONTENT = 'homepage/GET_CONTENT';
 export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
+export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
 
 // TODO: Match this up to a hosted Wordpress API
 const TEMP_CONTENT = {
@@ -177,17 +180,72 @@ const TEMP_CONTENT = {
         contributors: [],
         issues: []
       }
-    ]
+    ],
+    ctaLink: 'https://github.com/OpenMined'
   },
   footer: {
     questions: {
       heading: 'Common Questions',
-      questions: []
-    }
+      questions: [
+        {
+          question: 'Why couldn’t I just use fake data to earn a bounty?',
+          answer:
+            'Data owners aren’t compensated for their data - they’re compensated for making a model smarter.  This can only be done if you have real data. If it was possible to make a model smarter by using entirely fake data, then data scientists wouldn’t have a problem finding quality datasets to train their models.'
+        },
+        {
+          question: 'Will there be an ICO?',
+          answer: 'Absolutely not.'
+        },
+        {
+          question:
+            'Isn’t homomorphic encryption too slow to perform at scale currently?',
+          answer:
+            'Not the way we use it.  Furthermore, the most computationally intensive models will use multi-party computation instead.'
+        }
+      ]
+    },
+    movement: {
+      heading: 'Join the Movement',
+      github: {
+        link: 'https://github.com/OpenMined',
+        members: []
+      },
+      slack: {
+        link:
+          'https://join.slack.com/t/openmined/shared_invite/enQtMjU5MzE5ODk4MTc3LWI2ZGE1ODc1YjdkZDJiNjdmYTdkZmE4ZTY5N2NkNDgxZjUyNjgxMTVhMmJkOTZhZjEyZDA3MTM2MThkZWVhMjg'
+      },
+      newsletter: {
+        link: 'http://eepurl.com/cW1Fqj'
+      }
+    },
+    links: [
+      // {
+      //   to: 'https://blog.openmined.org',
+      //   text: 'Blog'
+      // },
+      {
+        to: 'https://openmined.org/assets/openmined-brand-guide.pdf',
+        text: 'Brand Guide'
+      },
+      {
+        to: 'https://github.com/OpenMined',
+        icon: 'fa-github'
+      },
+      {
+        to: 'https://twitter.com/openminedorg',
+        icon: 'fa-twitter'
+      },
+      {
+        to: 'https://www.youtube.com/c/OpenMinedOrg',
+        icon: 'fa-youtube'
+      },
+      {
+        to: 'https://www.facebook.com/openminedorg/',
+        icon: 'fa-facebook'
+      }
+    ]
   }
 };
-
-// TODO: Have real information written for the five steps on the graph
 
 const initialState = {
   content: {
@@ -215,6 +273,24 @@ export default (state = initialState, action) => {
           timeline: {
             ...state.content.timeline,
             repos: action.content
+          }
+        }
+      };
+
+    case GET_GITHUB_MEMBERS:
+      return {
+        ...state,
+        content: {
+          ...state.content,
+          footer: {
+            ...state.content.footer,
+            movement: {
+              ...state.content.footer.movement,
+              github: {
+                ...state.content.footer.movement.github,
+                members: action.content
+              }
+            }
           }
         }
       };
@@ -286,5 +362,35 @@ export const getGithubProjects = () => {
         });
       });
     }
+  };
+};
+
+export const getGithubMembers = () => {
+  return dispatch => {
+    const shuffleArray = array => {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    };
+
+    let allMembers = [];
+
+    fetchAll('https://api.github.com/orgs/OpenMined/members')
+      .then(responses => {
+        responses.forEach(response => {
+          response.json().then(data => {
+            allMembers = allMembers.concat(data);
+          });
+        });
+      })
+      .then(() => {
+        shuffleArray(allMembers);
+
+        dispatch({
+          type: GET_GITHUB_MEMBERS,
+          content: allMembers
+        });
+      });
   };
 };

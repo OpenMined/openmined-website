@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addNotification } from '../../../../../modules/notifications';
-import { getContent, getGithubProjects } from '../../../../../modules/homepage';
+import {
+  getContent,
+  getGithubProjects,
+  getGithubMembers
+} from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
 import Hero from './hero';
@@ -17,6 +21,7 @@ class Homepage extends Component {
   componentDidMount() {
     this.props.getContent();
     this.props.getGithubProjects();
+    this.props.getGithubMembers();
   }
 
   render() {
@@ -40,7 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
-    { addNotification, getContent, getGithubProjects },
+    { addNotification, getContent, getGithubProjects, getGithubMembers },
     dispatch
   );
 
