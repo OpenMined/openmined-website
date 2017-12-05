@@ -1,4 +1,4 @@
-import { all as fetchAll } from 'fetch-link';
+import parse from 'parse-link-header';
 
 export const GET_CONTENT = 'homepage/GET_CONTENT';
 export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
@@ -374,23 +374,40 @@ export const getGithubMembers = () => {
       }
     };
 
+    let membersPromises = [];
     let allMembers = [];
 
-    fetchAll('https://api.github.com/orgs/OpenMined/members')
-      .then(responses => {
-        responses.forEach(response => {
-          response.json().then(data => {
-            allMembers = allMembers.concat(data);
-          });
-        });
-      })
-      .then(() => {
-        shuffleArray(allMembers);
+    const getMembersFetch = url => {
+      fetch(url).then(resp => {
+        const link = parse(resp.headers.get('Link')) || {};
 
-        dispatch({
-          type: GET_GITHUB_MEMBERS,
-          content: allMembers
-        });
+        membersPromises.push(resp);
+
+        if (link.next) {
+          getMembersFetch(link.next.url);
+        } else {
+          Promise.all(membersPromises)
+            .then(responses => {
+              responses.forEach(response => {
+                response.json().then(data => {
+                  allMembers = allMembers.concat(data);
+                });
+              });
+            })
+            .then(() => {
+              shuffleArray(allMembers);
+
+              console.log('got ee', allMembers);
+
+              dispatch({
+                type: GET_GITHUB_MEMBERS,
+                content: allMembers
+              });
+            });
+        }
       });
+    };
+
+    getMembersFetch('https://api.github.com/orgs/OpenMined/members');
   };
 };
