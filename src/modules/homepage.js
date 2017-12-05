@@ -397,8 +397,6 @@ export const getGithubMembers = () => {
             .then(() => {
               shuffleArray(allMembers);
 
-              console.log('got ee', allMembers);
-
               dispatch({
                 type: GET_GITHUB_MEMBERS,
                 content: allMembers
