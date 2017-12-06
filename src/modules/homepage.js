@@ -97,7 +97,7 @@ const TEMP_CONTENT = {
         name: 'Reward',
         title: 'Reward the miners',
         description:
-          'With each party remaining unknown to the other, the miner uploads their change gradient and is rewarded proportionate to how much they improve the model.',
+          'With each party remaining unknown to the other, the miner uploads their gradient and is rewarded proportionate to how much they improve the model.',
         repos: [
           {
             name: 'Sonar',
@@ -153,6 +153,13 @@ const TEMP_CONTENT = {
     ],
     repos: [
       {
+        name: 'OpenMined',
+        description: 'GPU Optimized Deep Learning',
+        repo: 'openmined',
+        contributors: [],
+        issues: []
+      },
+      {
         name: 'PySyft',
         description: 'Encrypted Deep Learning Library',
         repo: 'PySyft',
@@ -160,23 +167,16 @@ const TEMP_CONTENT = {
         issues: []
       },
       {
-        name: 'Sonar',
-        description: 'Machine Learning Blockchain',
-        repo: 'Sonar',
-        contributors: [],
-        issues: []
-      },
-      {
-        name: 'MineUI',
-        description: 'Federated Learning Client',
-        repo: 'mine-ui',
-        contributors: [],
-        issues: []
-      },
-      {
         name: 'Adapters',
         description: 'Data Schema Conversion',
         repo: 'adapters',
+        contributors: [],
+        issues: []
+      },
+      {
+        name: 'Sonar',
+        description: 'Machine Learning Blockchain',
+        repo: 'Sonar',
         contributors: [],
         issues: []
       }
@@ -224,7 +224,7 @@ const TEMP_CONTENT = {
       //   text: 'Blog'
       // },
       {
-        to: 'https://openmined.org/assets/openmined-brand-guide.pdf',
+        to: '/assets/openmined-brand-guide.pdf',
         text: 'Brand Guide'
       },
       {

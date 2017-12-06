@@ -7,7 +7,6 @@ import {
   getGithubProjects,
   getGithubMembers
 } from '../../../../../modules/homepage';
-import { Page } from 'openmined-ui';
 
 import Hero from './hero';
 import Mission from './mission';
@@ -28,13 +27,13 @@ class Homepage extends Component {
     const { hero, mission, process, timeline, footer } = this.props.content;
 
     return (
-      <Page id="homepage">
+      <div id="homepage">
         <Hero addNotification={this.props.addNotification} content={hero} />
         <Mission content={mission} />
         <Process content={process} />
         <Timeline content={timeline} />
         <Footer content={footer} />
-      </Page>
+      </div>
     );
   }
 }
