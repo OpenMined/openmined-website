@@ -20,7 +20,7 @@ const TEMP_CONTENT = {
   mission: {
     heading: 'Our Mission',
     paragraphs: [
-      'The mission of the OpenMined community is to make privacy preserving Deep Learning technology as accessible as possible to the average individual, data scientist, and startup, and to raise awareness that startups do not need a copy of a dataset in order to create value from it.'
+      'The mission of the OpenMined community is to make privacy preserving Deep Learning technology as accessible as possible to the average individual, data scientist, and startup, and to raise awareness that, given recent developments in cryptography, startups do not need a copy of a dataset in order to create value from it.'
     ]
   },
   process: {
