@@ -9,7 +9,7 @@ const TEMP_CONTENT = {
   hero: {
     tagline: 'Decentralized Artificial Intelligence',
     description:
-      'OpenMined is an open-source project that allows for encrypted federated learning through blockchain technology.',
+      'OpenMined is a community focused on building open-source technology for the decentralised ownership of data and intelligence.',
     ctaLink: 'https://github.com/OpenMined',
     ctaText: 'Start Contributing',
     version: 'V 0.1.0 - “Hydrogen”',
@@ -20,8 +20,7 @@ const TEMP_CONTENT = {
   mission: {
     heading: 'Our Mission',
     paragraphs: [
-      'Currently, the Internet is structured in a manner by which the average person’s personal data is owned by a few large organizations as a by-product of interacting with their products. Most of this interaction is subconscious: viewing a cat video, liking a post, or sharing a popular news article. As the Internet grows, the use and permanent storage of this information is becoming more and more controversial. Developers want the ability to create innovative products, but the people want their privacy back.',
-      'The OpenMined project is volunteer-only, open-source project aiming to create the world’s largest decentralized network of encrypted personal information. In this world, the user gets to own their information and store it themselves, while data scientists and developers pay for anonymized access to this information.'
+      'The mission of the OpenMined community is to make privacy preserving Deep Learning technology as accessible as possible to the average individual, data scientist, and startup, and to raise awareness that startups do not need a copy of a dataset in order to create value from it.'
     ]
   },
   process: {
@@ -36,6 +35,10 @@ const TEMP_CONTENT = {
           'A data scientist creates a model, defines a training bounty, requests specific user data. This could be anything from personal health information to social media posts.',
         repos: [
           {
+            name: 'PySyft',
+            link: 'https://github.com/OpenMined/PySyft'
+          },
+          {
             name: 'PySonar',
             link: 'https://github.com/OpenMined/PySonar'
           }
@@ -45,23 +48,11 @@ const TEMP_CONTENT = {
         name: 'Distribute',
         title: 'Distribute model over blockchain',
         description:
-          "Upon submission, the model is encrypted and distributed throughout Sonar, Open Mine's decentralized blockchain. It's now available for training.",
+          "Upon submission, the model is encrypted and distributed throughout Sonar, Open Mine's decentralized blockchain smart contract. It's now available for training.",
         repos: [
           {
             name: 'Sonar',
             link: 'https://github.com/OpenMined/Sonar'
-          },
-          {
-            name: 'PyYashe',
-            link: 'https://github.com/OpenMined/PyYashe'
-          },
-          {
-            name: 'PyBV',
-            link: 'https://github.com/OpenMined/PyBV'
-          },
-          {
-            name: 'PyAono',
-            link: 'https://github.com/OpenMined/PyAono'
           }
         ]
       },
@@ -113,7 +104,7 @@ const TEMP_CONTENT = {
         name: 'Deliver',
         title: 'Deliver the results securely',
         description:
-          "Once a success criteria is met, the model is decrypted by a private key held only by the data scientist. All the while, neither party has access to each other's data or intellectual property.",
+          "Once a success criteria is met, the model is decrypted by a private key or share held only by the data scientist. All the while, neither party has access to each other's data or intellectual property.",
         repos: [
           {
             name: 'PySonar',
@@ -154,14 +145,14 @@ const TEMP_CONTENT = {
     repos: [
       {
         name: 'OpenMined',
-        description: 'GPU Optimized Deep Learning',
+        description: 'Playstation / XBox Mining App',
         repo: 'openmined',
         contributors: [],
         issues: []
       },
       {
         name: 'PySyft',
-        description: 'Encrypted Deep Learning Library',
+        description: 'Private Deep Learning',
         repo: 'PySyft',
         contributors: [],
         issues: []
@@ -175,7 +166,7 @@ const TEMP_CONTENT = {
       },
       {
         name: 'Sonar',
-        description: 'Machine Learning Blockchain',
+        description: 'Federated Learning Blockchain',
         repo: 'Sonar',
         contributors: [],
         issues: []
@@ -194,7 +185,7 @@ const TEMP_CONTENT = {
         },
         {
           question: 'Will there be an ICO?',
-          answer: 'Absolutely not.'
+          answer: 'No.'
         },
         {
           question:
