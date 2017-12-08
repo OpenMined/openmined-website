@@ -26,7 +26,7 @@ const RepoIcon = ({ repo }) => {
       icon = mineIcon;
       break;
 
-    case 'mine-ui':
+    case 'mine ui':
       icon = mineIcon;
       break;
 

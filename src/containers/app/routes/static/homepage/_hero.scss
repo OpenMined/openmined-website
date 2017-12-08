@@ -50,10 +50,10 @@ $console-header-button: $console-header-height / 2.5;
       line-height: 2.5rem;
     }
     @include desktop-up {
-      width: 50%;
+      width: 60%;
     }
     @include widescreen-up {
-      width: 40%;
+      width: 50%;
     }
   }
   #cta {
