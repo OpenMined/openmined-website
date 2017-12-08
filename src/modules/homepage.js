@@ -9,7 +9,7 @@ const TEMP_CONTENT = {
   hero: {
     tagline: 'Decentralized Artificial Intelligence',
     description:
-      'OpenMined is a community focused on building open-source technology for the decentralised ownership of data and intelligence.',
+      'OpenMined is a community focused on building open-source technology for the decentralized ownership of data and intelligence.',
     ctaLink: 'https://github.com/OpenMined',
     ctaText: 'Start Contributing',
     version: 'V 0.1.0 - “Hydrogen”',
@@ -20,7 +20,9 @@ const TEMP_CONTENT = {
   mission: {
     heading: 'Our Mission',
     paragraphs: [
-      'The mission of the OpenMined community is to make privacy preserving Deep Learning technology as accessible as possible to the average individual, data scientist, and startup, and to raise awareness that, given recent developments in cryptography, startups do not need a copy of a dataset in order to create value from it.'
+      'There is a widespread belief that individuals must give up their personal information in order to use online products and services. Developers want the ability to create innovative products using the data they’ve gathered, but people want to protect their privacy.',
+      'With OpenMined, both are possible.',
+      'OpenMined is a volunteer driven, open-source community making private deep learning accessible to anyone. Given recent developments in cryptography, one does not need a copy of a dataset in order to create value from it. We believe that consumers shouldn’t have to compromise between having a great Internet experience and losing control over their online identity.'
     ]
   },
   process: {

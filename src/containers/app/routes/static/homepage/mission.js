@@ -10,14 +10,8 @@ const Mission = ({ content }) => (
           <Heading level={3}>{content.heading}</Heading>
           {content.paragraphs &&
             content.paragraphs.map((paragraph, index) => {
-              if (index === 0) {
-                let sentences = paragraph.match(/[^\.!\?]+[\.!\?]+/g);
-
-                paragraph =
-                  sentences.slice(0, -1).join('') +
-                  ' <span>' +
-                  sentences[sentences.length - 1].trim() +
-                  '</span>';
+              if (index === 1) {
+                paragraph = '<span>' + paragraph + '</span>';
               }
 
               return (

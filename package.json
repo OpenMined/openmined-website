@@ -25,22 +25,26 @@
     "redux-thunk": "^2.2.0"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "scripts": {
     "precommit": "lint-staged",
-    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "yarn build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css":
+      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css":
+      "yarn build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "yarn build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "yarn lint:js",
-    "lint:js": "eslint ."
+    "lint:js": "eslint .",
+    "deploy": "yarn build && yarn deploy:s3 && yarn deploy:cloudfront",
+    "deploy:s3":
+      "aws s3 sync build/ s3://openmined.org --cache-control max-age=172800 --delete",
+    "deploy:cloudfront":
+      "aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id ERTRGINZVVHN8 --paths /index.html"
   },
   "devDependencies": {
     "eslint": "^4.10.0",
