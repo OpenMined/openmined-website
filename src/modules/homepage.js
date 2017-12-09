@@ -20,9 +20,9 @@ const TEMP_CONTENT = {
   mission: {
     heading: 'Our Mission',
     paragraphs: [
-      'There is a widespread belief that individuals must give up their personal information in order to use online products and services. Developers want the ability to create innovative products using the data they’ve gathered, but people want to protect their privacy.',
-      'With OpenMined, both are possible.',
-      'OpenMined is a volunteer driven, open-source community making private deep learning accessible to anyone. Given recent developments in cryptography, one does not need a copy of a dataset in order to create value from it. We believe that consumers shouldn’t have to compromise between having a great Internet experience and losing control over their online identity.'
+      "When using online products and services, it's commonly understood that individuals must give up a copy of their personal information in exchange for access. Developers need this data to provide innovative and custom user experiences. On the other hand, people are often left unaware of how their information is being used, often buried deep within a lengthy and confusing Terms of Service.",
+      'With OpenMined, developers and startups can leverage top-notch AI training, all while leaving their users in complete control.',
+      'We are a volunteer driven, open-source community making private deep learning accessible to anyone. Given recent developments in cryptography, developers do not need a copy of a dataset in order to create value from it. We believe that consumers shouldn’t have to compromise between having a great Internet experience at the risk of losing control over their online identity.'
     ]
   },
   process: {
@@ -329,14 +329,14 @@ export const getGithubProjects = () => {
           repoContributors.map(url =>
             fetch(url)
               .then(resp => resp.json())
-              .then(resp => resp.reverse().slice(0, 5))
+              .then(resp => (resp || []).reverse().slice(0, 5))
           )
         ),
         Promise.all(
           repoIssues.map(url =>
             fetch(url)
               .then(resp => resp.json())
-              .then(resp => resp.slice(0, 5))
+              .then(resp => (resp || []).slice(0, 5))
           )
         )
       ]).then(response => {
