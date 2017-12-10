@@ -329,14 +329,26 @@ export const getGithubProjects = () => {
           repoContributors.map(url =>
             fetch(url)
               .then(resp => resp.json())
-              .then(resp => (resp || []).reverse().slice(0, 5))
+              .then(resp => {
+                if (Array.isArray(resp)) {
+                  return resp.reverse().slice(0, 5);
+                }
+
+                return [];
+              })
           )
         ),
         Promise.all(
           repoIssues.map(url =>
             fetch(url)
               .then(resp => resp.json())
-              .then(resp => (resp || []).slice(0, 5))
+              .then(resp => {
+                if (Array.isArray(resp)) {
+                  return resp.slice(0, 5);
+                }
+
+                return [];
+              })
           )
         )
       ]).then(response => {
