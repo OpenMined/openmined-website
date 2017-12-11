@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "private": false,
   "license": "Apache-2.0",
-  "proxy": "https://yltw3rj1r3.execute-api.us-east-1.amazonaws.com/dev",
   "dependencies": {
     "flow-bin": "^0.57.3",
     "lint-staged": "^4.1.3",

@@ -309,12 +309,15 @@ export const getGithubProjects = () => {
     let repos = getState().homepage.content.timeline.repos;
 
     if (repos) {
-      fetch('/projects', {
-        method: 'POST',
-        body: JSON.stringify({
-          repos
-        })
-      })
+      fetch(
+        'https://yltw3rj1r3.execute-api.us-east-1.amazonaws.com/dev/projects',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            repos
+          })
+        }
+      )
         .then(response => response.json())
         .then(({ repos }) => {
           dispatch({
@@ -328,7 +331,7 @@ export const getGithubProjects = () => {
 
 export const getGithubMembers = () => {
   return dispatch => {
-    fetch('/members')
+    fetch('https://yltw3rj1r3.execute-api.us-east-1.amazonaws.com/dev/members')
       .then(response => response.json())
       .then(({ members }) => {
         dispatch({
