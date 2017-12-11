@@ -20,9 +20,12 @@ const TEMP_CONTENT = {
   mission: {
     heading: 'Our Mission',
     paragraphs: [
-      "When using online products and services, it's commonly understood that individuals must give up a copy of their personal information in exchange for access. Developers need this data to provide innovative and custom user experiences. On the other hand, people are often left unaware of how their information is being used, often buried deep within a lengthy and confusing Terms of Service.",
-      'With OpenMined, developers and startups can leverage top-notch AI training, all while leaving their users in complete control.',
-      'We are a volunteer driven, open-source community making private deep learning accessible to anyone. Given recent developments in cryptography, developers do not need a copy of a dataset in order to create value from it. We believe that consumers shouldn’t have to compromise between having a great Internet experience at the risk of losing control over their online identity.'
+      // "When using online products and services, it's commonly understood that individuals must give up a copy of their personal information in exchange for access. Developers need this data to provide innovative and custom user experiences. On the other hand, people are often left unaware of how their information is being used, often buried deep within a lengthy and confusing Terms of Service.",
+      // 'With OpenMined, developers and startups can leverage top-notch AI training, all while leaving their users in complete control.',
+      // 'We are a volunteer driven, open-source community making private deep learning accessible to anyone. Given recent developments in cryptography, developers do not need a copy of a dataset in order to create value from it. We believe that consumers shouldn’t have to compromise between having a great Internet experience at the risk of losing control over their online identity.'
+      'It is commonly believed that individuals must provide a copy of their personal information in order for AI to train or predict over it. This belief creates a tension between developers and consumers. Developers want the ability to create innovative products and services, while consumers want to avoid sending developers a copy of their data.',
+      'With OpenMined, AI can be trained on data that it never has access to.',
+      'The mission of the OpenMined community is to make privacy-preserving deep learning technology accessible to consumers, who supply data, and machine learning practitioners, who train models on that data. Given recent developments in cryptography, AI-based products and services do not need a copy of a dataset in order to create value from it.'
     ]
   },
   process: {
