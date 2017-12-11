@@ -42,9 +42,9 @@
     "lint:js": "eslint .",
     "deploy": "yarn build && yarn deploy:s3 && yarn deploy:cloudfront",
     "deploy:s3":
-      "aws s3 sync build/ s3://openmined.org --cache-control max-age=172800 --delete",
+      "aws s3 sync build/ s3://openmined.org --cache-control max-age=172800 --delete --profile openmined",
     "deploy:cloudfront":
-      "aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id ERTRGINZVVHN8 --paths /index.html"
+      "aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id ERTRGINZVVHN8 --paths /index.html --profile openmined"
   },
   "devDependencies": {
     "eslint": "^4.10.0",
