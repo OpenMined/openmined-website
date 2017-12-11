@@ -1,5 +1,3 @@
-import parse from 'parse-link-header';
-
 export const GET_CONTENT = 'homepage/GET_CONTENT';
 export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
 export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
@@ -220,7 +218,8 @@ const TEMP_CONTENT = {
       //   text: 'Blog'
       // },
       {
-        to: '/assets/openmined-brand-guide.pdf',
+        to:
+          'https://s3.amazonaws.com/openmined.org/assets/openmined-brand-guide.pdf',
         text: 'Brand Guide'
       },
       {
@@ -310,110 +309,32 @@ export const getGithubProjects = () => {
     let repos = getState().homepage.content.timeline.repos;
 
     if (repos) {
-      let repoContributors = [];
-      let repoIssues = [];
-
-      repos.forEach(repo => {
-        repoContributors.push(
-          'https://api.github.com/repos/OpenMined/' +
-            repo.repo +
-            '/stats/contributors'
-        );
-
-        repoIssues.push(
-          'https://api.github.com/repos/OpenMined/' +
-            repo.repo +
-            '/issues?sort=comments'
-        );
-      });
-
-      Promise.all([
-        Promise.all(
-          repoContributors.map(url =>
-            fetch(url)
-              .then(resp => resp.json())
-              .then(resp => {
-                if (Array.isArray(resp)) {
-                  return resp.reverse().slice(0, 5);
-                }
-
-                return [];
-              })
-          )
-        ),
-        Promise.all(
-          repoIssues.map(url =>
-            fetch(url)
-              .then(resp => resp.json())
-              .then(resp => {
-                if (Array.isArray(resp)) {
-                  return resp.slice(0, 5);
-                }
-
-                return [];
-              })
-          )
-        )
-      ]).then(response => {
-        let newReposArray = [];
-
-        repos.forEach((repo, index) => {
-          repo.contributors = response[0][index];
-          repo.issues = response[1][index];
-
-          newReposArray.push(repo);
+      fetch('/projects', {
+        method: 'POST',
+        body: JSON.stringify({
+          repos
+        })
+      })
+        .then(response => response.json())
+        .then(({ repos }) => {
+          dispatch({
+            type: GET_GITHUB_PROJECTS,
+            content: repos
+          });
         });
-
-        dispatch({
-          type: GET_GITHUB_PROJECTS,
-          content: newReposArray
-        });
-      });
     }
   };
 };
 
 export const getGithubMembers = () => {
   return dispatch => {
-    const shuffleArray = array => {
-      for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    };
-
-    let membersPromises = [];
-    let allMembers = [];
-
-    const getMembersFetch = url => {
-      fetch(url).then(resp => {
-        const link = parse(resp.headers.get('Link')) || {};
-
-        membersPromises.push(resp);
-
-        if (link.next) {
-          getMembersFetch(link.next.url);
-        } else {
-          Promise.all(membersPromises)
-            .then(responses => {
-              responses.forEach(response => {
-                response.json().then(data => {
-                  allMembers = allMembers.concat(data);
-                });
-              });
-            })
-            .then(() => {
-              shuffleArray(allMembers);
-
-              dispatch({
-                type: GET_GITHUB_MEMBERS,
-                content: allMembers
-              });
-            });
-        }
+    fetch('/members')
+      .then(response => response.json())
+      .then(({ members }) => {
+        dispatch({
+          type: GET_GITHUB_MEMBERS,
+          content: members
+        });
       });
-    };
-
-    getMembersFetch('https://api.github.com/orgs/OpenMined/members');
   };
 };
