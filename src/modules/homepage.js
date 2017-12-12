@@ -29,7 +29,7 @@ const TEMP_CONTENT = {
   process: {
     heading: 'The Process',
     description:
-      'The OpenMined ecosystem incorporates a number of technologies including federated machine learning, blockchain, multi-party comuptation, and homomorphic encryption.  Click on the sections below to learn more about each step in the process.',
+      'The OpenMined ecosystem incorporates a number of technologies including federated machine learning, blockchain, multi-party computation, and homomorphic encryption.  Click on the sections below to learn more about each step in the process.',
     graph: [
       {
         name: 'Create',
