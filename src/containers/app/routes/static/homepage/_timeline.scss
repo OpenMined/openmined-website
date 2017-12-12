@@ -96,7 +96,7 @@ $github-project-size: 270px;
         box-shadow: 0px $small-space $large-space rgba($black, 0.1);
         cursor: pointer;
         width: 100%;
-        height: $github-project-size * 0.75;
+        height: $github-project-size * 0.35;
         transition: opacity $anim-time $anim-func,
           transform $anim-time $anim-func;
         opacity: 0.35;
@@ -121,6 +121,16 @@ $github-project-size: 270px;
         }
         .repo-icon {
           height: 48px;
+          display: none;
+          @include tablet-up {
+            display: block;
+          }
+        }
+        .heading {
+          margin-top: $small-space;
+          @include tablet-up {
+            margin-top: $medium-space;
+          }
         }
         .description {
           margin-top: 0px;
