@@ -60,7 +60,7 @@ const Footer = ({ content }) => (
                 <i className="fa fa-slack" />
                 <span>Chat on Slack</span>
               </ExternalLink>
-              <span className="count">> 1,600 people</span>
+              <span className="count">> 1,700 people</span>
             </div>
             <div className="button-container">
               <ExternalLink
