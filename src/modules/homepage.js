@@ -2,6 +2,12 @@ export const GET_CONTENT = 'homepage/GET_CONTENT';
 export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
 export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
 
+// NOTE: Make sure you're running the openmined-serverless application alongside
+const API_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3001'
+    : 'https://yltw3rj1r3.execute-api.us-east-1.amazonaws.com/dev';
+
 // TODO: Match this up to a hosted Wordpress API
 const TEMP_CONTENT = {
   hero: {
@@ -309,15 +315,12 @@ export const getGithubProjects = () => {
     let repos = getState().homepage.content.timeline.repos;
 
     if (repos) {
-      fetch(
-        'https://yltw3rj1r3.execute-api.us-east-1.amazonaws.com/dev/projects',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            repos
-          })
-        }
-      )
+      fetch(API_URL + '/projects', {
+        method: 'POST',
+        body: JSON.stringify({
+          repos
+        })
+      })
         .then(response => response.json())
         .then(({ repos }) => {
           dispatch({
@@ -331,7 +334,7 @@ export const getGithubProjects = () => {
 
 export const getGithubMembers = () => {
   return dispatch => {
-    fetch('https://yltw3rj1r3.execute-api.us-east-1.amazonaws.com/dev/members')
+    fetch(API_URL + '/members')
       .then(response => response.json())
       .then(({ members }) => {
         dispatch({
