@@ -15,6 +15,8 @@ const Notifications = asyncComponent(() =>
 
 // Routes
 const Homepage = asyncComponent(() => import('./routes/static/homepage'));
+const Blog = asyncComponent(() => import('./routes/static/blog'));
+const BlogPost = asyncComponent(() => import('./routes/static/blog-post'));
 const NotFound = asyncComponent(() => import('./routes/not-found'));
 
 class App extends Component {
@@ -28,6 +30,8 @@ class App extends Component {
         <div id="content">
           <Switch>
             <Route exact path="/" component={Homepage} />
+            <Route exact path="/blog" component={Blog} />
+            <Route exact path="/blog/:id" component={BlogPost} />
             <Route component={NotFound} />
           </Switch>
         </div>
