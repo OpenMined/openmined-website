@@ -130,25 +130,25 @@ const Info = ({ current, data }) => {
   let info;
 
   data.forEach(dataItem => {
-    if (dataItem.name === current) {
+    if (dataItem.graph_name === current) {
       info = dataItem;
     }
   });
 
   return (
     <div className="info">
-      <Heading level={5}>{info.title}</Heading>
-      <p className="description">{info.description}</p>
+      <Heading level={5}>{info.graph_title}</Heading>
+      <p className="description">{info.graph_content}</p>
       <Heading level={6}>Contribute</Heading>
       <ul className="repos">
-        {info.repos.map(repo => {
+        {info.graph_repos.map(repo => {
           return (
-            <li key={`repo-${repo.name}`}>
-              <ExternalLink to={repo.link}>
+            <li key={`repo-${repo.label}`}>
+              <ExternalLink to={repo.value}>
                 <div className="icon">
-                  <RepoIcon repo={repo.name} />
+                  <RepoIcon repo={repo.label} />
                 </div>
-                <span className="name">{repo.name}</span>
+                <span className="name">{repo.label}</span>
               </ExternalLink>
             </li>
           );
@@ -181,15 +181,15 @@ const StepSelector = ({ current, data, changeCurrent }) => {
             </li>
           );
         } else {
-          let active = item.name === current ? 'active' : '';
+          let active = item.graph_name === current ? 'active' : '';
 
           return (
             <li
               className={active}
-              onClick={() => changeCurrent(item.name)}
+              onClick={() => changeCurrent(item.graph_name)}
               key={`step-${index}`}
             >
-              {item.name}
+              {item.graph_name}
             </li>
           );
         }
@@ -208,27 +208,27 @@ class Process extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.content.graph && !this.state.current) {
+    if (this.props.graph && !this.state.current) {
       // TODO: Is there a safer way to set the state of the first item?
       this.setState({
-        current: this.props.content.graph[0].name
+        current: this.props.graph[0].graph_name
       });
     }
   }
 
   render() {
-    const { content } = this.props;
+    const { title, content, graph } = this.props;
 
     return (
       <div id="process">
         <Container>
           <Row>
             <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-              <Heading level={3}>{content.heading}</Heading>
-              <p className="description">{content.description}</p>
+              <Heading level={3}>{title}</Heading>
+              <p className="description">{content}</p>
             </Column>
           </Row>
-          {content.graph &&
+          {graph &&
             this.state.current && (
               <Row>
                 <Column
@@ -237,7 +237,7 @@ class Process extends Component {
                 >
                   <StepSelector
                     current={this.state.current}
-                    data={content.graph}
+                    data={graph}
                     changeCurrent={newCurrent =>
                       this.setState({ current: newCurrent })}
                   />
@@ -253,7 +253,7 @@ class Process extends Component {
                   offsets={{ large: 1, xlarge: 1 }}
                 >
                   {this.state.current && (
-                    <Info current={this.state.current} data={content.graph} />
+                    <Info current={this.state.current} data={graph} />
                   )}
                 </Column>
               </Row>

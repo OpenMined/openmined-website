@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addNotification } from '../../../../../modules/notifications';
-import {
-  getContent,
-  getGithubProjects,
-  getGithubMembers
-} from '../../../../../modules/homepage';
+import { getContent } from '../../../../../modules/homepage';
 
+import Loading from './loading';
 import Hero from './hero';
 import Mission from './mission';
 import Process from './process';
@@ -19,8 +16,6 @@ import './homepage.css';
 class Homepage extends Component {
   componentDidMount() {
     this.props.getContent();
-    this.props.getGithubProjects();
-    this.props.getGithubMembers();
   }
 
   render() {
@@ -28,24 +23,23 @@ class Homepage extends Component {
 
     return (
       <div id="homepage">
-        <Hero addNotification={this.props.addNotification} content={hero} />
-        <Mission content={mission} />
-        <Process content={process} />
-        <Timeline content={timeline} />
-        <Footer content={footer} />
+        <Loading isLoading={this.props.isLoading} />
+        <Hero addNotification={this.props.addNotification} {...hero} />
+        <Mission {...mission} />
+        <Process {...process} />
+        <Timeline {...timeline} />
+        <Footer {...footer} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  content: state.homepage.content
+  content: state.homepage.content,
+  isLoading: state.homepage.isLoading
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    { addNotification, getContent, getGithubProjects, getGithubMembers },
-    dispatch
-  );
+  bindActionCreators({ addNotification, getContent }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
