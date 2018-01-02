@@ -4,24 +4,27 @@ import ExternalLink from '../../../components/external-link';
 
 import logo from '../../../assets/logo-blackbg.svg';
 
-const Footer = ({ content }) => (
+const Footer = ({ questions, movement, links, tagline }) => (
   <div id="footer">
-    {content.questions && (
+    {questions.questions_items && (
       <Container>
         <Row>
           <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-            <Heading level={3}>{content.questions.heading}</Heading>
+            <Heading level={3}>{questions.questions_title}</Heading>
           </Column>
           <Column
             sizes={{ small: 12, xlarge: 10 }}
             offsets={{ xlarge: 1 }}
             className="questions"
           >
-            {content.questions.questions.map(question => {
+            {questions.questions_items.map(question => {
               return (
-                <div className="question" key={`question-${question.question}`}>
-                  <p className="query">{question.question}</p>
-                  <p className="answer">{question.answer}</p>
+                <div
+                  className="question"
+                  key={`question-${question.footer_questions_question}`}
+                >
+                  <p className="query">{question.footer_questions_question}</p>
+                  <p className="answer">{question.footer_questions_answer}</p>
                 </div>
               );
             })}
@@ -29,11 +32,11 @@ const Footer = ({ content }) => (
         </Row>
       </Container>
     )}
-    {content.movement && (
+    {movement && (
       <Container>
         <Row>
           <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-            <Heading level={3}>{content.movement.heading}</Heading>
+            <Heading level={3}>{movement.movement_title}</Heading>
           </Column>
           <Column
             sizes={{ small: 12, xlarge: 10 }}
@@ -42,59 +45,76 @@ const Footer = ({ content }) => (
           >
             <div className="button-container">
               <ExternalLink
-                to={content.movement.github.link}
+                to={movement.movement_github.footer_movement_github_link}
                 className="button white"
               >
                 <i className="fa fa-github" />
-                <span>Start Contributing</span>
+                <span>
+                  {movement.movement_github.footer_movement_github_text}
+                </span>
               </ExternalLink>
               <span className="count">
-                > {content.movement.github.members.length} people
+                {movement.movement_github.footer_movement_github_members &&
+                  '> ' +
+                    movement.movement_github.footer_movement_github_members
+                      .length +
+                    ' people'}
               </span>
             </div>
             <div className="button-container">
               <ExternalLink
-                to={content.movement.slack.link}
+                to={movement.movement_slack.footer_movement_slack_link}
                 className="button white"
               >
                 <i className="fa fa-slack" />
-                <span>Chat on Slack</span>
+                <span>
+                  {movement.movement_slack.footer_movement_slack_text}
+                </span>
               </ExternalLink>
-              <span className="count">> 1,700 people</span>
+              <span className="count">> 1,800 people</span>
             </div>
             <div className="button-container">
               <ExternalLink
-                to={content.movement.newsletter.link}
+                to={
+                  movement.movement_newsletter.footer_movement_newsletter_link
+                }
                 className="button white"
               >
                 <i className="fa fa-envelope" />
-                <span>Join Newsletter</span>
+                <span>
+                  {movement.movement_newsletter.footer_movement_newsletter_text}
+                </span>
               </ExternalLink>
             </div>
           </Column>
-          <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-            <ul className="members">
-              {content.movement.github.members.map(member => {
-                return (
-                  <li className="member" key={`member-${member.login}`}>
-                    <ExternalLink to={member.html_url}>
-                      <div
-                        className="avatar"
-                        style={{
-                          backgroundImage: 'url(' + `${member.avatar_url}` + ')'
-                        }}
-                      />
-                    </ExternalLink>
-                  </li>
-                );
-              })}
-            </ul>
-          </Column>
+          {movement.movement_github.footer_movement_github_members && (
+            <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
+              <ul className="members">
+                {movement.movement_github.footer_movement_github_members.map(
+                  member => {
+                    return (
+                      <li className="member" key={`member-${member.login}`}>
+                        <ExternalLink to={member.html_url}>
+                          <div
+                            className="avatar"
+                            style={{
+                              backgroundImage:
+                                'url(' + `${member.avatar_url}` + ')'
+                            }}
+                          />
+                        </ExternalLink>
+                      </li>
+                    );
+                  }
+                )}
+              </ul>
+            </Column>
+          )}
         </Row>
       </Container>
     )}
     {/* TODO: In theory, a map should go here... */}
-    {content.links && (
+    {links && (
       <Container>
         <Row>
           <Column
@@ -106,22 +126,24 @@ const Footer = ({ content }) => (
               <li className="logo">
                 <img src={logo} alt="OpenMined" />
               </li>
-              {content.links.map((link, i) => {
+              {links.map((link, i) => {
                 return (
                   <li
                     key={`footer-link-${i}`}
-                    className={link.icon ? 'icon' : 'text'}
+                    className={link.links_icon ? 'icon' : 'text'}
                   >
-                    <ExternalLink to={link.to}>
-                      {link.icon && <i className={`fa ${link.icon}`} />}
-                      {link.text && <span>{link.text}</span>}
+                    <ExternalLink to={link.links_link}>
+                      {link.links_icon && (
+                        <i className={`fa ${link.links_icon}`} />
+                      )}
+                      {link.links_text && <span>{link.links_text}</span>}
                     </ExternalLink>
                   </li>
                 );
               })}
             </ul>
             <div className="tagline">
-              <p>Decentralized. Democratized. Data.</p>
+              <p>{tagline}</p>
             </div>
           </Column>
         </Row>

@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addNotification } from '../../../../../modules/notifications';
-import {
-  getContent,
-  getGithubProjects,
-  getGithubMembers
-} from '../../../../../modules/homepage';
+import { getContent } from '../../../../../modules/homepage';
 
 import Hero from './hero';
 import Mission from './mission';
@@ -19,8 +15,6 @@ import './homepage.css';
 class Homepage extends Component {
   componentDidMount() {
     this.props.getContent();
-    this.props.getGithubProjects();
-    this.props.getGithubMembers();
   }
 
   render() {
@@ -31,8 +25,8 @@ class Homepage extends Component {
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Mission {...mission} />
         <Process {...process} />
-        {/* <Timeline content={timeline} />
-        <Footer content={footer} /> */}
+        <Timeline {...timeline} />
+        <Footer {...footer} />
       </div>
     );
   }
@@ -43,9 +37,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    { addNotification, getContent, getGithubProjects, getGithubMembers },
-    dispatch
-  );
+  bindActionCreators({ addNotification, getContent }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
