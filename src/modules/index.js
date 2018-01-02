@@ -14,8 +14,8 @@ export const SERVERLESS_API_URL =
 // NOTE: Make sure you're running the openmined-serverless application alongside
 export const WORDPRESS_API_URL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080/wp-json/wp/v2'
-    : 'http://localhost:8080/wp-json/wp/v2'; // TODO: We don't yet have a deployed version of the Wordpress API
+    ? 'http://localhost:8080/wp-json'
+    : 'http://localhost:8080/wp-json'; // TODO: We don't yet have a deployed version of the Wordpress API
 
 export default combineReducers({
   routing: routerReducer,

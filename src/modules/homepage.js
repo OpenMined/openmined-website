@@ -246,7 +246,10 @@ const TEMP_CONTENT = {
 
 const initialState = {
   content: {
-    hero: {},
+    hero: {
+      button: {},
+      console: {}
+    },
     mission: {},
     process: {},
     timeline: {},
@@ -297,12 +300,56 @@ export default (state = initialState, action) => {
   }
 };
 
+// TODO: We should really clean this up. Smells like recursion!
+const formatContent = (content, item) => {
+  const items = {};
+
+  Object.keys(content).forEach(key => {
+    if (~key.indexOf(item + '_')) {
+      if (typeof content[key] === 'object' && !Array.isArray(content[key])) {
+        Object.keys(content[key]).forEach(subKey => {
+          content[key][subKey.substr(subKey.indexOf('_') + 1)] =
+            content[key][subKey];
+          delete content[key][subKey];
+        });
+      } else if (
+        typeof content[key] === 'object' &&
+        Array.isArray(content[key])
+      ) {
+        content[key].forEach(item => {
+          Object.keys(item).forEach(subKey => {
+            item[subKey.substr(subKey.indexOf('_') + 1)] = item[subKey];
+            delete item[subKey];
+          });
+        });
+      }
+
+      items[key.substr(key.indexOf('_') + 1)] = content[key];
+    }
+  });
+
+  return items;
+};
+
 export const getContent = () => {
   return dispatch => {
-    dispatch({
-      type: GET_CONTENT,
-      content: TEMP_CONTENT
-    });
+    fetch(WORDPRESS_API_URL + '/acf/v2/options')
+      .then(response => response.json())
+      .then(response => {
+        const content = {};
+        const items = ['hero', 'mission', 'process', 'timeline', 'footer'];
+
+        items.forEach(item => {
+          content[item] = formatContent(response.acf, item);
+        });
+
+        console.log(content);
+
+        dispatch({
+          type: GET_CONTENT,
+          content
+        });
+      });
   };
 };
 

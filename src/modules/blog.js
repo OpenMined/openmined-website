@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
 
 export const getPosts = () => {
   return dispatch => {
-    fetch(WORDPRESS_API_URL + '/posts')
+    fetch(WORDPRESS_API_URL + '/wp/v2/posts')
       .then(response => response.json())
       .then(response => {
         dispatch({
@@ -42,7 +42,7 @@ export const getPosts = () => {
 
 export const getCurrentPost = id => {
   return dispatch => {
-    fetch(WORDPRESS_API_URL + '/posts/' + id)
+    fetch(WORDPRESS_API_URL + '/wp/v2/posts/' + id)
       .then(response => response.json())
       .then(response => {
         dispatch({

@@ -28,11 +28,11 @@ class Homepage extends Component {
 
     return (
       <div id="homepage">
-        <Hero addNotification={this.props.addNotification} content={hero} />
-        <Mission content={mission} />
-        <Process content={process} />
-        <Timeline content={timeline} />
-        <Footer content={footer} />
+        <Hero addNotification={this.props.addNotification} {...hero} />
+        <Mission {...mission} />
+        <Process {...process} />
+        {/* <Timeline content={timeline} />
+        <Footer content={footer} /> */}
       </div>
     );
   }
