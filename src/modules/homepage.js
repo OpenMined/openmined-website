@@ -6,6 +6,7 @@ export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
 
 // TODO: Maybe we should beef this out a bit once we want on the desired format...
 const initialState = {
+  isLoading: true,
   content: {
     hero: {
       button: {},
@@ -32,7 +33,8 @@ export default (state = initialState, action) => {
     case GET_CONTENT:
       return {
         ...state,
-        content: action.content
+        content: action.content,
+        isLoading: false
       };
 
     // TODO: Is there a prettier way to do this?

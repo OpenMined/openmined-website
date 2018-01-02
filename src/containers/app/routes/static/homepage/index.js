@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addNotification } from '../../../../../modules/notifications';
 import { getContent } from '../../../../../modules/homepage';
 
+import Loading from './loading';
 import Hero from './hero';
 import Mission from './mission';
 import Process from './process';
@@ -22,6 +23,7 @@ class Homepage extends Component {
 
     return (
       <div id="homepage">
+        <Loading isLoading={this.props.isLoading} />
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Mission {...mission} />
         <Process {...process} />
@@ -33,7 +35,8 @@ class Homepage extends Component {
 }
 
 const mapStateToProps = state => ({
-  content: state.homepage.content
+  content: state.homepage.content,
+  isLoading: state.homepage.isLoading
 });
 
 const mapDispatchToProps = dispatch =>
