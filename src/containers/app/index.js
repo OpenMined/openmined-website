@@ -31,7 +31,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Homepage} />
             <Route exact path="/blog" component={Blog} />
-            <Route exact path="/blog/:id" component={BlogPost} />
+            <Route exact path="/blog/:slug/" component={BlogPost} />
             <Route component={NotFound} />
           </Switch>
         </div>

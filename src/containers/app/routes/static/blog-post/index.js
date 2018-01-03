@@ -7,7 +7,7 @@ import './blog-post.css';
 
 class BlogPost extends Component {
   componentDidMount() {
-    this.props.getCurrentPost(this.props.match.params.id);
+    this.props.getCurrentPost(this.props.match.params.slug);
   }
 
   render() {

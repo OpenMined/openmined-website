@@ -55,7 +55,7 @@ class Blog extends Component {
 
     return (
       <div className="blog-post">
-        <Link to={`/blog/${post.id}`} className="title">
+        <Link to={`/blog/${post.slug}`} className="title">
           <Heading notCapped level={level}>
             {post.title.rendered}
           </Heading>
@@ -78,7 +78,7 @@ class Blog extends Component {
   }
 
   lookupTaxonomy(type, id) {
-    let returned;
+    let returned = {};
 
     this.props[type].forEach(taxonomy => {
       if (taxonomy.id === id) {

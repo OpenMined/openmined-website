@@ -83,14 +83,14 @@ export const getTaxonomy = taxonomy => {
   };
 };
 
-export const getCurrentPost = id => {
+export const getCurrentPost = slug => {
   return dispatch => {
-    fetch(WORDPRESS_API_URL + '/wp/v2/posts/' + id)
+    fetch(WORDPRESS_API_URL + '/wp/v2/posts/?slug=' + slug)
       .then(response => response.json())
       .then(response => {
         dispatch({
           type: GET_CURRENT_POST,
-          post: response
+          post: response[0]
         });
       });
   };
