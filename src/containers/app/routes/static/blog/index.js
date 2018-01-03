@@ -50,7 +50,7 @@ class Blog extends Component {
   }
 
   renderBlogPost(post, level) {
-    const category = this.lookupTaxonomy('categories', post.categories[0]).name;
+    const category = this.lookupTaxonomy('categories', post.categories[0]);
     const date = moment(post.date_gmt).format('MMM DD, YYYY');
 
     return (
@@ -63,7 +63,7 @@ class Blog extends Component {
         <div className="excerpt">{renderHTML(post.excerpt.rendered)}</div>
         <div className="metadata">
           <div className="details">
-            {category} | {date}
+            {category.name} | {date}
           </div>
           <div className="tags">
             {post.tags.map(tag => {

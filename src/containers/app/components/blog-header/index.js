@@ -6,6 +6,7 @@ import {
   Container,
   Heading
 } from 'openmined-ui';
+import { Link } from 'react-router-dom';
 import ExternalLink from '../../components/external-link';
 
 import './blog-header.css';
@@ -18,7 +19,9 @@ const BlogHeader = ({ title, excerpt, links }) => (
     <Container>
       <Row>
         <Column sizes={{ small: 12 }} className="header">
-          <img src={logo} className="header-logo" alt="OpenMined" />
+          <Link to="/">
+            <img src={logo} className="header-logo" alt="OpenMined" />
+          </Link>
           <ul className="header-items">
             {links &&
               links.map((link, i) => {
