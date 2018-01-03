@@ -1,3 +1,5 @@
+@import 'variables';
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -33,6 +35,6 @@ $loading-logo-size: 80px;
     margin-top: -0.5 * $loading-logo-size;
     margin-left: -0.5 * $loading-logo-size;
     transform-origin: center center;
-    animation: spin $anim-time * 5 infinite ease-in-out;
+    animation: spin $anim-time * 4 infinite ease-in-out;
   }
 }

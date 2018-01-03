@@ -105,7 +105,7 @@ const formatContent = (content, item) => {
   return items;
 };
 
-export const getContent = () => {
+export const getContent = (shouldCallGithub = true) => {
   return dispatch => {
     fetch(WORDPRESS_API_URL + '/acf/v2/options')
       .then(response => response.json())
@@ -123,21 +123,23 @@ export const getContent = () => {
           content
         });
 
-        // Load Github issues and contributors from Serverless
-        getGithubProjects(content.timeline.repos).then(({ repos }) => {
-          dispatch({
-            type: GET_GITHUB_PROJECTS,
-            repos
+        if (shouldCallGithub) {
+          // Load Github issues and contributors from Serverless
+          getGithubProjects(content.timeline.repos).then(({ repos }) => {
+            dispatch({
+              type: GET_GITHUB_PROJECTS,
+              repos
+            });
           });
-        });
 
-        // Load Github members from Serverless
-        getGithubMembers().then(({ members }) => {
-          dispatch({
-            type: GET_GITHUB_MEMBERS,
-            members
+          // Load Github members from Serverless
+          getGithubMembers().then(({ members }) => {
+            dispatch({
+              type: GET_GITHUB_MEMBERS,
+              members
+            });
           });
-        });
+        }
       });
   };
 };

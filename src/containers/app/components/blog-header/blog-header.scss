@@ -1,0 +1,105 @@
+@import 'variables';
+
+#blog-header {
+  position: relative;
+  &:after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 10px;
+    background: rgba($white, 0.25);
+    z-index: -1;
+    content: '';
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include tablet-up() {
+      flex-direction: row;
+      justify-content: space-between;
+      margin: $large-space 0px $medium-space 0px;
+    }
+    @include widescreen-up() {
+      margin: $xlarge-space 0px $large-space 0px;
+    }
+    .header-logo {
+      width: 140px;
+      margin: $medium-space 0px;
+      @include tablet-up() {
+        margin: 0px;
+      }
+    }
+    .header-items {
+      list-style-type: none;
+      margin: 0px 0px $medium-space 0px;
+      padding: 0px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @include tablet-up() {
+        justify-content: flex-end;
+        margin: 0px;
+      }
+      li {
+        span,
+        i {
+          font-size: 1rem;
+          color: $white;
+          transition: color $anim-time $anim-func;
+          &:hover {
+            color: $primary-color;
+          }
+        }
+        @include tablet-up() {
+          margin-left: $medium-space;
+          span {
+            @include capped-text(1px);
+          }
+          span,
+          i {
+            font-size: 0.9rem;
+          }
+        }
+        @include widescreen-up() {
+          margin-left: $large-space;
+          span {
+            font-size: 1rem;
+          }
+          i {
+            font-size: 1.25rem;
+          }
+        }
+      }
+    }
+  }
+  .header-content {
+    margin-bottom: $medium-space;
+    @include tablet-up() {
+      margin-bottom: $large-space;
+    }
+    @include widescreen-up() {
+      margin-bottom: $xlarge-space;
+    }
+    .title,
+    .excerpt {
+      color: $white;
+    }
+    .title {
+      font-size: 1.25rem;
+      @include tablet-up() {
+        font-size: 1.75rem;
+      }
+    }
+    .excerpt {
+      font-size: 0.9rem;
+      line-height: 1.8rem;
+      @include tablet-up() {
+        font-size: 1.1rem;
+        line-height: 2.2rem;
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ export const GET_CURRENT_POST = 'blog/GET_CURRENT_POST';
 
 const initialState = {
   posts: [],
+  isLoading: true,
   currentPost: {}
 };
 
@@ -13,7 +14,8 @@ export default (state = initialState, action) => {
     case GET_RECENT_POSTS:
       return {
         ...state,
-        posts: action.posts
+        posts: action.posts,
+        isLoading: false
       };
 
     case GET_CURRENT_POST:

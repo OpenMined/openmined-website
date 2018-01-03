@@ -1,6 +1,8 @@
 import React from 'react';
 
-import logo from '../../../assets/logo-square-color.svg';
+import './loading.css';
+
+import logo from '../../assets/logo-square-color.svg';
 
 const Loading = ({ isLoading }) => (
   <div id="loading" className={!isLoading ? 'not-showing' : ''}>

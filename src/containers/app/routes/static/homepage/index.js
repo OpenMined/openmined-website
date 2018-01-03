@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addNotification } from '../../../../../modules/notifications';
 import { getContent } from '../../../../../modules/homepage';
 
-import Loading from './loading';
+import Loading from '../../../components/loading';
 import Hero from './hero';
 import Mission from './mission';
 import Process from './process';
