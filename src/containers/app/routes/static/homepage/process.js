@@ -78,7 +78,7 @@ const Graph = ({ current }) => (
   <div className={'graph ' + current}>
     <ul className={getGraphDisabledClasses(current, 'items data-scientists')}>
       <li className="item data-scientist">
-        <RepoIcon repo="data-scientist" />
+        <RepoIcon repo="openmined" />
       </li>
     </ul>
     <ul className={getGraphDisabledClasses(current, 'lines first')}>

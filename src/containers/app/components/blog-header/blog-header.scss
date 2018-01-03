@@ -96,6 +96,7 @@
     .excerpt {
       font-size: 0.9rem;
       line-height: 1.8rem;
+      color: $light-gray;
       @include tablet-up() {
         font-size: 1.1rem;
         line-height: 2.2rem;

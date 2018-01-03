@@ -34,13 +34,29 @@ const RepoIcon = ({ repo }) => {
       icon = adaptersIcon;
       break;
 
-    default:
+    case 'openmined':
       icon = openminedIcon;
+      break;
+
+    case 'openmined ui':
+      icon = openminedIcon;
+      break;
+
+    default:
+      icon = false;
   }
 
-  return (
-    <img src={icon} className={'repo-icon ' + repo.toLowerCase()} alt={repo} />
-  );
+  if (icon) {
+    return (
+      <img
+        src={icon}
+        className={'repo-icon ' + repo.toLowerCase()}
+        alt={repo}
+      />
+    );
+  } else {
+    return null;
+  }
 };
 
 export default RepoIcon;
