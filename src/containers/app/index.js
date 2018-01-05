@@ -18,6 +18,7 @@ const Homepage = asyncComponent(() => import('./routes/static/homepage'));
 const Blog = asyncComponent(() => import('./routes/static/blog'));
 const BlogPost = asyncComponent(() => import('./routes/static/blog-post'));
 const NotFound = asyncComponent(() => import('./routes/not-found'));
+const RedirectToWordpress = () => (window.location = 'http://google.com');
 
 class App extends Component {
   render() {
@@ -30,8 +31,10 @@ class App extends Component {
         <div id="content">
           <Switch>
             <Route exact path="/" component={Homepage} />
-            <Route exact path="/blog" component={Blog} />
-            <Route exact path="/blog/:slug/" component={BlogPost} />
+            <Route path="/blog/:taxonomy/:slug/" component={Blog} />
+            <Route path="/blog/:slug/" component={BlogPost} />
+            <Route path="/blog" component={Blog} />
+            <Route path="/admin" component={RedirectToWordpress} />
             <Route component={NotFound} />
           </Switch>
         </div>

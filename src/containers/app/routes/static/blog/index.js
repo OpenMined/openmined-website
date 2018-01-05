@@ -10,11 +10,21 @@ import { getContent } from '../../../../../modules/homepage';
 
 import BlogHeader from '../../../components/blog-header';
 import Loading from '../../../components/loading';
+import RepoIcon, { hasRepoIcon } from '../../../components/repo-icon';
 
 import './blog.css';
 
 const blogExcerpt =
   'Home to the latest research, thoughts, and demos surrounding the OpenMined project and the larger artificial intelligence ecosystem.';
+
+/*
+
+  TODO
+   - Tags and categories pages
+   - Working admin link
+   - Single pages
+
+*/
 
 class Blog extends Component {
   constructor(props) {
@@ -29,10 +39,20 @@ class Blog extends Component {
   }
 
   componentDidMount() {
+    if (this.props.match.params.hasOwnProperty('taxonomy')) {
+      let { taxonomy, slug } = this.props.match.params;
+
+      this.props.getPosts({
+        page: this.state.page,
+        [taxonomy]: slug
+      });
+    } else {
+      this.props.getPosts({
+        page: this.state.page
+      });
+    }
+
     this.props.getContent(false);
-    this.props.getPosts({
-      page: this.state.page
-    });
     this.props.getTaxonomy('categories');
     this.props.getTaxonomy('tags');
   }
@@ -49,27 +69,66 @@ class Blog extends Component {
     });
   }
 
-  renderBlogPost(post, level) {
+  getExcerpt(excerpt, length) {
+    let firstParaIndex = excerpt.indexOf('<p>') + 3;
+    let firstParaEndingIndex = excerpt.indexOf('</p>') - 3;
+    let firstPara = excerpt.substr(firstParaIndex, firstParaEndingIndex);
+
+    const trimByWord = (sentence, length) => {
+      let result = sentence;
+      let resultArray = result.split(' ');
+
+      if (resultArray.length > length) {
+        resultArray = resultArray.slice(0, length);
+        result = resultArray.join(' ') + '...';
+      }
+
+      return result;
+    };
+
+    return trimByWord(firstPara, length);
+  }
+
+  renderBlogPost(post, level, unimportant) {
     const category = this.lookupTaxonomy('categories', post.categories[0]);
     const date = moment(post.date_gmt).format('MMM DD, YYYY');
+    const correctExcerpt = this.getExcerpt(post.excerpt.rendered, 20);
 
     return (
-      <div className="blog-post">
-        <Link to={`/blog/${post.slug}`} className="title">
-          <Heading notCapped level={level}>
+      <div
+        className={`blog-post ${category.slug} ${unimportant
+          ? 'unimportant'
+          : 'important'}`}
+      >
+        <Link to={`/blog/${post.slug}`}>
+          <Heading notCapped level={level} className="title">
             {post.title.rendered}
           </Heading>
+          <p className="excerpt">{correctExcerpt}</p>
         </Link>
-        <div className="excerpt">{renderHTML(post.excerpt.rendered)}</div>
         <div className="metadata">
           <div className="details">
-            {category.name} | {date}
+            <Link to={`/blog/categories/${category.slug}`} className="category">
+              {category.name}
+            </Link>{' '}
+            | <span className="date">{date}</span>
           </div>
           <div className="tags">
             {post.tags.map(tag => {
               tag = this.lookupTaxonomy('tags', tag);
 
-              return <span>{tag.name}</span>;
+              if (hasRepoIcon(tag.slug)) {
+                return (
+                  <Link
+                    to={`/blog/tags/${tag.slug}`}
+                    className="tag"
+                    key={`blog-post-${post.id}-tag-${tag.id}`}
+                  >
+                    <RepoIcon repo={tag.slug} />
+                  </Link>
+                );
+              }
+              return null;
             })}
           </div>
         </div>
@@ -106,20 +165,35 @@ class Blog extends Component {
           excerpt={blogExcerpt}
           links={content.footer.links}
         />
-        <div id="featured-posts">
-          {posts.slice(0, 3).map(post => {
-            return this.renderBlogPost(post, 2);
-          })}
-        </div>
+        <Container id="recent-posts">
+          <Row>
+            <Column
+              sizes={{ small: 12, large: 6, xlarge: 6 }}
+              className="greater"
+            >
+              {posts.slice(0, 1).map(post => {
+                return this.renderBlogPost(post, 2);
+              })}
+            </Column>
+            <Column
+              sizes={{ small: 12, large: 6, xlarge: 6 }}
+              className="lesser"
+            >
+              {posts.slice(1, 3).map(post => {
+                return this.renderBlogPost(post, 2);
+              })}
+            </Column>
+          </Row>
+        </Container>
         <Container id="posts-container">
           <Row>
             {posts.slice(3).map(post => {
               return (
                 <Column
-                  sizes={{ small: 12, medium: 6, large: 4 }}
+                  sizes={{ small: 12, large: 6, xlarge: 4 }}
                   key={'blog-post-' + post.id}
                 >
-                  {this.renderBlogPost(post, 3)}
+                  {this.renderBlogPost(post, 3, true)}
                 </Column>
               );
             })}
@@ -127,7 +201,9 @@ class Blog extends Component {
         </Container>
         {!outOfPosts && (
           <div id="more-posts">
-            <Button onClick={this.loadMorePosts}>Load more posts</Button>
+            <Button onClick={this.loadMorePosts} color="dark-gray">
+              Load more posts
+            </Button>
           </div>
         )}
       </div>

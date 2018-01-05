@@ -83,11 +83,8 @@
     @include widescreen-up() {
       margin-bottom: $xlarge-space;
     }
-    .title,
-    .excerpt {
-      color: $white;
-    }
     .title {
+      color: $white;
       font-size: 1.25rem;
       @include tablet-up() {
         font-size: 1.75rem;
@@ -96,7 +93,7 @@
     .excerpt {
       font-size: 0.9rem;
       line-height: 1.8rem;
-      color: $light-gray;
+      color: rgba($white, 0.75);
       @include tablet-up() {
         font-size: 1.1rem;
         line-height: 2.2rem;

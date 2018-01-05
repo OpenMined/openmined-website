@@ -6,45 +6,46 @@ import mineIcon from './assets/mine.svg';
 import adaptersIcon from './assets/adapters.svg';
 import openminedIcon from '../../assets/logo-square-color.svg';
 
-const RepoIcon = ({ repo }) => {
-  let icon;
+export const hasRepoIcon = repo => {
+  repo = repo
+    .toLowerCase()
+    .split('-')
+    .join('')
+    .split(' ')
+    .join('');
 
-  switch (repo.toLowerCase()) {
+  switch (repo) {
     case 'pysyft':
-      icon = pysyftIcon;
-      break;
+      return pysyftIcon;
 
     case 'sonar':
-      icon = sonarIcon;
-      break;
+      return sonarIcon;
 
     case 'pysonar':
-      icon = sonarIcon;
-      break;
+      return sonarIcon;
 
     case 'mine':
-      icon = mineIcon;
-      break;
+      return mineIcon;
 
-    case 'mine ui':
-      icon = mineIcon;
-      break;
+    case 'mineui':
+      return mineIcon;
 
     case 'adapters':
-      icon = adaptersIcon;
-      break;
+      return adaptersIcon;
 
     case 'openmined':
-      icon = openminedIcon;
-      break;
+      return openminedIcon;
 
-    case 'openmined ui':
-      icon = openminedIcon;
-      break;
+    case 'openminedui':
+      return openminedIcon;
 
     default:
-      icon = false;
+      return false;
   }
+};
+
+const RepoIcon = ({ repo }) => {
+  let icon = hasRepoIcon(repo);
 
   if (icon) {
     return (
