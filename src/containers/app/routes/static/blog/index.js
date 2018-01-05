@@ -89,7 +89,7 @@ class Blog extends Component {
     return trimByWord(firstPara, length);
   }
 
-  renderBlogPost(post, level, unimportant) {
+  renderBlogPost({ post, level, unimportant, key }) {
     const category = this.lookupTaxonomy('categories', post.categories[0]);
     const date = moment(post.date_gmt).format('MMM DD, YYYY');
     const correctExcerpt = this.getExcerpt(post.excerpt.rendered, 20);
@@ -99,6 +99,7 @@ class Blog extends Component {
         className={`blog-post ${category.slug} ${unimportant
           ? 'unimportant'
           : 'important'}`}
+        key={key ? 'blog-post-' + key : null}
       >
         <Link to={`/blog/${post.slug}`}>
           <Heading notCapped level={level} className="title">
@@ -172,15 +173,22 @@ class Blog extends Component {
               className="greater"
             >
               {posts.slice(0, 1).map(post => {
-                return this.renderBlogPost(post, 2);
+                return this.renderBlogPost({
+                  post: post,
+                  level: 2
+                });
               })}
             </Column>
             <Column
               sizes={{ small: 12, large: 6, xlarge: 6 }}
               className="lesser"
             >
-              {posts.slice(1, 3).map(post => {
-                return this.renderBlogPost(post, 2);
+              {posts.slice(1, 3).map((post, index) => {
+                return this.renderBlogPost({
+                  post: post,
+                  level: 2,
+                  key: index
+                });
               })}
             </Column>
           </Row>
@@ -193,7 +201,11 @@ class Blog extends Component {
                   sizes={{ small: 12, large: 6, xlarge: 4 }}
                   key={'blog-post-' + post.id}
                 >
-                  {this.renderBlogPost(post, 3, true)}
+                  {this.renderBlogPost({
+                    post: post,
+                    level: 3,
+                    unimportant: true
+                  })}
                 </Column>
               );
             })}
