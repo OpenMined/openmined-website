@@ -31,25 +31,26 @@ class Blog extends Component {
     };
 
     this.loadMorePosts = this.loadMorePosts.bind(this);
+    this.blogHeaderInfo = this.blogHeaderInfo.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.match.params.hasOwnProperty('taxonomy')) {
+    this.props.getContent(false);
+
+    const hasTaxonomy = this.props.match.params.hasOwnProperty('taxonomy');
+
+    if (hasTaxonomy) {
       let { taxonomy, slug } = this.props.match.params;
 
       this.props.getPosts({
         page: this.state.page,
         [taxonomy]: slug
       });
-    } else {
+    } else if (!hasTaxonomy) {
       this.props.getPosts({
         page: this.state.page
       });
     }
-
-    this.props.getContent(false);
-    this.props.getTaxonomy('categories');
-    this.props.getTaxonomy('tags');
   }
 
   loadMorePosts() {
@@ -64,46 +65,78 @@ class Blog extends Component {
     });
   }
 
+  blogHeaderInfo(taxonomy, slug) {
+    let links = this.props.content.footer.links;
+
+    if (taxonomy && slug) {
+      const lookupTaxonomy = (list, slug) => {
+        let returned = {};
+
+        list.forEach(taxonomy => {
+          if (taxonomy.slug === slug) {
+            returned = taxonomy;
+          }
+        });
+
+        return returned;
+      };
+
+      let taxonomyData =
+        taxonomy === 'categories'
+          ? lookupTaxonomy(this.props.categories, slug)
+          : lookupTaxonomy(this.props.tags, slug);
+
+      return {
+        title: taxonomyData.name,
+        excerpt: taxonomyData.description || null,
+        links
+      };
+    } else {
+      return {
+        title: 'OpenMined Blog',
+        excerpt: blogExcerpt,
+        links
+      };
+    }
+  }
+
   render() {
     const {
-      content,
       posts,
       categories,
       tags,
       homepageLoaded,
-      postsLoaded,
+      postsReady,
       outOfPosts
     } = this.props;
 
+    const { taxonomy, slug } = this.props.match.params;
+
     return (
       <div id="blog">
-        <Loading isLoading={homepageLoaded && postsLoaded} />
-        <BlogHeader
-          title="OpenMined Blog"
-          excerpt={blogExcerpt}
-          links={content.footer.links}
-        />
-        {posts && (
-          <BlogPosts
-            type="recent"
-            posts={posts.slice(0, 3)}
-            categories={categories}
-            tags={tags}
-          />
-        )}
-        {posts && (
-          <BlogPosts
-            type="previous"
-            posts={posts.slice(3)}
-            categories={categories}
-            tags={tags}
-          />
-        )}
-        {!outOfPosts && (
-          <div id="more-posts">
-            <Button onClick={this.loadMorePosts} color="dark-gray">
-              Load more posts
-            </Button>
+        <Loading isLoading={homepageLoaded && !postsReady} />
+        {postsReady && (
+          <div>
+            <BlogHeader {...this.blogHeaderInfo(taxonomy, slug)} />
+            <BlogPosts
+              type="recent"
+              posts={posts.slice(0, 3)}
+              categories={categories}
+              tags={tags}
+            />
+            <BlogPosts
+              type="previous"
+              posts={posts.slice(3)}
+              categories={categories}
+              tags={tags}
+            />
+            {!outOfPosts && (
+              <div id="more-posts">
+                <Button onClick={this.loadMorePosts} color="dark-gray">
+                  Load more posts
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -117,7 +150,10 @@ const mapStateToProps = state => ({
   posts: state.blog.posts,
   categories: state.blog.categories,
   tags: state.blog.tags,
-  postsLoaded: state.blog.isLoading,
+  postsReady:
+    state.blog.postsLoaded &&
+    state.blog.categoriesLoaded &&
+    state.blog.tagsLoaded,
   outOfPosts: state.blog.outOfPosts
 });
 

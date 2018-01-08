@@ -7,7 +7,7 @@ import RepoIcon, { hasRepoIcon } from '../repo-icon';
 
 import './blog-posts.css';
 
-const lookupTaxonomy = (list, type, id) => {
+const lookupTaxonomy = (list, id) => {
   let returned = {};
 
   list.forEach(taxonomy => {
@@ -40,7 +40,7 @@ const getExcerpt = (excerpt, length) => {
 };
 
 const BlogPost = ({ post, level, categories, tags }) => {
-  const category = lookupTaxonomy(categories, 'categories', post.categories[0]);
+  const category = lookupTaxonomy(categories, post.categories[0]);
   const date = moment(post.date_gmt).format('MMM DD, YYYY');
   const correctExcerpt = getExcerpt(post.excerpt.rendered, 20);
 
@@ -61,7 +61,7 @@ const BlogPost = ({ post, level, categories, tags }) => {
         </div>
         <div className="tags">
           {post.tags.map(tag => {
-            tag = lookupTaxonomy(tags, 'tags', tag);
+            tag = lookupTaxonomy(tags, tag);
 
             if (hasRepoIcon(tag.slug)) {
               return (

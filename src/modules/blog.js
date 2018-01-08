@@ -9,8 +9,11 @@ const initialState = {
   posts: [],
   categories: [],
   tags: [],
+  postsLoaded: false,
+  categoriesLoaded: false,
+  tagsLoaded: false,
+  blogReady: false,
   outOfPosts: false,
-  isLoading: true,
   currentPost: {}
 };
 
@@ -20,7 +23,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         posts: state.posts.concat(action.posts),
-        isLoading: false
+        postsLoaded: true
       };
 
     case NO_MORE_POSTS:
@@ -32,7 +35,8 @@ export default (state = initialState, action) => {
     case GET_ALL_OF_TAXONOMY:
       return {
         ...state,
-        [action.taxonomy]: action.data
+        [action.taxonomy]: action.data,
+        [action.taxonomy + 'Loaded']: true
       };
 
     case GET_CURRENT_POST:
@@ -47,40 +51,84 @@ export default (state = initialState, action) => {
 };
 
 export const getPosts = query => {
-  return dispatch => {
-    let queryString = Object.keys(query)
-      .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
-      .join('&');
+  return (dispatch, getState) => {
+    let { categoriesLoaded, tagsLoaded } = getState().blog;
 
-    fetch(WORDPRESS_API_URL + '/wp/v2/posts?' + queryString + '&_envelope')
-      .then(response => response.json())
-      .then(response => {
-        dispatch({
-          type: GET_POSTS,
-          posts: response.body
-        });
+    const matchTaxonomyWithId = (list, slug) => {
+      let returned = {};
 
-        if (response.headers['X-WP-TotalPages'] === query.page) {
-          dispatch({
-            type: NO_MORE_POSTS
-          });
+      list.forEach(taxonomy => {
+        if (taxonomy.slug === slug) {
+          returned = taxonomy;
         }
       });
+
+      return returned;
+    };
+
+    const loadPosts = (categories, tags) => {
+      if (query.categories) {
+        query.categories = matchTaxonomyWithId(categories, query.categories).id;
+      }
+
+      if (query.tags) {
+        query.tags = matchTaxonomyWithId(tags, query.tags).id;
+      }
+
+      let queryString = Object.keys(query)
+        .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
+        .join('&');
+
+      fetch(WORDPRESS_API_URL + '/wp/v2/posts?' + queryString + '&_envelope')
+        .then(response => response.json())
+        .then(response => {
+          dispatch({
+            type: GET_POSTS,
+            posts: response.body
+          });
+
+          if (response.headers['X-WP-TotalPages'] === query.page) {
+            dispatch({
+              type: NO_MORE_POSTS
+            });
+          }
+        });
+    };
+
+    if (categoriesLoaded && tagsLoaded) {
+      loadPosts(getState().blog.categories, getState().blog.tags);
+    } else {
+      Promise.all([
+        getTaxonomy('categories'),
+        getTaxonomy('tags')
+      ]).then(response => {
+        let categories = response[0];
+        let tags = response[1];
+
+        if (categories && tags) {
+          dispatch({
+            type: GET_ALL_OF_TAXONOMY,
+            taxonomy: 'categories',
+            data: categories
+          });
+
+          dispatch({
+            type: GET_ALL_OF_TAXONOMY,
+            taxonomy: 'tags',
+            data: tags
+          });
+
+          loadPosts(categories, tags);
+        }
+      });
+    }
   };
 };
 
 export const getTaxonomy = taxonomy => {
-  return dispatch => {
-    fetch(WORDPRESS_API_URL + '/wp/v2/' + taxonomy + '/?per_page=100')
-      .then(response => response.json())
-      .then(response => {
-        dispatch({
-          type: GET_ALL_OF_TAXONOMY,
-          taxonomy,
-          data: response
-        });
-      });
-  };
+  return fetch(
+    WORDPRESS_API_URL + '/wp/v2/' + taxonomy + '/?per_page=100'
+  ).then(response => response.json());
 };
 
 export const getCurrentPost = slug => {
