@@ -17,7 +17,6 @@ const blogExcerpt =
 /*
 
   TODO
-   - Tags and categories pages
    - Single pages
 
 */
@@ -37,23 +36,45 @@ class Blog extends Component {
 
   componentDidMount() {
     this.props.getContent(false);
-    this.loadPosts();
+    this.loadPosts(1, true);
   }
 
-  loadPosts(page = 1) {
+  componentWillReceiveProps(newProps) {
+    const newUrl = newProps.match.params;
+    const oldUrl = this.props.match.params;
+
+    if (newUrl.taxonomy !== oldUrl.taxonomy || newUrl.slug !== oldUrl.slug) {
+      this.setState(
+        {
+          page: 1
+        },
+        () => {
+          this.loadPosts(1, true);
+        }
+      );
+    }
+  }
+
+  loadPosts(page = 1, isFresh = false) {
     const hasTaxonomy = this.props.match.params.hasOwnProperty('taxonomy');
 
     if (hasTaxonomy) {
       let { taxonomy, slug } = this.props.match.params;
 
-      this.props.getPosts({
-        page: this.state.page,
-        [taxonomy]: slug
-      });
+      this.props.getPosts(
+        {
+          page: this.state.page,
+          [taxonomy]: slug
+        },
+        isFresh
+      );
     } else if (!hasTaxonomy) {
-      this.props.getPosts({
-        page: this.state.page
-      });
+      this.props.getPosts(
+        {
+          page: this.state.page
+        },
+        isFresh
+      );
     }
   }
 
@@ -65,7 +86,7 @@ class Blog extends Component {
         page: newPage
       },
       () => {
-        this.loadPosts(newPage);
+        this.loadPosts(newPage, false);
       }
     );
   }

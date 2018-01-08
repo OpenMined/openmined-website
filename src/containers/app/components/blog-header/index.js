@@ -19,7 +19,7 @@ const BlogHeader = ({ title, excerpt, links }) => (
     <Container>
       <Row>
         <Column sizes={{ small: 12 }} className="header">
-          <Link to="/">
+          <Link to="/blog">
             <img src={logo} className="header-logo" alt="OpenMined" />
           </Link>
           <ul className="header-items">

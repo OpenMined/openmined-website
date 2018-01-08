@@ -20,11 +20,19 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_POSTS:
-      return {
-        ...state,
-        posts: state.posts.concat(action.posts),
-        postsLoaded: true
-      };
+      if (action.isFresh) {
+        return {
+          ...state,
+          posts: action.posts,
+          postsLoaded: true
+        };
+      } else {
+        return {
+          ...state,
+          posts: state.posts.concat(action.posts),
+          postsLoaded: true
+        };
+      }
 
     case NO_MORE_POSTS:
       return {
@@ -50,7 +58,7 @@ export default (state = initialState, action) => {
   }
 };
 
-export const getPosts = query => {
+export const getPosts = (query, isFresh) => {
   return (dispatch, getState) => {
     let { categoriesLoaded, tagsLoaded } = getState().blog;
 
@@ -84,7 +92,8 @@ export const getPosts = query => {
         .then(response => {
           dispatch({
             type: GET_POSTS,
-            posts: response.body
+            posts: response.body,
+            isFresh
           });
 
           if (response.headers['X-WP-TotalPages'] === query.page) {
