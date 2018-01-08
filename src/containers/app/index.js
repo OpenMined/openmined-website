@@ -18,7 +18,8 @@ const Homepage = asyncComponent(() => import('./routes/static/homepage'));
 const Blog = asyncComponent(() => import('./routes/static/blog'));
 const BlogPost = asyncComponent(() => import('./routes/static/blog-post'));
 const NotFound = asyncComponent(() => import('./routes/not-found'));
-const RedirectToWordpress = () => (window.location = 'http://google.com');
+const RedirectToWordpress = () =>
+  (window.location = 'https://api.openmined.org/wp-admin/');
 
 class App extends Component {
   render() {

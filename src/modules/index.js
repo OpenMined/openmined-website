@@ -15,7 +15,7 @@ export const SERVERLESS_API_URL =
 export const WORDPRESS_API_URL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:8080/wp-json'
-    : 'http://localhost:8080/wp-json'; // TODO: We don't yet have a deployed version of the Wordpress API
+    : 'https://api.openmined.org/wp-json';
 
 export default combineReducers({
   routing: routerReducer,

@@ -1,6 +1,6 @@
 import { WORDPRESS_API_URL } from './index';
 
-export const GET_RECENT_POSTS = 'blog/GET_RECENT_POSTS';
+export const GET_POSTS = 'blog/GET_POSTS';
 export const GET_ALL_OF_TAXONOMY = 'blog/GET_ALL_OF_TAXONOMY';
 export const NO_MORE_POSTS = 'blog/NO_MORE_POSTS';
 export const GET_CURRENT_POST = 'blog/GET_CURRENT_POST';
@@ -16,7 +16,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_RECENT_POSTS:
+    case GET_POSTS:
       return {
         ...state,
         posts: state.posts.concat(action.posts),
@@ -56,7 +56,7 @@ export const getPosts = query => {
       .then(response => response.json())
       .then(response => {
         dispatch({
-          type: GET_RECENT_POSTS,
+          type: GET_POSTS,
           posts: response.body
         });
 

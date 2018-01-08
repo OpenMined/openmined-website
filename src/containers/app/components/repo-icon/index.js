@@ -7,6 +7,10 @@ import adaptersIcon from './assets/adapters.svg';
 import openminedIcon from '../../assets/logo-square-color.svg';
 
 export const hasRepoIcon = repo => {
+  if (!repo) {
+    return null;
+  }
+
   repo = repo
     .toLowerCase()
     .split('-')
