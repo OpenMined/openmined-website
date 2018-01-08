@@ -30,13 +30,17 @@ class Blog extends Component {
       page: 1
     };
 
+    this.loadPosts = this.loadPosts.bind(this);
     this.loadMorePosts = this.loadMorePosts.bind(this);
     this.blogHeaderInfo = this.blogHeaderInfo.bind(this);
   }
 
   componentDidMount() {
     this.props.getContent(false);
+    this.loadPosts();
+  }
 
+  loadPosts(page = 1) {
     const hasTaxonomy = this.props.match.params.hasOwnProperty('taxonomy');
 
     if (hasTaxonomy) {
@@ -56,13 +60,14 @@ class Blog extends Component {
   loadMorePosts() {
     let newPage = this.state.page + 1;
 
-    this.props.getPosts({
-      page: newPage
-    });
-
-    this.setState({
-      page: newPage
-    });
+    this.setState(
+      {
+        page: newPage
+      },
+      () => {
+        this.loadPosts(newPage);
+      }
+    );
   }
 
   blogHeaderInfo(taxonomy, slug) {
