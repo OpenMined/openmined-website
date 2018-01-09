@@ -24,7 +24,8 @@ export default (state = initialState, action) => {
         return {
           ...state,
           posts: action.posts,
-          postsLoaded: true
+          postsLoaded: true,
+          outOfPosts: false
         };
       } else {
         return {

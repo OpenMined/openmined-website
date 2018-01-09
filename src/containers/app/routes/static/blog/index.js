@@ -36,7 +36,7 @@ class Blog extends Component {
 
   componentDidMount() {
     this.props.getContent(false);
-    this.loadPosts(1, true);
+    this.loadPosts(this.state.page, true);
   }
 
   componentWillReceiveProps(newProps) {
@@ -49,7 +49,7 @@ class Blog extends Component {
           page: 1
         },
         () => {
-          this.loadPosts(1, true);
+          this.loadPosts(this.state.page, true);
         }
       );
     }
