@@ -18,7 +18,7 @@ class BlogPost extends Component {
   }
 
   getExcerpt(post, categories, tags) {
-    /* TODO: Fill the blog header in with a real excerpt */
+    console.log(post, categories, tags);
     return <span>Hello world</span>;
   }
 

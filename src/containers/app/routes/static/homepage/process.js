@@ -207,9 +207,8 @@ class Process extends Component {
     };
   }
 
-  componentDidUpdate() {
+  componentWillReceiveProps() {
     if (this.props.graph && !this.state.current) {
-      // TODO: Is there a safer way to set the state of the first item?
       this.setState({
         current: this.props.graph[0].graph_name
       });

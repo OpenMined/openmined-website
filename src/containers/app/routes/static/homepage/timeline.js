@@ -128,9 +128,8 @@ class Timeline extends Component {
     };
   }
 
-  componentDidUpdate() {
+  componentWillReceiveProps() {
     if (this.props.repos && !this.state.currentProject) {
-      // TODO: Is there a safer way to set the state of the first item?
       this.setState({
         currentProject: this.props.repos[0].repos_title
       });
