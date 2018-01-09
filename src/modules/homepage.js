@@ -6,7 +6,7 @@ export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
 
 // TODO: Maybe we should beef this out a bit once we want on the desired format...
 const initialState = {
-  isLoading: true,
+  homepageLoaded: false,
   content: {
     hero: {
       button: {},
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         content: action.content,
-        isLoading: false
+        homepageLoaded: true
       };
 
     // TODO: Is there a prettier way to do this?

@@ -9,12 +9,12 @@ const initialState = {
   posts: [],
   categories: [],
   tags: [],
+  currentPost: {},
   postsLoaded: false,
   categoriesLoaded: false,
   tagsLoaded: false,
-  blogReady: false,
-  outOfPosts: false,
-  currentPost: {}
+  currentPostLoaded: false,
+  outOfPosts: false
 };
 
 export default (state = initialState, action) => {
@@ -51,7 +51,8 @@ export default (state = initialState, action) => {
     case GET_CURRENT_POST:
       return {
         ...state,
-        currentPost: action.post
+        currentPost: action.post,
+        currentPostLoaded: true
       };
 
     default:
@@ -59,10 +60,52 @@ export default (state = initialState, action) => {
   }
 };
 
-export const getPosts = (query, isFresh) => {
+// Get the categories and tags from the store, or find them from Wordpress
+// Used like such: dispatch(getOrLoadTaxonomies()).then((categories, tags) => { ... });
+const getOrLoadTaxonomies = () => {
   return (dispatch, getState) => {
-    let { categoriesLoaded, tagsLoaded } = getState().blog;
+    return new Promise(resolve => {
+      let { categoriesLoaded, tagsLoaded } = getState().blog;
 
+      if (categoriesLoaded && tagsLoaded) {
+        resolve(getState().blog.categories, getState().blog.tags);
+      } else {
+        const getTaxonomy = taxonomy => {
+          return fetch(
+            WORDPRESS_API_URL + '/wp/v2/' + taxonomy + '/?per_page=100'
+          ).then(response => response.json());
+        };
+
+        Promise.all([
+          getTaxonomy('categories'),
+          getTaxonomy('tags')
+        ]).then(response => {
+          let categories = response[0];
+          let tags = response[1];
+
+          if (categories && tags) {
+            dispatch({
+              type: GET_ALL_OF_TAXONOMY,
+              taxonomy: 'categories',
+              data: categories
+            });
+
+            dispatch({
+              type: GET_ALL_OF_TAXONOMY,
+              taxonomy: 'tags',
+              data: tags
+            });
+
+            resolve(categories, tags);
+          }
+        });
+      }
+    });
+  };
+};
+
+export const getPosts = (query, isFresh) => {
+  return dispatch => {
     const matchTaxonomyWithId = (list, slug) => {
       let returned = {};
 
@@ -75,7 +118,7 @@ export const getPosts = (query, isFresh) => {
       return returned;
     };
 
-    const loadPosts = (categories, tags) => {
+    dispatch(getOrLoadTaxonomies()).then((categories, tags) => {
       if (query.categories) {
         query.categories = matchTaxonomyWithId(categories, query.categories).id;
       }
@@ -103,53 +146,21 @@ export const getPosts = (query, isFresh) => {
             });
           }
         });
-    };
-
-    if (categoriesLoaded && tagsLoaded) {
-      loadPosts(getState().blog.categories, getState().blog.tags);
-    } else {
-      Promise.all([
-        getTaxonomy('categories'),
-        getTaxonomy('tags')
-      ]).then(response => {
-        let categories = response[0];
-        let tags = response[1];
-
-        if (categories && tags) {
-          dispatch({
-            type: GET_ALL_OF_TAXONOMY,
-            taxonomy: 'categories',
-            data: categories
-          });
-
-          dispatch({
-            type: GET_ALL_OF_TAXONOMY,
-            taxonomy: 'tags',
-            data: tags
-          });
-
-          loadPosts(categories, tags);
-        }
-      });
-    }
+    });
   };
-};
-
-export const getTaxonomy = taxonomy => {
-  return fetch(
-    WORDPRESS_API_URL + '/wp/v2/' + taxonomy + '/?per_page=100'
-  ).then(response => response.json());
 };
 
 export const getCurrentPost = slug => {
   return dispatch => {
-    fetch(WORDPRESS_API_URL + '/wp/v2/posts/?slug=' + slug)
-      .then(response => response.json())
-      .then(response => {
-        dispatch({
-          type: GET_CURRENT_POST,
-          post: response[0]
+    dispatch(getOrLoadTaxonomies()).then((categories, tags) => {
+      fetch(WORDPRESS_API_URL + '/wp/v2/posts/?slug=' + slug)
+        .then(response => response.json())
+        .then(response => {
+          dispatch({
+            type: GET_CURRENT_POST,
+            post: response[0]
+          });
         });
-      });
+    });
   };
 };

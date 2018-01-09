@@ -23,7 +23,7 @@ class Homepage extends Component {
 
     return (
       <div id="homepage">
-        <Loading isLoading={this.props.isLoading} />
+        <Loading shouldHideWhen={this.props.homepageLoaded} />
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Mission {...mission} />
         <Process {...process} />
@@ -36,7 +36,7 @@ class Homepage extends Component {
 
 const mapStateToProps = state => ({
   content: state.homepage.content,
-  isLoading: state.homepage.isLoading
+  homepageLoaded: state.homepage.homepageLoaded
 });
 
 const mapDispatchToProps = dispatch =>

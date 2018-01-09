@@ -4,8 +4,8 @@ import './loading.css';
 
 import logo from '../../assets/logo-square-color.svg';
 
-const Loading = ({ isLoading }) => (
-  <div id="loading" className={!isLoading ? 'not-showing' : ''}>
+const Loading = ({ shouldHideWhen }) => (
+  <div id="loading" className={shouldHideWhen ? 'not-showing' : ''}>
     <img src={logo} className="logo" alt="OpenMined" />
   </div>
 );

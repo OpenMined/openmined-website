@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Button } from 'openmined-ui';
 import { connect } from 'react-redux';
-import { getPosts, getTaxonomy } from '../../../../../modules/blog';
+import { getPosts } from '../../../../../modules/blog';
 import { getContent } from '../../../../../modules/homepage';
 
 import BlogHeader from '../../../components/blog-header';
@@ -14,12 +14,7 @@ import './blog.css';
 const blogExcerpt =
   'Home to the latest research, thoughts, and demos surrounding the OpenMined project and the larger artificial intelligence ecosystem.';
 
-/*
-
-  TODO
-   - Single pages
-
-*/
+// TODO: Newsletter link...
 
 class Blog extends Component {
   constructor(props) {
@@ -140,9 +135,9 @@ class Blog extends Component {
 
     return (
       <div id="blog">
-        <Loading isLoading={homepageLoaded && !postsReady} />
+        <Loading shouldHideWhen={homepageLoaded && postsReady} />
         {postsReady && (
-          <div>
+          <div id="posts-content">
             <BlogHeader {...this.blogHeaderInfo(taxonomy, slug)} />
             <BlogPosts
               type="recent"
@@ -172,7 +167,7 @@ class Blog extends Component {
 
 const mapStateToProps = state => ({
   content: state.homepage.content,
-  homepageLoaded: state.homepage.isLoading,
+  homepageLoaded: state.homepage.homepageLoaded,
   posts: state.blog.posts,
   categories: state.blog.categories,
   tags: state.blog.tags,
@@ -184,6 +179,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getContent, getPosts, getTaxonomy }, dispatch);
+  bindActionCreators({ getContent, getPosts }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);

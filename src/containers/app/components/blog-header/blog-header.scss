@@ -50,7 +50,7 @@
           color: $white;
           transition: color $anim-time $anim-func;
           &:hover {
-            color: $primary-color;
+            color: $dark-gray;
           }
         }
         @include tablet-up() {
