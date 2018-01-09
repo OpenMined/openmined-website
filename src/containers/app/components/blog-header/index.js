@@ -50,7 +50,7 @@ const BlogHeader = ({ title, excerpt, links }) => (
           <Heading level={1} className="title">
             {title}
           </Heading>
-          {excerpt && <p className="excerpt">{excerpt}</p>}
+          {excerpt && <div className="excerpt">{excerpt}</div>}
         </Column>
       </Row>
     </Container>

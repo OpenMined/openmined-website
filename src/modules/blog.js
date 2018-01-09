@@ -4,16 +4,19 @@ export const GET_POSTS = 'blog/GET_POSTS';
 export const GET_ALL_OF_TAXONOMY = 'blog/GET_ALL_OF_TAXONOMY';
 export const NO_MORE_POSTS = 'blog/NO_MORE_POSTS';
 export const GET_CURRENT_POST = 'blog/GET_CURRENT_POST';
+export const GET_CURRENT_AUTHOR = 'blog/GET_CURRENT_AUTHOR';
 
 const initialState = {
   posts: [],
   categories: [],
   tags: [],
   currentPost: {},
+  currentAuthor: {},
   postsLoaded: false,
   categoriesLoaded: false,
   tagsLoaded: false,
   currentPostLoaded: false,
+  currentAuthorLoaded: false,
   outOfPosts: false
 };
 
@@ -55,20 +58,30 @@ export default (state = initialState, action) => {
         currentPostLoaded: true
       };
 
+    case GET_CURRENT_AUTHOR:
+      return {
+        ...state,
+        currentAuthor: action.author,
+        currentAuthorLoaded: true
+      };
+
     default:
       return state;
   }
 };
 
 // Get the categories and tags from the store, or find them from Wordpress
-// Used like such: dispatch(getOrLoadTaxonomies()).then((categories, tags) => { ... });
+// Used like such: dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => { ... });
 const getOrLoadTaxonomies = () => {
   return (dispatch, getState) => {
     return new Promise(resolve => {
       let { categoriesLoaded, tagsLoaded } = getState().blog;
 
       if (categoriesLoaded && tagsLoaded) {
-        resolve(getState().blog.categories, getState().blog.tags);
+        resolve({
+          categories: getState().blog.categories,
+          tags: getState().blog.tags
+        });
       } else {
         const getTaxonomy = taxonomy => {
           return fetch(
@@ -96,12 +109,18 @@ const getOrLoadTaxonomies = () => {
               data: tags
             });
 
-            resolve(categories, tags);
+            resolve({ categories, tags });
           }
         });
       }
     });
   };
+};
+
+const getAuthor = id => {
+  return fetch(WORDPRESS_API_URL + '/wp/v2/users/' + id).then(response =>
+    response.json()
+  );
 };
 
 export const getPosts = (query, isFresh) => {
@@ -118,7 +137,7 @@ export const getPosts = (query, isFresh) => {
       return returned;
     };
 
-    dispatch(getOrLoadTaxonomies()).then((categories, tags) => {
+    dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => {
       if (query.categories) {
         query.categories = matchTaxonomyWithId(categories, query.categories).id;
       }
@@ -152,13 +171,20 @@ export const getPosts = (query, isFresh) => {
 
 export const getCurrentPost = slug => {
   return dispatch => {
-    dispatch(getOrLoadTaxonomies()).then((categories, tags) => {
+    dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => {
       fetch(WORDPRESS_API_URL + '/wp/v2/posts/?slug=' + slug)
         .then(response => response.json())
         .then(response => {
           dispatch({
             type: GET_CURRENT_POST,
             post: response[0]
+          });
+
+          getAuthor(response[0].author).then(response => {
+            dispatch({
+              type: GET_CURRENT_AUTHOR,
+              author: response
+            });
           });
         });
     });
