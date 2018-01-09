@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Container, Row, Column } from 'openmined-ui';
+import { Container, Row, Column, Page } from 'openmined-ui';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { getCurrentPost } from '../../../../../modules/blog';
@@ -98,7 +98,7 @@ class BlogPost extends Component {
     } = this.props;
 
     return (
-      <div id="blog-post">
+      <Page id="blog-post">
         <Loading shouldHideWhen={homepageLoaded && currentPostReady} />
         {currentPostReady && (
           <div id="post-content">
@@ -128,7 +128,7 @@ class BlogPost extends Component {
             </Container>
           </div>
         )}
-      </div>
+      </Page>
     );
   }
 }

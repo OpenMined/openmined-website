@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { Button } from 'openmined-ui';
+import { Button, Page } from 'openmined-ui';
 import { connect } from 'react-redux';
 import { getPosts } from '../../../../../modules/blog';
 import { getContent } from '../../../../../modules/homepage';
@@ -134,7 +134,7 @@ class Blog extends Component {
     const { taxonomy, slug } = this.props.match.params;
 
     return (
-      <div id="blog">
+      <Page id="blog">
         <Loading shouldHideWhen={homepageLoaded && postsReady} />
         {postsReady && (
           <div id="posts-content">
@@ -160,7 +160,7 @@ class Blog extends Component {
             )}
           </div>
         )}
-      </div>
+      </Page>
     );
   }
 }

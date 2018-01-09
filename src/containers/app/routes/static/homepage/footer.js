@@ -98,8 +98,7 @@ const Footer = ({ questions, movement, links, tagline }) => (
                           <div
                             className="avatar"
                             style={{
-                              backgroundImage:
-                                'url(' + `${member.avatar_url}` + ')'
+                              backgroundImage: `url(${member.avatar_url})`
                             }}
                           />
                         </ExternalLink>

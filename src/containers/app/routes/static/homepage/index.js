@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addNotification } from '../../../../../modules/notifications';
 import { getContent } from '../../../../../modules/homepage';
+import { Page } from 'openmined-ui';
 
 import Loading from '../../../components/loading';
 import Hero from './hero';
@@ -22,14 +23,14 @@ class Homepage extends Component {
     const { hero, mission, process, timeline, footer } = this.props.content;
 
     return (
-      <div id="homepage">
+      <Page id="homepage">
         <Loading shouldHideWhen={this.props.homepageLoaded} />
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Mission {...mission} />
         <Process {...process} />
         <Timeline {...timeline} />
         <Footer {...footer} />
-      </div>
+      </Page>
     );
   }
 }

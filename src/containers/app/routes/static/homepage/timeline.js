@@ -66,8 +66,7 @@ const Contributors = ({ projects, current }) => {
                 <div
                   className="avatar"
                   style={{
-                    backgroundImage:
-                      'url(' + `${contributor.author.avatar_url}` + ')'
+                    backgroundImage: `url(${contributor.author.avatar_url})`
                   }}
                 />
                 <p className="login">{contributor.author.login}</p>
