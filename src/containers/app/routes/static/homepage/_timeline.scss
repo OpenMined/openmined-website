@@ -214,10 +214,6 @@ $github-project-size: 270px;
       position: relative;
       display: flex;
       align-items: center;
-      // TODO: Fix below line in openmined-ui
-      &:hover {
-        color: $white;
-      }
       &:before,
       &:after {
         position: absolute;

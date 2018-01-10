@@ -86,6 +86,37 @@ class Blog extends Component {
     );
   }
 
+  seoHeaderInfo(taxonomy, slug) {
+    if (taxonomy && slug) {
+      const lookupTaxonomy = (list, slug) => {
+        let returned = {};
+
+        list.forEach(taxonomy => {
+          if (taxonomy.slug === slug) {
+            returned = taxonomy;
+          }
+        });
+
+        return returned;
+      };
+
+      let taxonomyData =
+        taxonomy === 'categories'
+          ? lookupTaxonomy(this.props.categories, slug)
+          : lookupTaxonomy(this.props.tags, slug);
+
+      return {
+        title: 'Blog - ' + taxonomyData.name,
+        description: taxonomyData.description || blogExcerpt
+      };
+    } else {
+      return {
+        title: 'Blog',
+        description: blogExcerpt
+      };
+    }
+  }
+
   blogHeaderInfo(taxonomy, slug) {
     let links = this.props.content.footer.links;
 
@@ -134,7 +165,7 @@ class Blog extends Component {
     const { taxonomy, slug } = this.props.match.params;
 
     return (
-      <Page id="blog">
+      <Page id="blog" {...this.seoHeaderInfo(taxonomy, slug)}>
         <Loading shouldHideWhen={homepageLoaded && postsReady} />
         {postsReady && (
           <div id="posts-content">

@@ -19,8 +19,7 @@ $loading-logo-size: 80px;
   height: 100vh;
   background: $off-white;
   opacity: 1;
-  // TODO: Move this z-index over to the OpenMined-UI
-  z-index: 5;
+  z-index: $loading-zindex;
   transition: z-index $anim-time step-end, opacity $anim-time $anim-func;
   &.not-showing {
     z-index: -1;

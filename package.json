@@ -11,7 +11,7 @@
     "node-sass-chokidar": "^0.0.3",
     "normalize.css": "^7.0.0",
     "npm-run-all": "^4.1.1",
-    "openmined-ui": "^0.0.3",
+    "openmined-ui": "^0.0.5",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-helmet": "^5.2.0",

@@ -13,8 +13,6 @@ import Loading from '../../../components/loading';
 
 import './blog-post.css';
 
-// TODO: Do SSR with full social media and page updates
-
 const lookupTaxonomy = (list, id) => {
   let returned = {};
 
@@ -86,11 +84,43 @@ class BlogPost extends Component {
     );
   }
 
+  seoHeaderInfo(post, categories, tags, featuredMedia) {
+    if (post.title) {
+      let firstParaIndex = post.excerpt.rendered.indexOf('<p>') + 3;
+      let firstParaEndingIndex = post.excerpt.rendered.indexOf('</p>') - 3;
+      let firstPara = post.excerpt.rendered.substr(
+        firstParaIndex,
+        firstParaEndingIndex
+      );
+      let theCategory = lookupTaxonomy(categories, post.categories[0]);
+      let theTags = [];
+
+      post.tags.forEach(tag => {
+        let foundTag = lookupTaxonomy(tags, tag);
+
+        if (foundTag) {
+          theTags.push(foundTag.name);
+        }
+      });
+
+      return {
+        title: post.title.rendered,
+        description: firstPara.substring(0, 160),
+        image: featuredMedia.source_url ? featuredMedia.source_url : null,
+        category: theCategory.name ? theCategory.name : null,
+        tags: theTags.length > 0 ? theTags.join() : null
+      };
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const {
       post,
       categories,
       tags,
+      featuredMedia,
       author,
       homepageLoaded,
       currentPostReady,
@@ -98,7 +128,10 @@ class BlogPost extends Component {
     } = this.props;
 
     return (
-      <Page id="blog-post">
+      <Page
+        id="blog-post"
+        {...this.seoHeaderInfo(post, categories, tags, featuredMedia)}
+      >
         <Loading shouldHideWhen={homepageLoaded && currentPostReady} />
         {currentPostReady && (
           <div id="post-content">
@@ -135,6 +168,7 @@ class BlogPost extends Component {
 
 const mapStateToProps = state => ({
   post: state.blog.currentPost,
+  featuredMedia: state.blog.currentFeaturedMedia,
   author: state.blog.currentAuthor,
   content: state.homepage.content,
   homepageLoaded: state.homepage.homepageLoaded,
@@ -142,6 +176,7 @@ const mapStateToProps = state => ({
   tags: state.blog.tags,
   currentPostReady:
     state.blog.currentPostLoaded &&
+    state.blog.currentFeaturedMediaLoaded &&
     state.blog.currentAuthorLoaded &&
     state.blog.categoriesLoaded &&
     state.blog.tagsLoaded

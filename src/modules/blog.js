@@ -4,6 +4,7 @@ export const GET_POSTS = 'blog/GET_POSTS';
 export const GET_ALL_OF_TAXONOMY = 'blog/GET_ALL_OF_TAXONOMY';
 export const NO_MORE_POSTS = 'blog/NO_MORE_POSTS';
 export const GET_CURRENT_POST = 'blog/GET_CURRENT_POST';
+export const GET_CURRENT_FEATURED_MEDIA = 'blog/GET_CURRENT_FEATURED_MEDIA';
 export const GET_CURRENT_AUTHOR = 'blog/GET_CURRENT_AUTHOR';
 
 const initialState = {
@@ -11,11 +12,13 @@ const initialState = {
   categories: [],
   tags: [],
   currentPost: {},
+  currentFeaturedMedia: {},
   currentAuthor: {},
   postsLoaded: false,
   categoriesLoaded: false,
   tagsLoaded: false,
   currentPostLoaded: false,
+  currentFeaturedMediaLoaded: false,
   currentAuthorLoaded: false,
   outOfPosts: false
 };
@@ -56,6 +59,13 @@ export default (state = initialState, action) => {
         ...state,
         currentPost: action.post,
         currentPostLoaded: true
+      };
+
+    case GET_CURRENT_FEATURED_MEDIA:
+      return {
+        ...state,
+        currentFeaturedMedia: action.media,
+        currentFeaturedMediaLoaded: true
       };
 
     case GET_CURRENT_AUTHOR:
@@ -123,6 +133,12 @@ const getAuthor = id => {
   );
 };
 
+const getFeaturedMedia = id => {
+  return fetch(WORDPRESS_API_URL + '/wp/v2/media/' + id).then(response =>
+    response.json()
+  );
+};
+
 export const getPosts = (query, isFresh) => {
   return dispatch => {
     const matchTaxonomyWithId = (list, slug) => {
@@ -178,6 +194,13 @@ export const getCurrentPost = slug => {
           dispatch({
             type: GET_CURRENT_POST,
             post: response[0]
+          });
+
+          getFeaturedMedia(response[0].featured_media).then(response => {
+            dispatch({
+              type: GET_CURRENT_FEATURED_MEDIA,
+              media: response
+            });
           });
 
           getAuthor(response[0].author).then(response => {
