@@ -6,18 +6,15 @@ import { Route, Switch } from 'react-router-dom';
 // Action Creators
 import { removeNotification } from '../../modules/notifications';
 
-import asyncComponent from './components/async-component';
-
 // UI Components
-const Notifications = asyncComponent(() =>
-  import('./components/notifications')
-);
+import Notifications from './components/notifications';
 
 // Routes
-const Homepage = asyncComponent(() => import('./routes/static/homepage'));
-const Blog = asyncComponent(() => import('./routes/static/blog'));
-const BlogPost = asyncComponent(() => import('./routes/static/blog-post'));
-const NotFound = asyncComponent(() => import('./routes/not-found'));
+import Homepage from './routes/static/homepage';
+import Blog from './routes/static/blog';
+import BlogPost from './routes/static/blog-post';
+import NotFound from './routes/not-found';
+
 const RedirectToWordpress = () =>
   (window.location = 'https://api.openmined.org/wp-admin/');
 
