@@ -39,19 +39,19 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "build-css":
+    "build:css":
       "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "yarn build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "yarn build-css && react-scripts build",
+    "watch:css":
+      "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start:js": "react-scripts start",
+    "dev:client": "npm-run-all -p watch:css start:js",
+    "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "yarn lint:js",
+    "lint": "npm run lint:js",
     "lint:js": "eslint .",
-    "serve": "NODE_ENV=development node server/index.js",
-    "deploy": "NODE_ENV=production node server/index.js"
+    "dev:server": "NODE_ENV=development node server/index.js",
+    "start": "NODE_ENV=production node server/index.js"
   },
   "devDependencies": {
     "eslint": "^4.10.0",
