@@ -1,3 +1,4 @@
+import fetch from 'cross-fetch';
 import { SERVERLESS_API_URL, WORDPRESS_API_URL } from './index';
 
 export const GET_CONTENT = 'homepage/GET_CONTENT';

@@ -135,7 +135,7 @@ const universalLoader = async (req, res) => {
     // Let Helmet know to insert the right tags
     const helmet = Helmet.renderStatic();
 
-    console.log('META TAGS', helmet.meta.toString());
+    console.log('*** HERE GOES THE TITLE ***', helmet.title.toString());
 
     // Form the final HTML response
     const html = prepHTML(htmlData, {

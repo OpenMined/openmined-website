@@ -1,3 +1,4 @@
+import fetch from 'cross-fetch';
 import { WORDPRESS_API_URL } from './index';
 
 export const GET_POSTS = 'blog/GET_POSTS';
@@ -99,29 +100,28 @@ const getOrLoadTaxonomies = () => {
           ).then(response => response.json());
         };
 
-        Promise.all([
-          getTaxonomy('categories'),
-          getTaxonomy('tags')
-        ]).then(response => {
-          let categories = response[0];
-          let tags = response[1];
+        Promise.all([getTaxonomy('categories'), getTaxonomy('tags')]).then(
+          response => {
+            let categories = response[0];
+            let tags = response[1];
 
-          if (categories && tags) {
-            dispatch({
-              type: GET_ALL_OF_TAXONOMY,
-              taxonomy: 'categories',
-              data: categories
-            });
+            if (categories && tags) {
+              dispatch({
+                type: GET_ALL_OF_TAXONOMY,
+                taxonomy: 'categories',
+                data: categories
+              });
 
-            dispatch({
-              type: GET_ALL_OF_TAXONOMY,
-              taxonomy: 'tags',
-              data: tags
-            });
+              dispatch({
+                type: GET_ALL_OF_TAXONOMY,
+                taxonomy: 'tags',
+                data: tags
+              });
 
-            resolve({ categories, tags });
+              resolve({ categories, tags });
+            }
           }
-        });
+        );
       }
     });
   };

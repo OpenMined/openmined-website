@@ -28,9 +28,9 @@ const lookupTaxonomy = (list, id) => {
 };
 
 class BlogPost extends Component {
-  componentDidMount() {
-    this.props.getContent(false);
+  componentWillMount() {
     this.props.getCurrentPost(this.props.match.params.slug);
+    this.props.getContent(false);
   }
 
   getExcerpt(post, author) {

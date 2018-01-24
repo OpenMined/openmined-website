@@ -9,6 +9,7 @@
     "babel-preset-env": "^1.6.0",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
+    "cross-fetch": "^1.1.1",
     "express": "^4.16.2",
     "flow-bin": "^0.57.3",
     "forcedomain": "^0.8.1",
@@ -35,14 +36,15 @@
     "useragent": "^2.2.1"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "scripts": {
     "precommit": "lint-staged",
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "yarn build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "yarn build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "yarn build-css && react-scripts build",
