@@ -36,24 +36,23 @@
     "useragent": "^2.2.1"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "scripts": {
     "precommit": "lint-staged",
-    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "yarn build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "yarn build-css && react-scripts build",
+    "build:css":
+      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch:css":
+      "yarn build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start:js": "react-scripts start",
+    "build": "yarn build:css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
-    "serve": "NODE_ENV=development node server/index.js",
-    "deploy": "NODE_ENV=production node server/index.js"
+    "start": "npm-run-all -p watch:css start:js",
+    "serve:dev": "NODE_ENV=development node server/index.js",
+    "serve:prod": "NODE_ENV=production node server/index.js"
   },
   "devDependencies": {
     "eslint": "^4.10.0",
