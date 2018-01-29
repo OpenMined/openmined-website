@@ -13,14 +13,14 @@ import universalLoader from './universal';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(
-    forceDomain({
-      hostname: 'openmined.com',
-      protocol: 'https'
-    })
-  );
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(
+//     forceDomain({
+//       hostname: 'openmined.com',
+//       protocol: 'https'
+//     })
+//   );
+// }
 
 // Compress, parse, and log
 app.use(compression());
