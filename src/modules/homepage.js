@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { SERVERLESS_API_URL, WORDPRESS_API_URL } from './index';
+import { WORDPRESS_API_URL } from './index';
 
 export const GET_CONTENT = 'homepage/GET_CONTENT';
 export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
@@ -125,16 +125,13 @@ export const getContent = (shouldCallGithub = true) => {
         });
 
         if (shouldCallGithub) {
-          // Load Github issues and contributors from Serverless
-          getGithubProjects(content.timeline.repos).then(({ repos }) => {
+          // Load Github issues and contributors from Wordpress
+          getGithubData().then(({ members, repos }) => {
             dispatch({
               type: GET_GITHUB_PROJECTS,
               repos
             });
-          });
 
-          // Load Github members from Serverless
-          getGithubMembers().then(({ members }) => {
             dispatch({
               type: GET_GITHUB_MEMBERS,
               members
@@ -145,17 +142,8 @@ export const getContent = (shouldCallGithub = true) => {
   };
 };
 
-const getGithubProjects = repos => {
-  return fetch(SERVERLESS_API_URL + '/projects', {
-    method: 'POST',
-    body: JSON.stringify({
-      repos
-    })
-  }).then(response => response.json());
-};
-
-const getGithubMembers = () => {
-  return fetch(SERVERLESS_API_URL + '/members').then(response =>
+const getGithubData = () => {
+  return fetch(WORDPRESS_API_URL + '/github/all').then(response =>
     response.json()
   );
 };

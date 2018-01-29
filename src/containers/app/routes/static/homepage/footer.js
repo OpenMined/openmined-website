@@ -55,10 +55,8 @@ const Footer = ({ questions, movement, links, tagline }) => (
               </ExternalLink>
               <span className="count">
                 {movement.movement_github.footer_movement_github_members &&
-                  '> ' +
-                    movement.movement_github.footer_movement_github_members
-                      .length +
-                    ' people'}
+                  movement.movement_github.footer_movement_github_members
+                    .length + ' people'}
               </span>
             </div>
             <div className="button-container">
