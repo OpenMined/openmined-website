@@ -2,11 +2,13 @@ import fetch from 'cross-fetch';
 import { WORDPRESS_API_URL } from './index';
 
 export const GET_CONTENT = 'homepage/GET_CONTENT';
+export const CHANGE_SOMETHING = 'homepage/CHANGE_SOMETHING';
 export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
 export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
 
 // TODO: Maybe we should beef this out a bit once we want on the desired format...
 const initialState = {
+  something: 'patrick',
   homepageLoaded: false,
   content: {
     hero: {
@@ -36,6 +38,12 @@ export default (state = initialState, action) => {
         ...state,
         content: action.content,
         homepageLoaded: true
+      };
+
+    case CHANGE_SOMETHING:
+      return {
+        ...state,
+        something: action.something
       };
 
     // TODO: Is there a prettier way to do this?
@@ -139,6 +147,21 @@ export const getContent = (shouldCallGithub = true) => {
           });
         }
       });
+  };
+};
+
+export const changeSomething = newVal => {
+  return dispatch => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(
+          dispatch({
+            type: CHANGE_SOMETHING,
+            something: newVal
+          })
+        );
+      }, 3000);
+    });
   };
 };
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addNotification } from '../../../../../modules/notifications';
-import { getContent } from '../../../../../modules/homepage';
+import { getContent, changeSomething } from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
 import Loading from '../../../components/loading';
@@ -11,6 +11,8 @@ import Mission from './mission';
 import Process from './process';
 import Timeline from './timeline';
 import Footer from './footer';
+
+import Hello from './hello';
 
 import './homepage.css';
 
@@ -23,7 +25,11 @@ class Homepage extends Component {
     const { hero, mission, process, timeline, footer } = this.props.content;
 
     return (
-      <Page id="homepage">
+      <Page id="homepage" title={this.props.something}>
+        <Hello
+          something={this.props.something}
+          changeSomething={this.props.changeSomething}
+        />
         <Loading shouldHideWhen={this.props.homepageLoaded} />
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Mission {...mission} />
@@ -36,11 +42,15 @@ class Homepage extends Component {
 }
 
 const mapStateToProps = state => ({
+  something: state.homepage.something,
   content: state.homepage.content,
   homepageLoaded: state.homepage.homepageLoaded
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addNotification, getContent }, dispatch);
+  bindActionCreators(
+    { addNotification, getContent, changeSomething },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
