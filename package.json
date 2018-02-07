@@ -52,6 +52,15 @@
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
     "start": "npm-run-all -p watch:css start:js",
+    "deploy": "npm run deploy:ecs",
+    "deploy:ecs":
+      "npm run docker:build && npm run docker:tag:ecs && npm run docker:push:ecs",
+    "docker:build": "docker build -t openmined-website .",
+    "docker:tag:ecs":
+      "docker tag openmined-website:latest 273848247695.dkr.ecr.us-east-1.amazonaws.com/openmined-website:latest",
+    "docker:push:ecs":
+      "docker push 273848247695.dkr.ecr.us-east-1.amazonaws.com/openmined-website:latest",
+    "ecs:refresh": "aws ecr get-login --no-include-email --region us-east-1",
     "serve:dev": "NODE_ENV=development node server/index.js",
     "serve:prod": "NODE_ENV=production node server/index.js"
   },

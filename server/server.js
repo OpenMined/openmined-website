@@ -13,11 +13,11 @@ import universalLoader from './universal';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' && process.env.HOST_NAME) {
   app.use(
     forceDomain({
-      hostname: 'openmined.com',
-      protocol: 'https'
+      hostname: process.env.HOST_DOMAIN,
+      protocol: process.env.FORCE_SSL === 'true' ? 'https' : 'http'
     })
   );
 }
