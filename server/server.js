@@ -13,7 +13,7 @@ import universalLoader from './universal';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-if (process.env.NODE_ENV === 'production' && process.env.HOST_NAME) {
+if (process.env.HOST_NAME) {
   app.use(
     forceDomain({
       hostname: process.env.HOST_DOMAIN,

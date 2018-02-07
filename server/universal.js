@@ -51,14 +51,14 @@ const universalLoader = async (req, res) => {
 
       const { store, history } = createServerStore(req.path);
 
-      const routeMarkup = frontloadServerRender(() =>
+      frontloadServerRender(() =>
         renderToString(
           <Application isServer myStore={store} myHistory={history} />
         )
-      );
-
-      routeMarkup.then(response => {
+      ).then(response => {
         const helmet = Helmet.renderStatic();
+
+        console.log('RESPONSE', response);
 
         console.log('AND THE TITLE IS...', helmet.title.toString());
 
@@ -69,7 +69,7 @@ const universalLoader = async (req, res) => {
               helmet.title.toString() +
               helmet.meta.toString() +
               helmet.link.toString(),
-            body: routeMarkup
+            body: response
           })
         );
       });

@@ -4,12 +4,14 @@ import { frontloadConnect } from 'react-frontload';
 const frontload = props => props.changeSomething('cereallarceny');
 
 const options = {
-  noServerRender: false,
+  noServerRender: process.env.REACT_APP_NO_SSR === 'true' && true,
   onMount: true,
   onUpdate: true
 };
 
 const Hello = props => {
+  console.log('SSR', process.env.REACT_APP_NO_SSR);
+
   console.log(
     new Date()
       .getTime()
