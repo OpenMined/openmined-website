@@ -22,7 +22,7 @@ class Homepage extends Component {
       props.store.getState().homepage.something
     );
 
-    await props.store.dispatch(changeSomething('cereallarceny'));
+    await props.store.dispatch(changeSomething('test worked'));
 
     console.log(
       'getInitialProps after dispatch',

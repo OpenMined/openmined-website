@@ -35,6 +35,7 @@ export default (initialState = {}, ssr = {}) => {
   return createStore(rootReducer, initialState, composedEnhancers);
 };
 
+// TODO: Investigate whether or not we need history to take an initial entry
 /*
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';

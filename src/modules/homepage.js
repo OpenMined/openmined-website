@@ -7,7 +7,7 @@ export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
 
 // TODO: Maybe we should beef this out a bit once we want on the desired format...
 const initialState = {
-  something: 'patrick',
+  something: 'starting value',
   homepageLoaded: false,
   content: {
     hero: {
