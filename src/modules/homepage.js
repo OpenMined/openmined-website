@@ -1,4 +1,3 @@
-import fetch from 'cross-fetch';
 import { WORDPRESS_API_URL } from './index';
 
 export const GET_CONTENT = 'homepage/GET_CONTENT';

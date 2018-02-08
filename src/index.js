@@ -1,13 +1,14 @@
-import React from 'react';
 import { render } from 'react-dom';
-import store, { history } from './store';
 import registerServiceWorker from './registerServiceWorker';
-import Application from './Application';
+import App from './app';
 
 import './index.css';
 
 render(
-  <Application myStore={store} myHistory={history} />,
+  App({
+    state: window.__INITIAL__STATE__,
+    props: window.__INITIAL__PROPS__
+  }),
   document.querySelector('#root')
 );
 

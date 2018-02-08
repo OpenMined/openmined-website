@@ -2,24 +2,59 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
-import createHistory from 'history/createBrowserHistory';
+import * as reduxHistory from 'history';
 import rootReducer from './modules';
 
-export const history = createHistory();
+const isServer = () => !(typeof window !== 'undefined' && window.document);
 
-const initialState = {};
-const enhancers = [];
-const middleware = [thunk, routerMiddleware(history)];
+export const history = isServer()
+  ? reduxHistory.createMemoryHistory()
+  : reduxHistory.createBrowserHistory();
 
-if (process.env.NODE_ENV === 'development') {
-  const devToolsExtension = window.devToolsExtension;
-
-  if (typeof devToolsExtension === 'function') {
-    enhancers.push(devToolsExtension());
+export default (initialState = {}, ssr = {}) => {
+  if (ssr.req) {
+    initialState = { foo: ssr.res.url };
   }
-}
 
-const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
-const store = createStore(rootReducer, initialState, composedEnhancers);
+  const enhancers = [];
+  const middleware = [thunk, routerMiddleware(history)];
 
-export default store;
+  if (process.env.NODE_ENV === 'development') {
+    const devToolsExtension = window.devToolsExtension;
+
+    if (typeof devToolsExtension === 'function') {
+      enhancers.push(devToolsExtension());
+    }
+  }
+
+  const composedEnhancers = compose(
+    applyMiddleware(...middleware),
+    ...enhancers
+  );
+
+  return createStore(rootReducer, initialState, composedEnhancers);
+};
+
+/*
+import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
+
+import createHistory from 'history/createMemoryHistory';
+import rootReducer from '../src/modules';
+
+const createServerStore = (path = '/') => {
+  const initialState = {};
+  const history = createHistory({ initialEntries: [path] });
+  const middleware = [thunk, routerMiddleware(history)];
+  const composedEnhancers = compose(applyMiddleware(...middleware));
+  const store = createStore(rootReducer, initialState, composedEnhancers);
+
+  return {
+    history,
+    store
+  };
+};
+
+export default createServerStore;
+*/
