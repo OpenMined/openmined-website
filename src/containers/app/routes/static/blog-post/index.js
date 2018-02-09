@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { withWrapper } from 'create-react-server/wrapper';
 import { Container, Row, Column, Page } from 'openmined-ui';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { getCurrentPost } from '../../../../../modules/blog';
-import { getContent } from '../../../../../modules/homepage';
+import { getContent, changeSomething } from '../../../../../modules/homepage';
 
 import BlogHeader from '../../../components/blog-header';
 import Loading from '../../../components/loading';
@@ -28,6 +29,14 @@ const lookupTaxonomy = (list, id) => {
 };
 
 class BlogPost extends Component {
+  static async getInitialProps(props) {
+    console.log('before dispatch', props.store.getState().homepage.something);
+
+    await props.store.dispatch(changeSomething('test worked on blog'));
+
+    console.log('after dispatch', props.store.getState().homepage.something);
+  }
+
   componentWillMount() {
     this.props.getCurrentPost(this.props.match.params.slug);
     this.props.getContent(false);
@@ -130,8 +139,10 @@ class BlogPost extends Component {
     return (
       <Page
         id="blog-post"
-        {...this.seoHeaderInfo(post, categories, tags, featuredMedia)}
+        // {...this.seoHeaderInfo(post, categories, tags, featuredMedia)}
+        title={this.props.something}
       >
+        <h1>Value: {this.props.something}</h1>
         <Loading shouldHideWhen={homepageLoaded && currentPostReady} />
         {currentPostReady && (
           <div id="post-content">
@@ -167,6 +178,7 @@ class BlogPost extends Component {
 }
 
 const mapStateToProps = state => ({
+  something: state.homepage.something,
   post: state.blog.currentPost,
   featuredMedia: state.blog.currentFeaturedMedia,
   author: state.blog.currentAuthor,
@@ -185,4 +197,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ getContent, getCurrentPost }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlogPost);
+export default withWrapper(
+  connect(mapStateToProps, mapDispatchToProps)(BlogPost)
+);
