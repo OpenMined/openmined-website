@@ -30,11 +30,18 @@ const lookupTaxonomy = (list, id) => {
 
 class BlogPost extends Component {
   static async getInitialProps(props) {
-    console.log('before dispatch', props.store.getState().homepage.something);
+    console.log(
+      'BLOG POST - before dispatch',
+      props.store.getState().homepage.something
+    );
 
     await props.store.dispatch(changeSomething('test worked on blog'));
+    // await props.store.dispatch(getCurrentPost(props.match.params.slug));
 
-    console.log('after dispatch', props.store.getState().homepage.something);
+    console.log(
+      'BLOG POST - after dispatch',
+      props.store.getState().homepage.something
+    );
   }
 
   componentWillMount() {

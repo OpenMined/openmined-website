@@ -18,14 +18,14 @@ import './homepage.css';
 class Homepage extends Component {
   static async getInitialProps(props) {
     console.log(
-      'getInitialProps before dispatch',
+      'HOME - before dispatch',
       props.store.getState().homepage.something
     );
 
     await props.store.dispatch(changeSomething('test worked'));
 
     console.log(
-      'getInitialProps after dispatch',
+      'HOME - after dispatch',
       props.store.getState().homepage.something
     );
   }
