@@ -14,12 +14,8 @@ export default ({ state, props, req, res }) => {
     };
   }
 
-  const store = createStore(state);
-
-  console.log(store);
-
   return (
-    <Provider store={store}>
+    <Provider store={createStore(state)}>
       <WrapperProvider initialProps={props}>
         <ConnectedRouter history={history}>
           <Route component={App} />
