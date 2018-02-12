@@ -1,3 +1,5 @@
+import 'es6-promise/auto';
+import 'isomorphic-fetch';
 import { createExpressServer } from 'create-react-server';
 
 import app from '../src/app';
