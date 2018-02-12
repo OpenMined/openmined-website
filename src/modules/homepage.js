@@ -1,13 +1,11 @@
-import { WORDPRESS_API_URL } from './index';
+import { WORDPRESS_API_URL, handleWordpressError } from './index';
 
 export const GET_CONTENT = 'homepage/GET_CONTENT';
-export const CHANGE_SOMETHING = 'homepage/CHANGE_SOMETHING';
 export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
 export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
 
 // TODO: Maybe we should beef this out a bit once we want on the desired format...
 const initialState = {
-  something: 'starting value',
   homepageLoaded: false,
   content: {
     hero: {
@@ -37,12 +35,6 @@ export default (state = initialState, action) => {
         ...state,
         content: action.content,
         homepageLoaded: true
-      };
-
-    case CHANGE_SOMETHING:
-      return {
-        ...state,
-        something: action.something
       };
 
     // TODO: Is there a prettier way to do this?
@@ -133,34 +125,22 @@ export const getContent = (shouldCallGithub = true) => {
 
         if (shouldCallGithub) {
           // Load Github issues and contributors from Wordpress
-          getGithubData().then(({ members, repos }) => {
-            dispatch({
-              type: GET_GITHUB_PROJECTS,
-              repos
-            });
+          getGithubData()
+            .then(({ members, repos }) => {
+              dispatch({
+                type: GET_GITHUB_PROJECTS,
+                repos
+              });
 
-            dispatch({
-              type: GET_GITHUB_MEMBERS,
-              members
-            });
-          });
+              dispatch({
+                type: GET_GITHUB_MEMBERS,
+                members
+              });
+            })
+            .catch(error => dispatch(handleWordpressError(error)));
         }
-      });
-  };
-};
-
-export const changeSomething = newVal => {
-  return dispatch => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(
-          dispatch({
-            type: CHANGE_SOMETHING,
-            something: newVal
-          })
-        );
-      }, 3000);
-    });
+      })
+      .catch(error => dispatch(handleWordpressError(error)));
   };
 };
 

@@ -9,7 +9,8 @@ try {
   createExpressServer({
     port: process.env.PORT || 3000,
     app,
-    template
+    template,
+    debug: true
   });
 } catch (e) {
   console.error(e.stack);

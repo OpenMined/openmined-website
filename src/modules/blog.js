@@ -1,4 +1,4 @@
-import { WORDPRESS_API_URL } from './index';
+import { WORDPRESS_API_URL, handleWordpressError } from './index';
 
 export const GET_POSTS = 'blog/GET_POSTS';
 export const GET_ALL_OF_TAXONOMY = 'blog/GET_ALL_OF_TAXONOMY';
@@ -96,7 +96,9 @@ const getOrLoadTaxonomies = () => {
         const getTaxonomy = taxonomy => {
           return fetch(
             WORDPRESS_API_URL + '/wp/v2/' + taxonomy + '/?per_page=100'
-          ).then(response => response.json());
+          )
+            .then(response => response.json())
+            .catch(error => dispatch(handleWordpressError(error)));
         };
 
         Promise.all([getTaxonomy('categories'), getTaxonomy('tags')]).then(
@@ -185,7 +187,8 @@ export const getPosts = (query, isFresh) => {
                 type: NO_MORE_POSTS
               });
             }
-          });
+          })
+          .catch(error => dispatch(handleWordpressError(error)));
       });
     });
   };
@@ -203,22 +206,27 @@ export const getCurrentPost = slug => {
               post: response[0]
             });
 
-            getFeaturedMedia(response[0].featured_media).then(response => {
-              dispatch({
-                type: GET_CURRENT_FEATURED_MEDIA,
-                media: response
-              });
-            });
+            getFeaturedMedia(response[0].featured_media)
+              .then(response => {
+                dispatch({
+                  type: GET_CURRENT_FEATURED_MEDIA,
+                  media: response
+                });
+              })
+              .catch(error => dispatch(handleWordpressError(error)));
 
             resolve();
 
-            getAuthor(response[0].author).then(response => {
-              dispatch({
-                type: GET_CURRENT_AUTHOR,
-                author: response
-              });
-            });
-          });
+            getAuthor(response[0].author)
+              .then(response => {
+                dispatch({
+                  type: GET_CURRENT_AUTHOR,
+                  author: response
+                });
+              })
+              .catch(error => dispatch(handleWordpressError(error)));
+          })
+          .catch(error => dispatch(handleWordpressError(error)));
       });
     });
   };

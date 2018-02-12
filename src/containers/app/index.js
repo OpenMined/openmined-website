@@ -29,10 +29,13 @@ class App extends Component {
         <div id="content">
           <Switch>
             <Route exact path="/" component={Homepage} />
+
             <Route path="/blog/:taxonomy/:slug/" component={Blog} />
             <Route path="/blog/:slug/" component={BlogPost} />
             <Route path="/blog" component={Blog} />
+
             <Route path="/admin" component={RedirectToWordpress} />
+
             <Route component={NotFound} />
           </Switch>
         </div>
