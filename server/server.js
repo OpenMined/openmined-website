@@ -10,7 +10,6 @@ try {
     template
   });
 } catch (e) {
-  console.error(e.stack && debug ? e.stack : e.toString());
-  console.error('Use "create-react-server --help"');
+  console.error(e.stack);
   process.exit(1);
 }
