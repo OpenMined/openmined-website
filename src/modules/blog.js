@@ -140,75 +140,86 @@ const getFeaturedMedia = id => {
 
 export const getPosts = (query, isFresh) => {
   return dispatch => {
-    const matchTaxonomyWithId = (list, slug) => {
-      let returned = {};
+    return new Promise(resolve => {
+      const matchTaxonomyWithId = (list, slug) => {
+        let returned = {};
 
-      list.forEach(taxonomy => {
-        if (taxonomy.slug === slug) {
-          returned = taxonomy;
-        }
-      });
-
-      return returned;
-    };
-
-    dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => {
-      if (query.categories) {
-        query.categories = matchTaxonomyWithId(categories, query.categories).id;
-      }
-
-      if (query.tags) {
-        query.tags = matchTaxonomyWithId(tags, query.tags).id;
-      }
-
-      let queryString = Object.keys(query)
-        .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
-        .join('&');
-
-      fetch(WORDPRESS_API_URL + '/wp/v2/posts?' + queryString + '&_envelope')
-        .then(response => response.json())
-        .then(response => {
-          dispatch({
-            type: GET_POSTS,
-            posts: response.body,
-            isFresh
-          });
-
-          if (response.headers['X-WP-TotalPages'] === query.page) {
-            dispatch({
-              type: NO_MORE_POSTS
-            });
+        list.forEach(taxonomy => {
+          if (taxonomy.slug === slug) {
+            returned = taxonomy;
           }
         });
+
+        return returned;
+      };
+
+      dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => {
+        if (query.categories) {
+          query.categories = matchTaxonomyWithId(
+            categories,
+            query.categories
+          ).id;
+        }
+
+        if (query.tags) {
+          query.tags = matchTaxonomyWithId(tags, query.tags).id;
+        }
+
+        let queryString = Object.keys(query)
+          .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
+          .join('&');
+
+        fetch(WORDPRESS_API_URL + '/wp/v2/posts?' + queryString + '&_envelope')
+          .then(response => response.json())
+          .then(response => {
+            dispatch({
+              type: GET_POSTS,
+              posts: response.body,
+              isFresh
+            });
+
+            resolve();
+
+            if (response.headers['X-WP-TotalPages'] === query.page) {
+              dispatch({
+                type: NO_MORE_POSTS
+              });
+            }
+          });
+      });
     });
   };
 };
 
 export const getCurrentPost = slug => {
   return dispatch => {
-    dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => {
-      fetch(WORDPRESS_API_URL + '/wp/v2/posts/?slug=' + slug)
-        .then(response => response.json())
-        .then(response => {
-          dispatch({
-            type: GET_CURRENT_POST,
-            post: response[0]
-          });
-
-          getFeaturedMedia(response[0].featured_media).then(response => {
+    return new Promise(resolve => {
+      dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => {
+        fetch(WORDPRESS_API_URL + '/wp/v2/posts/?slug=' + slug)
+          .then(response => response.json())
+          .then(response => {
             dispatch({
-              type: GET_CURRENT_FEATURED_MEDIA,
-              media: response
+              type: GET_CURRENT_POST,
+              post: response[0]
+            });
+
+            getFeaturedMedia(response[0].featured_media).then(response => {
+              dispatch({
+                type: GET_CURRENT_FEATURED_MEDIA,
+                media: response
+              });
+            });
+
+            resolve();
+
+            getAuthor(response[0].author).then(response => {
+              dispatch({
+                type: GET_CURRENT_AUTHOR,
+                author: response
+              });
             });
           });
-
-          getAuthor(response[0].author).then(response => {
-            dispatch({
-              type: GET_CURRENT_AUTHOR,
-              author: response
-            });
-          });
-        });
+      });
     });
   };
 };

@@ -7,7 +7,7 @@ import { Container, Row, Column, Page } from 'openmined-ui';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { getCurrentPost } from '../../../../../modules/blog';
-import { getContent, changeSomething } from '../../../../../modules/homepage';
+import { getContent } from '../../../../../modules/homepage';
 
 import BlogHeader from '../../../components/blog-header';
 import Loading from '../../../components/loading';
@@ -30,22 +30,14 @@ const lookupTaxonomy = (list, id) => {
 
 class BlogPost extends Component {
   static async getInitialProps(props) {
-    console.log(
-      'BLOG POST - before dispatch',
-      props.store.getState().homepage.something
-    );
+    console.log('RENDER A BLOG POST');
+    // TODO: Figure out a better way to do this
+    let pathname = props.location.pathname.split('/');
 
-    await props.store.dispatch(changeSomething('test worked on blog'));
-    // await props.store.dispatch(getCurrentPost(props.match.params.slug));
-
-    console.log(
-      'BLOG POST - after dispatch',
-      props.store.getState().homepage.something
-    );
+    await props.store.dispatch(getCurrentPost(pathname[2]));
   }
 
   componentWillMount() {
-    this.props.getCurrentPost(this.props.match.params.slug);
     this.props.getContent(false);
   }
 
@@ -146,10 +138,8 @@ class BlogPost extends Component {
     return (
       <Page
         id="blog-post"
-        // {...this.seoHeaderInfo(post, categories, tags, featuredMedia)}
-        title={this.props.something}
+        {...this.seoHeaderInfo(post, categories, tags, featuredMedia)}
       >
-        <h1>Value: {this.props.something}</h1>
         <Loading shouldHideWhen={homepageLoaded && currentPostReady} />
         {currentPostReady && (
           <div id="post-content">
@@ -185,7 +175,6 @@ class BlogPost extends Component {
 }
 
 const mapStateToProps = state => ({
-  something: state.homepage.something,
   post: state.blog.currentPost,
   featuredMedia: state.blog.currentFeaturedMedia,
   author: state.blog.currentAuthor,
