@@ -6,10 +6,6 @@ import * as reduxHistory from 'history';
 import rootReducer from './modules';
 
 export default (initialState = {}, server = {}) => {
-  if (server.req) {
-    initialState = { foo: server.req.url };
-  }
-
   const enhancers = [];
 
   if (process.env.NODE_ENV === 'development') {

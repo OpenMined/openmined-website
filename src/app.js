@@ -7,12 +7,6 @@ import { WrapperProvider } from 'create-react-server/wrapper';
 import App from './containers/app';
 
 export default ({ state, props, req, res }) => {
-  if (!state && !!req) {
-    state = {
-      foo: req.url + ':' + Date.now()
-    };
-  }
-
   return (
     <Provider store={createStore(state)}>
       <WrapperProvider initialProps={props}>
