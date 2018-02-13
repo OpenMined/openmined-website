@@ -1,10 +1,10 @@
 import React from 'react';
 
-import pysyftIcon from './assets/pysyft.png';
-import sonarIcon from './assets/sonar.png';
-import mineIcon from './assets/mine.png';
-import adaptersIcon from './assets/adapters.png';
-import openminedIcon from '../../assets/logo-square-color.png';
+import pysyftIcon from './assets/pysyft.svg';
+import sonarIcon from './assets/sonar.svg';
+import mineIcon from './assets/mine.svg';
+import adaptersIcon from './assets/adapters.svg';
+import openminedIcon from '../../assets/logo-square-color.svg';
 
 export const hasRepoIcon = repo => {
   if (!repo) {
