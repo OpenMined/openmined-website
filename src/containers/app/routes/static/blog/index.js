@@ -24,7 +24,6 @@ class Blog extends Component {
     let request;
 
     if (pathname.length > 3) {
-      console.log('RENDER A BLOG TAXONOMY');
       let taxonomy = pathname[2];
       let slug = pathname[3];
 
@@ -33,7 +32,6 @@ class Blog extends Component {
         [taxonomy]: slug
       };
     } else {
-      console.log('RENDER THE BLOG');
       request = { page: 1 };
     }
 

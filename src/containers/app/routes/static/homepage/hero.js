@@ -9,7 +9,7 @@ import {
 } from 'openmined-ui';
 import ExternalLink from '../../../components/external-link';
 
-import logo from '../../../assets/logo-gradientbg.svg';
+import logo from '../../../assets/logo-gradientbg.png';
 
 const copyText = (code, addNotification) => {
   var textArea = document.createElement('textarea');

@@ -11,7 +11,7 @@ import ExternalLink from '../../components/external-link';
 
 import './blog-header.css';
 
-import logo from '../../assets/logo-gradientbg.svg';
+import logo from '../../assets/logo-gradientbg.png';
 
 const BlogHeader = ({ title, excerpt, links }) => (
   <div id="blog-header">

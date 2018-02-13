@@ -105,8 +105,8 @@ const formatContent = (content, item) => {
   return items;
 };
 
-export const getContent = (shouldCallGithub = true) => {
-  return dispatch => {
+const getHomepageContent = () => dispatch =>
+  new Promise(resolve => {
     fetch(WORDPRESS_API_URL + '/acf/v2/options')
       .then(response => response.json())
       .then(response => {
@@ -117,35 +117,45 @@ export const getContent = (shouldCallGithub = true) => {
           content[item] = formatContent(response.acf, item);
         });
 
-        // Load content from Wordpress
         dispatch({
           type: GET_CONTENT,
           content
         });
 
-        if (shouldCallGithub) {
-          // Load Github issues and contributors from Wordpress
-          getGithubData()
-            .then(({ members, repos }) => {
-              dispatch({
-                type: GET_GITHUB_PROJECTS,
-                repos
-              });
-
-              dispatch({
-                type: GET_GITHUB_MEMBERS,
-                members
-              });
-            })
-            .catch(error => dispatch(handleWordpressError(error)));
-        }
+        resolve(content);
       })
       .catch(error => dispatch(handleWordpressError(error)));
-  };
-};
+  });
 
-const getGithubData = () => {
-  return fetch(WORDPRESS_API_URL + '/github/all').then(response =>
-    response.json()
-  );
+const getGithubData = () => dispatch =>
+  new Promise(resolve => {
+    fetch(WORDPRESS_API_URL + '/github/all')
+      .then(response => response.json())
+      .then(({ members, repos }) => {
+        dispatch({
+          type: GET_GITHUB_PROJECTS,
+          repos
+        });
+
+        dispatch({
+          type: GET_GITHUB_MEMBERS,
+          members
+        });
+
+        resolve({
+          repos,
+          members
+        });
+      })
+      .catch(error => dispatch(handleWordpressError(error)));
+  });
+
+export const getContent = (shouldCallGithub = true) => {
+  return async dispatch => {
+    await dispatch(getHomepageContent());
+
+    if (shouldCallGithub) {
+      await dispatch(getGithubData());
+    }
+  };
 };

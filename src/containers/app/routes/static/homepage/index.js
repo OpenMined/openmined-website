@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withWrapper } from 'create-react-server/wrapper';
 import { addNotification } from '../../../../../modules/notifications';
 import { getContent } from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
@@ -15,8 +16,8 @@ import Footer from './footer';
 import './homepage.css';
 
 class Homepage extends Component {
-  componentDidMount() {
-    this.props.getContent();
+  static async getInitialProps(props) {
+    await props.store.dispatch(getContent());
   }
 
   render() {
@@ -41,6 +42,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addNotification, getContent }, dispatch);
+  bindActionCreators({ addNotification }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default withWrapper(
+  connect(mapStateToProps, mapDispatchToProps)(Homepage)
+);

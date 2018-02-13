@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Column, Container, Heading } from 'openmined-ui';
 import ExternalLink from '../../../components/external-link';
 
-import logo from '../../../assets/logo-blackbg.svg';
+import logo from '../../../assets/logo-blackbg.png';
 
 const Footer = ({ questions, movement, links, tagline }) => (
   <div id="footer">

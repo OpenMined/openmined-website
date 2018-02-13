@@ -30,7 +30,6 @@ const lookupTaxonomy = (list, id) => {
 
 class BlogPost extends Component {
   static async getInitialProps(props) {
-    console.log('RENDER A BLOG POST');
     // TODO: Figure out a better way to do this
     let pathname = props.location.pathname.split('/');
 
@@ -191,7 +190,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getContent, getCurrentPost }, dispatch);
+  bindActionCreators({ getContent }, dispatch);
 
 export default withWrapper(
   connect(mapStateToProps, mapDispatchToProps)(BlogPost)
