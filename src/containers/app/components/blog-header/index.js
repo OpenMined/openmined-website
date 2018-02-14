@@ -23,7 +23,6 @@ const BlogHeader = ({ title, excerpt, links }) => (
             <img src={logo} className="header-logo" alt="OpenMined" />
           </Link>
           <ul className="header-items">
-            {console.log(links)}
             {links &&
               links.map((link, i) => {
                 return (
