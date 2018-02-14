@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackgroundGradient, Page, Heading } from 'openmined-ui';
+import { BackgroundGradient, Page } from 'openmined-ui';
 
 import './not-found.css';
 
@@ -14,8 +14,7 @@ export default class NotFound extends Component {
         id="not-found"
         className="header-margin-bump"
       >
-        <BackgroundGradient animated />
-        <Heading level={1}>We can't find this page...</Heading>
+        <BackgroundGradient />
       </Page>
     );
   }
