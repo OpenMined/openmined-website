@@ -45,12 +45,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    notifications: state.notifications.notifications
-  };
-};
+const mapStateToProps = state => ({
+  notifications: state.notifications.notifications
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ removeNotification }, dispatch);
