@@ -14,12 +14,12 @@ const TEMP_CONTENT = {
     tagline: 'Decentralized Artificial Intelligence',
     description:
       'OpenMined is a community focused on building open-source technology for the decentralized ownership of data and intelligence.',
-    ctaLink: 'https://github.com/OpenMined',
+    ctaLink: 'https://github.com/OpenMined/Docs#overview',
     ctaText: 'Start Contributing',
     version: 'V 0.1.0 - “Hydrogen”',
     screenname: 'open-miner',
     code:
-      'curl -s https://raw.githubusercontent.com/OpenMined/mine.js/hydrogen/.docker/docker-compose.yml | docker-compose -f - up'
+      'curl -Ls git.io/openmined | docker-compose -f - up'
   },
   mission: {
     heading: 'Our Mission',
@@ -48,9 +48,13 @@ const TEMP_CONTENT = {
             link: 'https://github.com/OpenMined/PySyft'
           },
           {
+            name: 'Grid',
+            link: 'https://github.com/OpenMined/Grid'
+          },
+          {
             name: 'PySonar',
             link: 'https://github.com/OpenMined/PySonar'
-          }
+          },
         ]
       },
       {
@@ -76,16 +80,16 @@ const TEMP_CONTENT = {
             link: 'https://github.com/OpenMined/OpenMined'
           },
           {
+            name: 'Grid',
+            link: 'https://github.com/OpenMined/Grid'
+          },
+          {
             name: 'PySyft',
             link: 'https://github.com/OpenMined/PySyft'
           },
           {
             name: 'Adapters',
             link: 'https://github.com/OpenMined/Adapters'
-          },
-          {
-            name: 'Mine UI',
-            link: 'https://github.com/OpenMined/mine-ui'
           },
           {
             name: 'OpenMined UI',
@@ -102,10 +106,6 @@ const TEMP_CONTENT = {
           {
             name: 'Sonar',
             link: 'https://github.com/OpenMined/Sonar'
-          },
-          {
-            name: 'Mine UI',
-            link: 'https://github.com/OpenMined/mine-ui'
           }
         ]
       },
@@ -181,7 +181,7 @@ const TEMP_CONTENT = {
         issues: []
       }
     ],
-    ctaLink: 'https://github.com/OpenMined'
+    ctaLink: 'https://github.com/OpenMined/Docs#overview'
   },
   footer: {
     questions: {
