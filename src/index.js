@@ -1,18 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import { history } from './store';
 import registerServiceWorker from './registerServiceWorker';
 import createApp from './app';
 
 import './index.css';
 
 render(
-  <BrowserRouter>
+  <Router history={history}>
     {createApp({
       state: window.__INITIAL__STATE__,
       props: window.__INITIAL__PROPS__
     })}
-  </BrowserRouter>,
+  </Router>,
   document.querySelector('#root')
 );
 
