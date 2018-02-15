@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router } from 'react-router-dom';
 import { history } from './store';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import createApp from './app';
 
 import './index.css';
@@ -17,4 +17,5 @@ render(
   document.querySelector('#root')
 );
 
-registerServiceWorker();
+// Disabled until we find a better caching strategy
+// registerServiceWorker();
