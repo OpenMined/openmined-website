@@ -19,7 +19,7 @@ try {
   if (process.env.HOST_NAME) {
     express.use(
       forceDomain({
-        hostname: process.env.HOST_DOMAIN,
+        hostname: process.env.HOST_NAME,
         protocol: process.env.FORCE_SSL === 'true' ? 'https' : 'http'
       })
     );
