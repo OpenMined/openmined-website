@@ -12,7 +12,7 @@ const injectHTML = (data, { html, title, meta, body }) => {
 export default ({ template, html, error }) => {
   const helmet = Helmet.renderStatic();
 
-  console.log('MY TITLE', helmet.title.toString());
+  console.log('PAGE TITLE', helmet.title.toString());
 
   return injectHTML(template, {
     html: helmet.htmlAttributes.toString(),

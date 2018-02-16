@@ -10,6 +10,7 @@
     "create-react-server": "^0.3.1",
     "es6-promise": "^4.2.4",
     "express": "^4.16.2",
+    "express-unless": "^0.5.0",
     "flow-bin": "^0.57.3",
     "forcedomain": "^0.8.1",
     "ignore-styles": "^5.0.1",
@@ -26,7 +27,7 @@
     "react-redux": "^5.0.6",
     "react-render-html": "^0.6.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14",
+    "react-scripts": "1.1.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },

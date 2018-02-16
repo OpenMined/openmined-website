@@ -2,6 +2,7 @@ import 'es6-promise/auto';
 import 'isomorphic-fetch';
 import Express from 'express';
 import forceDomain from 'forcedomain';
+import unless from 'express-unless';
 import {
   createExpressMiddleware,
   skipRequireExtensions
@@ -25,13 +26,21 @@ try {
     );
   }
 
+  const crsMiddleware = createExpressMiddleware({
+    port: process.env.PORT || 3000,
+    app,
+    template,
+    debug: true
+  });
+
+  crsMiddleware.unless = unless;
+
   express.use(
-    createExpressMiddleware({
-      port: process.env.PORT || 3000,
-      app,
-      template,
-      debug: true
-    })
+    crsMiddleware.unless(
+      req =>
+        req.originalUrl.includes('[object%20Object]') ||
+        req.originalUrl.includes('sw-precache')
+    )
   );
 
   express.use(Express.static(process.cwd() + '/build'));
