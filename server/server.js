@@ -35,6 +35,7 @@ try {
 
   crsMiddleware.unless = unless;
 
+  // TODO: This is a hack.  We're having a weird issue with loading an object which is related to how CRA bundles images.  This is yet to be solved and understood better - any assistance would be immensely helpful.
   express.use(
     crsMiddleware.unless(
       req =>
