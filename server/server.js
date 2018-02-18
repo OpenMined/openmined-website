@@ -1,62 +1,57 @@
-import bodyParser from 'body-parser';
-import compression from 'compression';
-import express from 'express';
-import morgan from 'morgan';
-import path from 'path';
+import 'es6-promise/auto';
+import 'isomorphic-fetch';
+import Express from 'express';
 import forceDomain from 'forcedomain';
+import unless from 'express-unless';
+import {
+  createExpressMiddleware,
+  skipRequireExtensions
+} from 'create-react-server';
 
-import index from './routes/index';
-import api from './routes/api';
-import universalLoader from './universal';
+import app from '../src/app';
+import template from './template';
 
-// Create our express app (using the port optionally specified)
-const app = express();
-const PORT = process.env.PORT || 3000;
+try {
+  skipRequireExtensions();
 
-if (process.env.NODE_ENV === 'production' && process.env.HOST_NAME) {
-  app.use(
-    forceDomain({
-      hostname: process.env.HOST_DOMAIN,
-      protocol: process.env.FORCE_SSL === 'true' ? 'https' : 'http'
-    })
+  const express = Express();
+  const port = process.env.PORT || 3000;
+
+  if (process.env.HOST_NAME) {
+    express.use(
+      forceDomain({
+        hostname: process.env.HOST_NAME,
+        protocol: process.env.FORCE_SSL === 'true' ? 'https' : 'http'
+      })
+    );
+  }
+
+  const crsMiddleware = createExpressMiddleware({
+    port: process.env.PORT || 3000,
+    app,
+    template,
+    debug: true
+  });
+
+  crsMiddleware.unless = unless;
+
+  // TODO: This is a hack.  We're having a weird issue with loading an object which is related to how CRA bundles images.  This is yet to be solved and understood better - any assistance would be immensely helpful.
+  express.use(
+    crsMiddleware.unless(
+      req =>
+        req.originalUrl.includes('[object%20Object]') ||
+        req.originalUrl.includes('sw-precache')
+    )
   );
+
+  express.use(Express.static(process.cwd() + '/build'));
+
+  express.listen(port, err => {
+    if (err) throw err;
+
+    console.log('Listening at port ' + port);
+  });
+} catch (e) {
+  console.error(e.stack);
+  process.exit(1);
 }
-
-// Compress, parse, and log
-app.use(compression());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(morgan('dev'));
-
-// Set up route handling, include static assets and an optional API
-app.use('/', index);
-app.use(express.static(path.resolve(__dirname, '../build')));
-app.use('/api', api);
-app.use('/', universalLoader);
-
-// Let's rock
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
-});
-
-// Handle the bugs somehow
-app.on('error', error => {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  const bind = typeof PORT === 'string' ? 'Pipe ' + PORT : 'Port ' + PORT;
-
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-});

@@ -10,6 +10,8 @@ Generally speaking, design and copy changes (other than bugs and typos) should b
 
 This is a React application based on the [Create React App](https://github.com/facebookincubator/create-react-app) starter application. For information on Create React App, or to get the project, running on your machine, **please refer to their documentation**.
 
+To run locally with hot reloading, run `yarn start`. To run locally with server-side rendering enabled, run `yarn build` and then `yarn serve` to start the server.
+
 ## Contributing
 
 Please read the "Design Disclaimer" above first before trying to contribute. We welcome any and all visual issues, bugs, typos, and obvious mistakes to be submitted by pull request. For all other changes, please first open a Github issue on this repository and it will be reviewed by a member of the design and marketing team before development is approved.

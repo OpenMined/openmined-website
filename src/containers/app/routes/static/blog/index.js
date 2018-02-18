@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Button, Page } from 'openmined-ui';
 import { connect } from 'react-redux';
+import { withWrapper } from 'create-react-server/wrapper';
 import { getPosts } from '../../../../../modules/blog';
 import { getContent } from '../../../../../modules/homepage';
 
@@ -17,6 +18,26 @@ const blogExcerpt =
 // TODO: Newsletter link...
 
 class Blog extends Component {
+  static async getInitialProps(props) {
+    // TODO: Figure out a better way to do this
+    let pathname = props.location.pathname.split('/');
+    let request;
+
+    if (pathname.length > 3) {
+      let taxonomy = pathname[2];
+      let slug = pathname[3];
+
+      request = {
+        page: 1,
+        [taxonomy]: slug
+      };
+    } else {
+      request = { page: 1 };
+    }
+
+    await props.store.dispatch(getPosts(request, true));
+  }
+
   constructor(props) {
     super(props);
 
@@ -31,7 +52,6 @@ class Blog extends Component {
 
   componentDidMount() {
     this.props.getContent(false);
-    this.loadPosts(this.state.page, true);
   }
 
   componentWillReceiveProps(newProps) {
@@ -212,4 +232,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ getContent, getPosts }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Blog);
+export default withWrapper(connect(mapStateToProps, mapDispatchToProps)(Blog));

@@ -1,5 +1,4 @@
-import fetch from 'cross-fetch';
-import { WORDPRESS_API_URL } from './index';
+import { WORDPRESS_API_URL, handleWordpressError } from './index';
 
 export const GET_POSTS = 'blog/GET_POSTS';
 export const GET_ALL_OF_TAXONOMY = 'blog/GET_ALL_OF_TAXONOMY';
@@ -81,66 +80,51 @@ export default (state = initialState, action) => {
   }
 };
 
-// Get the categories and tags from the store, or find them from Wordpress
-// Used like such: dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => { ... });
-const getOrLoadTaxonomies = () => {
-  return (dispatch, getState) => {
-    return new Promise(resolve => {
-      let { categoriesLoaded, tagsLoaded } = getState().blog;
+const getOrLoadTaxonomies = () => (dispatch, getState) =>
+  new Promise(resolve => {
+    let { categoriesLoaded, tagsLoaded } = getState().blog;
 
-      if (categoriesLoaded && tagsLoaded) {
-        resolve({
-          categories: getState().blog.categories,
-          tags: getState().blog.tags
-        });
-      } else {
-        const getTaxonomy = taxonomy => {
-          return fetch(
-            WORDPRESS_API_URL + '/wp/v2/' + taxonomy + '/?per_page=100'
-          ).then(response => response.json());
-        };
+    if (categoriesLoaded && tagsLoaded) {
+      resolve({
+        categories: getState().blog.categories,
+        tags: getState().blog.tags
+      });
+    } else {
+      const getTaxonomy = taxonomy => {
+        return fetch(
+          WORDPRESS_API_URL + '/wp/v2/' + taxonomy + '/?per_page=100'
+        )
+          .then(response => response.json())
+          .catch(error => dispatch(handleWordpressError(error)));
+      };
 
-        Promise.all([getTaxonomy('categories'), getTaxonomy('tags')]).then(
-          response => {
-            let categories = response[0];
-            let tags = response[1];
+      Promise.all([getTaxonomy('categories'), getTaxonomy('tags')]).then(
+        response => {
+          let categories = response[0];
+          let tags = response[1];
 
-            if (categories && tags) {
-              dispatch({
-                type: GET_ALL_OF_TAXONOMY,
-                taxonomy: 'categories',
-                data: categories
-              });
+          if (categories && tags) {
+            dispatch({
+              type: GET_ALL_OF_TAXONOMY,
+              taxonomy: 'categories',
+              data: categories
+            });
 
-              dispatch({
-                type: GET_ALL_OF_TAXONOMY,
-                taxonomy: 'tags',
-                data: tags
-              });
+            dispatch({
+              type: GET_ALL_OF_TAXONOMY,
+              taxonomy: 'tags',
+              data: tags
+            });
 
-              resolve({ categories, tags });
-            }
+            resolve({ categories, tags });
           }
-        );
-      }
-    });
-  };
-};
+        }
+      );
+    }
+  });
 
-const getAuthor = id => {
-  return fetch(WORDPRESS_API_URL + '/wp/v2/users/' + id).then(response =>
-    response.json()
-  );
-};
-
-const getFeaturedMedia = id => {
-  return fetch(WORDPRESS_API_URL + '/wp/v2/media/' + id).then(response =>
-    response.json()
-  );
-};
-
-export const getPosts = (query, isFresh) => {
-  return dispatch => {
+const getAllPosts = (query, isFresh, { categories, tags }) => dispatch =>
+  new Promise(resolve => {
     const matchTaxonomyWithId = (list, slug) => {
       let returned = {};
 
@@ -153,63 +137,98 @@ export const getPosts = (query, isFresh) => {
       return returned;
     };
 
-    dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => {
-      if (query.categories) {
-        query.categories = matchTaxonomyWithId(categories, query.categories).id;
-      }
+    if (query.categories) {
+      query.categories = matchTaxonomyWithId(categories, query.categories).id;
+    }
 
-      if (query.tags) {
-        query.tags = matchTaxonomyWithId(tags, query.tags).id;
-      }
+    if (query.tags) {
+      query.tags = matchTaxonomyWithId(tags, query.tags).id;
+    }
 
-      let queryString = Object.keys(query)
-        .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
-        .join('&');
+    let queryString = Object.keys(query)
+      .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
+      .join('&');
 
-      fetch(WORDPRESS_API_URL + '/wp/v2/posts?' + queryString + '&_envelope')
-        .then(response => response.json())
-        .then(response => {
-          dispatch({
-            type: GET_POSTS,
-            posts: response.body,
-            isFresh
-          });
-
-          if (response.headers['X-WP-TotalPages'] === query.page) {
-            dispatch({
-              type: NO_MORE_POSTS
-            });
-          }
+    fetch(WORDPRESS_API_URL + '/wp/v2/posts?' + queryString + '&_envelope')
+      .then(response => response.json())
+      .then(response => {
+        dispatch({
+          type: GET_POSTS,
+          posts: response.body,
+          isFresh
         });
-    });
+
+        if (response.headers['X-WP-TotalPages'] === query.page) {
+          dispatch({
+            type: NO_MORE_POSTS
+          });
+        }
+
+        resolve(response.body);
+      })
+      .catch(error => dispatch(handleWordpressError(error)));
+  });
+
+const getPost = slug => dispatch =>
+  new Promise(resolve => {
+    fetch(WORDPRESS_API_URL + '/wp/v2/posts/?slug=' + slug)
+      .then(response => response.json())
+      .then(response => {
+        dispatch({
+          type: GET_CURRENT_POST,
+          post: response[0]
+        });
+
+        resolve(response[0]);
+      })
+      .catch(error => dispatch(handleWordpressError(error)));
+  });
+
+const getFeaturedMedia = id => dispatch =>
+  new Promise(resolve => {
+    fetch(WORDPRESS_API_URL + '/wp/v2/media/' + id)
+      .then(response => response.json())
+      .then(response => {
+        dispatch({
+          type: GET_CURRENT_FEATURED_MEDIA,
+          media: response
+        });
+
+        resolve(response);
+      })
+      .catch(error => dispatch(handleWordpressError(error)));
+  });
+
+const getAuthor = id => dispatch =>
+  new Promise(resolve => {
+    fetch(WORDPRESS_API_URL + '/wp/v2/users/' + id)
+      .then(response => response.json())
+      .then(response => {
+        dispatch({
+          type: GET_CURRENT_AUTHOR,
+          author: response
+        });
+
+        resolve(response);
+      })
+      .catch(error => dispatch(handleWordpressError(error)));
+  });
+
+export const getPosts = (query, isFresh) => {
+  return async dispatch => {
+    const taxonomies = await dispatch(getOrLoadTaxonomies());
+
+    await dispatch(getAllPosts(query, isFresh, taxonomies));
   };
 };
 
 export const getCurrentPost = slug => {
-  return dispatch => {
-    dispatch(getOrLoadTaxonomies()).then(({ categories, tags }) => {
-      fetch(WORDPRESS_API_URL + '/wp/v2/posts/?slug=' + slug)
-        .then(response => response.json())
-        .then(response => {
-          dispatch({
-            type: GET_CURRENT_POST,
-            post: response[0]
-          });
+  return async dispatch => {
+    await dispatch(getOrLoadTaxonomies());
 
-          getFeaturedMedia(response[0].featured_media).then(response => {
-            dispatch({
-              type: GET_CURRENT_FEATURED_MEDIA,
-              media: response
-            });
-          });
+    const post = await dispatch(getPost(slug));
 
-          getAuthor(response[0].author).then(response => {
-            dispatch({
-              type: GET_CURRENT_AUTHOR,
-              author: response
-            });
-          });
-        });
-    });
+    await dispatch(getFeaturedMedia(post.featured_media));
+    await dispatch(getAuthor(post.author));
   };
 };

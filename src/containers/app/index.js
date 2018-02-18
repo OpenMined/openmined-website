@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
+import { withWrapper } from 'create-react-server/wrapper';
 
 // Action Creators
 import { removeNotification } from '../../modules/notifications';
@@ -29,10 +30,13 @@ class App extends Component {
         <div id="content">
           <Switch>
             <Route exact path="/" component={Homepage} />
+
             <Route path="/blog/:taxonomy/:slug/" component={Blog} />
             <Route path="/blog/:slug/" component={BlogPost} />
             <Route path="/blog" component={Blog} />
+
             <Route path="/admin" component={RedirectToWordpress} />
+
             <Route component={NotFound} />
           </Switch>
         </div>
@@ -48,4 +52,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ removeNotification }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withWrapper(connect(mapStateToProps, mapDispatchToProps)(App));
