@@ -238,7 +238,8 @@ class Process extends Component {
                     current={this.state.current}
                     data={graph}
                     changeCurrent={newCurrent =>
-                      this.setState({ current: newCurrent })}
+                      this.setState({ current: newCurrent })
+                    }
                   />
                 </Column>
                 <Column

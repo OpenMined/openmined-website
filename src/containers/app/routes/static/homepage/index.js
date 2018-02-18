@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withWrapper } from 'create-react-server/wrapper';
 import { addNotification } from '../../../../../modules/notifications';
-import { getContent, changeSomething } from '../../../../../modules/homepage';
+import { getContent } from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
 import Loading from '../../../components/loading';
@@ -12,24 +13,18 @@ import Process from './process';
 import Timeline from './timeline';
 import Footer from './footer';
 
-import Hello from './hello';
-
 import './homepage.css';
 
 class Homepage extends Component {
-  componentDidMount() {
-    this.props.getContent();
+  static async getInitialProps(props) {
+    await props.store.dispatch(getContent());
   }
 
   render() {
     const { hero, mission, process, timeline, footer } = this.props.content;
 
     return (
-      <Page id="homepage" title={this.props.something}>
-        <Hello
-          something={this.props.something}
-          changeSomething={this.props.changeSomething}
-        />
+      <Page id="homepage">
         <Loading shouldHideWhen={this.props.homepageLoaded} />
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Mission {...mission} />
@@ -42,15 +37,13 @@ class Homepage extends Component {
 }
 
 const mapStateToProps = state => ({
-  something: state.homepage.something,
   content: state.homepage.content,
   homepageLoaded: state.homepage.homepageLoaded
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    { addNotification, getContent, changeSomething },
-    dispatch
-  );
+  bindActionCreators({ addNotification }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default withWrapper(
+  connect(mapStateToProps, mapDispatchToProps)(Homepage)
+);

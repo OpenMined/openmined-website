@@ -2,24 +2,30 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
-import createHistory from 'history/createBrowserHistory';
+import * as reduxHistory from 'history';
 import rootReducer from './modules';
 
-export const history = createHistory();
+export const history = !(typeof window !== 'undefined' && window.document)
+  ? reduxHistory.createMemoryHistory()
+  : reduxHistory.createBrowserHistory();
 
-const initialState = {};
-const enhancers = [];
-const middleware = [thunk, routerMiddleware(history)];
+export default (initialState = {}, server = {}) => {
+  const enhancers = [];
 
-if (process.env.NODE_ENV === 'development') {
-  const devToolsExtension = window.devToolsExtension;
+  if (process.env.NODE_ENV === 'development') {
+    const devToolsExtension = window.devToolsExtension;
 
-  if (typeof devToolsExtension === 'function') {
-    enhancers.push(devToolsExtension());
+    if (typeof devToolsExtension === 'function') {
+      enhancers.push(devToolsExtension());
+    }
   }
-}
 
-const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
-const store = createStore(rootReducer, initialState, composedEnhancers);
+  const middleware = [thunk, routerMiddleware(history)];
 
-export default store;
+  const composedEnhancers = compose(
+    applyMiddleware(...middleware),
+    ...enhancers
+  );
+
+  return createStore(rootReducer, initialState, composedEnhancers);
+};

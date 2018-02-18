@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { withWrapper } from 'create-react-server/wrapper';
 import { Container, Row, Column, Page } from 'openmined-ui';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
@@ -28,8 +29,14 @@ const lookupTaxonomy = (list, id) => {
 };
 
 class BlogPost extends Component {
+  static async getInitialProps(props) {
+    // TODO: Figure out a better way to do this
+    let pathname = props.location.pathname.split('/');
+
+    await props.store.dispatch(getCurrentPost(pathname[2]));
+  }
+
   componentWillMount() {
-    this.props.getCurrentPost(this.props.match.params.slug);
     this.props.getContent(false);
   }
 
@@ -183,6 +190,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getContent, getCurrentPost }, dispatch);
+  bindActionCreators({ getContent }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlogPost);
+export default withWrapper(
+  connect(mapStateToProps, mapDispatchToProps)(BlogPost)
+);

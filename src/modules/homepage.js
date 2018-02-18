@@ -1,14 +1,11 @@
-import fetch from 'cross-fetch';
-import { WORDPRESS_API_URL } from './index';
+import { WORDPRESS_API_URL, handleWordpressError } from './index';
 
 export const GET_CONTENT = 'homepage/GET_CONTENT';
-export const CHANGE_SOMETHING = 'homepage/CHANGE_SOMETHING';
 export const GET_GITHUB_PROJECTS = 'homepage/GET_GITHUB_PROJECTS';
 export const GET_GITHUB_MEMBERS = 'homepage/GET_GITHUB_MEMBERS';
 
 // TODO: Maybe we should beef this out a bit once we want on the desired format...
 const initialState = {
-  something: 'patrick',
   homepageLoaded: false,
   content: {
     hero: {
@@ -38,12 +35,6 @@ export default (state = initialState, action) => {
         ...state,
         content: action.content,
         homepageLoaded: true
-      };
-
-    case CHANGE_SOMETHING:
-      return {
-        ...state,
-        something: action.something
       };
 
     // TODO: Is there a prettier way to do this?
@@ -114,8 +105,8 @@ const formatContent = (content, item) => {
   return items;
 };
 
-export const getContent = (shouldCallGithub = true) => {
-  return dispatch => {
+const getHomepageContent = () => dispatch =>
+  new Promise(resolve => {
     fetch(WORDPRESS_API_URL + '/acf/v2/options')
       .then(response => response.json())
       .then(response => {
@@ -126,47 +117,45 @@ export const getContent = (shouldCallGithub = true) => {
           content[item] = formatContent(response.acf, item);
         });
 
-        // Load content from Wordpress
         dispatch({
           type: GET_CONTENT,
           content
         });
 
-        if (shouldCallGithub) {
-          // Load Github issues and contributors from Wordpress
-          getGithubData().then(({ members, repos }) => {
-            dispatch({
-              type: GET_GITHUB_PROJECTS,
-              repos
-            });
+        resolve(content);
+      })
+      .catch(error => dispatch(handleWordpressError(error)));
+  });
 
-            dispatch({
-              type: GET_GITHUB_MEMBERS,
-              members
-            });
-          });
-        }
-      });
+const getGithubData = () => dispatch =>
+  new Promise(resolve => {
+    fetch(WORDPRESS_API_URL + '/github/all')
+      .then(response => response.json())
+      .then(({ members, repos }) => {
+        dispatch({
+          type: GET_GITHUB_PROJECTS,
+          repos
+        });
+
+        dispatch({
+          type: GET_GITHUB_MEMBERS,
+          members
+        });
+
+        resolve({
+          repos,
+          members
+        });
+      })
+      .catch(error => dispatch(handleWordpressError(error)));
+  });
+
+export const getContent = (shouldCallGithub = true) => {
+  return async dispatch => {
+    await dispatch(getHomepageContent());
+
+    if (shouldCallGithub) {
+      await dispatch(getGithubData());
+    }
   };
-};
-
-export const changeSomething = newVal => {
-  return dispatch => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(
-          dispatch({
-            type: CHANGE_SOMETHING,
-            something: newVal
-          })
-        );
-      }, 3000);
-    });
-  };
-};
-
-const getGithubData = () => {
-  return fetch(WORDPRESS_API_URL + '/github/all').then(response =>
-    response.json()
-  );
 };
