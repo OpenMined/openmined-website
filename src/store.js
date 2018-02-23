@@ -5,14 +5,16 @@ import thunk from 'redux-thunk';
 import * as reduxHistory from 'history';
 import rootReducer from './modules';
 
-export const history = !(typeof window !== 'undefined' && window.document)
+const isServer = !(typeof window !== 'undefined' && window.document);
+
+export const history = isServer
   ? reduxHistory.createMemoryHistory()
   : reduxHistory.createBrowserHistory();
 
 export default (initialState = {}, server = {}) => {
   const enhancers = [];
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' && !isServer) {
     const devToolsExtension = window.devToolsExtension;
 
     if (typeof devToolsExtension === 'function') {
