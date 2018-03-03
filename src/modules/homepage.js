@@ -212,7 +212,7 @@ const TEMP_CONTENT = {
       },
       slack: {
         link:
-          'https://join.slack.com/t/openmined/shared_invite/enQtMjU5MzE5ODk4MTc3LWI2ZGE1ODc1YjdkZDJiNjdmYTdkZmE4ZTY5N2NkNDgxZjUyNjgxMTVhMmJkOTZhZjEyZDA3MTM2MThkZWVhMjg'
+          'https://join.slack.com/t/openmined/shared_invite/enQtMzIzMDU1MjIwMTYyLTU1ZDk1NDgzYjE4NGVmMGQ2MDQwZTQ1OWIyNTVkNDI1OTY0Nzg2YjcyNjQxM2FkODlmMzI5Nzc5ZjkzMDk0NzQ'
       },
       newsletter: {
         link: 'http://eepurl.com/cW1Fqj'
