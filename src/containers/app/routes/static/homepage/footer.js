@@ -69,7 +69,7 @@ const Footer = ({ questions, movement, links, tagline }) => (
                   {movement.movement_slack.footer_movement_slack_text}
                 </span>
               </ExternalLink>
-              <span className="count">> 2,000 people</span>
+              <span className="count">> 2,300 people</span>
             </div>
             <div className="button-container">
               <ExternalLink
