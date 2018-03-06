@@ -1,0 +1,10 @@
+@import 'variables';
+
+#blog {
+  #more-posts {
+    text-align: center;
+    button {
+      margin: $medium-space 0px $large-space 0px;
+    }
+  }
+}

@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
+import { withWrapper } from 'create-react-server/wrapper';
 
 // Action Creators
 import { removeNotification } from '../../modules/notifications';
 
-import asyncComponent from './components/async-component';
-
 // UI Components
-const Notifications = asyncComponent(() =>
-  import('./components/notifications')
-);
+import Notifications from './components/notifications';
 
 // Routes
-const Homepage = asyncComponent(() => import('./routes/static/homepage'));
-const NotFound = asyncComponent(() => import('./routes/not-found'));
+import Homepage from './routes/static/homepage';
+import Blog from './routes/static/blog';
+import BlogPost from './routes/static/blog-post';
+import NotFound from './routes/not-found';
+
+const RedirectToWordpress = () =>
+  (window.location = 'https://api.openmined.org/wp-admin/');
 
 class App extends Component {
   render() {
@@ -28,6 +30,13 @@ class App extends Component {
         <div id="content">
           <Switch>
             <Route exact path="/" component={Homepage} />
+
+            <Route path="/blog/:taxonomy/:slug/" component={Blog} />
+            <Route path="/blog/:slug/" component={BlogPost} />
+            <Route path="/blog" component={Blog} />
+
+            <Route path="/admin" component={RedirectToWordpress} />
+
             <Route component={NotFound} />
           </Switch>
         </div>
@@ -43,4 +52,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ removeNotification }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withWrapper(connect(mapStateToProps, mapDispatchToProps)(App));

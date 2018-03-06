@@ -17,14 +17,20 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
             return (
               <div
                 className={
-                  current === project.name ? 'project current' : 'project'
+                  current === project.repos_title
+                    ? 'project current'
+                    : 'project'
                 }
-                onClick={() => setCurrent(project.name)}
-                key={`project-${project.name}`}
+                onClick={() => setCurrent(project.repos_title)}
+                key={`project-${project.repos_title}`}
               >
-                <RepoIcon repo={project.repo} />
-                <Heading level={4}>{project.name}</Heading>
-                <p className="description">{project.description}</p>
+                <RepoIcon
+                  repo={project.repos_link.substr(
+                    project.repos_link.lastIndexOf('/') + 1
+                  )}
+                />
+                <Heading level={4}>{project.repos_title}</Heading>
+                <p className="description">{project.repos_description}</p>
               </div>
             );
           })}
@@ -34,20 +40,23 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
 );
 
 const Contributors = ({ projects, current }) => {
-  let currentProject;
+  let currentProject = {};
 
   if (projects && current) {
     projects.forEach(project => {
-      if (project.name === current) {
+      if (project.repos_title === current) {
         currentProject = project;
       }
     });
   }
 
-  if (currentProject && currentProject.contributors.length > 0) {
+  if (
+    currentProject.repos_contributors &&
+    currentProject.repos_contributors.length > 0
+  ) {
     return (
       <ul className="contributors">
-        {currentProject.contributors.map(contributor => {
+        {currentProject.repos_contributors.map(contributor => {
           return (
             <li
               className="contributor"
@@ -57,8 +66,7 @@ const Contributors = ({ projects, current }) => {
                 <div
                   className="avatar"
                   style={{
-                    backgroundImage:
-                      'url(' + `${contributor.author.avatar_url}` + ')'
+                    backgroundImage: `url(${contributor.author.avatar_url})`
                   }}
                 />
                 <p className="login">{contributor.author.login}</p>
@@ -74,20 +82,20 @@ const Contributors = ({ projects, current }) => {
 };
 
 const Issues = ({ projects, current }) => {
-  let currentProject;
+  let currentProject = {};
 
   if (projects && current) {
     projects.forEach(project => {
-      if (project.name === current) {
+      if (project.repos_title === current) {
         currentProject = project;
       }
     });
   }
 
-  if (currentProject && currentProject.issues.length > 0) {
+  if (currentProject.repos_issues && currentProject.repos_issues.length > 0) {
     return (
       <ul className="issues">
-        {currentProject.issues.map(issue => {
+        {currentProject.repos_issues.map(issue => {
           return (
             <li className="issue" key={`issue-${issue.title}`}>
               <i className="fa fa-github" />
@@ -119,24 +127,23 @@ class Timeline extends Component {
     };
   }
 
-  componentDidUpdate() {
-    if (this.props.content.repos && !this.state.currentProject) {
-      // TODO: Is there a safer way to set the state of the first item?
+  componentWillReceiveProps() {
+    if (this.props.repos && !this.state.currentProject) {
       this.setState({
-        currentProject: this.props.content.repos[0].name
+        currentProject: this.props.repos[0].repos_title
       });
     }
   }
 
   render() {
-    const { content } = this.props;
+    const { title, events, repos, button } = this.props;
 
     return (
       <div id="timeline">
         <Container>
           <Row>
             <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-              <Heading level={3}>{content.heading}</Heading>
+              <Heading level={3}>{title}</Heading>
             </Column>
           </Row>
         </Container>
@@ -145,19 +152,19 @@ class Timeline extends Component {
             <Row>
               <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
                 <ul className="events">
-                  {content.events &&
-                    content.events.map(event => {
+                  {events &&
+                    events.map(event => {
                       return (
                         <li
-                          className={'event ' + event.status}
-                          key={`event-${event.title}`}
+                          className={'event ' + event.events_status}
+                          key={`event-${event.events_title}`}
                         >
                           <span className="marker" />
                           <div className="content">
                             <Heading level={5} className="title">
-                              {event.title}
+                              {event.events_title}
                             </Heading>
-                            <p className="date">{event.date}</p>
+                            <p className="date">{event.events_date}</p>
                           </div>
                         </li>
                       );
@@ -169,7 +176,7 @@ class Timeline extends Component {
         </div>
         <div id="github-projects">
           <ProjectSelector
-            projects={content.repos}
+            projects={repos}
             current={this.state.currentProject}
             setCurrent={repo => this.setState({ currentProject: repo })}
           />
@@ -181,16 +188,13 @@ class Timeline extends Component {
               >
                 <Heading level={5}>Top Contributors</Heading>
                 <Contributors
-                  projects={content.repos}
+                  projects={repos}
                   current={this.state.currentProject}
                 />
               </Column>
               <Column sizes={{ small: 12, large: 8, xlarge: 7 }}>
                 <Heading level={5}>Top Issues</Heading>
-                <Issues
-                  projects={content.repos}
-                  current={this.state.currentProject}
-                />
+                <Issues projects={repos} current={this.state.currentProject} />
               </Column>
             </Row>
           </Container>
@@ -198,9 +202,9 @@ class Timeline extends Component {
         <Container>
           <Row>
             <Column sizes={{ small: 12 }} className="cta-container">
-              <ExternalLink to={content.ctaLink} className="button black">
+              <ExternalLink to={button.button_link} className="button black">
                 <i className="fa fa-github" />
-                <span>Start Contributing</span>
+                <span>{button.button_text}</span>
               </ExternalLink>
             </Column>
           </Row>

@@ -1,24 +1,21 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { Route } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
-import store, { history } from './store';
-import registerServiceWorker from './registerServiceWorker';
-
-import App from './containers/app';
+import { Router } from 'react-router-dom';
+import { history } from './store';
+// import registerServiceWorker from './registerServiceWorker';
+import createApp from './app';
 
 import './index.css';
 
-const target = document.querySelector('#root');
-
 render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Route component={App} />
-    </ConnectedRouter>
-  </Provider>,
-  target
+  <Router history={history}>
+    {createApp({
+      state: window.__INITIAL__STATE__,
+      props: window.__INITIAL__PROPS__
+    })}
+  </Router>,
+  document.querySelector('#root')
 );
 
-registerServiceWorker();
+// Disabled until we find a better caching strategy
+// registerServiceWorker();

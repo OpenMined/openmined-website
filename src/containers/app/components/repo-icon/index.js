@@ -6,41 +6,62 @@ import mineIcon from './assets/mine.svg';
 import adaptersIcon from './assets/adapters.svg';
 import openminedIcon from '../../assets/logo-square-color.svg';
 
-const RepoIcon = ({ repo }) => {
-  let icon;
-
-  switch (repo.toLowerCase()) {
-    case 'pysyft':
-      icon = pysyftIcon;
-      break;
-
-    case 'sonar':
-      icon = sonarIcon;
-      break;
-
-    case 'pysonar':
-      icon = sonarIcon;
-      break;
-
-    case 'mine':
-      icon = mineIcon;
-      break;
-
-    case 'mine ui':
-      icon = mineIcon;
-      break;
-
-    case 'adapters':
-      icon = adaptersIcon;
-      break;
-
-    default:
-      icon = openminedIcon;
+export const hasRepoIcon = repo => {
+  if (!repo) {
+    return null;
   }
 
-  return (
-    <img src={icon} className={'repo-icon ' + repo.toLowerCase()} alt={repo} />
-  );
+  repo = repo
+    .toLowerCase()
+    .split('-')
+    .join('')
+    .split(' ')
+    .join('');
+
+  switch (repo) {
+    case 'pysyft':
+      return pysyftIcon;
+
+    case 'sonar':
+      return sonarIcon;
+
+    case 'pysonar':
+      return sonarIcon;
+
+    case 'mine':
+      return mineIcon;
+
+    case 'mineui':
+      return mineIcon;
+
+    case 'adapters':
+      return adaptersIcon;
+
+    case 'openmined':
+      return openminedIcon;
+
+    case 'openminedui':
+      return openminedIcon;
+
+    default:
+      return false;
+  }
+};
+
+const RepoIcon = ({ repo }) => {
+  let icon = hasRepoIcon(repo);
+
+  if (icon) {
+    return (
+      <img
+        src={icon}
+        className={'repo-icon ' + repo.toLowerCase()}
+        alt={repo}
+      />
+    );
+  } else {
+    return null;
+  }
 };
 
 export default RepoIcon;

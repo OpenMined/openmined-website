@@ -125,9 +125,8 @@ $console-header-button: $console-header-height / 2.5;
           letter-spacing: 0.5px;
           margin: 0px;
           word-wrap: break-word;
-          // TODO: We should put PT Mono inside of the openmined-ui repo and reference the SASS variable
           // NOTE: Bold weight (700) is not available on GWF... we're faking it below, maybe find a replacement?
-          font-family: 'PT Mono', monospace;
+          font-family: $monospace-font;
           font-weight: 700;
           .screenname {
             user-select: none;

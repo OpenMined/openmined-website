@@ -38,9 +38,9 @@ const copyText = (code, addNotification) => {
   }
 };
 
-const Console = ({ content, addNotification }) => (
+const Console = ({ console, addNotification }) => (
   <div id="console-container">
-    <div id="version">{content.version}</div>
+    <div id="version">{console.console_version}</div>
     <div id="console">
       <div className="header">
         <span />
@@ -49,12 +49,14 @@ const Console = ({ content, addNotification }) => (
       </div>
       <div className="content">
         <p>
-          <span className="screenname">[{content.screenname}]&nbsp;</span>
-          {content.code}
+          <span className="screenname">
+            [{console.console_screenname}]&nbsp;
+          </span>
+          {console.console_code}
         </p>
       </div>
       <Button
-        onClick={() => copyText(content.code, addNotification)}
+        onClick={() => copyText(console.console_code, addNotification)}
         className="medium-gray small"
       >
         Copy Code
@@ -71,12 +73,15 @@ const Hero = props => (
         <Column sizes={{ small: 12 }}>
           <img src={logo} id="logo" alt="OpenMined" />
           <Heading id="tagline" level={2}>
-            {props.content.tagline}
+            {props.tagline}
           </Heading>
-          <p id="description">{props.content.description}</p>
+          <p id="description">{props.description}</p>
           <div id="cta">
-            <ExternalLink to={props.content.ctaLink} className="button white">
-              {props.content.ctaText}
+            <ExternalLink
+              to={props.button.button_link}
+              className="button white"
+            >
+              {props.button.button_text}
             </ExternalLink>
           </div>
           <Console {...props} />

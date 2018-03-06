@@ -22,7 +22,7 @@ $github-project-size: 270px;
         &.future {
           opacity: 0.5;
         }
-        &.current .marker {
+        &.present .marker {
           background: $primary-color;
           box-shadow: 0px 0px 0px 2px $primary-color;
         }
@@ -214,10 +214,6 @@ $github-project-size: 270px;
       position: relative;
       display: flex;
       align-items: center;
-      // TODO: Fix below line in openmined-ui
-      &:hover {
-        color: $white;
-      }
       &:before,
       &:after {
         position: absolute;

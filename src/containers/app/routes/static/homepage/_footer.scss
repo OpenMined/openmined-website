@@ -111,6 +111,10 @@
         }
         &.text,
         &.icon {
+          a {
+            display: block;
+            height: 24px;
+          }
           span {
             @include capped-text(1px);
             margin: 0px $medium-space;
@@ -129,7 +133,7 @@
           }
         }
         &.icon {
-          height: 20px;
+          height: 24px;
           i {
             font-size: 1.25rem;
           }
