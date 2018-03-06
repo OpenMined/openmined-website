@@ -12,6 +12,15 @@ This is a React application based on the [Create React App](https://github.com/f
 
 To run locally with hot reloading, run `yarn start`. To run locally with server-side rendering enabled, run `yarn build` and then `yarn serve` to start the server.
 
+## Deployment
+
+This runs on AWS. It uses Fargate (ECS), Application ELB, Codepipeline, and Codebuild. The live site is redeployed whenever a change is made to `master`. 
+
+The pipeline setup follows [these instructions closely](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html).
+
+The Fargate setup follows [these instructions loosely](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html)
+
+
 ## Contributing
 
 Please read the "Design Disclaimer" above first before trying to contribute. We welcome any and all visual issues, bugs, typos, and obvious mistakes to be submitted by pull request. For all other changes, please first open a Github issue on this repository and it will be reviewed by a member of the design and marketing team before development is approved.
