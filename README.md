@@ -18,7 +18,7 @@ This runs on AWS. It uses Fargate (ECS), Application ELB, Codepipeline, and Code
 
 The pipeline setup follows [these instructions closely](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html).
 
-The Fargate setup follows [these instructions loosely](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html)
+The Fargate setup follows [these instructions loosely](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html).
 
 
 ## Contributing
