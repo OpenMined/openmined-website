@@ -1,9 +1,10 @@
 import React from 'react';
 
-import pysyftIcon from './assets/pysyft.svg';
+import syftIcon from './assets/syft.svg';
 import sonarIcon from './assets/sonar.svg';
 import mineIcon from './assets/mine.svg';
 import adaptersIcon from './assets/adapters.svg';
+import gridIcon from './assets/grid.svg';
 import openminedIcon from '../../assets/logo-square-color.svg';
 
 export const hasRepoIcon = repo => {
@@ -20,7 +21,10 @@ export const hasRepoIcon = repo => {
 
   switch (repo) {
     case 'pysyft':
-      return pysyftIcon;
+      return syftIcon;
+
+    case 'syft.js':
+      return syftIcon;
 
     case 'sonar':
       return sonarIcon;
@@ -42,6 +46,9 @@ export const hasRepoIcon = repo => {
 
     case 'openminedui':
       return openminedIcon;
+
+    case 'grid':
+      return gridIcon;
 
     default:
       return false;
