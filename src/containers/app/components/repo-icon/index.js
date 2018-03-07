@@ -42,7 +42,7 @@ export const hasRepoIcon = repo => {
       return adaptersIcon;
 
     case 'openmined':
-      return gridIcon;
+      return openminedIcon;
 
     case 'openminedui':
       return openminedIcon;
