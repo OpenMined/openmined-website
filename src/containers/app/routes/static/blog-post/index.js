@@ -155,7 +155,7 @@ class BlogPost extends Component {
               </Row>
               <Row>
                 <Column sizes={{ small: 12 }}>
-                  {this.getTags(tags, post)}
+                  {post.tags.length > 0 && this.getTags(tags, post)}
                 </Column>
               </Row>
               <Row>

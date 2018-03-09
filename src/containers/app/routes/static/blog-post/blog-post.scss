@@ -69,4 +69,42 @@
       }
     }
   }
+  #the-content {
+    h2,
+    h3 {
+      padding-top: $medium-space;
+    }
+    h4,
+    h5,
+    h6 {
+      padding-top: $small-space;
+    }
+    blockquote {
+      border-left: 4px solid $light-gray;
+      margin-left: 0px;
+      padding-left: $large-space;
+      @include desktop-up() {
+        margin-left: $large-space;
+        padding-left: $large-space;
+      }
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    p,
+    li,
+    span,
+    a,
+    div {
+      line-height: 1.85em;
+      @include desktop-up() {
+        font-size: 18px;
+        line-height: 2em;
+      }
+    }
+  }
 }
