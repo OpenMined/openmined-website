@@ -70,6 +70,10 @@
     }
   }
   #the-content {
+    margin-bottom: $large-space;
+    @include desktop-up() {
+      margin-bottom: $xlarge-space;
+    }
     h2,
     h3 {
       padding-top: $medium-space;
