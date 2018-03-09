@@ -79,9 +79,9 @@ $blog-post-border: $small-space;
       @include capped-text(1px);
       color: rgba($white, 0.5);
       .category {
-        color: rgba($black, 0.5);
+        color: rgba($white, 0.5);
         &:hover {
-          color: $black;
+          color: $white;
         }
       }
     }
