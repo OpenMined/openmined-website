@@ -48,13 +48,13 @@ $blog-post-border: $small-space;
     content: '';
   }
   &.tutorials {
-    @extend .primary-diag-gradient;
-  }
-  &.roadmap {
     @extend .success-diag-gradient;
   }
-  &.announcements {
+  &.dig {
     @extend .alert-diag-gradient;
+  }
+  &.announcements {
+    @extend .primary-diag-gradient;
   }
   .title {
     color: $white;
