@@ -40,15 +40,14 @@ const getExcerpt = (excerpt, length) => {
   return trimByWord(firstPara, length);
 };
 
-const BlogPost = ({ post, level, categories, tags }) => {
+const BlogPost = ({ post, level, categories, tags, locale }) => {
   const category = lookupTaxonomy(categories, post.categories[0]);
   const date = moment(post.date_gmt).format('MMM DD, YYYY');
-  console.log(post);
   const correctExcerpt = getExcerpt(post.excerpt.rendered, 20);
 
   return (
     <div className={`blog-post ${category.slug}`}>
-      <Link to={`/blog/${post.slug}`}>
+      <Link to={`/${locale}/${post.slug}`}>
         <Heading notCapped level={level} className="title">
           {post.title.rendered}
         </Heading>
@@ -56,9 +55,29 @@ const BlogPost = ({ post, level, categories, tags }) => {
       </Link>
       <div className="metadata">
         <div className="details">
-          <Link to={`/blog/categories/${category.slug}`} className="category">
-            {category.name}
-          </Link>{' '}
+          {locale === 'blog' && (
+            <Link to={`/blog/categories/${category.slug}`} className="category">
+              {category.name}
+            </Link>
+          )}
+          {locale === 'digs' &&
+            post.tags.map(tag => {
+              tag = lookupTaxonomy(tags, tag);
+
+              if (!hasRepoIcon(tag.slug)) {
+                return (
+                  <Link
+                    to={`/${locale}/tags/${tag.slug}`}
+                    className="tag"
+                    key={`blog-post-${post.id}-tag-${tag.id}`}
+                  >
+                    {tag.name}
+                  </Link>
+                );
+              }
+
+              return null;
+            })}{' '}
           | <span className="date">{date}</span>
         </div>
         <div className="tags">
@@ -68,7 +87,7 @@ const BlogPost = ({ post, level, categories, tags }) => {
             if (hasRepoIcon(tag.slug)) {
               return (
                 <Link
-                  to={`/blog/tags/${tag.slug}`}
+                  to={`/${locale}/tags/${tag.slug}`}
                   className="tag"
                   key={`blog-post-${post.id}-tag-${tag.id}`}
                 >
@@ -76,6 +95,7 @@ const BlogPost = ({ post, level, categories, tags }) => {
                 </Link>
               );
             }
+
             return null;
           })}
         </div>
@@ -86,7 +106,7 @@ const BlogPost = ({ post, level, categories, tags }) => {
 
 class BlogPosts extends Component {
   render() {
-    const { posts, categories, tags, type } = this.props;
+    const { posts, categories, tags, type, locale } = this.props;
 
     if (type === 'recent') {
       return (
@@ -103,6 +123,7 @@ class BlogPosts extends Component {
                     categories={categories}
                     tags={tags}
                     level={2}
+                    locale={locale}
                     key={`blog-post-${post.id}`}
                   />
                 );
@@ -119,6 +140,7 @@ class BlogPosts extends Component {
                     categories={categories}
                     tags={tags}
                     level={2}
+                    locale={locale}
                     key={`blog-post-${post.id}`}
                   />
                 );
@@ -142,6 +164,7 @@ class BlogPosts extends Component {
                     categories={categories}
                     tags={tags}
                     level={3}
+                    locale={locale}
                   />
                 </Column>
               );

@@ -145,6 +145,15 @@ const getAllPosts = (query, isFresh, { categories, tags }) => dispatch =>
       query.tags = matchTaxonomyWithId(tags, query.tags).id;
     }
 
+    if (query.digs) {
+      query.categories = query.digsId;
+
+      delete query.digs;
+      delete query.digsId;
+    } else {
+      query.categories_exclude = query.digsId;
+    }
+
     let queryString = Object.keys(query)
       .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
       .join('&');
@@ -217,6 +226,12 @@ const getAuthor = id => dispatch =>
 export const getPosts = (query, isFresh) => {
   return async dispatch => {
     const taxonomies = await dispatch(getOrLoadTaxonomies());
+
+    taxonomies.categories.forEach(category => {
+      if (category.slug === 'digs') {
+        query.digsId = category.id;
+      }
+    });
 
     await dispatch(getAllPosts(query, isFresh, taxonomies));
   };

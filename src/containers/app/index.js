@@ -17,7 +17,7 @@ import BlogPost from './routes/static/blog-post';
 import NotFound from './routes/not-found';
 
 const RedirectToWordpress = () =>
-  (window.location = 'https://api.openmined.org/wp-admin/');
+  (window.location = 'https://api.openmined.org/wp-login.php');
 
 class App extends Component {
   render() {
@@ -31,9 +31,12 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Homepage} />
 
-            <Route path="/blog/:taxonomy/:slug/" component={Blog} />
-            <Route path="/blog/:slug/" component={BlogPost} />
-            <Route path="/blog" component={Blog} />
+            <Route
+              path="/:locale(blog|digs)/:taxonomy/:slug/"
+              component={Blog}
+            />
+            <Route path="/:locale(blog|digs)/:slug/" component={BlogPost} />
+            <Route path="/:locale(blog|digs)" component={Blog} />
 
             <Route path="/admin" component={RedirectToWordpress} />
 
