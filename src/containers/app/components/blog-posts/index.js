@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Column, Heading } from 'openmined-ui';
 import moment from 'moment';
+import renderHTML from 'react-render-html';
 
 import RepoIcon, { hasRepoIcon } from '../repo-icon';
 
@@ -42,6 +43,7 @@ const getExcerpt = (excerpt, length) => {
 const BlogPost = ({ post, level, categories, tags }) => {
   const category = lookupTaxonomy(categories, post.categories[0]);
   const date = moment(post.date_gmt).format('MMM DD, YYYY');
+  console.log(post);
   const correctExcerpt = getExcerpt(post.excerpt.rendered, 20);
 
   return (
@@ -50,7 +52,7 @@ const BlogPost = ({ post, level, categories, tags }) => {
         <Heading notCapped level={level} className="title">
           {post.title.rendered}
         </Heading>
-        <p className="excerpt">{correctExcerpt}</p>
+        <p className="excerpt">{renderHTML(correctExcerpt)}</p>
       </Link>
       <div className="metadata">
         <div className="details">
