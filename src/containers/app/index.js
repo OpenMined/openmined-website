@@ -20,6 +20,12 @@ const RedirectToWordpress = () =>
   (window.location = 'https://api.openmined.org/wp-admin/');
 
 class App extends Component {
+  componentDidMount() {
+    this.props.history.listen(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+
   render() {
     return (
       <div id="app">
