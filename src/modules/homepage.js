@@ -25,7 +25,8 @@ const initialState = {
         movement_newsletter: {}
       }
     },
-    general: {}
+    general: {},
+    weekly_digs: {}
   }
 };
 
@@ -118,7 +119,8 @@ const getHomepageContent = () => dispatch =>
           'process',
           'timeline',
           'footer',
-          'general'
+          'general',
+          'weekly_digs'
         ];
 
         items.forEach(item => {

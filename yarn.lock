@@ -5151,9 +5151,9 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-openmined-ui@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/openmined-ui/-/openmined-ui-0.0.5.tgz#a880632b131ac3eb6d5db255542562bd61110fb5"
+openmined-ui@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/openmined-ui/-/openmined-ui-0.0.6.tgz#9d0678011c9692773f6c106061a641f3bc6035d3"
   dependencies:
     autoprefixer "7.1.2"
     babel-core "6.25.0"

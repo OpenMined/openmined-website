@@ -62,6 +62,8 @@ const BlogPost = ({ post, level, categories, tags, locale }) => {
           )}
           {locale === 'digs' &&
             post.tags.map(tag => {
+              // TODO: Currently this will load multiple tags incorrectly
+              // We should never have multiple tags in theory, but if there's an incorrect post we should handle it here
               tag = lookupTaxonomy(tags, tag);
 
               if (!hasRepoIcon(tag.slug)) {
