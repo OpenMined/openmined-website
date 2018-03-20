@@ -19,24 +19,16 @@ const BlogHeader = ({ title, excerpt, links }) => (
     <Container>
       <Row>
         <Column sizes={{ small: 12 }} className="header">
-          <Link to="/">
-            <img src={logo} className="header-logo" alt="OpenMined" />
+          <Link to="/" className="header-logo">
+            <img src={logo} alt="OpenMined" />
           </Link>
           <ul className="header-items">
             {links &&
               links.map((link, i) => {
                 return (
-                  <li
-                    key={`header-link-${i}`}
-                    className={link.links_icon ? 'icon' : 'text'}
-                  >
+                  <li key={`header-link-${i}`}>
                     <ExternalLink to={link.links_link}>
-                      {link.links_type === 'icon' && (
-                        <i className={`fa ${link.links_icon}`} />
-                      )}
-                      {link.links_type === 'text' && (
-                        <span>{link.links_text}</span>
-                      )}
+                      {link.links_text}
                     </ExternalLink>
                   </li>
                 );

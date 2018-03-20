@@ -15,7 +15,6 @@
   .header {
     display: flex;
     flex-direction: column;
-    align-items: center;
     @include tablet-up() {
       flex-direction: row;
       justify-content: space-between;
@@ -25,8 +24,11 @@
       margin: $xlarge-space 0px $large-space 0px;
     }
     .header-logo {
-      width: 140px;
-      margin: $medium-space 0px;
+      height: 40px;
+      margin: $large-space 0px $medium-space 0px;
+      img {
+        height: 100%;
+      }
       @include tablet-up() {
         margin: 0px;
       }
@@ -35,51 +37,44 @@
       list-style-type: none;
       margin: 0px 0px $medium-space 0px;
       padding: 0px;
-      width: 100%;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
       @include tablet-up() {
+        flex-direction: row;
         justify-content: flex-end;
+        align-items: center;
         margin: 0px;
       }
       li {
-        span,
-        i {
+        a {
+          display: block;
+          padding: $small-space / 2 0px;
           font-size: 1rem;
           color: $white;
           transition: color $anim-time $anim-func;
+          @include capped-text(1px);
           &:hover {
             color: $dark-gray;
           }
         }
         @include tablet-up() {
           margin-left: $medium-space;
-          span {
+          a {
             @include capped-text(1px);
-          }
-          span,
-          i {
             font-size: 0.9rem;
           }
         }
         @include widescreen-up() {
           margin-left: $large-space;
-          span {
+          a {
             font-size: 1rem;
-          }
-          i {
-            font-size: 1.25rem;
           }
         }
       }
     }
   }
   .header-content {
-    margin-bottom: $medium-space;
-    @include tablet-up() {
-      margin-bottom: $large-space;
-    }
+    margin-bottom: $large-space;
     @include widescreen-up() {
       margin-bottom: $xlarge-space;
     }
@@ -91,8 +86,7 @@
       }
     }
     .excerpt {
-      font-size: 0.9rem;
-      line-height: 1.8rem;
+      line-height: 2rem;
       color: rgba($white, 0.75);
       @include tablet-up() {
         font-size: 1.1rem;

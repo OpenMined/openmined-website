@@ -1,10 +1,11 @@
 import React from 'react';
 import { Row, Column, Container, Heading } from 'openmined-ui';
+import { Link } from 'react-router-dom';
 import ExternalLink from '../../../components/external-link';
 
 import logo from '../../../assets/logo-blackbg.svg';
 
-const Footer = ({ questions, movement, links, tagline }) => (
+const Footer = ({ questions, movement, links, tagline, social_media }) => (
   <div id="footer">
     {questions.questions_items && (
       <Container>
@@ -111,43 +112,44 @@ const Footer = ({ questions, movement, links, tagline }) => (
       </Container>
     )}
     {/* TODO: In theory, a map should go here... */}
-    {links && (
-      <Container>
-        <Row>
-          <Column
-            sizes={{ small: 12, xlarge: 10 }}
-            offsets={{ xlarge: 1 }}
-            className="footer"
-          >
-            <ul className="footer-items">
-              <li className="logo">
-                <img src={logo} alt="OpenMined" />
-              </li>
-              {links.map((link, i) => {
-                return (
-                  <li
-                    key={`footer-link-${i}`}
-                    className={link.links_icon ? 'icon' : 'text'}
-                  >
-                    <ExternalLink to={link.links_link}>
-                      {link.links_type === 'icon' && (
-                        <i className={`fa ${link.links_icon}`} />
-                      )}
-                      {link.links_type === 'text' && (
-                        <span>{link.links_text}</span>
-                      )}
-                    </ExternalLink>
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="tagline">
-              <p>{tagline}</p>
-            </div>
-          </Column>
-        </Row>
-      </Container>
-    )}
+    {links &&
+      social_media && (
+        <Container>
+          <Row>
+            <Column
+              sizes={{ small: 12, xlarge: 10 }}
+              offsets={{ xlarge: 1 }}
+              className="footer"
+            >
+              <ul className="footer-items">
+                <li className="logo">
+                  <Link to="/">
+                    <img src={logo} alt="OpenMined" />
+                  </Link>
+                </li>
+                {links.map((link, i) => {
+                  return (
+                    <li key={`footer-link-${i}`}>
+                      <Link to={link.links_link}>{link.links_text}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <ul className="social-media">
+                {social_media.map((link, i) => {
+                  return (
+                    <li key={`footer-social-media-link-${i}`}>
+                      <ExternalLink to={link.social_media_links_link}>
+                        <i className={`fa ${link.social_media_links_icon}`} />
+                      </ExternalLink>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Column>
+          </Row>
+        </Container>
+      )}
   </div>
 );
 

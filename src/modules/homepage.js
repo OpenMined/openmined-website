@@ -24,7 +24,8 @@ const initialState = {
         movement_slack: {},
         movement_newsletter: {}
       }
-    }
+    },
+    general: {}
   }
 };
 
@@ -111,7 +112,14 @@ const getHomepageContent = () => dispatch =>
       .then(response => response.json())
       .then(response => {
         const content = {};
-        const items = ['hero', 'mission', 'process', 'timeline', 'footer'];
+        const items = [
+          'hero',
+          'mission',
+          'process',
+          'timeline',
+          'footer',
+          'general'
+        ];
 
         items.forEach(item => {
           content[item] = formatContent(response.acf, item);

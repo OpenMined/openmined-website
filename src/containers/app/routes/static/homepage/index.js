@@ -21,7 +21,14 @@ class Homepage extends Component {
   }
 
   render() {
-    const { hero, mission, process, timeline, footer } = this.props.content;
+    const {
+      hero,
+      mission,
+      process,
+      timeline,
+      footer,
+      general
+    } = this.props.content;
 
     return (
       <Page id="homepage">
@@ -30,7 +37,7 @@ class Homepage extends Component {
         <Mission {...mission} />
         <Process {...process} />
         <Timeline {...timeline} />
-        <Footer {...footer} />
+        <Footer {...footer} {...general} />
       </Page>
     );
   }
