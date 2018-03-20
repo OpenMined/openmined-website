@@ -1,11 +1,8 @@
 import React from 'react';
 import { Row, Column, Container, Heading } from 'openmined-ui';
-import { Link } from 'react-router-dom';
 import ExternalLink from '../../../components/external-link';
 
-import logo from '../../../assets/logo-blackbg.svg';
-
-const Footer = ({ questions, movement, links, tagline, social_media }) => (
+const Footer = ({ questions, movement }) => (
   <div id="footer">
     {questions.questions_items && (
       <Container>
@@ -112,44 +109,6 @@ const Footer = ({ questions, movement, links, tagline, social_media }) => (
       </Container>
     )}
     {/* TODO: In theory, a map should go here... */}
-    {links &&
-      social_media && (
-        <Container>
-          <Row>
-            <Column
-              sizes={{ small: 12, xlarge: 10 }}
-              offsets={{ xlarge: 1 }}
-              className="footer"
-            >
-              <ul className="footer-items">
-                <li className="logo">
-                  <Link to="/">
-                    <img src={logo} alt="OpenMined" />
-                  </Link>
-                </li>
-                {links.map((link, i) => {
-                  return (
-                    <li key={`footer-link-${i}`}>
-                      <Link to={link.links_link}>{link.links_text}</Link>
-                    </li>
-                  );
-                })}
-              </ul>
-              <ul className="social-media">
-                {social_media.map((link, i) => {
-                  return (
-                    <li key={`footer-social-media-link-${i}`}>
-                      <ExternalLink to={link.social_media_links_link}>
-                        <i className={`fa ${link.social_media_links_icon}`} />
-                      </ExternalLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </Column>
-          </Row>
-        </Container>
-      )}
   </div>
 );
 

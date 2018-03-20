@@ -7,7 +7,6 @@ import {
   Heading
 } from 'openmined-ui';
 import { Link } from 'react-router-dom';
-import ExternalLink from '../../components/external-link';
 
 import './blog-header.css';
 
@@ -27,9 +26,7 @@ const BlogHeader = ({ title, excerpt, links }) => (
               links.map((link, i) => {
                 return (
                   <li key={`header-link-${i}`}>
-                    <ExternalLink to={link.links_link}>
-                      {link.links_text}
-                    </ExternalLink>
+                    <Link to={link.links_link}>{link.links_text}</Link>
                   </li>
                 );
               })}

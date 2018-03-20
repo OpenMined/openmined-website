@@ -7,6 +7,7 @@ import { getContent } from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
 import Loading from '../../../components/loading';
+import FooterLinks from '../../../components/footer-links';
 import Hero from './hero';
 import Mission from './mission';
 import Process from './process';
@@ -37,7 +38,8 @@ class Homepage extends Component {
         <Mission {...mission} />
         <Process {...process} />
         <Timeline {...timeline} />
-        <Footer {...footer} {...general} />
+        <Footer {...footer} />
+        <FooterLinks links={footer.links} socialMedia={general.social_media} />
       </Page>
     );
   }

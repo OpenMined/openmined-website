@@ -9,6 +9,7 @@ import { getContent } from '../../../../../modules/homepage';
 import BlogHeader from '../../../components/blog-header';
 import Loading from '../../../components/loading';
 import BlogPosts from '../../../components/blog-posts';
+import FooterLinks from '../../../components/footer-links';
 
 import './blog.css';
 
@@ -179,7 +180,8 @@ class Blog extends Component {
       tags,
       homepageLoaded,
       postsReady,
-      outOfPosts
+      outOfPosts,
+      content
     } = this.props;
 
     const { taxonomy, slug } = this.props.match.params;
@@ -210,6 +212,12 @@ class Blog extends Component {
               </div>
             )}
           </div>
+        )}
+        {homepageLoaded && (
+          <FooterLinks
+            links={content.footer.links}
+            socialMedia={content.general.social_media}
+          />
         )}
       </Page>
     );
