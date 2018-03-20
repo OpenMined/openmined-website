@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { Button, Page } from 'openmined-ui';
+import { Container, Row, Column, Button, Page } from 'openmined-ui';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { withWrapper } from 'create-react-server/wrapper';
 import { getPosts } from '../../../../../modules/blog';
 import { getContent } from '../../../../../modules/homepage';
@@ -19,8 +20,6 @@ const blogExcerpt =
   'Home to the latest research, thoughts, and demos surrounding the OpenMined project and the larger artificial intelligence ecosystem.';
 
 // TODO: Newsletter link...
-
-// TODO: Add links to individual tags within digs
 
 class Blog extends Component {
   static async getInitialProps(props) {
@@ -118,24 +117,24 @@ class Blog extends Component {
     );
   }
 
+  lookupTaxonomy(list, check, field = 'slug') {
+    let returned = {};
+
+    list.forEach(taxonomy => {
+      if (taxonomy[field] === check) {
+        returned = taxonomy;
+      }
+    });
+
+    return returned;
+  }
+
   seoHeaderInfo(taxonomy, slug, shortName, excerpt) {
     if (taxonomy && slug) {
-      const lookupTaxonomy = (list, slug) => {
-        let returned = {};
-
-        list.forEach(taxonomy => {
-          if (taxonomy.slug === slug) {
-            returned = taxonomy;
-          }
-        });
-
-        return returned;
-      };
-
       let taxonomyData =
         taxonomy === 'categories'
-          ? lookupTaxonomy(this.props.categories, slug)
-          : lookupTaxonomy(this.props.tags, slug);
+          ? this.lookupTaxonomy(this.props.categories, slug)
+          : this.lookupTaxonomy(this.props.tags, slug);
 
       return {
         title: shortName + ' - ' + taxonomyData.name,
@@ -153,22 +152,10 @@ class Blog extends Component {
     let links = this.props.content.footer.links;
 
     if (taxonomy && slug) {
-      const lookupTaxonomy = (list, slug) => {
-        let returned = {};
-
-        list.forEach(taxonomy => {
-          if (taxonomy.slug === slug) {
-            returned = taxonomy;
-          }
-        });
-
-        return returned;
-      };
-
       let taxonomyData =
         taxonomy === 'categories'
-          ? lookupTaxonomy(this.props.categories, slug)
-          : lookupTaxonomy(this.props.tags, slug);
+          ? this.lookupTaxonomy(this.props.categories, slug)
+          : this.lookupTaxonomy(this.props.tags, slug);
 
       return {
         title: taxonomyData.name,
@@ -228,6 +215,31 @@ class Blog extends Component {
             <BlogHeader
               {...this.blogHeaderInfo(taxonomy, slug, title, excerpt)}
             />
+            {locale === 'digs' &&
+              homepageLoaded && (
+                <Container>
+                  <Row>
+                    <Column sizes={{ small: 12 }}>
+                      <ul id="digs-filter">
+                        <li className="digs-filter-description">
+                          Sort by a topic:
+                        </li>
+                        {content.weekly_digs.digs_tags.map(tag => {
+                          tag = this.lookupTaxonomy(tags, tag, 'id');
+
+                          return (
+                            <li key={`dig-tag-${tag.id}`}>
+                              <Link to={`/digs/tags/${tag.slug}`}>
+                                {tag.name}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </Column>
+                  </Row>
+                </Container>
+              )}
             <BlogPosts
               type="recent"
               posts={posts.slice(0, 3)}
