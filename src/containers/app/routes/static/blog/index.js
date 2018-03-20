@@ -13,27 +13,30 @@ import FooterLinks from '../../../components/footer-links';
 
 import './blog.css';
 
+const blogTitle = 'OpenMined Blog';
+const blogShortName = 'Blog';
 const blogExcerpt =
   'Home to the latest research, thoughts, and demos surrounding the OpenMined project and the larger artificial intelligence ecosystem.';
 
 // TODO: Newsletter link...
 
+// TODO: Add links to individual tags within digs
+
 class Blog extends Component {
   static async getInitialProps(props) {
     // TODO: Figure out a better way to do this
     let pathname = props.location.pathname.split('/');
-    let request;
+    let request = { page: 1 };
+
+    if (pathname[1] === 'digs') {
+      request.digs = true;
+    }
 
     if (pathname.length > 3) {
       let taxonomy = pathname[2];
       let slug = pathname[3];
 
-      request = {
-        page: 1,
-        [taxonomy]: slug
-      };
-    } else {
-      request = { page: 1 };
+      request[taxonomy] = slug;
     }
 
     await props.store.dispatch(getPosts(request, true));
@@ -59,7 +62,11 @@ class Blog extends Component {
     const newUrl = newProps.match.params;
     const oldUrl = this.props.match.params;
 
-    if (newUrl.taxonomy !== oldUrl.taxonomy || newUrl.slug !== oldUrl.slug) {
+    if (
+      newUrl.taxonomy !== oldUrl.taxonomy ||
+      newUrl.slug !== oldUrl.slug ||
+      newUrl.locale !== oldUrl.locale
+    ) {
       this.setState(
         {
           page: 1
@@ -75,19 +82,23 @@ class Blog extends Component {
     const hasTaxonomy = this.props.match.params.hasOwnProperty('taxonomy');
 
     if (hasTaxonomy) {
-      let { taxonomy, slug } = this.props.match.params;
+      let { taxonomy, slug, locale } = this.props.match.params;
 
       this.props.getPosts(
         {
           page: this.state.page,
-          [taxonomy]: slug
+          [taxonomy]: slug,
+          digs: locale === 'digs'
         },
         isFresh
       );
     } else if (!hasTaxonomy) {
+      let { locale } = this.props.match.params;
+
       this.props.getPosts(
         {
-          page: this.state.page
+          page: this.state.page,
+          digs: locale === 'digs'
         },
         isFresh
       );
@@ -107,7 +118,7 @@ class Blog extends Component {
     );
   }
 
-  seoHeaderInfo(taxonomy, slug) {
+  seoHeaderInfo(taxonomy, slug, shortName, excerpt) {
     if (taxonomy && slug) {
       const lookupTaxonomy = (list, slug) => {
         let returned = {};
@@ -127,18 +138,18 @@ class Blog extends Component {
           : lookupTaxonomy(this.props.tags, slug);
 
       return {
-        title: 'Blog - ' + taxonomyData.name,
-        description: taxonomyData.description || blogExcerpt
+        title: shortName + ' - ' + taxonomyData.name,
+        description: taxonomyData.description || excerpt
       };
     } else {
       return {
-        title: 'Blog',
-        description: blogExcerpt
+        title: shortName,
+        description: excerpt
       };
     }
   }
 
-  blogHeaderInfo(taxonomy, slug) {
+  blogHeaderInfo(taxonomy, slug, title, excerpt) {
     let links = this.props.content.footer.links;
 
     if (taxonomy && slug) {
@@ -166,8 +177,8 @@ class Blog extends Component {
       };
     } else {
       return {
-        title: 'OpenMined Blog',
-        excerpt: blogExcerpt,
+        title,
+        excerpt,
         links
       };
     }
@@ -184,25 +195,52 @@ class Blog extends Component {
       content
     } = this.props;
 
-    const { taxonomy, slug } = this.props.match.params;
+    const { taxonomy, slug, locale } = this.props.match.params;
+
+    let title, shortName, excerpt;
+
+    if (locale === 'digs') {
+      let digsData = {};
+
+      categories.forEach(category => {
+        if (category.slug === locale) {
+          digsData = category;
+        }
+      });
+
+      title = digsData.name;
+      shortName = title;
+      excerpt = digsData.description;
+    } else {
+      title = blogTitle;
+      shortName = blogShortName;
+      excerpt = blogExcerpt;
+    }
 
     return (
-      <Page id="blog" {...this.seoHeaderInfo(taxonomy, slug)}>
+      <Page
+        id="blog"
+        {...this.seoHeaderInfo(taxonomy, slug, shortName, excerpt)}
+      >
         <Loading shouldHideWhen={homepageLoaded && postsReady} />
         {postsReady && (
           <div id="posts-content">
-            <BlogHeader {...this.blogHeaderInfo(taxonomy, slug)} />
+            <BlogHeader
+              {...this.blogHeaderInfo(taxonomy, slug, title, excerpt)}
+            />
             <BlogPosts
               type="recent"
               posts={posts.slice(0, 3)}
               categories={categories}
               tags={tags}
+              locale={locale}
             />
             <BlogPosts
               type="previous"
               posts={posts.slice(3)}
               categories={categories}
               tags={tags}
+              locale={locale}
             />
             {!outOfPosts && (
               <div id="more-posts">

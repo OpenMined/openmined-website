@@ -50,7 +50,7 @@ $blog-post-border: $small-space;
   &.tutorials {
     @extend .success-diag-gradient;
   }
-  &.dig {
+  &.digs {
     @extend .alert-diag-gradient;
   }
   &.announcements {
@@ -78,7 +78,8 @@ $blog-post-border: $small-space;
       font-size: 0.7rem;
       @include capped-text(1px);
       color: rgba($white, 0.5);
-      .category {
+      .category,
+      .tag {
         color: rgba($white, 0.5);
         &:hover {
           color: $white;
