@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { withWrapper } from 'create-react-server/wrapper';
 import { getPosts } from '../../../../../modules/blog';
 import { getContent } from '../../../../../modules/homepage';
+import { SITE_URL } from '../../../../../modules';
 
 import BlogHeader from '../../../components/blog-header';
 import Loading from '../../../components/loading';
@@ -129,7 +130,7 @@ class Blog extends Component {
     return returned;
   }
 
-  seoHeaderInfo(taxonomy, slug, shortName, excerpt) {
+  seoHeaderInfo(taxonomy, slug, shortName, excerpt, images) {
     if (taxonomy && slug) {
       let taxonomyData =
         taxonomy === 'categories'
@@ -138,12 +139,14 @@ class Blog extends Component {
 
       return {
         title: shortName + ' - ' + taxonomyData.name,
-        description: taxonomyData.description || excerpt
+        description: taxonomyData.description || excerpt,
+        ...images
       };
     } else {
       return {
         title: shortName,
-        description: excerpt
+        description: excerpt,
+        ...images
       };
     }
   }
@@ -171,6 +174,33 @@ class Blog extends Component {
     }
   }
 
+  generateMetadata(locale, categories) {
+    let title, shortName, excerpt;
+
+    if (locale === 'digs') {
+      let digsData = this.lookupTaxonomy(categories, locale);
+
+      title = digsData.name;
+      shortName = title;
+      excerpt = digsData.description;
+    } else {
+      title = blogTitle;
+      shortName = blogShortName;
+      excerpt = blogExcerpt;
+    }
+
+    return {
+      title,
+      shortName,
+      excerpt,
+      images: {
+        image: `${SITE_URL}/images/logo-${locale}.png`,
+        facebookImage: `${SITE_URL}/images/logo-${locale}-facebook.png`,
+        twitterImage: `${SITE_URL}/images/logo-${locale}-twitter.png`
+      }
+    };
+  }
+
   render() {
     const {
       posts,
@@ -184,30 +214,15 @@ class Blog extends Component {
 
     const { taxonomy, slug, locale } = this.props.match.params;
 
-    let title, shortName, excerpt;
-
-    if (locale === 'digs') {
-      let digsData = {};
-
-      categories.forEach(category => {
-        if (category.slug === locale) {
-          digsData = category;
-        }
-      });
-
-      title = digsData.name;
-      shortName = title;
-      excerpt = digsData.description;
-    } else {
-      title = blogTitle;
-      shortName = blogShortName;
-      excerpt = blogExcerpt;
-    }
+    const { title, shortName, excerpt, images } = this.generateMetadata(
+      locale,
+      categories
+    );
 
     return (
       <Page
         id="blog"
-        {...this.seoHeaderInfo(taxonomy, slug, shortName, excerpt)}
+        {...this.seoHeaderInfo(taxonomy, slug, shortName, excerpt, images)}
       >
         <Loading shouldHideWhen={homepageLoaded && postsReady} />
         {postsReady && (

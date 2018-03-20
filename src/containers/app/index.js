@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
 import { withWrapper } from 'create-react-server/wrapper';
+import { WORDPRESS_URL } from '../../modules';
 
 // Action Creators
 import { removeNotification } from '../../modules/notifications';
@@ -17,7 +18,7 @@ import BlogPost from './routes/static/blog-post';
 import NotFound from './routes/not-found';
 
 const RedirectToWordpress = () =>
-  (window.location = 'https://api.openmined.org/wp-login.php');
+  (window.location = WORDPRESS_URL + '/wp-login.php');
 
 class App extends Component {
   componentDidMount() {
