@@ -19,7 +19,7 @@ const blogExcerpt =
 
 // TODO: Newsletter link...
 
-// TODO: Add links to blog and digs when done
+// TODO: Add links to individual tags within digs
 
 class Blog extends Component {
   static async getInitialProps(props) {
@@ -117,7 +117,7 @@ class Blog extends Component {
     );
   }
 
-  seoHeaderInfo(taxonomy, slug, title, shortName, excerpt) {
+  seoHeaderInfo(taxonomy, slug, shortName, excerpt) {
     if (taxonomy && slug) {
       const lookupTaxonomy = (list, slug) => {
         let returned = {};
@@ -142,7 +142,7 @@ class Blog extends Component {
       };
     } else {
       return {
-        title,
+        title: shortName,
         description: excerpt
       };
     }
@@ -218,7 +218,7 @@ class Blog extends Component {
     return (
       <Page
         id="blog"
-        {...this.seoHeaderInfo(taxonomy, slug, title, shortName, excerpt)}
+        {...this.seoHeaderInfo(taxonomy, slug, shortName, excerpt)}
       >
         <Loading shouldHideWhen={homepageLoaded && postsReady} />
         {postsReady && (
