@@ -2,9 +2,7 @@ import React from 'react';
 import { Row, Column, Container, Heading } from 'openmined-ui';
 import ExternalLink from '../../../components/external-link';
 
-import logo from '../../../assets/logo-blackbg.svg';
-
-const Footer = ({ questions, movement, links, tagline }) => (
+const Footer = ({ questions, movement }) => (
   <div id="footer">
     {questions.questions_items && (
       <Container>
@@ -111,43 +109,6 @@ const Footer = ({ questions, movement, links, tagline }) => (
       </Container>
     )}
     {/* TODO: In theory, a map should go here... */}
-    {links && (
-      <Container>
-        <Row>
-          <Column
-            sizes={{ small: 12, xlarge: 10 }}
-            offsets={{ xlarge: 1 }}
-            className="footer"
-          >
-            <ul className="footer-items">
-              <li className="logo">
-                <img src={logo} alt="OpenMined" />
-              </li>
-              {links.map((link, i) => {
-                return (
-                  <li
-                    key={`footer-link-${i}`}
-                    className={link.links_icon ? 'icon' : 'text'}
-                  >
-                    <ExternalLink to={link.links_link}>
-                      {link.links_type === 'icon' && (
-                        <i className={`fa ${link.links_icon}`} />
-                      )}
-                      {link.links_type === 'text' && (
-                        <span>{link.links_text}</span>
-                      )}
-                    </ExternalLink>
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="tagline">
-              <p>{tagline}</p>
-            </div>
-          </Column>
-        </Row>
-      </Container>
-    )}
   </div>
 );
 

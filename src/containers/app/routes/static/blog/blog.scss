@@ -1,10 +1,16 @@
 @import 'variables';
 
 #blog {
-  #more-posts {
-    text-align: center;
-    button {
-      margin: $medium-space 0px $large-space 0px;
+  #posts-content {
+    margin-bottom: $large-space;
+    @include desktop-up() {
+      margin-bottom: $xlarge-space;
+    }
+    #more-posts {
+      text-align: center;
+      button {
+        margin: $medium-space 0px $large-space 0px;
+      }
     }
   }
 }

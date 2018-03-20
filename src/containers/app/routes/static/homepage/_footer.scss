@@ -1,8 +1,8 @@
 #footer {
   background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
-  padding: $large-space 0px;
+  padding-top: $medium-space;
   @include desktop-up {
-    padding: $xlarge-space + $medium-space 0px;
+    padding-top: $large-space;
   }
   h3 {
     color: $white;
@@ -85,65 +85,6 @@
           transition: opacity $anim-time $anim-func;
         }
       }
-    }
-  }
-  .footer {
-    margin-top: $small-space;
-    @include tablet-up {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-top: $medium-space;
-    }
-    .footer-items {
-      list-style-type: none;
-      padding: 0px;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      li {
-        &.logo {
-          img {
-            height: 40px;
-            margin-right: $medium-space;
-          }
-        }
-        &.text,
-        &.icon {
-          a {
-            display: block;
-            height: 24px;
-          }
-          span {
-            @include capped-text(1px);
-            margin: 0px $medium-space;
-          }
-          i {
-            margin: 0px $small-space;
-          }
-          span,
-          i {
-            font-size: 0.9rem;
-            color: $white;
-            transition: color $anim-time $anim-func;
-            &:hover {
-              color: $primary-color;
-            }
-          }
-        }
-        &.icon {
-          height: 24px;
-          i {
-            font-size: 1.25rem;
-          }
-        }
-      }
-    }
-    .tagline {
-      margin: 0px;
-      color: $medium-gray;
-      font-size: 0.9rem;
     }
   }
 }

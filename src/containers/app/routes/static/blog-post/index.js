@@ -11,6 +11,7 @@ import { getContent } from '../../../../../modules/homepage';
 
 import BlogHeader from '../../../components/blog-header';
 import Loading from '../../../components/loading';
+import FooterLinks from '../../../components/footer-links';
 
 import './blog-post.css';
 
@@ -177,6 +178,12 @@ class BlogPost extends Component {
               </Row>
             </Container>
           </div>
+        )}
+        {homepageLoaded && (
+          <FooterLinks
+            links={content.footer.links}
+            socialMedia={content.general.social_media}
+          />
         )}
       </Page>
     );
