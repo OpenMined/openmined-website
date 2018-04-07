@@ -13,24 +13,20 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
         className="projects"
       >
         {projects &&
-          projects.map(project => {
+          projects.map((project, key) => {
             return (
               <div
                 className={
-                  current === project.repos_title
-                    ? 'project current'
-                    : 'project'
+                  current === project.title ? 'project current' : 'project'
                 }
-                onClick={() => setCurrent(project.repos_title)}
-                key={`project-${project.repos_title}`}
+                onClick={() => setCurrent(project.title)}
+                key={key}
               >
                 <RepoIcon
-                  repo={project.repos_link.substr(
-                    project.repos_link.lastIndexOf('/') + 1
-                  )}
+                  repo={project.link.substr(project.link.lastIndexOf('/') + 1)}
                 />
-                <Heading level={4}>{project.repos_title}</Heading>
-                <p className="description">{project.repos_description}</p>
+                <Heading level={4}>{project.title}</Heading>
+                <p className="description">{project.description}</p>
               </div>
             );
           })}
@@ -39,24 +35,24 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
   </Container>
 );
 
-const Contributors = ({ projects, current }) => {
-  let currentProject = {};
+const Contributors = ({ repositories, current }) => {
+  let currentRepository = {};
 
-  if (projects && current) {
-    projects.forEach(project => {
-      if (project.repos_title === current) {
-        currentProject = project;
+  if (repositories && current) {
+    repositories.forEach(repository => {
+      if (repository.repos_title === current) {
+        currentRepository = repository;
       }
     });
   }
 
   if (
-    currentProject.repos_contributors &&
-    currentProject.repos_contributors.length > 0
+    currentRepository.repos_contributors &&
+    currentRepository.repos_contributors.length > 0
   ) {
     return (
       <ul className="contributors">
-        {currentProject.repos_contributors.map(contributor => {
+        {currentRepository.repos_contributors.map(contributor => {
           return (
             <li
               className="contributor"
@@ -81,21 +77,24 @@ const Contributors = ({ projects, current }) => {
   return null;
 };
 
-const Issues = ({ projects, current }) => {
-  let currentProject = {};
+const Issues = ({ repositories, current }) => {
+  let currentRepository = {};
 
-  if (projects && current) {
-    projects.forEach(project => {
-      if (project.repos_title === current) {
-        currentProject = project;
+  if (repositories && current) {
+    repositories.forEach(repository => {
+      if (repository.repos_title === current) {
+        currentRepository = repository;
       }
     });
   }
 
-  if (currentProject.repos_issues && currentProject.repos_issues.length > 0) {
+  if (
+    currentRepository.repos_issues &&
+    currentRepository.repos_issues.length > 0
+  ) {
     return (
       <ul className="issues">
-        {currentProject.repos_issues.map(issue => {
+        {currentRepository.repos_issues.map(issue => {
           return (
             <li className="issue" key={`issue-${issue.title}`}>
               <i className="fa fa-github" />
@@ -128,15 +127,19 @@ class Timeline extends Component {
   }
 
   componentWillReceiveProps() {
-    if (this.props.repos && !this.state.currentProject) {
+    if (this.props.content.projects && !this.state.currentProject) {
       this.setState({
-        currentProject: this.props.repos[0].repos_title
+        currentProject: this.props.content.projects[0].title
       });
     }
   }
 
   render() {
-    const { title, events, repos, button } = this.props;
+    const {
+      repositories,
+      title,
+      content: { timeline, projects, cta }
+    } = this.props;
 
     return (
       <div id="timeline">
@@ -152,19 +155,16 @@ class Timeline extends Component {
             <Row>
               <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
                 <ul className="events">
-                  {events &&
-                    events.map(event => {
+                  {timeline &&
+                    timeline.map(({ status, title, date }, key) => {
                       return (
-                        <li
-                          className={'event ' + event.events_status}
-                          key={`event-${event.events_title}`}
-                        >
+                        <li className={'event ' + status} key={key}>
                           <span className="marker" />
                           <div className="content">
                             <Heading level={5} className="title">
-                              {event.events_title}
+                              {title}
                             </Heading>
-                            <p className="date">{event.events_date}</p>
+                            <p className="date">{date}</p>
                           </div>
                         </li>
                       );
@@ -176,7 +176,7 @@ class Timeline extends Component {
         </div>
         <div id="github-projects">
           <ProjectSelector
-            projects={repos}
+            projects={projects}
             current={this.state.currentProject}
             setCurrent={repo => this.setState({ currentProject: repo })}
           />
@@ -188,13 +188,16 @@ class Timeline extends Component {
               >
                 <Heading level={5}>Top Contributors</Heading>
                 <Contributors
-                  projects={repos}
+                  repositories={repositories}
                   current={this.state.currentProject}
                 />
               </Column>
               <Column sizes={{ small: 12, large: 8, xlarge: 7 }}>
                 <Heading level={5}>Top Issues</Heading>
-                <Issues projects={repos} current={this.state.currentProject} />
+                <Issues
+                  repositories={repositories}
+                  current={this.state.currentProject}
+                />
               </Column>
             </Row>
           </Container>
@@ -202,9 +205,9 @@ class Timeline extends Component {
         <Container>
           <Row>
             <Column sizes={{ small: 12 }} className="cta-container">
-              <ExternalLink to={button.button_link} className="button black">
+              <ExternalLink to={cta.link} className="button black">
                 <i className="fa fa-github" />
-                <span>{button.button_text}</span>
+                <span>{cta.text}</span>
               </ExternalLink>
             </Column>
           </Row>

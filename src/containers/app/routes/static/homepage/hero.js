@@ -38,9 +38,9 @@ const copyText = (code, addNotification) => {
   }
 };
 
-const Console = ({ console, addNotification }) => (
+const Console = ({ addNotification, version, username, code }) => (
   <div id="console-container">
-    <div id="version">{console.console_version}</div>
+    <div id="version">{version}</div>
     <div id="console">
       <div className="header">
         <span />
@@ -49,14 +49,12 @@ const Console = ({ console, addNotification }) => (
       </div>
       <div className="content">
         <p>
-          <span className="screenname">
-            [{console.console_screenname}]&nbsp;
-          </span>
-          {console.console_code}
+          <span className="screenname">[{username}]&nbsp;</span>
+          {code}
         </p>
       </div>
       <Button
-        onClick={() => copyText(console.console_code, addNotification)}
+        onClick={() => copyText(code, addNotification)}
         className="medium-gray small"
       >
         Copy Code
@@ -65,7 +63,7 @@ const Console = ({ console, addNotification }) => (
   </div>
 );
 
-const Hero = props => (
+const Hero = ({ tagline, description, cta, console, addNotification }) => (
   <div id="hero">
     <BackgroundGradient />
     <Container>
@@ -73,18 +71,15 @@ const Hero = props => (
         <Column sizes={{ small: 12 }}>
           <img src={logo} id="logo" alt="OpenMined" />
           <Heading id="tagline" level={2}>
-            {props.tagline}
+            {tagline}
           </Heading>
-          <p id="description">{props.description}</p>
+          <p id="description">{description}</p>
           <div id="cta">
-            <ExternalLink
-              to={props.button.button_link}
-              className="button white"
-            >
-              {props.button.button_text}
+            <ExternalLink to={cta.link} className="button white">
+              {cta.text}
             </ExternalLink>
           </div>
-          <Console {...props} />
+          <Console addNotification={addNotification} {...console} />
         </Column>
       </Row>
     </Container>

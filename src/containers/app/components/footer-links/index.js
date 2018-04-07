@@ -7,7 +7,7 @@ import logo from '../../assets/logo-blackbg.svg';
 
 import './footer-links.css';
 
-export default ({ links, socialMedia }) => (
+export default ({ links, social }) => (
   <div id="footer-links">
     <Container>
       <Row>
@@ -23,21 +23,33 @@ export default ({ links, socialMedia }) => (
               </Link>
             </li>
             {links &&
-              links.map((link, i) => {
+              links.map(({ link, text }, key) => {
                 return (
-                  <li key={`footer-link-${i}`}>
-                    <Link to={link.links_link}>{link.links_text}</Link>
+                  <li key={key}>
+                    <Link to={link}>{text}</Link>
                   </li>
                 );
               })}
           </ul>
           <ul className="social-media">
-            {socialMedia &&
-              socialMedia.map((link, i) => {
+            {social &&
+              social.map(({ title, link }, key) => {
+                let icon;
+
+                if (title === 'Github') {
+                  icon = 'fa-github';
+                } else if (title === 'Twitter') {
+                  icon = 'fa-twitter';
+                } else if (title === 'YouTube') {
+                  icon = 'fa-youtube-play';
+                } else if (title === 'Facebook') {
+                  icon = 'fa-facebook';
+                }
+
                 return (
-                  <li key={`footer-social-media-link-${i}`}>
-                    <ExternalLink to={link.social_media_links_link}>
-                      <i className={`fa ${link.social_media_links_icon}`} />
+                  <li key={key}>
+                    <ExternalLink to={link}>
+                      <i className={`fa ${icon}`} />
                     </ExternalLink>
                   </li>
                 );

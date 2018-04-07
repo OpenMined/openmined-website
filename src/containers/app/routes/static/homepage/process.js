@@ -8,13 +8,13 @@ const getGraphDisabledClasses = (current, classes) => {
   classes = classes.split(' ');
 
   switch (current) {
-    case 'create':
+    case 'Create':
       if (~classes.indexOf('second') || ~classes.indexOf('mines')) {
         classes.push('disabled');
       }
       break;
 
-    case 'distribute':
+    case 'Distribute':
       if (
         ~classes.indexOf('data-scientists') ||
         ~classes.indexOf('first') ||
@@ -28,7 +28,7 @@ const getGraphDisabledClasses = (current, classes) => {
       }
       break;
 
-    case 'train':
+    case 'Train':
       if (~classes.indexOf('data-scientists') || ~classes.indexOf('first')) {
         classes.push('disabled');
       }
@@ -37,7 +37,7 @@ const getGraphDisabledClasses = (current, classes) => {
       }
       break;
 
-    case 'reward':
+    case 'Reward':
       if (~classes.indexOf('data-scientists') || ~classes.indexOf('first')) {
         classes.push('disabled');
       }
@@ -52,7 +52,7 @@ const getGraphDisabledClasses = (current, classes) => {
       }
       break;
 
-    case 'deliver':
+    case 'Deliver':
       if (~classes.indexOf('data-scientists')) {
         classes.push('finished');
       }
@@ -130,25 +130,25 @@ const Info = ({ current, data }) => {
   let info;
 
   data.forEach(dataItem => {
-    if (dataItem.graph_name === current) {
+    if (dataItem.heading === current) {
       info = dataItem;
     }
   });
 
   return (
     <div className="info">
-      <Heading level={5}>{info.graph_title}</Heading>
-      <p className="description">{info.graph_content}</p>
+      <Heading level={5}>{info.title}</Heading>
+      <p className="description">{info.description}</p>
       <Heading level={6}>Contribute</Heading>
       <ul className="repos">
-        {info.graph_repos.map(repo => {
+        {info.repositories.map(({ title, link }, key) => {
           return (
-            <li key={`repo-${repo.label}`}>
-              <ExternalLink to={repo.value}>
+            <li key={key}>
+              <ExternalLink to={link}>
                 <div className="icon">
-                  <RepoIcon repo={repo.label} />
+                  <RepoIcon repo={title} />
                 </div>
-                <span className="name">{repo.label}</span>
+                <span className="name">{title}</span>
               </ExternalLink>
             </li>
           );
@@ -181,15 +181,15 @@ const StepSelector = ({ current, data, changeCurrent }) => {
             </li>
           );
         } else {
-          let active = item.graph_name === current ? 'active' : '';
+          let active = item.heading === current ? 'active' : '';
 
           return (
             <li
               className={active}
-              onClick={() => changeCurrent(item.graph_name)}
+              onClick={() => changeCurrent(item.heading)}
               key={`step-${index}`}
             >
-              {item.graph_name}
+              {item.heading}
             </li>
           );
         }
@@ -208,15 +208,15 @@ class Process extends Component {
   }
 
   componentWillReceiveProps() {
-    if (this.props.graph && !this.state.current) {
+    if (this.props.content && !this.state.current) {
       this.setState({
-        current: this.props.graph[0].graph_name
+        current: this.props.content[0].heading
       });
     }
   }
 
   render() {
-    const { title, content, graph } = this.props;
+    const { title, description, content } = this.props;
 
     return (
       <div id="process">
@@ -224,10 +224,10 @@ class Process extends Component {
           <Row>
             <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
               <Heading level={3}>{title}</Heading>
-              <p className="description">{content}</p>
+              <p className="description">{description}</p>
             </Column>
           </Row>
-          {graph &&
+          {content &&
             this.state.current && (
               <Row>
                 <Column
@@ -236,7 +236,7 @@ class Process extends Component {
                 >
                   <StepSelector
                     current={this.state.current}
-                    data={graph}
+                    data={content}
                     changeCurrent={newCurrent =>
                       this.setState({ current: newCurrent })
                     }
@@ -246,14 +246,14 @@ class Process extends Component {
                   sizes={{ small: 12, large: 6, xlarge: 6 }}
                   offsets={{ xlarge: 1 }}
                 >
-                  <Graph current={this.state.current.toLowerCase()} />
+                  <Graph current={this.state.current} />
                 </Column>
                 <Column
                   sizes={{ small: 12, large: 5, xlarge: 4 }}
                   offsets={{ large: 1, xlarge: 1 }}
                 >
                   {this.state.current && (
-                    <Info current={this.state.current} data={graph} />
+                    <Info current={this.state.current} data={content} />
                   )}
                 </Column>
               </Row>
