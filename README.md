@@ -20,5 +20,5 @@ Please read the "Design Disclaimer" above first before trying to contribute. We 
 
 Deployment is controlled by OpenMined admins with AWS access. Because this is only a limited number of people, deployment will be done at their discretion. Access to the OpenMined AWS account is limited and will likely permanently remain limited. This runs on AWS. It uses Fargate (ECS), Application ELB, Codepipeline, and Codebuild. The live site is redeployed whenever a change is made to `master`.
 
-[Codepipeline setup](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html).
-[Fargate (ECS) setup](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html).
+* [Codepipeline setup](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html)
+* [Fargate (ECS) setup](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html)
