@@ -85,7 +85,7 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
 
 const Issues = ({ issues, link }) => (
   <ul className="issues">
-    {issues.length && (
+    {issues.length <= 0 && (
       <li className="no-issues">
         <span>There are no issues for this repository.</span>
         <br />
