@@ -46,11 +46,17 @@ export default (state = initialState, action) => {
 };
 
 const fetchGithub = () => dispatch =>
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     fetch(STATS_API_URL)
       .then(response => response.json())
-      .then(({ data }) => {
-        const { repositories, members } = data;
+      .then(response => {
+        if (response.error) {
+          dispatch(handleRemoteError(response.error));
+
+          reject(new Error(response.error));
+        }
+
+        const { repositories, members } = response.data;
 
         dispatch({
           type: GET_GITHUB_CONTENT,
