@@ -16,6 +16,12 @@ export const WORDPRESS_URL =
 
 export const WORDPRESS_API_URL = WORDPRESS_URL + '/wp-json';
 
+export const STATS_API_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3002/retrieve'
+    : 'https://stats.openmined.org/retrieve';
+
+// TODO: Get rid of "Wordpress" errors
 export const handleWordpressError = error =>
   addNotification({
     text: error,

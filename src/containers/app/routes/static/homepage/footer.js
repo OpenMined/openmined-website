@@ -65,14 +65,14 @@ const Footer = ({ questions, movement, members }) => (
         {members && (
           <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
             <ul className="members">
-              {members.map((member, key) => {
+              {members.map(({ login, avatarUrl }, key) => {
                 return (
                   <li className="member" key={key}>
-                    <ExternalLink to={member.html_url}>
+                    <ExternalLink to={`https://github.com/${login}`}>
                       <div
                         className="avatar"
                         style={{
-                          backgroundImage: `url(${member.avatar_url})`
+                          backgroundImage: `url(${avatarUrl})`
                         }}
                       />
                     </ExternalLink>
