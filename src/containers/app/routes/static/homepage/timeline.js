@@ -4,6 +4,11 @@ import moment from 'moment';
 import RepoIcon from '../../../components/repo-icon';
 import ExternalLink from '../../../components/external-link';
 
+import {
+  matchRepositoryToName,
+  generateOMRepositoryLink
+} from '../../../../../helpers/repositories';
+
 const ProjectSelector = ({ projects, current, setCurrent }) => (
   <Container>
     <Row>
@@ -12,25 +17,19 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
         offsets={{ xlarge: 1 }}
         className="projects"
       >
-        {projects &&
-          projects.map(project => {
+        {projects.length > 0 &&
+          projects.map((project, key) => {
             return (
               <div
                 className={
-                  current === project.repos_title
-                    ? 'project current'
-                    : 'project'
+                  current === project.name ? 'project current' : 'project'
                 }
-                onClick={() => setCurrent(project.repos_title)}
-                key={`project-${project.repos_title}`}
+                onClick={() => setCurrent(project.name)}
+                key={key}
               >
-                <RepoIcon
-                  repo={project.repos_link.substr(
-                    project.repos_link.lastIndexOf('/') + 1
-                  )}
-                />
-                <Heading level={4}>{project.repos_title}</Heading>
-                <p className="description">{project.repos_description}</p>
+                <RepoIcon repo={project.shortName} />
+                <Heading level={4}>{project.name}</Heading>
+                <p className="description">{project.description}</p>
               </div>
             );
           })}
@@ -39,84 +38,78 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
   </Container>
 );
 
-const Contributors = ({ projects, current }) => {
-  let currentProject = {};
+// NOTE: Github took away our ability to see "contributors" in the V4 API.
+// See the following link for more information: https://platform.github.community/t/contributors-of-a-repository/3680
 
-  if (projects && current) {
-    projects.forEach(project => {
-      if (project.repos_title === current) {
-        currentProject = project;
-      }
-    });
-  }
+// const Contributors = ({ repositories, current }) => {
+//   let currentRepository = {};
+//
+//   if (repositories && current) {
+//     repositories.forEach(repository => {
+//       if (repository.repos_title === current) {
+//         currentRepository = repository;
+//       }
+//     });
+//   }
+//
+//   if (
+//     currentRepository.repos_contributors &&
+//     currentRepository.repos_contributors.length > 0
+//   ) {
+//     return (
+//       <ul className="contributors">
+//         {currentRepository.repos_contributors.map(contributor => {
+//           return (
+//             <li
+//               className="contributor"
+//               key={`contributor-${contributor.author.login}`}
+//             >
+//               <ExternalLink to={contributor.author.html_url}>
+//                 <div
+//                   className="avatar"
+//                   style={{
+//                     backgroundImage: `url(${contributor.author.avatar_url})`
+//                   }}
+//                 />
+//                 <p className="login">{contributor.author.login}</p>
+//               </ExternalLink>
+//             </li>
+//           );
+//         })}
+//       </ul>
+//     );
+//   }
+//
+//   return null;
+// };
 
-  if (
-    currentProject.repos_contributors &&
-    currentProject.repos_contributors.length > 0
-  ) {
-    return (
-      <ul className="contributors">
-        {currentProject.repos_contributors.map(contributor => {
-          return (
-            <li
-              className="contributor"
-              key={`contributor-${contributor.author.login}`}
-            >
-              <ExternalLink to={contributor.author.html_url}>
-                <div
-                  className="avatar"
-                  style={{
-                    backgroundImage: `url(${contributor.author.avatar_url})`
-                  }}
-                />
-                <p className="login">{contributor.author.login}</p>
-              </ExternalLink>
-            </li>
-          );
-        })}
-      </ul>
-    );
-  }
-
-  return null;
-};
-
-const Issues = ({ projects, current }) => {
-  let currentProject = {};
-
-  if (projects && current) {
-    projects.forEach(project => {
-      if (project.repos_title === current) {
-        currentProject = project;
-      }
-    });
-  }
-
-  if (currentProject.repos_issues && currentProject.repos_issues.length > 0) {
-    return (
-      <ul className="issues">
-        {currentProject.repos_issues.map(issue => {
-          return (
-            <li className="issue" key={`issue-${issue.title}`}>
-              <i className="fa fa-github" />
-              <ExternalLink to={issue.html_url}>
-                <p className="title">{issue.title}</p>
-                <p className="meta">
-                  <strong>#{issue.number}</strong> - {issue.user.login} opened
-                  this issue {moment(issue.created_at).fromNow()} &bull;{' '}
-                  {issue.comments}{' '}
-                  {issue.comments === 1 ? 'comment' : 'comments'}
-                </p>
-              </ExternalLink>
-            </li>
-          );
-        })}
-      </ul>
-    );
-  }
-
-  return null;
-};
+const Issues = ({ issues, link }) => (
+  <ul className="issues">
+    {issues.length <= 0 && (
+      <li className="no-issues">
+        <span>There are no issues for this repository.</span>
+        <br />
+        <ExternalLink to={link}>Create one.</ExternalLink>
+      </li>
+    )}
+    {issues.length > 0 &&
+      issues.map(({ url, title, number, author, createdAt, comments }, key) => {
+        return (
+          <li className="issue" key={key}>
+            <i className="fa fa-github" />
+            <ExternalLink to={url}>
+              <p className="title">{title}</p>
+              <p className="meta">
+                <strong>#{number}</strong> - {author} opened this issue{' '}
+                {moment(createdAt).fromNow()} &bull; {comments}{' '}
+                {comments === 1 ? 'comment' : 'comments'}
+              </p>
+            </ExternalLink>
+          </li>
+        );
+      })}
+  </ul>
+);
 
 class Timeline extends Component {
   constructor(props) {
@@ -128,15 +121,24 @@ class Timeline extends Component {
   }
 
   componentWillReceiveProps() {
-    if (this.props.repos && !this.state.currentProject) {
+    if (this.props.content.projects && !this.state.currentProject) {
       this.setState({
-        currentProject: this.props.repos[0].repos_title
+        currentProject: this.props.content.projects[0]
       });
     }
   }
 
   render() {
-    const { title, events, repos, button } = this.props;
+    const {
+      repositories,
+      title,
+      content: { timeline, projects, cta }
+    } = this.props;
+
+    const currentRepository =
+      repositories.length > 0
+        ? matchRepositoryToName(this.state.currentProject, repositories)
+        : {};
 
     return (
       <div id="timeline">
@@ -152,19 +154,16 @@ class Timeline extends Component {
             <Row>
               <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
                 <ul className="events">
-                  {events &&
-                    events.map(event => {
+                  {timeline &&
+                    timeline.map(({ status, title, date }, key) => {
                       return (
-                        <li
-                          className={'event ' + event.events_status}
-                          key={`event-${event.events_title}`}
-                        >
+                        <li className={'event ' + status} key={key}>
                           <span className="marker" />
                           <div className="content">
                             <Heading level={5} className="title">
-                              {event.events_title}
+                              {title}
                             </Heading>
-                            <p className="date">{event.events_date}</p>
+                            <p className="date">{date}</p>
                           </div>
                         </li>
                       );
@@ -174,37 +173,59 @@ class Timeline extends Component {
             </Row>
           </Container>
         </div>
-        <div id="github-projects">
-          <ProjectSelector
-            projects={repos}
-            current={this.state.currentProject}
-            setCurrent={repo => this.setState({ currentProject: repo })}
-          />
-          <Container>
-            <Row>
-              <Column
+        {repositories.length > 0 && (
+          <div id="github-projects">
+            <ProjectSelector
+              projects={matchRepositoryToName(projects, repositories)}
+              current={this.state.currentProject}
+              setCurrent={repo => this.setState({ currentProject: repo })}
+            />
+            <Container>
+              <Row>
+                {/* <Column
                 sizes={{ small: 12, large: 4, xlarge: 3 }}
                 offsets={{ xlarge: 1 }}
               >
                 <Heading level={5}>Top Contributors</Heading>
                 <Contributors
-                  projects={repos}
+                  repositories={repositories}
                   current={this.state.currentProject}
                 />
               </Column>
               <Column sizes={{ small: 12, large: 8, xlarge: 7 }}>
                 <Heading level={5}>Top Issues</Heading>
-                <Issues projects={repos} current={this.state.currentProject} />
-              </Column>
-            </Row>
-          </Container>
-        </div>
+                <Issues
+                  repositories={repositories}
+                  current={this.state.currentProject}
+                />
+              </Column> */}
+                <Column
+                  sizes={{ small: 12, large: 6, xlarge: 5 }}
+                  offsets={{ xlarge: 1 }}
+                >
+                  <Heading level={5}>Top Issues</Heading>
+                  <Issues
+                    issues={currentRepository.topIssues || []}
+                    link={generateOMRepositoryLink(currentRepository)}
+                  />
+                </Column>
+                <Column sizes={{ small: 12, large: 6, xlarge: 5 }}>
+                  <Heading level={5}>Recent Issues</Heading>
+                  <Issues
+                    issues={currentRepository.recentIssues || []}
+                    link={generateOMRepositoryLink(currentRepository)}
+                  />
+                </Column>
+              </Row>
+            </Container>
+          </div>
+        )}
         <Container>
           <Row>
             <Column sizes={{ small: 12 }} className="cta-container">
-              <ExternalLink to={button.button_link} className="button black">
+              <ExternalLink to={cta.link} className="button black">
                 <i className="fa fa-github" />
-                <span>{button.button_text}</span>
+                <span>{cta.text}</span>
               </ExternalLink>
             </Column>
           </Row>

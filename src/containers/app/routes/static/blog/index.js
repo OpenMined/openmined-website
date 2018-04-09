@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withWrapper } from 'create-react-server/wrapper';
 import { getPosts } from '../../../../../modules/blog';
-import { getContent } from '../../../../../modules/homepage';
 import { SITE_URL } from '../../../../../modules';
 
 import BlogHeader from '../../../components/blog-header';
@@ -52,10 +51,6 @@ class Blog extends Component {
     this.loadPosts = this.loadPosts.bind(this);
     this.loadMorePosts = this.loadMorePosts.bind(this);
     this.blogHeaderInfo = this.blogHeaderInfo.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.getContent(false);
   }
 
   componentWillReceiveProps(newProps) {
@@ -206,7 +201,6 @@ class Blog extends Component {
       posts,
       categories,
       tags,
-      homepageLoaded,
       postsReady,
       outOfPosts,
       content
@@ -224,37 +218,36 @@ class Blog extends Component {
         id="blog"
         {...this.seoHeaderInfo(taxonomy, slug, shortName, excerpt, images)}
       >
-        <Loading shouldHideWhen={homepageLoaded && postsReady} />
+        <Loading shouldHideWhen={postsReady} />
         {postsReady && (
           <div id="posts-content">
             <BlogHeader
               {...this.blogHeaderInfo(taxonomy, slug, title, excerpt)}
             />
-            {locale === 'digs' &&
-              homepageLoaded && (
-                <Container>
-                  <Row>
-                    <Column sizes={{ small: 12 }}>
-                      <ul id="digs-filter">
-                        <li className="digs-filter-description">
-                          Sort by a topic:
-                        </li>
-                        {content.weekly_digs.digs_tags.map(tag => {
-                          tag = this.lookupTaxonomy(tags, tag, 'id');
+            {locale === 'digs' && (
+              <Container>
+                <Row>
+                  <Column sizes={{ small: 12 }}>
+                    <ul id="digs-filter">
+                      <li className="digs-filter-description">
+                        Sort by a topic:
+                      </li>
+                      {content.weekly_digs.digs_tags.map(tag => {
+                        tag = this.lookupTaxonomy(tags, tag, 'id');
 
-                          return (
-                            <li key={`dig-tag-${tag.id}`}>
-                              <Link to={`/digs/tags/${tag.slug}`}>
-                                {tag.name}
-                              </Link>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </Column>
-                  </Row>
-                </Container>
-              )}
+                        return (
+                          <li key={`dig-tag-${tag.id}`}>
+                            <Link to={`/digs/tags/${tag.slug}`}>
+                              {tag.name}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </Column>
+                </Row>
+              </Container>
+            )}
             <BlogPosts
               type="recent"
               posts={posts.slice(0, 3)}
@@ -278,12 +271,7 @@ class Blog extends Component {
             )}
           </div>
         )}
-        {homepageLoaded && (
-          <FooterLinks
-            links={content.footer.links}
-            socialMedia={content.general.social_media}
-          />
-        )}
+        <FooterLinks {...content.footer} />
       </Page>
     );
   }
@@ -291,7 +279,6 @@ class Blog extends Component {
 
 const mapStateToProps = state => ({
   content: state.homepage.content,
-  homepageLoaded: state.homepage.homepageLoaded,
   posts: state.blog.posts,
   categories: state.blog.categories,
   tags: state.blog.tags,
@@ -303,6 +290,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getContent, getPosts }, dispatch);
+  bindActionCreators({ getPosts }, dispatch);
 
 export default withWrapper(connect(mapStateToProps, mapDispatchToProps)(Blog));

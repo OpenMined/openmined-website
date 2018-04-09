@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Column, Container, Heading } from 'openmined-ui';
-import renderHTML from 'react-render-html';
 
 const Mission = ({ title, content }) => (
   <div id="mission">
@@ -8,7 +7,17 @@ const Mission = ({ title, content }) => (
       <Row>
         <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
           <Heading level={3}>{title}</Heading>
-          {renderHTML(content || '')}
+          {content.map(({ text, strong }, key) => {
+            if (strong) {
+              return (
+                <p key={key}>
+                  <span>{text}</span>
+                </p>
+              );
+            }
+
+            return <p key={key}>{text}</p>;
+          })}
         </Column>
       </Row>
     </Container>

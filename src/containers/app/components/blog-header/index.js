@@ -23,10 +23,10 @@ const BlogHeader = ({ title, excerpt, links }) => (
           </Link>
           <ul className="header-items">
             {links &&
-              links.map((link, i) => {
+              links.map(({ link, text }, key) => {
                 return (
-                  <li key={`header-link-${i}`}>
-                    <Link to={link.links_link}>{link.links_text}</Link>
+                  <li key={key}>
+                    <Link to={link}>{text}</Link>
                   </li>
                 );
               })}

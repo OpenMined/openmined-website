@@ -8,7 +8,7 @@ Generally speaking, design and copy changes (other than bugs and typos) should b
 
 ## Installation & Development
 
-This is a React application based on the [Create React App](https://github.com/facebookincubator/create-react-app) starter application. For information on Create React App, or to get the project, running on your machine, **please refer to their documentation**.
+This is a React application based on the [Create React App](https://github.com/facebookincubator/create-react-app) starter application. For information on Create React App, or to get the project running on your machine, **please refer to their documentation**.
 
 To run locally with hot reloading, run `yarn start`. To run locally with server-side rendering enabled, run `yarn build` and then `yarn serve` to start the server.
 
@@ -18,8 +18,7 @@ Please read the "Design Disclaimer" above first before trying to contribute. We 
 
 ## Deployment
 
-Deployment is controlled by OpenMined admins with AWS access. Because this is only a limited number of people, deployment will be done at their discretion. Access to the OpenMined AWS account is limited and will likely permanently remain limited. This runs on AWS. It uses Fargate (ECS), Application ELB, Codepipeline, and Codebuild. The live site is redeployed whenever a change is made to `master`. 
+Deployment is controlled by OpenMined admins with AWS access. Because this is only a limited number of people, deployment will be done at their discretion. Access to the OpenMined AWS account is limited and will likely permanently remain limited. This runs on AWS. It uses Fargate (ECS), Application ELB, Codepipeline, and Codebuild. The live site is redeployed whenever a change is made to `master`.
 
-The pipeline setup follows [these instructions closely](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html).
-
-The Fargate setup follows [these instructions loosely](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html).
+* [Codepipeline setup](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html)
+* [Fargate (ECS) setup](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html)

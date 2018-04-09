@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import auth from './auth';
 import notifications, { addNotification } from './notifications';
 import homepage from './homepage';
 import blog from './blog';
@@ -17,7 +16,9 @@ export const WORDPRESS_URL =
 
 export const WORDPRESS_API_URL = WORDPRESS_URL + '/wp-json';
 
-export const handleWordpressError = error =>
+export const STATS_API_URL = 'https://stats.openmined.org/github';
+
+export const handleRemoteError = error =>
   addNotification({
     text: error,
     type: 'error'
@@ -25,7 +26,6 @@ export const handleWordpressError = error =>
 
 export default combineReducers({
   routing: routerReducer,
-  auth,
   notifications,
   homepage,
   blog

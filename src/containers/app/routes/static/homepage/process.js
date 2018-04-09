@@ -4,17 +4,22 @@ import ExternalLink from '../../../components/external-link';
 
 import RepoIcon from '../../../components/repo-icon';
 
+import {
+  matchRepositoryToName,
+  generateOMRepositoryLink
+} from '../../../../../helpers/repositories';
+
 const getGraphDisabledClasses = (current, classes) => {
   classes = classes.split(' ');
 
   switch (current) {
-    case 'create':
+    case 'Create':
       if (~classes.indexOf('second') || ~classes.indexOf('mines')) {
         classes.push('disabled');
       }
       break;
 
-    case 'distribute':
+    case 'Distribute':
       if (
         ~classes.indexOf('data-scientists') ||
         ~classes.indexOf('first') ||
@@ -28,7 +33,7 @@ const getGraphDisabledClasses = (current, classes) => {
       }
       break;
 
-    case 'train':
+    case 'Train':
       if (~classes.indexOf('data-scientists') || ~classes.indexOf('first')) {
         classes.push('disabled');
       }
@@ -37,7 +42,7 @@ const getGraphDisabledClasses = (current, classes) => {
       }
       break;
 
-    case 'reward':
+    case 'Reward':
       if (~classes.indexOf('data-scientists') || ~classes.indexOf('first')) {
         classes.push('disabled');
       }
@@ -52,7 +57,7 @@ const getGraphDisabledClasses = (current, classes) => {
       }
       break;
 
-    case 'deliver':
+    case 'Deliver':
       if (~classes.indexOf('data-scientists')) {
         classes.push('finished');
       }
@@ -126,37 +131,38 @@ const Graph = ({ current }) => (
   </div>
 );
 
-const Info = ({ current, data }) => {
-  let info;
+const Info = ({ repositories, info }) => (
+  <div className="info">
+    <Heading level={5}>{info.title}</Heading>
+    <p className="description">{info.description}</p>
+    {info.repositories.length > 0 && (
+      <div>
+        <Heading level={6}>Contribute</Heading>
+        <ul className="repos">
+          {info.repositories.map((repository, key) => {
+            const { name, shortName } = matchRepositoryToName(
+              repository,
+              repositories
+            );
 
-  data.forEach(dataItem => {
-    if (dataItem.graph_name === current) {
-      info = dataItem;
-    }
-  });
+            const link = generateOMRepositoryLink(shortName);
 
-  return (
-    <div className="info">
-      <Heading level={5}>{info.graph_title}</Heading>
-      <p className="description">{info.graph_content}</p>
-      <Heading level={6}>Contribute</Heading>
-      <ul className="repos">
-        {info.graph_repos.map(repo => {
-          return (
-            <li key={`repo-${repo.label}`}>
-              <ExternalLink to={repo.value}>
-                <div className="icon">
-                  <RepoIcon repo={repo.label} />
-                </div>
-                <span className="name">{repo.label}</span>
-              </ExternalLink>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
+            return (
+              <li key={key}>
+                <ExternalLink to={link}>
+                  <div className="icon">
+                    <RepoIcon repo={name} />
+                  </div>
+                  <span className="name">{name}</span>
+                </ExternalLink>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    )}
+  </div>
+);
 
 const StepSelector = ({ current, data, changeCurrent }) => {
   const insertIntoArray = (arr, value) => {
@@ -181,15 +187,15 @@ const StepSelector = ({ current, data, changeCurrent }) => {
             </li>
           );
         } else {
-          let active = item.graph_name === current ? 'active' : '';
+          let active = item.heading === current ? 'active' : '';
 
           return (
             <li
               className={active}
-              onClick={() => changeCurrent(item.graph_name)}
+              onClick={() => changeCurrent(item.heading)}
               key={`step-${index}`}
             >
-              {item.graph_name}
+              {item.heading}
             </li>
           );
         }
@@ -208,15 +214,36 @@ class Process extends Component {
   }
 
   componentWillReceiveProps() {
-    if (this.props.graph && !this.state.current) {
+    if (this.props.content && !this.state.current) {
       this.setState({
-        current: this.props.graph[0].graph_name
+        current: this.props.content[0].heading
       });
     }
   }
 
+  matchContentToCurrent(current, content, repositories) {
+    let info;
+
+    content.some(item => {
+      if (item.heading === current) {
+        info = item;
+
+        return true;
+      }
+
+      return false;
+    });
+
+    return info;
+  }
+
   render() {
-    const { title, content, graph } = this.props;
+    const { repositories, title, description, content } = this.props;
+
+    const currentInfo =
+      repositories.length > 0
+        ? this.matchContentToCurrent(this.state.current, content, repositories)
+        : {};
 
     return (
       <div id="process">
@@ -224,10 +251,10 @@ class Process extends Component {
           <Row>
             <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
               <Heading level={3}>{title}</Heading>
-              <p className="description">{content}</p>
+              <p className="description">{description}</p>
             </Column>
           </Row>
-          {graph &&
+          {content &&
             this.state.current && (
               <Row>
                 <Column
@@ -236,7 +263,7 @@ class Process extends Component {
                 >
                   <StepSelector
                     current={this.state.current}
-                    data={graph}
+                    data={content}
                     changeCurrent={newCurrent =>
                       this.setState({ current: newCurrent })
                     }
@@ -246,14 +273,14 @@ class Process extends Component {
                   sizes={{ small: 12, large: 6, xlarge: 6 }}
                   offsets={{ xlarge: 1 }}
                 >
-                  <Graph current={this.state.current.toLowerCase()} />
+                  <Graph current={this.state.current} />
                 </Column>
                 <Column
                   sizes={{ small: 12, large: 5, xlarge: 4 }}
                   offsets={{ large: 1, xlarge: 1 }}
                 >
-                  {this.state.current && (
-                    <Info current={this.state.current} data={graph} />
+                  {repositories.length > 0 && (
+                    <Info info={currentInfo} repositories={repositories} />
                   )}
                 </Column>
               </Row>

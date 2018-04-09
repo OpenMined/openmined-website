@@ -92,6 +92,8 @@ $github-project-size: 270px;
         align-items: center;
         margin-bottom: $medium-space;
         background: $white;
+        padding: $medium-space;
+        text-align: center;
         border-radius: $extra-border-radius;
         box-shadow: 0px $small-space $large-space rgba($black, 0.1);
         cursor: pointer;
@@ -171,9 +173,11 @@ $github-project-size: 270px;
     .issues {
       list-style-type: none;
       padding: 0px;
+      .no-issues span {
+        color: $medium-gray;
+      }
       .issue {
         display: flex;
-        align-items: center;
         margin-bottom: $medium-space;
         .fa-github {
           font-size: 1.5rem;

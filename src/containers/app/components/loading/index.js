@@ -6,7 +6,7 @@ import logo from '../../assets/logo-square-color.svg';
 
 const Loading = ({ shouldHideWhen }) => (
   <div id="loading" className={shouldHideWhen ? 'not-showing' : ''}>
-    <img src={logo} className="logo" />
+    <img src={logo} alt="" className="logo" />
   </div>
 );
 

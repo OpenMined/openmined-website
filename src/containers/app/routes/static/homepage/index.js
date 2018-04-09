@@ -3,10 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withWrapper } from 'create-react-server/wrapper';
 import { addNotification } from '../../../../../modules/notifications';
-import { getContent } from '../../../../../modules/homepage';
+import { getGithubData } from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
-import Loading from '../../../components/loading';
 import FooterLinks from '../../../components/footer-links';
 import Hero from './hero';
 import Mission from './mission';
@@ -18,7 +17,7 @@ import './homepage.css';
 
 class Homepage extends Component {
   static async getInitialProps(props) {
-    await props.store.dispatch(getContent());
+    await props.store.dispatch(getGithubData());
   }
 
   render() {
@@ -27,19 +26,21 @@ class Homepage extends Component {
       mission,
       process,
       timeline,
-      footer,
-      general
+      questions,
+      movement,
+      footer
     } = this.props.content;
+
+    const { members, repositories } = this.props.github;
 
     return (
       <Page id="homepage">
-        <Loading shouldHideWhen={this.props.homepageLoaded} />
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Mission {...mission} />
-        <Process {...process} />
-        <Timeline {...timeline} />
-        <Footer {...footer} />
-        <FooterLinks links={footer.links} socialMedia={general.social_media} />
+        <Process repositories={repositories} {...process} />
+        <Timeline repositories={repositories} {...timeline} />
+        <Footer questions={questions} movement={movement} members={members} />
+        <FooterLinks {...footer} />
       </Page>
     );
   }
@@ -47,7 +48,8 @@ class Homepage extends Component {
 
 const mapStateToProps = state => ({
   content: state.homepage.content,
-  homepageLoaded: state.homepage.homepageLoaded
+  github: state.homepage.github,
+  githubContentLoaded: state.homepage.githubContentLoaded
 });
 
 const mapDispatchToProps = dispatch =>
