@@ -7,17 +7,14 @@ import adaptersIcon from './assets/adapters.svg';
 import gridIcon from './assets/grid.svg';
 import openminedIcon from '../../assets/logo-square-color.svg';
 
+import { equalizeNames } from '../../../../helpers/repositories';
+
 export const hasRepoIcon = repo => {
   if (!repo) {
     return null;
   }
 
-  repo = repo
-    .toLowerCase()
-    .split('-')
-    .join('')
-    .split(' ')
-    .join('');
+  repo = equalizeNames(repo);
 
   switch (repo) {
     case 'pysyft':
@@ -42,6 +39,9 @@ export const hasRepoIcon = repo => {
       return adaptersIcon;
 
     case 'openmined':
+      return openminedIcon;
+
+    case 'unityworker':
       return openminedIcon;
 
     case 'openminedui':

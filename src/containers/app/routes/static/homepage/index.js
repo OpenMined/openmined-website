@@ -37,7 +37,7 @@ class Homepage extends Component {
       <Page id="homepage">
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Mission {...mission} />
-        <Process {...process} />
+        <Process repositories={repositories} {...process} />
         <Timeline repositories={repositories} {...timeline} />
         <Footer questions={questions} movement={movement} members={members} />
         <FooterLinks {...footer} />

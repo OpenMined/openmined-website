@@ -21,8 +21,7 @@ export const STATS_API_URL =
     ? 'http://localhost:3002/retrieve'
     : 'https://stats.openmined.org/retrieve';
 
-// TODO: Get rid of "Wordpress" errors
-export const handleWordpressError = error =>
+export const handleRemoteError = error =>
   addNotification({
     text: error,
     type: 'error'

@@ -1,4 +1,4 @@
-import { STATS_API_URL, handleWordpressError } from './index';
+import { STATS_API_URL, handleRemoteError } from './index';
 import HOMEPAGE_CONTENT from '../content/homepage';
 
 export const GET_GITHUB_CONTENT = 'homepage/GET_GITHUB_CONTENT';
@@ -63,7 +63,7 @@ const fetchGithub = () => dispatch =>
           members
         });
       })
-      .catch(error => dispatch(handleWordpressError(error)));
+      .catch(error => dispatch(handleRemoteError(error)));
   });
 
 export const getGithubData = () => {

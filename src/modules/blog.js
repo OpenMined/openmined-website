@@ -1,4 +1,4 @@
-import { WORDPRESS_API_URL, handleWordpressError } from './index';
+import { WORDPRESS_API_URL, handleRemoteError } from './index';
 
 export const GET_POSTS = 'blog/GET_POSTS';
 export const GET_ALL_OF_TAXONOMY = 'blog/GET_ALL_OF_TAXONOMY';
@@ -95,7 +95,7 @@ const getOrLoadTaxonomies = () => (dispatch, getState) =>
           WORDPRESS_API_URL + '/wp/v2/' + taxonomy + '/?per_page=100'
         )
           .then(response => response.json())
-          .catch(error => dispatch(handleWordpressError(error)));
+          .catch(error => dispatch(handleRemoteError(error)));
       };
 
       Promise.all([getTaxonomy('categories'), getTaxonomy('tags')]).then(
@@ -175,7 +175,7 @@ const getAllPosts = (query, isFresh, { categories, tags }) => dispatch =>
 
         resolve(response.body);
       })
-      .catch(error => dispatch(handleWordpressError(error)));
+      .catch(error => dispatch(handleRemoteError(error)));
   });
 
 const getPost = slug => dispatch =>
@@ -190,7 +190,7 @@ const getPost = slug => dispatch =>
 
         resolve(response[0]);
       })
-      .catch(error => dispatch(handleWordpressError(error)));
+      .catch(error => dispatch(handleRemoteError(error)));
   });
 
 const getFeaturedMedia = id => dispatch =>
@@ -205,7 +205,7 @@ const getFeaturedMedia = id => dispatch =>
 
         resolve(response);
       })
-      .catch(error => dispatch(handleWordpressError(error)));
+      .catch(error => dispatch(handleRemoteError(error)));
   });
 
 const getAuthor = id => dispatch =>
@@ -220,7 +220,7 @@ const getAuthor = id => dispatch =>
 
         resolve(response);
       })
-      .catch(error => dispatch(handleWordpressError(error)));
+      .catch(error => dispatch(handleRemoteError(error)));
   });
 
 export const getPosts = (query, isFresh) => {

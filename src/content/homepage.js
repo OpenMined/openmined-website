@@ -41,88 +41,35 @@ export default {
         title: 'Create a model',
         description:
           'A data scientist creates a model in a framework such as PyTorch, Tensorflow, or Keras, defines a training bounty they are willing to pay for it to be trained, and requests a specific kind of private training data (i.e., personal health information, social media posts, smart-home metadata, etc.)',
-        repositories: [
-          {
-            title: 'PySyft',
-            link: 'https://github.com/OpenMined/PySyft'
-          },
-          {
-            title: 'PySonar',
-            link: 'https://github.com/OpenMined/PySonar'
-          }
-        ]
+        repositories: ['PySyft']
       },
       {
         heading: 'Distribute',
         title: 'Distribute via OpenGrid',
         description:
           'Upon submission, the model is encrypted/shared and uploaded to an OpenGrid network. This could be a private network within an enterprise or the public OpenGrid our community actively supports.',
-        repositories: [
-          {
-            title: 'Sonar',
-            link: 'https://github.com/OpenMined/Sonar'
-          }
-        ]
+        repositories: []
       },
       {
         heading: 'Train',
         title: 'Users train the model',
         description:
           'Members of the OpenGrid network, who we call "miners", anonymously pull down the encrypted model from OpenGrid should they have the correct data required by the model. They then train the encrypted/shared model locally on their device.',
-        repositories: [
-          {
-            title: 'OpenMined',
-            link: 'https://github.com/OpenMined/OpenMined'
-          },
-          {
-            title: 'PySyft',
-            link: 'https://github.com/OpenMined/PySyft'
-          },
-          {
-            title: 'Adapters',
-            link: 'https://github.com/OpenMined/Adapters'
-          },
-          {
-            title: 'Mine UI',
-            link: 'https://github.com/OpenMined/Mine-UI'
-          },
-          {
-            title: 'OpenMined UI',
-            link: 'https://github.com/OpenMined/OpenMined-UI'
-          }
-        ]
+        repositories: ['UnityWorker', 'PySyft', 'Adapters', 'OpenMined UI']
       },
       {
         heading: 'Reward',
         title: 'Reward the miners',
         description:
           'With each party remaining unknown to the other, the miner uploads a new version of the model based on their local training. Their submission is rewarded proportionate to how much they improve the accuracy of the model.',
-        repositories: [
-          {
-            title: 'Sonar',
-            link: 'https://github.com/OpenMined/Sonar'
-          },
-          {
-            title: 'Mine UI',
-            link: 'https://github.com/OpenMined/Mine-UI'
-          }
-        ]
+        repositories: []
       },
       {
         heading: 'Deliver',
         title: 'Deliver the results securely',
         description:
           "Once a success criteria is met, the model is decrypted by a private key or share held only by the data scientist. All the while, neither party has access to each other's data or intellectual property.",
-        repositories: [
-          {
-            title: 'PySonar',
-            link: 'https://github.com/OpenMined/PySonar'
-          },
-          {
-            title: 'Sonar',
-            link: 'https://github.com/OpenMined/Sonar'
-          }
-        ]
+        repositories: []
       }
     ]
   },
@@ -151,28 +98,7 @@ export default {
           date: 'March 2018'
         }
       ],
-      projects: [
-        {
-          title: 'OpenGrid',
-          description: 'On-Demand Compute Grid',
-          link: 'https://github.com/OpenMined/Grid'
-        },
-        {
-          title: 'OpenMined',
-          description: 'Playstation/Xbox Mining App',
-          link: 'https://github.com/OpenMined/OpenMined'
-        },
-        {
-          title: 'PySyft',
-          description: 'Private Deep Learning (Python)',
-          link: 'https://github.com/OpenMined/PySyft'
-        },
-        {
-          title: 'Syft.js',
-          description: 'Private Deep Learning (JS)',
-          link: 'https://github.com/OpenMined/syft.js'
-        }
-      ],
+      projects: ['Grid', 'UnityWorker', 'PySyft', 'syft.js'],
       cta: {
         text: 'Start Contributing',
         link: 'https://github.com/OpenMined/Docs'

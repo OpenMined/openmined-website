@@ -4,6 +4,11 @@ import ExternalLink from '../../../components/external-link';
 
 import RepoIcon from '../../../components/repo-icon';
 
+import {
+  matchRepositoryToName,
+  generateOMRepositoryLink
+} from '../../../../../helpers/repositories';
+
 const getGraphDisabledClasses = (current, classes) => {
   classes = classes.split(' ');
 
@@ -126,37 +131,38 @@ const Graph = ({ current }) => (
   </div>
 );
 
-const Info = ({ current, data }) => {
-  let info;
+const Info = ({ repositories, info }) => (
+  <div className="info">
+    <Heading level={5}>{info.title}</Heading>
+    <p className="description">{info.description}</p>
+    {info.repositories.length > 0 && (
+      <div>
+        <Heading level={6}>Contribute</Heading>
+        <ul className="repos">
+          {info.repositories.map((repository, key) => {
+            const { name, shortName } = matchRepositoryToName(
+              repository,
+              repositories
+            );
 
-  data.forEach(dataItem => {
-    if (dataItem.heading === current) {
-      info = dataItem;
-    }
-  });
+            const link = generateOMRepositoryLink(shortName);
 
-  return (
-    <div className="info">
-      <Heading level={5}>{info.title}</Heading>
-      <p className="description">{info.description}</p>
-      <Heading level={6}>Contribute</Heading>
-      <ul className="repos">
-        {info.repositories.map(({ title, link }, key) => {
-          return (
-            <li key={key}>
-              <ExternalLink to={link}>
-                <div className="icon">
-                  <RepoIcon repo={title} />
-                </div>
-                <span className="name">{title}</span>
-              </ExternalLink>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
+            return (
+              <li key={key}>
+                <ExternalLink to={link}>
+                  <div className="icon">
+                    <RepoIcon repo={name} />
+                  </div>
+                  <span className="name">{name}</span>
+                </ExternalLink>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    )}
+  </div>
+);
 
 const StepSelector = ({ current, data, changeCurrent }) => {
   const insertIntoArray = (arr, value) => {
@@ -215,8 +221,29 @@ class Process extends Component {
     }
   }
 
+  matchContentToCurrent(current, content, repositories) {
+    let info;
+
+    content.some(item => {
+      if (item.heading === current) {
+        info = item;
+
+        return true;
+      }
+
+      return false;
+    });
+
+    return info;
+  }
+
   render() {
-    const { title, description, content } = this.props;
+    const { repositories, title, description, content } = this.props;
+
+    const currentInfo =
+      repositories.length > 0
+        ? this.matchContentToCurrent(this.state.current, content, repositories)
+        : {};
 
     return (
       <div id="process">
@@ -252,8 +279,8 @@ class Process extends Component {
                   sizes={{ small: 12, large: 5, xlarge: 4 }}
                   offsets={{ large: 1, xlarge: 1 }}
                 >
-                  {this.state.current && (
-                    <Info current={this.state.current} data={content} />
+                  {repositories.length > 0 && (
+                    <Info info={currentInfo} repositories={repositories} />
                   )}
                 </Column>
               </Row>
