@@ -85,7 +85,7 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
 
 const Issues = ({ issues, link }) => (
   <ul className="issues">
-    {issues.length <= 0 && (
+    {issues.length && (
       <li className="no-issues">
         <span>There are no issues for this repository.</span>
         <br />
@@ -205,14 +205,14 @@ class Timeline extends Component {
                 >
                   <Heading level={5}>Top Issues</Heading>
                   <Issues
-                    issues={currentRepository.topIssues}
+                    issues={currentRepository.topIssues || []}
                     link={generateOMRepositoryLink(currentRepository)}
                   />
                 </Column>
                 <Column sizes={{ small: 12, large: 6, xlarge: 5 }}>
                   <Heading level={5}>Recent Issues</Heading>
                   <Issues
-                    issues={currentRepository.recentIssues}
+                    issues={currentRepository.recentIssues || []}
                     link={generateOMRepositoryLink(currentRepository)}
                   />
                 </Column>

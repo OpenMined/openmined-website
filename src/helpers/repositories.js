@@ -9,9 +9,11 @@ export const matchRepositoryToName = (projects, repositories) => {
   } else {
     let list = [];
 
-    projects.forEach(project => {
-      list.push(matchSingle(project));
-    });
+    if (projects) {
+      projects.forEach(project => {
+        list.push(matchSingle(project));
+      });
+    }
 
     return list;
   }
