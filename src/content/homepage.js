@@ -48,28 +48,28 @@ export default {
         title: 'Distribute via OpenGrid',
         description:
           'Upon submission, the model is encrypted/shared and uploaded to an OpenGrid network. This could be a private network within an enterprise or the public OpenGrid our community actively supports.',
-        repositories: []
+        repositories: ['Grid']
       },
       {
         heading: 'Train',
         title: 'Users train the model',
         description:
           'Members of the OpenGrid network, who we call "miners", anonymously pull down the encrypted model from OpenGrid should they have the correct data required by the model. They then train the encrypted/shared model locally on their device.',
-        repositories: ['UnityWorker', 'PySyft', 'Adapters', 'OpenMined UI']
+        repositories: ['Grid', 'PySyft']
       },
       {
         heading: 'Reward',
         title: 'Reward the miners',
         description:
           'With each party remaining unknown to the other, the miner uploads a new version of the model based on their local training. Their submission is rewarded proportionate to how much they improve the accuracy of the model.',
-        repositories: []
+        repositories: ['Grid']
       },
       {
         heading: 'Deliver',
         title: 'Deliver the results securely',
         description:
           "Once a success criteria is met, the model is decrypted by a private key or share held only by the data scientist. All the while, neither party has access to each other's data or intellectual property.",
-        repositories: []
+        repositories: ['Grid', 'PySyft']
       }
     ]
   },
