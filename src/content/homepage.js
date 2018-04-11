@@ -101,7 +101,7 @@ export default {
       projects: ['Grid', 'UnityWorker', 'PySyft', 'syft.js'],
       cta: {
         text: 'Start Contributing',
-        link: 'https://github.com/OpenMined/Docs'
+        link: 'https://github.com/OpenMined'
       }
     }
   },
