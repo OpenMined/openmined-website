@@ -213,6 +213,10 @@ class Blog extends Component {
       categories
     );
 
+    // TODO: Obviously we don't want to do it like this long term... good for now.
+    // Tags: Private ML (15), ...
+    const digsTags = [15];
+
     return (
       <Page
         id="blog"
@@ -232,7 +236,7 @@ class Blog extends Component {
                       <li className="digs-filter-description">
                         Sort by a topic:
                       </li>
-                      {content.weekly_digs.digs_tags.map(tag => {
+                      {digsTags.map(tag => {
                         tag = this.lookupTaxonomy(tags, tag, 'id');
 
                         return (
