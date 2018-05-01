@@ -1,7 +1,7 @@
 #mission {
   padding: $large-space 0px;
   @include desktop-up {
-    padding: $xlarge-space + $medium-space 0px;
+    padding: $large-space + $small-space 0px $xlarge-space + $medium-space 0px;
   }
   p {
     font-size: 1.1rem;

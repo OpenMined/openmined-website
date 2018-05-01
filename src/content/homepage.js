@@ -1,3 +1,5 @@
+import sampleImage from '../containers/app/assets/logo-square-color.svg';
+
 export default {
   hero: {
     tagline: 'Building Safe Artificial Intelligence',
@@ -24,6 +26,28 @@ export default {
       }
     ]
   },
+  testimonials: [
+    {
+      name: 'Sample Company 1',
+      link: 'https://www.google.com',
+      image: sampleImage
+    },
+    {
+      name: 'Sample Company 2',
+      link: 'https://www.google.com',
+      image: sampleImage
+    },
+    {
+      name: 'Sample Company 3',
+      link: 'https://www.google.com',
+      image: sampleImage
+    },
+    {
+      name: 'Sample Company 4',
+      link: 'https://www.google.com',
+      image: sampleImage
+    }
+  ],
   mission: {
     title: 'Vision & Mission',
     content: [

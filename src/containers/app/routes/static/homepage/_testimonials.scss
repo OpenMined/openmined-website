@@ -1,0 +1,21 @@
+#testimonials {
+  display: none;
+  @include desktop-up {
+    display: block;
+    padding-top: $xlarge-space + $large-space;
+  }
+  .testimonial-list {
+    display: flex;
+    justify-content: space-around;
+    .testimonial {
+      .image {
+        height: 60px;
+        transition: filter $anim-time $anim-func;
+        filter: grayscale(100%);
+        &:hover {
+          filter: grayscale(0%);
+        }
+      }
+    }
+  }
+}

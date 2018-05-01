@@ -8,6 +8,7 @@ import { Page } from 'openmined-ui';
 
 import FooterLinks from '../../../components/footer-links';
 import Hero from './hero';
+import Testimonials from './testimonials';
 import Mission from './mission';
 import Process from './process';
 import Timeline from './timeline';
@@ -23,6 +24,7 @@ class Homepage extends Component {
   render() {
     const {
       hero,
+      testimonials,
       mission,
       process,
       timeline,
@@ -36,6 +38,7 @@ class Homepage extends Component {
     return (
       <Page id="homepage">
         <Hero addNotification={this.props.addNotification} {...hero} />
+        <Testimonials testimonials={testimonials} />
         <Mission {...mission} />
         <Process repositories={repositories} {...process} />
         <Timeline repositories={repositories} {...timeline} />
