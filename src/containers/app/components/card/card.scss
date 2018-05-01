@@ -1,0 +1,91 @@
+@import 'variables';
+
+$card-height: 400px;
+$card-padding: $medium-space + $small-space;
+
+.card {
+  position: relative;
+  background: $white;
+  padding: $card-padding;
+  margin-bottom: $medium-space;
+  border-radius: $border-radius;
+  box-shadow: 0px $small-space $medium-space 0px rgba($black, 0.1);
+  @include desktop-up() {
+    height: $card-height;
+  }
+  &:hover {
+    .header:after {
+      border-left: $small-space solid $primary-color;
+    }
+  }
+  .header {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      margin-top: -$small-space;
+      margin-right: -$small-space;
+      right: 0px;
+      width: 0px;
+      height: 0px;
+      transition: border $anim-time $anim-func;
+      border: $small-space solid transparent;
+      border-left: $small-space solid $light-gray;
+    }
+    .subtitle {
+      margin-top: 0px;
+      color: $light-gray;
+      @include capped-text(1px);
+    }
+    .heading {
+      margin-top: 0px;
+      color: $black;
+      font-size: 1.35rem;
+    }
+  }
+  .content {
+    color: $medium-gray;
+    font-size: 1.1rem;
+    line-height: 2.25rem;
+    max-height: 150px;
+    overflow: hidden;
+  }
+  .links {
+    padding-left: 0px;
+    margin-bottom: 0px;
+    list-style-type: none;
+    @include desktop-up() {
+      position: absolute;
+      bottom: $card-padding;
+      left: $card-padding;
+      width: 100%;
+    }
+    .content-link {
+      &:last-of-type a {
+        margin-bottom: 0px;
+      }
+      a {
+        display: flex;
+        align-items: center;
+        margin-bottom: $small-space;
+        &:hover .text {
+          color: $black;
+        }
+        .icon {
+          background: $black;
+          width: $large-space;
+          height: $large-space;
+          border-radius: $border-radius;
+          margin-right: $small-space;
+        }
+        .text {
+          color: $medium-gray;
+          font-size: 0.9rem;
+          transition: color $anim-time $anim-func;
+          @include capped-text(2px);
+        }
+      }
+    }
+  }
+}

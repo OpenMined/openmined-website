@@ -2,16 +2,27 @@ export default {
   hero: {
     tagline: 'Building Safe Artificial Intelligence',
     description:
-      'OpenMined is an open-source community focused on researching, developing, and elevating tools for secure, privacy-preserving, value-aligned artificial intelligence.',
-    cta: {
-      text: 'Join the Community',
-      link: 'http://slack.openmined.org/'
-    },
-    console: {
-      version: 'V 0.3.0 - “Lithium”',
-      username: 'open-miner',
-      code: 'curl -Ls git.io/openmined | docker-compose -f - up'
-    }
+      'OpenMined is an open-source community focused on researching, developing, and promoting tools for secure, privacy-preserving, value-aligned artificial intelligence.',
+    steps: [
+      {
+        link: 'https://www.google.com',
+        subtitle: 'Step One',
+        heading: 'Setup Worker',
+        content:
+          'Also called a "Mine", the worker is where your personal data is stored. Using the worker, you can download models and train them from your own hardware.',
+        colab: 'https://www.google.com/search?q=colab',
+        local: 'https://www.google.com/search?q=local'
+      },
+      {
+        link: 'https://www.google.com',
+        subtitle: 'Step Two',
+        heading: 'Setup Client',
+        content:
+          'Using the “Syft” project, you may create models for workers to train. All models are encrypted via multi-party computation or homomorphic encryption.',
+        colab: 'https://www.google.com/search?q=colab',
+        local: 'https://www.google.com/search?q=local'
+      }
+    ]
   },
   mission: {
     title: 'Vision & Mission',
