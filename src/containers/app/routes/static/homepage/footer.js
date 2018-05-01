@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Column, Container, Heading } from 'openmined-ui';
+import ImageButton from '../../../components/image-button';
 import ExternalLink from '../../../components/external-link';
 
 const Footer = ({ questions, movement, members }) => (
@@ -35,32 +36,17 @@ const Footer = ({ questions, movement, members }) => (
           offsets={{ xlarge: 1 }}
           className="ctas"
         >
-          {movement.ctas.map(({ type, text, link, count, precise }, key) => {
-            let icon;
-
-            if (type === 'Github') {
-              icon = 'fa-github';
-            } else if (type === 'Slack') {
-              icon = 'fa-slack';
-            } else if (type === 'Newsletter') {
-              icon = 'fa-envelope';
-            }
-
-            return (
-              <div className="button-container" key={key}>
-                <ExternalLink to={link} className="button white">
-                  <i className={`fa ${icon}`} />
-                  <span>{text}</span>
-                </ExternalLink>
-                {count !== 0 && (
-                  <span className="count">
-                    {!precise && '> '}
-                    {count.toLocaleString()} people
-                  </span>
-                )}
-              </div>
-            );
-          })}
+          {movement.ctas.map((cta, key) => (
+            <div className="button-container" key={key}>
+              <ImageButton {...cta} color="white" />
+              {cta.count !== 0 && (
+                <span className="count">
+                  {!cta.precise && '> '}
+                  {cta.count.toLocaleString()} people
+                </span>
+              )}
+            </div>
+          ))}
         </Column>
         {members && (
           <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>

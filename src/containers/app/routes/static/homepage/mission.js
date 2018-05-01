@@ -1,12 +1,14 @@
 import React from 'react';
-import { Row, Column, Container, Heading } from 'openmined-ui';
+import { Row, Column, Container } from 'openmined-ui';
 
-const Mission = ({ title, content }) => (
+import SectionHeading from '../../../components/section-heading';
+
+const Mission = ({ title, cta, content }) => (
   <div id="mission">
     <Container>
       <Row>
         <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-          <Heading level={3}>{title}</Heading>
+          <SectionHeading title={title} cta={cta} />
           {content.map(({ text, strong }, key) => {
             if (strong) {
               return (

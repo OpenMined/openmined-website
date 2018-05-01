@@ -1,5 +1,44 @@
 import sampleImage from '../containers/app/assets/logo-square-color.svg';
 
+import githubIcon from '../containers/app/assets/icons/github.svg';
+import openCollectiveIcon from '../containers/app/assets/icons/open-collective.svg';
+import youtubeIcon from '../containers/app/assets/icons/youtube.svg';
+import slackIcon from '../containers/app/assets/icons/slack.svg';
+import emailIcon from '../containers/app/assets/icons/email.svg';
+
+const buttons = {
+  contribute: {
+    type: 'Github',
+    text: 'Start Contributing',
+    icon: githubIcon,
+    link: 'https://github.com/OpenMined'
+  },
+  donate: {
+    type: 'OpenCollective',
+    text: 'Donate',
+    icon: openCollectiveIcon,
+    link: 'https://opencollective.com/openmined'
+  },
+  watchIntro: {
+    type: 'YouTube',
+    text: 'Watch Intro',
+    icon: youtubeIcon,
+    link: 'https://www.youtube.com/watch?v=sXFmKquiVnk'
+  },
+  chat: {
+    type: 'Slack',
+    text: 'Chat on Slack',
+    icon: slackIcon,
+    link: 'http://slack.openmined.org'
+  },
+  newsletter: {
+    type: 'Mailchimp',
+    text: 'Join Newsletter',
+    icon: emailIcon,
+    link: 'http://eepurl.com/cW1Fqj'
+  }
+};
+
 export default {
   hero: {
     tagline: 'Building Safe Artificial Intelligence',
@@ -50,6 +89,7 @@ export default {
   ],
   mission: {
     title: 'Vision & Mission',
+    cta: buttons.donate,
     content: [
       {
         text:
@@ -134,10 +174,7 @@ export default {
         }
       ],
       projects: ['Grid', 'UnityWorker', 'PySyft', 'syft.js'],
-      cta: {
-        text: 'Start Contributing',
-        link: 'https://github.com/OpenMined'
-      }
+      cta: buttons.contribute
     }
   },
   questions: {
@@ -164,23 +201,17 @@ export default {
     title: 'Join the Movement',
     ctas: [
       {
-        type: 'Github',
-        text: 'Start Contributing',
-        link: 'https://github.com/OpenMined',
+        ...buttons.contribute,
         count: 0,
         precise: true
       },
       {
-        type: 'Slack',
-        text: 'Chat on Slack',
-        link: 'http://slack.openmined.org',
+        ...buttons.chat,
         count: 2500,
         precise: false
       },
       {
-        type: 'Newsletter',
-        text: 'Join Newsletter',
-        link: 'http://eepurl.com/cW1Fqj',
+        ...buttons.newsletter,
         count: 0,
         precise: true
       }

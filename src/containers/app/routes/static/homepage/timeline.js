@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Column, Container, Heading } from 'openmined-ui';
 import moment from 'moment';
 import RepoIcon from '../../../components/repo-icon';
+import ImageButton from '../../../components/image-button';
 import ExternalLink from '../../../components/external-link';
 
 import {
@@ -223,10 +224,7 @@ class Timeline extends Component {
         <Container>
           <Row>
             <Column sizes={{ small: 12 }} className="cta-container">
-              <ExternalLink to={cta.link} className="button black">
-                <i className="fa fa-github" />
-                <span>{cta.text}</span>
-              </ExternalLink>
+              <ImageButton {...cta} inverted />
             </Column>
           </Row>
         </Container>

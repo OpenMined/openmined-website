@@ -4,8 +4,8 @@ import Tilt from 'react-tilt';
 
 import ExternalLink from '../external-link';
 
-import colabIcon from './colab.svg';
-import localIcon from './local.svg';
+import colabIcon from '../../assets/icons/colab.svg';
+import localIcon from '../../assets/icons/local.svg';
 
 import './card.css';
 
@@ -20,7 +20,16 @@ const ContentLink = ({ link, icon, text }) => (
   </li>
 );
 
-const Card = ({ link, subtitle, heading, content, colab, local, axis }) => (
+const Card = ({
+  link,
+  subtitle,
+  level = 4,
+  heading,
+  content,
+  colab,
+  local,
+  axis
+}) => (
   <Tilt
     className="card"
     options={{ reverse: true, max: 10, scale: 1, speed: 250, axis }}
@@ -28,7 +37,7 @@ const Card = ({ link, subtitle, heading, content, colab, local, axis }) => (
     <ExternalLink to={link} className="card-click">
       <div className="header">
         <p className="subtitle">{subtitle}</p>
-        <Heading level={3}>{heading}</Heading>
+        <Heading level={level}>{heading}</Heading>
       </div>
       <p className="content">{content}</p>
     </ExternalLink>

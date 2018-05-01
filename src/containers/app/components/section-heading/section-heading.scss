@@ -1,0 +1,23 @@
+@import 'variables';
+
+.section-heading {
+  margin-bottom: $medium-space;
+  display: flex;
+  align-items: center;
+  .heading {
+    margin: 0px;
+    margin-right: $medium-space;
+  }
+  .line {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(
+      to left,
+      rgba($light-gray, 0),
+      rgba($light-gray, 1)
+    );
+  }
+  .button {
+    margin: 0px;
+  }
+}
