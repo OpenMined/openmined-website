@@ -1,15 +1,12 @@
 #mission {
-  padding: $large-space 0px;
+  padding-top: $large-space;
   @include desktop-up {
-    padding: $large-space + $small-space 0px $xlarge-space + $medium-space 0px;
+    padding-top: $large-space + $small-space;
   }
   p {
     font-size: 1.1rem;
     color: $medium-gray;
     line-height: 2.25rem;
-    @include desktop-up {
-      line-height: 2.5rem;
-    }
     span {
       @supports (box-decoration-break: clone) {
         border-radius: $border-radius;

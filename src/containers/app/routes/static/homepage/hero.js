@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Column, Container, Heading, Button } from 'openmined-ui';
+import { Row, Column, Container, Heading } from 'openmined-ui';
 // import ExternalLink from '../../../components/external-link';
 import Card from '../../../components/card';
 

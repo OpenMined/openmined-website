@@ -1,10 +1,17 @@
+// Testimonial logos
 import sampleImage from '../containers/app/assets/logo-square-color.svg';
 
+// Image button icons
 import githubIcon from '../containers/app/assets/icons/github.svg';
 import openCollectiveIcon from '../containers/app/assets/icons/open-collective.svg';
 import youtubeIcon from '../containers/app/assets/icons/youtube.svg';
 import slackIcon from '../containers/app/assets/icons/slack.svg';
 import emailIcon from '../containers/app/assets/icons/email.svg';
+
+// Pillar icons
+import lockIcon from '../containers/app/assets/icons/lock.svg';
+import computerIcon from '../containers/app/assets/icons/computer.svg';
+import nodesIcon from '../containers/app/assets/icons/nodes.svg';
 
 const buttons = {
   contribute: {
@@ -106,6 +113,75 @@ export default {
       }
     ]
   },
+  pillars: [
+    {
+      colors: ['yellow', 'green'],
+      icon: lockIcon,
+      title: 'Secure',
+      description:
+        'Training on the OpenMined platform is generally done by two methods of encryption: multi-party computation and homomorphic encryption. Both methods of encryption protect the model’s intellectual property and ensures the user’s personal information is secure.',
+      cards: [
+        {
+          link: 'https://www.google.com',
+          subtitle: 'Secure',
+          heading: 'Multi-party Computation',
+          content:
+            'This involves participation of multiple workers training a single model together and therefore is used on "shared" models.',
+          colab: 'https://www.google.com/search?q=colab'
+        },
+        {
+          link: 'https://www.google.com',
+          subtitle: 'Secure',
+          heading: 'Homomorphic Computation',
+          content:
+            'This is used when a model must be trained in an encrypted state. Here the model knows nothing of the data and the data owner knows nothing of the model.',
+          colab: 'https://www.google.com/search?q=colab'
+        }
+      ]
+    },
+    {
+      colors: ['green', 'blue'],
+      icon: computerIcon,
+      title: 'Private',
+      description:
+        'Privacy is at the core of OpenMined - ensuring that both the trainer of the model and the data scientist creating the model are protected. Using this system, neither the intellectual property, nor the data being trained on, are known to either party.',
+      cards: [
+        {
+          link: 'https://www.google.com',
+          subtitle: 'Private',
+          heading: 'Federated Learning',
+          content:
+            "Federated learning is the training of AI models on the end-user's device. With OpenMined, we can ensure this is done without the potential for IP disclosure.",
+          colab: 'https://www.google.com/search?q=colab'
+        },
+        {
+          link: 'https://www.google.com',
+          subtitle: 'Private',
+          heading: 'Differential Privacy',
+          content:
+            "A model demands access to certain data in order to train properly. With differential privacy, you can ensure that the end-user's data is separated from the model.",
+          colab: 'https://www.google.com/search?q=colab'
+        }
+      ]
+    },
+    {
+      colors: ['blue', 'black'],
+      icon: nodesIcon,
+      title: 'Value-aligned',
+      description:
+        'Ensuring that Workers are fairly compensated and that a model is properly and accurately trained is at the core of the OpenMined system. Using value measurement, it can be determined that a model has been successfully trained with a provided margin of error.',
+      cards: [
+        {
+          link: 'https://www.google.com',
+          subtitle: 'Valuable',
+          heading: 'Value Measurement',
+          content:
+            'This is the means by which a model can be tested for training completeness within a certain error or success tolerance.',
+          colab: 'https://www.google.com/search?q=colab'
+        }
+      ]
+    }
+  ],
   process: {
     title: 'Our Blueprint for Safe, Narrow AI',
     description:

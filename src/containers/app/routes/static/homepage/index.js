@@ -10,6 +10,7 @@ import FooterLinks from '../../../components/footer-links';
 import Hero from './hero';
 import Testimonials from './testimonials';
 import Mission from './mission';
+import Pillars from './pillars';
 import Process from './process';
 import Timeline from './timeline';
 import Footer from './footer';
@@ -26,6 +27,7 @@ class Homepage extends Component {
       hero,
       testimonials,
       mission,
+      pillars,
       process,
       timeline,
       questions,
@@ -40,6 +42,7 @@ class Homepage extends Component {
         <Hero addNotification={this.props.addNotification} {...hero} />
         <Testimonials testimonials={testimonials} />
         <Mission {...mission} />
+        <Pillars pillars={pillars} />
         <Process repositories={repositories} {...process} />
         <Timeline repositories={repositories} {...timeline} />
         <Footer questions={questions} movement={movement} members={members} />

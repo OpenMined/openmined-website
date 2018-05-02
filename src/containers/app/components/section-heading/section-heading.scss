@@ -2,13 +2,16 @@
 
 .section-heading {
   margin-bottom: $medium-space;
-  display: flex;
-  align-items: center;
+  @include tablet-up() {
+    display: flex;
+    align-items: center;
+  }
   .heading {
     margin: 0px;
     margin-right: $medium-space;
   }
   .line {
+    display: none;
     flex-grow: 1;
     height: 1px;
     background: linear-gradient(
@@ -16,8 +19,15 @@
       rgba($light-gray, 0),
       rgba($light-gray, 1)
     );
+    @include tablet-up() {
+      display: block;
+    }
   }
   .button {
-    margin: 0px;
+    margin-top: $medium-space;
+    margin-bottom: 0px;
+    @include tablet-up() {
+      margin: 0px;
+    }
   }
 }

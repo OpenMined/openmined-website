@@ -20,28 +20,37 @@ $card-padding: $medium-space + $small-space;
   }
   .header {
     position: relative;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      margin-top: -$small-space;
-      margin-right: -$small-space;
-      right: 0px;
-      width: 0px;
-      height: 0px;
-      transition: border $anim-time $anim-func;
-      border: $small-space solid transparent;
-      border-left: $small-space solid $light-gray;
+    @include tablet-up() {
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        margin-top: -$small-space;
+        margin-right: -$small-space;
+        right: 0px;
+        width: 0px;
+        height: 0px;
+        transition: border $anim-time $anim-func;
+        border: $small-space solid transparent;
+        border-left: $small-space solid $light-gray;
+      }
     }
     .subtitle {
       margin-top: 0px;
       color: $light-gray;
+      margin-bottom: $small-space / 2;
       @include capped-text(1px);
+      @include tablet-up() {
+        margin-bottom: $small-space;
+      }
     }
     .heading {
       margin-top: 0px;
       color: $black;
-      font-size: 1.35rem;
+      @include tablet-up() {
+        font-size: 1.35rem;
+        padding-right: $medium-space;
+      }
     }
   }
   .content {

@@ -1,0 +1,39 @@
+#pillars {
+  padding: $medium-space 0px;
+  @include desktop-up {
+    padding: $large-space 0px $xlarge-space 0px;
+  }
+  .pillar {
+    margin-bottom: $large-space;
+    .icon-dots {
+      display: none;
+      @include desktop-up() {
+        display: block;
+      }
+      .icon {
+        display: block;
+        margin: 0px auto;
+        &.yellow {
+          // $warning-color;
+          filter: url(#yellow-filter);
+        }
+        &.green {
+          // $success-color;
+          filter: url(#green-filter);
+        }
+        &.blue {
+          // $primary-color;
+          filter: url(#blue-filter);
+        }
+      }
+    }
+    .pillar-content {
+      .description {
+        color: $medium-gray;
+        font-size: 1.1rem;
+        line-height: 2.25rem;
+        margin-bottom: $medium-space;
+      }
+    }
+  }
+}
