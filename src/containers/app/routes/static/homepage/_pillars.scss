@@ -1,33 +1,33 @@
 #pillars {
   padding: $medium-space 0px;
   @include desktop-up {
-    padding: $large-space 0px $xlarge-space 0px;
+    padding: $large-space 0px $medium-space 0px;
   }
   .pillar {
-    margin-bottom: $large-space;
+    &:last-of-type .pillar-content {
+      margin-bottom: $xlarge-space + $medium-space;
+    }
     .icon-dots {
       display: none;
       @include desktop-up() {
-        display: block;
+        display: flex;
+        flex-direction: column;
       }
       .icon {
         display: block;
+        margin: $small-space auto;
+      }
+      .dots-track {
+        flex-grow: 1;
         margin: 0px auto;
-        &.yellow {
-          // $warning-color;
-          filter: url(#yellow-filter);
-        }
-        &.green {
-          // $success-color;
-          filter: url(#green-filter);
-        }
-        &.blue {
-          // $primary-color;
-          filter: url(#blue-filter);
+        border-radius: 1000em;
+        .dots-mask {
+          animation: moveDots 1.5s infinite linear;
         }
       }
     }
     .pillar-content {
+      margin-bottom: $large-space;
       .description {
         color: $medium-gray;
         font-size: 1.1rem;
