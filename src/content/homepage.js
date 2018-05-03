@@ -183,9 +183,8 @@ export default {
     }
   ],
   process: {
-    title: 'Our Blueprint for Safe, Narrow AI',
-    description:
-      'The OpenMined ecosystem incorporates a number of technologies including federated learning, differential privacy, multi-party computation, homomorphic encryption, peer-to-peer networking, and open marketplace tools such as blockchain. Click on the sections below to learn more about each step in the process.',
+    title: 'How it Works',
+    cta: buttons.watchIntro,
     content: [
       {
         heading: 'Create',

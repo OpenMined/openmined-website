@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Column, Container, Heading } from 'openmined-ui';
 import ExternalLink from '../../../components/external-link';
+import SectionHeading from '../../../components/section-heading';
 
 import RepoIcon from '../../../components/repo-icon';
 
@@ -164,45 +165,19 @@ const Info = ({ repositories, info }) => (
   </div>
 );
 
-const StepSelector = ({ current, data, changeCurrent }) => {
-  const insertIntoArray = (arr, value) => {
-    return arr.reduce((result, element, index, array) => {
-      result.push(element);
-      if (index < array.length - 1) {
-        result.push(value);
-      }
-      return result;
-    }, []);
-  };
-
-  data = insertIntoArray(data, { arrow: true });
-
-  return (
-    <ul className="step-selector">
-      {data.map((item, index) => {
-        if (item.arrow) {
-          return (
-            <li className="arrow-hold" key={`step-${index}`}>
-              <span className="arrow" />
-            </li>
-          );
-        } else {
-          let active = item.heading === current ? 'active' : '';
-
-          return (
-            <li
-              className={active}
-              onClick={() => changeCurrent(item.heading)}
-              key={`step-${index}`}
-            >
-              {item.heading}
-            </li>
-          );
-        }
-      })}
-    </ul>
-  );
-};
+const StepSelector = ({ current, data, changeCurrent }) => (
+  <ul className="step-selector">
+    {data.map((item, index) => (
+      <li
+        className={item.heading === current ? 'active' : ''}
+        onClick={() => changeCurrent(item.heading)}
+        key={`step-${index}`}
+      >
+        {item.heading}
+      </li>
+    ))}
+  </ul>
+);
 
 class Process extends Component {
   constructor(props) {
@@ -238,7 +213,7 @@ class Process extends Component {
   }
 
   render() {
-    const { repositories, title, description, content } = this.props;
+    const { repositories, title, cta, content } = this.props;
 
     const currentInfo =
       repositories.length > 0
@@ -250,42 +225,34 @@ class Process extends Component {
         <Container>
           <Row>
             <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-              <Heading level={3}>{title}</Heading>
-              <p className="description">{description}</p>
+              <SectionHeading title={title} cta={cta} color="white" />
             </Column>
           </Row>
           {content &&
             this.state.current && (
-              <Row>
+              <Row className="step-content">
                 <Column
-                  sizes={{ small: 12, xlarge: 10 }}
+                  sizes={{ small: 12, large: 6, xlarge: 4 }}
                   offsets={{ xlarge: 1 }}
-                >
-                  <StepSelector
-                    current={this.state.current}
-                    data={content}
-                    changeCurrent={newCurrent =>
-                      this.setState({ current: newCurrent })
-                    }
-                  />
-                </Column>
-                <Column
-                  sizes={{ small: 12, large: 6, xlarge: 6 }}
-                  offsets={{ xlarge: 1 }}
-                >
-                  <Graph current={this.state.current} />
-                </Column>
-                <Column
-                  sizes={{ small: 12, large: 5, xlarge: 4 }}
-                  offsets={{ large: 1, xlarge: 1 }}
                 >
                   {repositories.length > 0 && (
                     <Info info={currentInfo} repositories={repositories} />
                   )}
                 </Column>
+                <Column
+                  sizes={{ small: 12, large: 6, xlarge: 5 }}
+                  offsets={{ xlarge: 1 }}
+                >
+                  <Graph current={this.state.current} />
+                </Column>
               </Row>
             )}
         </Container>
+        <StepSelector
+          current={this.state.current}
+          data={content}
+          changeCurrent={newCurrent => this.setState({ current: newCurrent })}
+        />
       </div>
     );
   }
