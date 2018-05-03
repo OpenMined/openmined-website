@@ -37,39 +37,47 @@ $process-node-icon: 60%;
     color: $white;
   }
   .step-selector {
-    padding: $medium-space 0px 0px 0px;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0px;
-    @include tablet-up {
-      flex-direction: row;
-      justify-content: space-between;
+    .step-progress {
+      .track {
+      }
+      .current {
+      }
     }
-    @include desktop-up {
-      padding: $xlarge-space + $medium-space 0px 0px 0px;
-    }
-    li {
-      @include capped-text(2px);
-      text-align: center;
-      width: 100%;
-      padding: $small-space 0px;
-      flex-grow: 1;
-      background: $dark-gray;
-      color: $white;
-      cursor: pointer;
-      opacity: 0.5;
-      transition: opacity $anim-time $anim-func;
-      &:hover {
-        opacity: 1;
+    ul {
+      padding: $medium-space 0px 0px 0px;
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0px;
+      @include tablet-up {
+        flex-direction: row;
+        justify-content: space-between;
       }
       @include desktop-up {
-        font-size: 1.1rem;
-        padding: $medium-space 0px;
+        padding: $xlarge-space + $medium-space 0px 0px 0px;
       }
-      &.active {
-        opacity: 1;
+      li {
+        @include capped-text(2px);
+        text-align: center;
+        width: 100%;
+        padding: $small-space 0px;
+        flex-grow: 1;
+        background: $dark-gray;
+        color: $white;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity $anim-time $anim-func;
+        &:hover {
+          opacity: 1;
+        }
+        @include desktop-up {
+          font-size: 1.1rem;
+          padding: $medium-space 0px;
+        }
+        &.active {
+          opacity: 1;
+        }
       }
     }
   }

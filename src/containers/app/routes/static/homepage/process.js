@@ -166,17 +166,23 @@ const Info = ({ repositories, info }) => (
 );
 
 const StepSelector = ({ current, data, changeCurrent }) => (
-  <ul className="step-selector">
-    {data.map((item, index) => (
-      <li
-        className={item.heading === current ? 'active' : ''}
-        onClick={() => changeCurrent(item.heading)}
-        key={`step-${index}`}
-      >
-        {item.heading}
-      </li>
-    ))}
-  </ul>
+  <div className="step-selector">
+    <div className="step-progress">
+      <span className="track" />
+      <span className="current" />
+    </div>
+    <ul>
+      {data.map((item, index) => (
+        <li
+          className={index === current ? 'active' : ''}
+          onClick={() => changeCurrent(index)}
+          key={`step-${index}`}
+        >
+          {item.heading}
+        </li>
+      ))}
+    </ul>
+  </div>
 );
 
 class Process extends Component {
@@ -184,23 +190,51 @@ class Process extends Component {
     super(props);
 
     this.state = {
-      current: null
+      current: null,
+      period: 5000, // (seconds),
+      playing: true
     };
   }
 
-  componentWillReceiveProps() {
-    if (this.props.content && !this.state.current) {
-      this.setState({
-        current: this.props.content[0].heading
-      });
+  timer() {
+    let newCurrent = this.state.current + 1;
+
+    if (newCurrent >= this.props.content.length) {
+      newCurrent = 0;
     }
+
+    console.log('VALUES', this.state.current, newCurrent);
+
+    this.setState({
+      current: newCurrent
+    });
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.content && this.state.current === null) {
+      this.setState({
+        current: 0
+      });
+
+      this.intervalId = setInterval(this.timer.bind(this), this.state.period);
+    }
+  }
+
+  componentDidUpdate() {
+    if (!this.state.playing) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
 
   matchContentToCurrent(current, content, repositories) {
     let info;
 
     content.some(item => {
-      if (item.heading === current) {
+      if (item.heading === content[current].heading) {
         info = item;
 
         return true;
@@ -229,7 +263,7 @@ class Process extends Component {
             </Column>
           </Row>
           {content &&
-            this.state.current && (
+            this.state.current !== null && (
               <Row className="step-content">
                 <Column
                   sizes={{ small: 12, large: 6, xlarge: 4 }}
@@ -243,7 +277,7 @@ class Process extends Component {
                   sizes={{ small: 12, large: 6, xlarge: 5 }}
                   offsets={{ xlarge: 1 }}
                 >
-                  <Graph current={this.state.current} />
+                  <Graph current={content[this.state.current].heading} />
                 </Column>
               </Row>
             )}
@@ -251,7 +285,9 @@ class Process extends Component {
         <StepSelector
           current={this.state.current}
           data={content}
-          changeCurrent={newCurrent => this.setState({ current: newCurrent })}
+          changeCurrent={newCurrent =>
+            this.setState({ current: newCurrent, playing: false })
+          }
         />
       </div>
     );
