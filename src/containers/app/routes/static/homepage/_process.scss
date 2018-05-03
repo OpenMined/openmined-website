@@ -1,7 +1,7 @@
-$process-arrow: 5px;
 $process-height: 360px;
 $process-node: 80px;
 $process-node-icon: 60%;
+$process-timer-size: 6px;
 
 @keyframes distributingAnimation {
   0% {
@@ -27,6 +27,16 @@ $process-node-icon: 60%;
   }
 }
 
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
 #process {
   background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
   padding: $large-space 0px 0px 0px;
@@ -37,14 +47,23 @@ $process-node-icon: 60%;
     color: $white;
   }
   .step-selector {
+    padding: $medium-space 0px 0px 0px;
+    @include desktop-up {
+      padding: $xlarge-space + $medium-space 0px 0px 0px;
+    }
     .step-progress {
-      .track {
-      }
-      .current {
+      position: relative;
+      height: $process-timer-size;
+      width: 0%;
+      background: $primary-color;
+      transition: height $anim-time $anim-func;
+      &.stopped {
+        height: 0px;
+        animation-play-state: paused;
       }
     }
     ul {
-      padding: $medium-space 0px 0px 0px;
+      padding-left: 0px;
       list-style-type: none;
       display: flex;
       flex-direction: column;
@@ -53,9 +72,6 @@ $process-node-icon: 60%;
       @include tablet-up {
         flex-direction: row;
         justify-content: space-between;
-      }
-      @include desktop-up {
-        padding: $xlarge-space + $medium-space 0px 0px 0px;
       }
       li {
         @include capped-text(2px);

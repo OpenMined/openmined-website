@@ -165,12 +165,14 @@ const Info = ({ repositories, info }) => (
   </div>
 );
 
-const StepSelector = ({ current, data, changeCurrent }) => (
+const StepSelector = ({ current, duration, playing, data, changeCurrent }) => (
   <div className="step-selector">
-    <div className="step-progress">
-      <span className="track" />
-      <span className="current" />
-    </div>
+    <div
+      className={`step-progress${playing ? '' : ' stopped'}`}
+      style={{
+        animation: `progress ${duration / 1000 * data.length}s linear infinite`
+      }}
+    />
     <ul>
       {data.map((item, index) => (
         <li
@@ -191,7 +193,7 @@ class Process extends Component {
 
     this.state = {
       current: null,
-      period: 5000, // (seconds),
+      duration: 5000,
       playing: true
     };
   }
@@ -202,8 +204,6 @@ class Process extends Component {
     if (newCurrent >= this.props.content.length) {
       newCurrent = 0;
     }
-
-    console.log('VALUES', this.state.current, newCurrent);
 
     this.setState({
       current: newCurrent
@@ -216,43 +216,25 @@ class Process extends Component {
         current: 0
       });
 
-      this.intervalId = setInterval(this.timer.bind(this), this.state.period);
+      this.interval = setInterval(this.timer.bind(this), this.state.duration);
     }
   }
 
   componentDidUpdate() {
     if (!this.state.playing) {
-      clearInterval(this.intervalId);
+      clearInterval(this.interval);
     }
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
-
-  matchContentToCurrent(current, content, repositories) {
-    let info;
-
-    content.some(item => {
-      if (item.heading === content[current].heading) {
-        info = item;
-
-        return true;
-      }
-
-      return false;
-    });
-
-    return info;
+    clearInterval(this.interval);
   }
 
   render() {
     const { repositories, title, cta, content } = this.props;
 
     const currentInfo =
-      repositories.length > 0
-        ? this.matchContentToCurrent(this.state.current, content, repositories)
-        : {};
+      repositories.length > 0 ? content[this.state.current] : {};
 
     return (
       <div id="process">
@@ -284,6 +266,8 @@ class Process extends Component {
         </Container>
         <StepSelector
           current={this.state.current}
+          duration={this.state.duration}
+          playing={this.state.playing}
           data={content}
           changeCurrent={newCurrent =>
             this.setState({ current: newCurrent, playing: false })
