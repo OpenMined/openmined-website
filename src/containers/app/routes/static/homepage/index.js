@@ -7,10 +7,10 @@ import { getGithubData } from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
 import FooterLinks from '../../../components/footer-links';
-import Hero from './hero';
-import Testimonials from './testimonials';
-import Mission from './mission';
-import Pillars from './pillars';
+import Hero from './hero/';
+import Testimonials from './testimonials/';
+import Mission from './mission/';
+import Pillars from './pillars/';
 import Process from './process';
 import Timeline from './timeline';
 import Footer from './footer';

@@ -1,7 +1,16 @@
 import React from 'react';
 import { Row, Column, Container } from 'openmined-ui';
 
-import SectionHeading from '../../../components/section-heading';
+import SectionHeading from '../../../../components/section-heading';
+
+import './mission.css';
+
+const Paragraph = ({ text, strong }) => (
+  <p>
+    {strong && <span>{text}</span>}
+    {!strong && text}
+  </p>
+);
 
 const Mission = ({ title, cta, content }) => (
   <div id="mission">
@@ -9,17 +18,9 @@ const Mission = ({ title, cta, content }) => (
       <Row>
         <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
           <SectionHeading title={title} cta={cta} />
-          {content.map(({ text, strong }, key) => {
-            if (strong) {
-              return (
-                <p key={key}>
-                  <span>{text}</span>
-                </p>
-              );
-            }
-
-            return <p key={key}>{text}</p>;
-          })}
+          {content.map((paragraph, key) => (
+            <Paragraph {...paragraph} key={key} />
+          ))}
         </Column>
       </Row>
     </Container>
