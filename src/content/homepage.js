@@ -223,7 +223,7 @@ export default {
       }
     ]
   },
-  timeline: {
+  status: {
     title: 'Project Timeline',
     content: {
       timeline: [

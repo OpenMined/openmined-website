@@ -1,14 +1,14 @@
 import React from 'react';
 
+const DOT_RADIUS = 6;
+const DOT_DIAMETER = DOT_RADIUS * 2;
+const DOT_SPACING = DOT_DIAMETER;
 const COLORS = {
   yellow: '#F1BF7A',
   green: '#9BCC9A',
   blue: '#62A4AE',
   black: '#333333'
 };
-const DOT_RADIUS = 6;
-const DOT_DIAMETER = DOT_RADIUS * 2;
-const DOT_SPACING = DOT_DIAMETER;
 
 export const IconColorFilter = ({ color, id }) => {
   const hexToRGBToPercent = hex => [

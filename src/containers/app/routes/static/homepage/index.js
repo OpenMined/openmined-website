@@ -11,11 +11,9 @@ import Hero from './hero/';
 import Testimonials from './testimonials/';
 import Mission from './mission/';
 import Pillars from './pillars/';
-import Process from './process';
-import Timeline from './timeline';
-import Footer from './footer';
-
-import './homepage.css';
+import Process from './process/';
+import Status from './status/';
+import Footer from './footer/';
 
 class Homepage extends Component {
   static async getInitialProps(props) {
@@ -29,7 +27,7 @@ class Homepage extends Component {
       mission,
       pillars,
       process,
-      timeline,
+      status,
       questions,
       movement,
       footer
@@ -39,12 +37,12 @@ class Homepage extends Component {
 
     return (
       <Page id="homepage">
-        <Hero addNotification={this.props.addNotification} {...hero} />
+        <Hero {...hero} addNotification={this.props.addNotification} />
         <Testimonials testimonials={testimonials} />
         <Mission {...mission} />
         <Pillars pillars={pillars} />
-        <Process repositories={repositories} {...process} />
-        <Timeline repositories={repositories} {...timeline} />
+        <Process {...process} repositories={repositories} />
+        <Status {...status} repositories={repositories} />
         <Footer questions={questions} movement={movement} members={members} />
         <FooterLinks {...footer} />
       </Page>

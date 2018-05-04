@@ -1,0 +1,54 @@
+@import 'variables';
+
+$timeline-item-height: 20px;
+$github-project-size: 270px;
+
+#status {
+  padding: $large-space 0px;
+  @include desktop-up {
+    padding: $xlarge-space + $medium-space 0px;
+  }
+  @import 'timeline';
+  @import 'projects';
+  .cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: $medium-space;
+    @include desktop-up {
+      margin-top: $large-space;
+    }
+    .button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      &:before,
+      &:after {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+        content: '';
+      }
+      &:before {
+        left: -260px;
+        background: linear-gradient(
+          to right,
+          rgba($light-gray, 0),
+          rgba($light-gray, 1)
+        );
+      }
+      &:after {
+        right: -260px;
+        background: linear-gradient(
+          to left,
+          rgba($light-gray, 0),
+          rgba($light-gray, 1)
+        );
+      }
+      i {
+        margin-right: $small-space;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

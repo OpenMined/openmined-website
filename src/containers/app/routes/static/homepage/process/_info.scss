@@ -1,0 +1,53 @@
+.info {
+  h5 {
+    color: $white;
+    margin-top: 0px;
+  }
+  .description {
+    font-size: 1.1rem;
+    color: $light-gray;
+    line-height: 2.25rem;
+    @include desktop-up {
+      line-height: 2.5rem;
+    }
+  }
+  h6 {
+    font-size: 0.9rem;
+    color: $medium-gray;
+  }
+  .repos {
+    padding: 0px;
+    list-style-type: none;
+    a {
+      display: flex;
+      align-items: center;
+      margin-bottom: $small-space;
+      &:hover .name:after {
+        opacity: 0.25;
+        right: -30px;
+      }
+      .icon {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        margin-right: $small-space;
+        padding: $small-space / 1.5;
+        background: $black;
+        border-radius: $border-radius;
+      }
+      .name {
+        @include capped-text(1px);
+        color: $white;
+        position: relative;
+        &:after {
+          position: absolute;
+          top: 1px;
+          right: -25px;
+          opacity: 0;
+          transition: opacity $anim-time $anim-func, right $anim-time $anim-func;
+          content: '▶';
+        }
+      }
+    }
+  }
+}

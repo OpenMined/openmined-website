@@ -16,7 +16,7 @@ const IconDots = ({ colors, icon, title }) => {
   const maskFilter = filterName(colors[0], 'mask');
 
   return (
-    <Column sizes={{ large: 2 }} offsets={{ xlarge: 1 }} className="icon-dots">
+    <div className="icon-dots">
       <IconColorFilter id={`${iconFilter}`} color={colors[0]} />
       <img
         src={icon}
@@ -31,15 +31,12 @@ const IconDots = ({ colors, icon, title }) => {
         gradientFilter={gradientFilter}
         maskFilter={maskFilter}
       />
-    </Column>
+    </div>
   );
 };
 
 const PillarContent = ({ title, description, cards }) => (
-  <Column
-    sizes={{ small: 12, large: 10, xlarge: 8 }}
-    className="pillar-content"
-  >
+  <div className="pillar-content">
     <SectionHeading title={title} level={4} />
     <p className="description">{description}</p>
     <Row>
@@ -49,14 +46,18 @@ const PillarContent = ({ title, description, cards }) => (
         </Column>
       ))}
     </Row>
-  </Column>
+  </div>
 );
 
-const Pillar = props => {
+const Pillar = pillar => {
   return (
     <Row className="pillar">
-      <IconDots {...props} />
-      <PillarContent {...props} />
+      <Column sizes={{ large: 2 }} offsets={{ xlarge: 1 }}>
+        <IconDots {...pillar} />
+      </Column>
+      <Column sizes={{ small: 12, large: 10, xlarge: 8 }}>
+        <PillarContent {...pillar} />
+      </Column>
     </Row>
   );
 };

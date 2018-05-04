@@ -1,0 +1,70 @@
+#project-timeline {
+  .events {
+    list-style-type: none;
+    padding: 0px;
+    @include desktop-up {
+      display: flex;
+      justify-content: space-between;
+    }
+    .event {
+      display: flex;
+      @include desktop-up {
+        display: block;
+      }
+      &.future {
+        opacity: 0.5;
+      }
+      &.present .marker {
+        background: $primary-color;
+        box-shadow: 0px 0px 0px 2px $primary-color;
+      }
+      .marker {
+        display: block;
+        height: $timeline-item-height;
+        width: $timeline-item-height;
+        border-radius: $round-radius;
+        background: $success-color;
+        border: 2px solid $white;
+        box-shadow: 0px 0px 0px 2px $success-color;
+      }
+      .content {
+        margin-left: $medium-space;
+        margin-bottom: $small-space;
+        @include desktop-up {
+          margin: 0px;
+          margin-top: $medium-space;
+        }
+        .title {
+          text-transform: none;
+          letter-spacing: normal;
+          margin: 0px;
+          @include tablet-only {
+            margin-top: -4px;
+          }
+        }
+        .date {
+          @include capped-text(1px);
+          font-size: 0.85rem;
+          color: $medium-gray;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+  @include desktop-up() {
+    position: relative;
+    width: 100%;
+    margin-top: $large-space;
+    &:before {
+      position: absolute;
+      top: 25px;
+      left: 0px;
+      height: 2px;
+      width: 100%;
+      display: block;
+      z-index: -1;
+      background: $light-gray;
+      content: '';
+    }
+  }
+}

@@ -13,11 +13,6 @@ $card-padding: $medium-space + $small-space;
   @include desktop-up() {
     height: $card-height;
   }
-  &:hover {
-    .header:after {
-      border-left: $small-space solid $primary-color;
-    }
-  }
   .header {
     .subtitle {
       margin-top: 0px;

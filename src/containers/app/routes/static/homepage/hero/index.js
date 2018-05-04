@@ -30,7 +30,7 @@ const Steps = ({ steps }) => (
   </Row>
 );
 
-const Hero = props => (
+const Hero = hero => (
   <div id="hero">
     {/* TODO: This is a temporary fix until we can get this moved over to openmined-ui */}
     <div
@@ -45,8 +45,8 @@ const Hero = props => (
       }}
     />
     <Container>
-      <Main {...props} />
-      <Steps {...props} />
+      <Main {...hero} />
+      <Steps {...hero} />
     </Container>
   </div>
 );
