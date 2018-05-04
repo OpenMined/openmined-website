@@ -309,53 +309,8 @@ export default {
     ]
   },
   status: {
-    title: 'Project Timeline',
-    content: {
-      timeline: [
-        {
-          status: 'past',
-          title: 'Project Launched',
-          date: 'July 2017'
-        },
-        {
-          status: 'past',
-          title: 'Hydrogen Release',
-          date: 'September 2017'
-        },
-        {
-          status: 'past',
-          title: 'Helium Release',
-          date: 'February 2018'
-        },
-        {
-          status: 'present',
-          title: 'Lithium Release',
-          date: 'March 2018'
-        }
-      ],
-      projects: ['Grid', 'UnityWorker', 'PySyft', 'syft.js'],
-      cta: buttons.contribute
-    }
-  },
-  questions: {
-    title: 'Common Questions',
-    content: [
-      {
-        question: 'Why couldn’t I just use fake data to earn a bounty?',
-        answer:
-          'Data owners aren’t compensated for their data - they’re compensated for making a model smarter. This can only be done if you have real data. If it was possible to make a model smarter by using entirely fake data, then data scientists wouldn’t have a problem finding quality datasets to train their models.'
-      },
-      {
-        question: 'Will there be an ICO?',
-        answer: 'No.'
-      },
-      {
-        question:
-          'Isn’t homomorphic encryption too slow to perform at scale currently?',
-        answer:
-          'Not the way we use it. Furthermore, the most computationally intensive models will use multi-party computation instead.'
-      }
-    ]
+    projects: ['Grid', 'UnityWorker', 'PySyft'],
+    cta: buttons.contribute
   },
   movement: {
     title: 'Join the Movement',
@@ -369,6 +324,11 @@ export default {
         ...buttons.chat,
         count: 2500,
         precise: false
+      },
+      {
+        ...buttons.donate,
+        count: 0,
+        precise: true
       },
       {
         ...buttons.newsletter,

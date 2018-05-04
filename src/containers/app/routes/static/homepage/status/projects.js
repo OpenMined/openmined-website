@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Row, Column, Container, Heading } from 'openmined-ui';
 
+import SectionHeading from '../../../../components/section-heading';
 import RepoIcon from '../../../../components/repo-icon';
 import ExternalLink from '../../../../components/external-link';
 
@@ -86,8 +87,10 @@ const ProjectSelector = ({ projects, current, setCurrent }) => (
         key={index}
       >
         <RepoIcon repo={shortName} />
-        <Heading level={4}>{name}</Heading>
-        <p className="description">{description}</p>
+        <div className="info">
+          <Heading level={4}>{name}</Heading>
+          <p className="description">{description}</p>
+        </div>
       </div>
     ))}
   </div>
@@ -101,6 +104,11 @@ const Projects = ({ projects, current, setCurrent }) => {
   return (
     <div id="github-projects">
       <Container>
+        <Row>
+          <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
+            <SectionHeading level={3} title="Project Status" />
+          </Column>
+        </Row>
         <Row>
           <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
             <ProjectSelector

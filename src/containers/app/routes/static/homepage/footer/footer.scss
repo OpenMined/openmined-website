@@ -2,34 +2,34 @@
 
 #footer {
   background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
-  padding-top: $medium-space;
+  padding-top: $large-space;
   @include desktop-up {
-    padding-top: $large-space;
+    padding-top: $xlarge-space + $medium-space;
   }
   h3 {
     color: $white;
   }
-  .questions {
-    margin-top: $small-space;
-    @include desktop-up {
-      margin-top: $medium-space;
-    }
-    .question {
-      margin-bottom: $medium-space;
-      @include desktop-up {
-        margin-bottom: $large-space;
-      }
-      .query {
-        color: $white;
-        font-weight: $bold-weight;
-      }
-      .answer {
-        margin-top: 0px;
-        color: $light-gray;
-        line-height: 2rem;
-      }
-    }
-  }
+  // .questions {
+  //   margin-top: $small-space;
+  //   @include desktop-up {
+  //     margin-top: $medium-space;
+  //   }
+  //   .question {
+  //     margin-bottom: $medium-space;
+  //     @include desktop-up {
+  //       margin-bottom: $large-space;
+  //     }
+  //     .query {
+  //       color: $white;
+  //       font-weight: $bold-weight;
+  //     }
+  //     .answer {
+  //       margin-top: 0px;
+  //       color: $light-gray;
+  //       line-height: 2rem;
+  //     }
+  //   }
+  // }
   .ctas {
     margin-top: $medium-space;
     @include desktop-up {

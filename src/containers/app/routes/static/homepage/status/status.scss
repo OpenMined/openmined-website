@@ -8,7 +8,6 @@ $github-project-size: 270px;
   @include desktop-up {
     padding: $xlarge-space + $medium-space 0px;
   }
-  @import 'timeline';
   @import 'projects';
   .cta-container {
     display: flex;
