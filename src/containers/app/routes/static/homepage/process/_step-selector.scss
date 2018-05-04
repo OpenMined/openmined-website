@@ -41,7 +41,7 @@ $process-timer-size: 6px;
       @include capped-text(2px);
       text-align: center;
       width: 100%;
-      padding: $small-space 0px;
+      padding: $medium-space 0px;
       flex-grow: 1;
       background: $dark-gray;
       color: $white;
@@ -50,7 +50,6 @@ $process-timer-size: 6px;
       transition: opacity $anim-time $anim-func;
       @include desktop-up {
         font-size: 1.1rem;
-        padding: $medium-space 0px;
       }
       &:hover {
         opacity: 1;
