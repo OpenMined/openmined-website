@@ -6,8 +6,10 @@
     padding: $large-space 0px $medium-space 0px;
   }
   .pillar {
-    &:last-of-type .pillar-content {
-      margin-bottom: $xlarge-space + $medium-space;
+    @include desktop-up {
+      &:last-of-type .pillar-content {
+        margin-bottom: $xlarge-space + $medium-space;
+      }
     }
     .icon-dots {
       display: none;

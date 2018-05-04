@@ -1,28 +1,21 @@
-$process-height: 360px;
-$process-node: 80px;
-$process-node-icon: 60%;
+$process-graph-height: 360px;
+$process-graph-node: 80px;
+$process-graph-icon: 50%;
+$process-graph-big-factor: 0.5;
+$process-graph-small-factor: 0.25;
+$process-graph-children-opacity: 0.8;
 
-@keyframes distributingAnimation {
+@keyframes blinkingAnimation {
   0% {
-    background: $black;
+    opacity: $process-graph-children-opacity / 2;
   }
-  50% {
-    background: $warning-color;
-  }
-  100% {
-    background: $black;
-  }
-}
 
-@keyframes dottedAnimation {
-  0% {
-    opacity: 0;
-  }
   50% {
-    opacity: 1;
+    opacity: $process-graph-children-opacity;
   }
+
   100% {
-    opacity: 0;
+    opacity: $process-graph-children-opacity / 2;
   }
 }
 
@@ -31,173 +24,287 @@ $process-node-icon: 60%;
   @include desktop-up {
     display: flex;
     width: 100%;
+    height: $process-graph-height;
     justify-content: space-between;
-    height: $process-height * 0.8;
-    @include widescreen-up {
-      height: $process-height;
-    }
-    .items {
-      list-style-type: none;
-      padding: 0px;
-      margin: 0px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      .repo-icon {
-        transition: all $anim-time $anim-func;
-      }
-      &.disabled {
-        .repo-icon {
-          filter: grayscale(100%);
-          opacity: 0.25;
-        }
-      }
-      &.data-scientists {
-        justify-content: center;
-        .repo-icon {
-          filter: grayscale(100%);
-        }
-        &.finished {
-          .repo-icon {
-            filter: grayscale(0%);
-          }
-        }
-      }
-      &.sonar {
-        .big,
-        .small {
-          transition: background $anim-time $anim-func;
-        }
-        .big {
-          width: $process-node / 2;
-          height: $process-node / 2;
-          opacity: 0.66;
-        }
-        .small {
-          width: $process-node / 4;
-          height: $process-node / 4;
-          opacity: 0.33;
-        }
-        &.distributing {
-          .big,
-          .small {
-            animation: distributingAnimation 1s $anim-func infinite;
-          }
-        }
-        &.distributed {
-          .big,
-          .small {
-            background: $warning-color;
-          }
-        }
-      }
-      &.mines {
-        &.money {
-          .repo-icon {
-            filter: hue-rotate(100deg);
-          }
-        }
-      }
-      .item {
-        position: relative;
-        display: block;
-        width: $process-node;
-        height: $process-node;
-        background: $black;
-        border-radius: $border-radius;
+  }
+  .section {
+    padding-left: 0px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    .node {
+      background: $black;
+      border-radius: $border-radius;
+
+      // Node types
+      &.icon {
+        width: $process-graph-node;
+        height: $process-graph-node;
         img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: $process-node-icon;
-          height: $process-node-icon;
-          margin-left: -0.5 * $process-node-icon;
-          margin-top: -0.5 * $process-node-icon;
-          transition: opacity $anim-time $anim-func;
+          width: $process-graph-icon;
+          height: $process-graph-icon;
+          margin-top: (100% - $process-graph-icon) / 2;
+          margin-left: (100% - $process-graph-icon) / 2;
+          transition: filter $anim-time $anim-func,
+            opacity $anim-time $anim-func;
         }
       }
-    }
-    .lines {
-      list-style-type: none;
-      padding: 0px;
-      margin: 0px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex-basis: 100%;
-      &.disabled {
-        .line:after {
-          opacity: 0;
-          animation: none;
+      &.big {
+        opacity: $process-graph-big-factor;
+        width: $process-graph-node * $process-graph-big-factor;
+        height: $process-graph-node * $process-graph-big-factor;
+      }
+      &.small {
+        opacity: $process-graph-small-factor;
+        width: $process-graph-node * $process-graph-small-factor;
+        height: $process-graph-node * $process-graph-small-factor;
+      }
+
+      // Node states
+      &.active.icon img {
+        opacity: 1;
+      }
+      &.inactive.icon img {
+        opacity: 0.25;
+      }
+      &.has-children.still,
+      &.has-children.blinking {
+        &.big,
+        &.small {
+          background: $warning-color;
         }
       }
-      &.first {
-        li {
-          &:after {
-            background: linear-gradient(to right, $light-gray, $warning-color);
-            clip-path: url(#circles-clip);
-          }
-        }
-        &.returned li:after {
-          background: linear-gradient(to right, $success-color, $warning-color);
+      &.has-children.blinking {
+        &.big,
+        &.small {
+          animation: blinkingAnimation 2s infinite linear;
         }
       }
-      &.second {
-        li {
-          transition: background $anim-time $anim-func;
-          &:first-of-type {
-            transform-origin: 0% 0%;
-            transform: rotate(-35deg) scaleX(1.2);
-            @include widescreen-up {
-              transform: rotate(-28deg) scaleX(1.125);
-            }
-          }
-          &:last-of-type {
-            transform-origin: 0% 0%;
-            transform: translateX(9px) rotate(35deg) scaleX(1.2);
-            @include widescreen-up {
-              transform: translateX(9px) rotate(28deg) scaleX(1.125);
-            }
-          }
-          &:after {
-            background: linear-gradient(to right, $warning-color, $alert-color);
-            clip-path: url(#circles-clip);
-          }
-        }
-        &.rewarded li:after {
-          background: linear-gradient(to right, $warning-color, $success-color);
-          clip-path: url(#circles-clip);
-        }
+      &.has-children.still {
+        opacity: $process-graph-children-opacity;
       }
-      li {
-        display: block;
-        width: 100%;
-        height: 20px;
-        position: relative;
-        &:before {
-          position: absolute;
-          top: 50%;
-          left: 0px;
-          width: 100%;
-          height: 2px;
-          border: 2px solid rgba($white, 0.1);
-          overflow: hidden;
-          margin-top: -2px;
-          content: '';
-        }
-        &:after {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: 100%;
-          height: 100%;
-          content: '';
-          transition: opacity $anim-time $anim-func;
-          animation: dottedAnimation 1s $anim-func infinite;
-        }
+
+      // Scientist contexts
+      &.scientist.icon img {
+        filter: grayscale(100%);
+      }
+      &.scientist.finished.icon img {
+        filter: grayscale(0%);
+      }
+
+      // Mines contexts
+      &.mines.red.icon img {
+        // Naturally red... if not, change the color here
+      }
+      &.mines.green.icon img {
+        filter: hue-rotate(100deg);
       }
     }
   }
 }
+
+// $process-height: 360px;
+// $process-node: 80px;
+// $process-node-icon: 60%;
+//
+// @keyframes distributingAnimation {
+//   0% {
+//     background: $black;
+//   }
+//   50% {
+//     background: $warning-color;
+//   }
+//   100% {
+//     background: $black;
+//   }
+// }
+//
+// @keyframes dottedAnimation {
+//   0% {
+//     opacity: 0;
+//   }
+//   50% {
+//     opacity: 1;
+//   }
+//   100% {
+//     opacity: 0;
+//   }
+// }
+//
+// .graph {
+//   display: none;
+//   @include desktop-up {
+//     display: flex;
+//     width: 100%;
+//     justify-content: space-between;
+//     height: $process-height * 0.8;
+//     @include widescreen-up {
+//       height: $process-height;
+//     }
+//     .items {
+//       list-style-type: none;
+//       padding: 0px;
+//       margin: 0px;
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-between;
+//       align-items: center;
+//       .repo-icon {
+//         transition: all $anim-time $anim-func;
+//       }
+//       &.disabled {
+//         .repo-icon {
+//           filter: grayscale(100%);
+//           opacity: 0.25;
+//         }
+//       }
+//       &.data-scientists {
+//         justify-content: center;
+//         .repo-icon {
+//           filter: grayscale(100%);
+//         }
+//         &.finished {
+//           .repo-icon {
+//             filter: grayscale(0%);
+//           }
+//         }
+//       }
+//       &.sonar {
+//         .big,
+//         .small {
+//           transition: background $anim-time $anim-func;
+//         }
+//         .big {
+//           width: $process-node / 2;
+//           height: $process-node / 2;
+//           opacity: 0.66;
+//         }
+//         .small {
+//           width: $process-node / 4;
+//           height: $process-node / 4;
+//           opacity: 0.33;
+//         }
+//         &.distributing {
+//           .big,
+//           .small {
+//             animation: distributingAnimation 1s $anim-func infinite;
+//           }
+//         }
+//         &.distributed {
+//           .big,
+//           .small {
+//             background: $warning-color;
+//           }
+//         }
+//       }
+//       &.mines {
+//         &.money {
+//           .repo-icon {
+//             filter: hue-rotate(100deg);
+//           }
+//         }
+//       }
+//       .item {
+//         position: relative;
+//         display: block;
+//         width: $process-node;
+//         height: $process-node;
+//         background: $black;
+//         border-radius: $border-radius;
+//         img {
+//           position: absolute;
+//           top: 50%;
+//           left: 50%;
+//           width: $process-node-icon;
+//           height: $process-node-icon;
+//           margin-left: -0.5 * $process-node-icon;
+//           margin-top: -0.5 * $process-node-icon;
+//           transition: opacity $anim-time $anim-func;
+//         }
+//       }
+//     }
+//     .lines {
+//       list-style-type: none;
+//       padding: 0px;
+//       margin: 0px;
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: center;
+//       align-items: center;
+//       flex-basis: 100%;
+//       &.disabled {
+//         .line:after {
+//           opacity: 0;
+//           animation: none;
+//         }
+//       }
+//       &.first {
+//         li {
+//           &:after {
+//             background: linear-gradient(to right, $light-gray, $warning-color);
+//             clip-path: url(#circles-clip);
+//           }
+//         }
+//         &.returned li:after {
+//           background: linear-gradient(to right, $success-color, $warning-color);
+//         }
+//       }
+//       &.second {
+//         li {
+//           transition: background $anim-time $anim-func;
+//           &:first-of-type {
+//             transform-origin: 0% 0%;
+//             transform: rotate(-35deg) scaleX(1.2);
+//             @include widescreen-up {
+//               transform: rotate(-28deg) scaleX(1.125);
+//             }
+//           }
+//           &:last-of-type {
+//             transform-origin: 0% 0%;
+//             transform: translateX(9px) rotate(35deg) scaleX(1.2);
+//             @include widescreen-up {
+//               transform: translateX(9px) rotate(28deg) scaleX(1.125);
+//             }
+//           }
+//           &:after {
+//             background: linear-gradient(to right, $warning-color, $alert-color);
+//             clip-path: url(#circles-clip);
+//           }
+//         }
+//         &.rewarded li:after {
+//           background: linear-gradient(to right, $warning-color, $success-color);
+//           clip-path: url(#circles-clip);
+//         }
+//       }
+//       li {
+//         display: block;
+//         width: 100%;
+//         height: 20px;
+//         position: relative;
+//         &:before {
+//           position: absolute;
+//           top: 50%;
+//           left: 0px;
+//           width: 100%;
+//           height: 2px;
+//           border: 2px solid rgba($white, 0.1);
+//           overflow: hidden;
+//           margin-top: -2px;
+//           content: '';
+//         }
+//         &:after {
+//           position: absolute;
+//           top: 0px;
+//           left: 0px;
+//           width: 100%;
+//           height: 100%;
+//           content: '';
+//           transition: opacity $anim-time $anim-func;
+//           animation: dottedAnimation 1s $anim-func infinite;
+//         }
+//       }
+//     }
+//   }
+// }
