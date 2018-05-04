@@ -83,7 +83,7 @@ const DotsTrack = ({ colors }) => (
       x="0"
       y="0"
       width={DOT_DIAMETER}
-      height="100%"
+      height="200%"
     />
   </svg>
 );
