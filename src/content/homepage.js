@@ -191,35 +191,120 @@ export default {
         title: 'Create a model',
         description:
           'A data scientist creates a model in a framework such as PyTorch, Tensorflow, or Keras, defines a training bounty they are willing to pay for it to be trained, and requests a specific kind of private training data (i.e., personal health information, social media posts, smart-home metadata, etc.)',
-        repositories: ['PySyft']
+        repositories: ['PySyft'],
+        graph: {
+          nodes: {
+            scientist: 'active',
+            grid: 'active',
+            mines: 'inactive'
+          },
+          dots: {
+            zone: 1,
+            direction: 'forwards',
+            colors: ['white', 'yellow']
+          }
+        }
       },
       {
         heading: 'Distribute',
         title: 'Distribute via OpenGrid',
         description:
           'Upon submission, the model is encrypted/shared and uploaded to an OpenGrid network. This could be a private network within an enterprise or the public OpenGrid our community actively supports.',
-        repositories: ['Grid']
+        repositories: ['Grid'],
+        graph: {
+          nodes: {
+            scientist: 'inactive',
+            grid: 'active blinking',
+            mines: 'inactive'
+          },
+          dots: {}
+        }
       },
       {
         heading: 'Train',
         title: 'Users train the model',
         description:
           'Members of the OpenGrid network, who we call "miners", anonymously pull down the encrypted model from OpenGrid should they have the correct data required by the model. They then train the encrypted/shared model locally on their device.',
-        repositories: ['Grid', 'PySyft']
+        repositories: ['Grid', 'PySyft'],
+        graph: {
+          nodes: {
+            scientist: 'inactive',
+            grid: 'active still',
+            mines: 'active red'
+          },
+          dots: {
+            zone: 3,
+            direction: 'forwards',
+            colors: ['yellow', 'red']
+          }
+        }
       },
       {
         heading: 'Reward',
         title: 'Reward the miners',
         description:
           'With each party remaining unknown to the other, the miner uploads a new version of the model based on their local training. Their submission is rewarded proportionate to how much they improve the accuracy of the model.',
-        repositories: ['Grid']
+        repositories: ['Grid'],
+        graph: {
+          nodes: {
+            scientist: 'inactive',
+            grid: 'active still',
+            mines: 'active green'
+          },
+          dots: {
+            zone: 3,
+            direction: 'backwards',
+            colors: ['yellow', 'green']
+          }
+        }
       },
       {
         heading: 'Deliver',
         title: 'Deliver the results securely',
         description:
           "Once a success criteria is met, the model is decrypted by a private key or share held only by the data scientist. All the while, neither party has access to each other's data or intellectual property.",
-        repositories: ['Grid', 'PySyft']
+        repositories: ['Grid', 'PySyft'],
+        graph: {
+          nodes: {
+            scientist: 'active finished',
+            grid: 'active still',
+            mines: 'inactive green'
+          },
+          dots: {
+            zone: 1,
+            direction: 'backwards',
+            colors: ['green', 'yellow']
+          }
+        }
+      }
+    ],
+    sections: [
+      {
+        type: 'nodes',
+        name: 'scientist',
+        icon: 'openmined',
+        num: 1
+      },
+      {
+        type: 'dots',
+        num: 1
+      },
+      {
+        type: 'nodes',
+        name: 'grid',
+        icon: 'grid',
+        num: 1,
+        children: true
+      },
+      {
+        type: 'dots',
+        num: 3
+      },
+      {
+        type: 'nodes',
+        name: 'mines',
+        icon: 'mine',
+        num: 3
       }
     ]
   },

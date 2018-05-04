@@ -1,23 +1,23 @@
 import React from 'react';
 import { Row, Column, Container } from 'openmined-ui';
 
-import { IconColorFilter, DotsTrack, KeyframeStyles } from './svg';
-
+import {
+  ColorFilter,
+  DotsTrack,
+  KeyframeStyles,
+  filterName
+} from '../../../../components/svg-dots';
 import SectionHeading from '../../../../components/section-heading';
 import Card from '../../../../components/card';
 
 import './pillars.css';
 
 const IconDots = ({ colors, icon, title }) => {
-  const filterName = (color, suffix = '') => color + '-filter-' + suffix;
-
-  const iconFilter = filterName(colors[0], 'icon');
-  const gradientFilter = filterName(colors[0], 'gradient');
-  const maskFilter = filterName(colors[0], 'mask');
+  const iconFilter = filterName(colors[0], colors[1], 'icon');
 
   return (
     <div className="icon-dots">
-      <IconColorFilter id={`${iconFilter}`} color={colors[0]} />
+      <ColorFilter id={`${iconFilter}`} color={colors[0]} />
       <img
         src={icon}
         className={`icon ${colors[0]}`}
@@ -28,8 +28,10 @@ const IconDots = ({ colors, icon, title }) => {
       />
       <DotsTrack
         colors={colors}
-        gradientFilter={gradientFilter}
-        maskFilter={maskFilter}
+        // The below animation class is determined by <KeyframeStyles />
+        animation="move-dots-vertical-forwards"
+        direction="vertical"
+        speed={2000}
       />
     </div>
   );
@@ -64,7 +66,7 @@ const Pillar = pillar => {
 
 const Pillars = ({ pillars }) => (
   <div id="pillars">
-    <KeyframeStyles />
+    <KeyframeStyles axis="vertical" direction="forwards" />
     <Container>
       {pillars.map((pillar, key) => <Pillar {...pillar} key={key} />)}
     </Container>

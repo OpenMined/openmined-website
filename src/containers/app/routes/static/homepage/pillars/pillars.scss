@@ -25,10 +25,6 @@
       .dots-track {
         flex-grow: 1;
         margin: 0px auto;
-        border-radius: 1000em;
-        .dots-mask {
-          animation: moveDots 2s infinite linear;
-        }
       }
     }
     .pillar-content {

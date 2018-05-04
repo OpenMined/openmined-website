@@ -8,27 +8,37 @@ import SectionHeading from '../../../../components/section-heading';
 
 import './process.css';
 
-const StepContent = ({ current, repositories }) => (
+const StepContent = ({ graph, sections, current, repositories }) => (
   <Row className="step-content">
     <Column sizes={{ small: 12, large: 6, xlarge: 4 }} offsets={{ xlarge: 1 }}>
       <Info info={current} repositories={repositories} />
     </Column>
     <Column sizes={{ small: 12, large: 6, xlarge: 5 }} offsets={{ xlarge: 1 }}>
-      <Graph current={current.heading} />
+      <Graph
+        data={graph}
+        sections={sections}
+        current={current.heading.toLowerCase()}
+      />
     </Column>
   </Row>
 );
 
-const StepSelector = ({ current, duration, playing, data, changeCurrent }) => (
+const StepSelector = ({
+  state: { current, duration, playing },
+  content,
+  changeCurrent
+}) => (
   <div className="step-selector">
     <div
       className={`step-progress${playing ? '' : ' stopped'}`}
       style={{
-        animation: `progress ${duration / 1000 * data.length}s linear infinite`
+        animation: `progress ${duration /
+          1000 *
+          content.length}s linear infinite`
       }}
     />
     <ul className="step-selector-list">
-      {data.map((item, index) => (
+      {content.map((item, index) => (
         <li
           className={`step-item ${index === current ? 'active' : ''}`}
           onClick={() => changeCurrent(index)}
@@ -76,9 +86,18 @@ class Process extends Component {
     clearInterval(this.interval);
   }
 
+  prepGraphData(content) {
+    const data = {};
+
+    content.forEach(item => {
+      data[item.heading.toLowerCase()] = item.graph;
+    });
+
+    return data;
+  }
+
   render() {
-    const { repositories, title, cta, content } = this.props;
-    const { current, duration, playing } = this.state;
+    const { repositories, title, cta, content, sections } = this.props;
 
     return (
       <div id="process">
@@ -88,13 +107,16 @@ class Process extends Component {
               <SectionHeading title={title} cta={cta} color="white" />
             </Column>
           </Row>
-          <StepContent current={content[current]} repositories={repositories} />
+          <StepContent
+            graph={this.prepGraphData(content)}
+            sections={sections}
+            current={content[this.state.current]}
+            repositories={repositories}
+          />
         </Container>
         <StepSelector
-          current={current}
-          duration={duration}
-          playing={playing}
-          data={content}
+          state={this.state}
+          content={content}
           changeCurrent={newCurrent =>
             this.setState({ current: newCurrent, playing: false })
           }

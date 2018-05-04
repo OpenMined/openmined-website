@@ -1,89 +1,6 @@
 import React from 'react';
 import RepoIcon from '../../../../components/repo-icon';
-
-const COLORS = {
-  white: '#fff',
-  yellow: '#ff0',
-  red: '#f00',
-  green: '#0f0'
-};
-
-const SECTIONS = [
-  {
-    name: 'scientist',
-    icon: 'openmined',
-    num: 1
-  },
-  {
-    name: 'grid',
-    icon: 'grid',
-    num: 1,
-    children: true
-  },
-  {
-    name: 'mines',
-    icon: 'mine',
-    num: 3
-  }
-];
-
-const STEPS = {
-  create: {
-    nodes: {
-      scientist: 'active',
-      grid: 'active',
-      mines: 'inactive'
-    },
-    dots: {
-      zone: [0, 1],
-      direction: 'forwards',
-      colors: [COLORS.white, COLORS.yellow]
-    }
-  },
-  distribute: {
-    nodes: {
-      scientist: 'inactive',
-      grid: 'active blinking',
-      mines: 'inactive'
-    }
-  },
-  train: {
-    nodes: {
-      scientist: 'inactive',
-      grid: 'active still',
-      mines: 'active red'
-    },
-    dots: {
-      zone: [1, 2],
-      direction: 'forwards',
-      colors: [COLORS.yellow, COLORS.red]
-    }
-  },
-  reward: {
-    nodes: {
-      scientist: 'inactive',
-      grid: 'active still',
-      mines: 'active green'
-    },
-    dots: {
-      zone: [1, 2],
-      direction: 'backwards',
-      colors: [COLORS.yellow, COLORS.green]
-    }
-  },
-  deliver: {
-    nodes: {
-      scientist: 'active finished',
-      grid: 'active still',
-      mines: 'inactive green'
-    },
-    dots: {
-      zone: [0, 1],
-      direction: 'backwards',
-      colors: [COLORS.green, COLORS.yellow]
-    }
-  }
-};
+import { KeyframeStyles, DotsTrack } from '../../../../components/svg-dots';
 
 const nodeWithChildren = (node, classes) => {
   const genChild = size => (
@@ -105,22 +22,60 @@ const Node = ({ icon, classes }) => (
   </li>
 );
 
-const Graph = ({ current }) => (
-  <div className={`graph ${current.toLowerCase()}`}>
-    {SECTIONS.map(({ name, icon, num, children }, index) => (
-      <ul className="section" key={index}>
-        {[...Array(num)].map((e, index) => {
-          const classes = `${name} ${STEPS[current.toLowerCase()].nodes[name]}`;
-          const node = <Node icon={icon} classes={classes} key={index} />;
+const Nodes = ({ current, type, name, icon, num, children }) => (
+  <ul className="nodes">
+    {[...Array(num)].map((e, index) => {
+      const classes = `${name} ${current.nodes[name]}`;
+      const node = <Node icon={icon} classes={classes} key={index} />;
 
-          if (children) {
-            return nodeWithChildren(node, classes);
-          }
+      if (children) {
+        return nodeWithChildren(node, classes);
+      }
 
-          return node;
-        })}
-      </ul>
-    ))}
+      return node;
+    })}
+  </ul>
+);
+
+const Dots = ({ current, shouldShow, num }) => (
+  <div className={`dots ${shouldShow ? 'visible' : 'hidden'}`}>
+    {[...Array(num)].map((e, index) => {
+      if (shouldShow) {
+        return (
+          <DotsTrack
+            colors={current.dots.colors}
+            // The below animation class is determined by <KeyframeStyles />
+            animation={`move-dots-horizontal-${current.dots.direction}`}
+            direction="horizontal"
+            speed={1000}
+            key={index}
+          />
+        );
+      }
+    })}
+  </div>
+);
+
+const Graph = ({ data, sections, current }) => (
+  <div className="graph">
+    <KeyframeStyles axis="horizontal" direction="forwards" />
+    <KeyframeStyles axis="horizontal" direction="backwards" />
+    {sections.map((section, index) => {
+      const currentStep = data[current];
+
+      if (section.type === 'nodes') {
+        return <Nodes current={currentStep} {...section} key={index} />;
+      } else if (section.type === 'dots') {
+        return (
+          <Dots
+            current={currentStep}
+            shouldShow={currentStep.dots.zone === index}
+            {...section}
+            key={index}
+          />
+        );
+      }
+    })}
   </div>
 );
 
