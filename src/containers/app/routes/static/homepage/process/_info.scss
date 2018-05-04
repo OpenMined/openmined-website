@@ -1,4 +1,5 @@
 .info {
+  height: $process-graph-info-height;
   h5 {
     color: $white;
     margin-top: 0px;
@@ -18,6 +19,9 @@
   .repos {
     padding: 0px;
     list-style-type: none;
+    li:last-of-type a {
+      margin-bottom: 0px;
+    }
     a {
       display: flex;
       align-items: center;

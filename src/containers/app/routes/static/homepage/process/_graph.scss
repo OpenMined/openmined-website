@@ -1,4 +1,3 @@
-$process-graph-height: 360px;
 $process-graph-node: 80px;
 $process-graph-icon: 50%;
 $process-graph-big-factor: 0.5;
@@ -24,7 +23,7 @@ $process-graph-children-opacity: 0.8;
   @include desktop-up {
     display: flex;
     width: 100%;
-    height: $process-graph-height;
+    height: $process-graph-info-height;
     justify-content: space-between;
   }
   .section {

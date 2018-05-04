@@ -1,5 +1,7 @@
 @import 'variables';
 
+$process-graph-info-height: 400px;
+
 #process {
   background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
   padding: $large-space 0px 0px 0px;
