@@ -72,6 +72,9 @@
     .member {
       margin-right: $small-space;
       margin-bottom: $small-space;
+      &.current .avatar {
+        opacity: 1;
+      }
       a {
         &:hover .avatar {
           opacity: 1;

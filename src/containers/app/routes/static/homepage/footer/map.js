@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
+
 import ScrollPercentage from 'react-scroll-percentage';
+
+const MARKER_SIZE = 14;
+const MARKER_CIRCLE = MARKER_SIZE / 2;
 
 const Marker = props => (
   <svg
     className="marker-svg"
     xmlns="http://www.w3.org/2000/svg"
     version="1.1"
-    height="10"
-    width="10"
+    height={MARKER_SIZE * 2}
+    width={MARKER_SIZE}
   >
-    <circle cx="5" cy="5" r="5" style={{ fill: '#fff' }} />
+    {['main', 'child-1', 'child-2'].map((circle, index) => (
+      <circle
+        key={circle}
+        className={`dot ${circle}`}
+        cx={MARKER_CIRCLE}
+        cy={MARKER_CIRCLE}
+        r={MARKER_CIRCLE}
+      />
+    ))}
   </svg>
 );
 
@@ -19,8 +31,9 @@ class MemberMap extends Component {
     super(props);
 
     this.state = {
-      pitch: 0,
-      maxPitch: 50,
+      pitch: 20,
+      minPitch: 20,
+      pitchMultiplier: 40,
       hasAddedMembers: false
     };
   }
@@ -29,14 +42,13 @@ class MemberMap extends Component {
     mapboxgl.accessToken =
       'pk.eyJ1Ijoib3Blbm1pbmVkIiwiYSI6ImNqaDY2aHJ2ZTE4NGcyeG1yeGxic2JueXQifQ.IC8EkSKoaEyJW5qBOlcxuA';
 
-    const { pitch } = this.state;
-
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/openmined/cjh68v9d73d812so26vm5u6sp',
       center: [20, 20],
       zoom: 1.15,
-      pitch,
+      pitch: this.state.pitch,
+      renderWorldCopies: false,
       interactive: false
     });
   }
@@ -59,7 +71,7 @@ class MemberMap extends Component {
               properties: member,
               geometry: {
                 type: 'Point',
-                coordinates: [member.coordinates[0], member.coordinates[1]]
+                coordinates: member.coordinates
               }
             });
           }
@@ -73,10 +85,18 @@ class MemberMap extends Component {
         geojson.features.forEach(marker => {
           var el = document.createElement('div');
           el.className = 'marker';
+          el.style.width = MARKER_SIZE + 'px';
+          el.style.height = MARKER_SIZE * 2 + 'px';
           el.innerHTML = document.querySelector('.marker-svg').outerHTML;
 
-          el.addEventListener('click', () => {
-            window.alert(marker.properties.name);
+          el.addEventListener('mouseenter', () => {
+            el.className = el.className + ' active';
+            this.props.setCurrentMember(marker.properties);
+          });
+
+          el.addEventListener('mouseleave', () => {
+            el.className = el.className.replace(/ active/g, '');
+            this.props.setCurrentMember(null);
           });
 
           new mapboxgl.Marker(el)
@@ -93,16 +113,17 @@ class MemberMap extends Component {
 
   render() {
     return (
-      <div id="member-map">
-        <ScrollPercentage
-          onChange={pitch =>
-            this.setState({ pitch: pitch * this.state.maxPitch })
-          }
-        >
-          <Marker />
-          <div ref={el => (this.mapContainer = el)} />
-        </ScrollPercentage>
-      </div>
+      <ScrollPercentage
+        id="member-map"
+        onChange={pitch =>
+          this.setState({
+            pitch: this.state.minPitch + pitch * this.state.pitchMultiplier
+          })
+        }
+      >
+        <Marker />
+        <div ref={el => (this.mapContainer = el)} />
+      </ScrollPercentage>
     );
   }
 }

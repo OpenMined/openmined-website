@@ -1,9 +1,15 @@
 $member-map-height: 640px;
+$member-map-dot-1: 0.66;
+$member-map-dot-2: 0.33;
 
 #member-map {
   position: relative;
   height: $member-map-height;
   margin-top: $large-space;
+  display: none;
+  @include desktop-up() {
+    display: block;
+  }
   // Hide the reference marker
   .marker-svg {
     display: none;
@@ -17,14 +23,37 @@ $member-map-height: 640px;
       display: none;
     }
     .marker {
-      width: 10px;
-      height: 10px;
-      cursor: pointer;
+      &:before {
+        position: absolute;
+        bottom: -3px;
+        left: 25%;
+        width: 50%;
+        height: 6px;
+        background: rgba($black, 0.35);
+        filter: blur(3px);
+        content: '';
+      }
+      &.active .marker-svg .dot {
+        fill: $white;
+      }
       .marker-svg {
         display: block;
         position: absolute;
         top: 0px;
         left: 0px;
+        .dot {
+          fill: $success-color;
+          transition: fill $anim-time $anim-func;
+          transform-origin: center center;
+          &.child-1 {
+            transform: translateY(4px) scale($member-map-dot-1);
+            opacity: $member-map-dot-1;
+          }
+          &.child-2 {
+            transform: translateY(8px) scale($member-map-dot-2);
+            opacity: $member-map-dot-2;
+          }
+        }
       }
     }
   }

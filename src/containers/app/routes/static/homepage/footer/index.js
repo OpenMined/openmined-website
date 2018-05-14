@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Row, Column, Container } from 'openmined-ui';
 
 import MemberMap from './map';
@@ -25,11 +25,17 @@ const CallsToAction = ({ movement }) => (
   </div>
 );
 
-const Members = ({ members }) => (
+const Members = ({ members, currentMember }) => (
   <ul className="members">
     {members.map(({ login, avatarUrl }, key) => {
+      let classes = 'member';
+
+      if (currentMember && currentMember.login === login) {
+        classes += ' current';
+      }
+
       return (
-        <li className="member" key={key}>
+        <li className={classes} key={key}>
           <ExternalLink to={`https://github.com/${login}`}>
             <div
               className="avatar"
@@ -44,7 +50,7 @@ const Members = ({ members }) => (
   </ul>
 );
 
-const Movement = ({ movement, members }) => (
+const Movement = ({ movement, members, setCurrentMember, currentMember }) => (
   <Row>
     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
       <SectionHeading level={3} title={movement.title} />
@@ -53,10 +59,10 @@ const Movement = ({ movement, members }) => (
       <CallsToAction movement={movement} />
     </Column>
     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-      <Members members={members} />
+      <Members currentMember={currentMember} members={members} />
     </Column>
     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-      <MemberMap members={members} />
+      <MemberMap setCurrentMember={setCurrentMember} members={members} />
     </Column>
   </Row>
 );
@@ -83,13 +89,29 @@ const Movement = ({ movement, members }) => (
 //   </Row>
 // );
 
-const Footer = footer => (
-  <div id="footer">
-    <Container>
-      {/* <Questions {...footer} /> */}
-      <Movement {...footer} />
-    </Container>
-  </div>
-);
+class Footer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentMember: null
+    };
+  }
+
+  render() {
+    return (
+      <div id="footer">
+        <Container>
+          {/* <Questions {...this.props} /> */}
+          <Movement
+            currentMember={this.state.currentMember}
+            setCurrentMember={currentMember => this.setState({ currentMember })}
+            {...this.props}
+          />
+        </Container>
+      </div>
+    );
+  }
+}
 
 export default Footer;
