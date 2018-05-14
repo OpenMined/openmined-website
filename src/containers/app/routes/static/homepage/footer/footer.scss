@@ -1,7 +1,7 @@
 @import 'variables';
 
 #footer {
-  background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
+  background: darken($dark-gray, 7%);
   padding-top: $large-space;
   @include desktop-up {
     padding-top: $xlarge-space + $medium-space;
@@ -89,4 +89,5 @@
       }
     }
   }
+  @import 'map';
 }

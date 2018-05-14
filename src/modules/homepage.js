@@ -58,16 +58,43 @@ const fetchGithub = () => dispatch =>
 
         const { repositories, members } = response.data;
 
+        // TODO: This is a temporary patch until the Serverless API catches up
+        let tempMembers = members;
+
+        const getCoord = value => {
+          let randomVal = Math.random() * value;
+
+          return Math.random() > 0.5 ? randomVal : randomVal * -1;
+        };
+
+        tempMembers.forEach(member => {
+          if (member.location) {
+            member.coordinates = [getCoord(180), getCoord(90)];
+          }
+        });
+
         dispatch({
           type: GET_GITHUB_CONTENT,
           repositories,
-          members
+          members: tempMembers
         });
 
         resolve({
           repositories,
-          members
+          members: tempMembers
         });
+
+        // TODO: Undo this after the above is patched
+        // dispatch({
+        //   type: GET_GITHUB_CONTENT,
+        //   repositories,
+        //   members
+        // });
+        //
+        // resolve({
+        //   repositories,
+        //   members
+        // });
       })
       .catch(error => dispatch(handleRemoteError(error)));
   });

@@ -1,5 +1,8 @@
 import React from 'react';
 import { Row, Column, Container } from 'openmined-ui';
+
+import MemberMap from './map';
+
 import SectionHeading from '../../../../components/section-heading';
 import ImageButton from '../../../../components/image-button';
 import ExternalLink from '../../../../components/external-link';
@@ -52,6 +55,9 @@ const Movement = ({ movement, members }) => (
     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
       <Members members={members} />
     </Column>
+    <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
+      <MemberMap members={members} />
+    </Column>
   </Row>
 );
 
@@ -82,7 +88,6 @@ const Footer = footer => (
     <Container>
       {/* <Questions {...footer} /> */}
       <Movement {...footer} />
-      {/* TODO: In theory, a map should go here... */}
     </Container>
   </div>
 );
