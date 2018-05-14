@@ -1,7 +1,7 @@
 @import 'variables';
 
 #footer {
-  background: darken($dark-gray, 7%);
+  background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
   padding-top: $large-space;
   @include desktop-up {
     padding-top: $xlarge-space + $medium-space;

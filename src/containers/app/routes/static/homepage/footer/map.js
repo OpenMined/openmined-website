@@ -2,13 +2,25 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import ScrollPercentage from 'react-scroll-percentage';
 
+const Marker = props => (
+  <svg
+    className="marker-svg"
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    height="10"
+    width="10"
+  >
+    <circle cx="5" cy="5" r="5" style={{ fill: '#fff' }} />
+  </svg>
+);
+
 class MemberMap extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       pitch: 0,
-      maxPitch: 40,
+      maxPitch: 50,
       hasAddedMembers: false
     };
   }
@@ -44,6 +56,7 @@ class MemberMap extends Component {
           if (member.coordinates) {
             features.push({
               type: 'Feature',
+              properties: member,
               geometry: {
                 type: 'Point',
                 coordinates: [member.coordinates[0], member.coordinates[1]]
@@ -57,19 +70,18 @@ class MemberMap extends Component {
           features
         };
 
-        target.addSource('point', {
-          type: 'geojson',
-          data: geojson
-        });
+        geojson.features.forEach(marker => {
+          var el = document.createElement('div');
+          el.className = 'marker';
+          el.innerHTML = document.querySelector('.marker-svg').outerHTML;
 
-        target.addLayer({
-          id: 'point',
-          type: 'circle',
-          source: 'point',
-          paint: {
-            'circle-radius': 5,
-            'circle-color': '#3887be'
-          }
+          el.addEventListener('click', () => {
+            window.alert(marker.properties.name);
+          });
+
+          new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(target);
         });
       });
     }
@@ -87,6 +99,7 @@ class MemberMap extends Component {
             this.setState({ pitch: pitch * this.state.maxPitch })
           }
         >
+          <Marker />
           <div ref={el => (this.mapContainer = el)} />
         </ScrollPercentage>
       </div>
