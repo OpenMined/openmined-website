@@ -3,37 +3,14 @@ import mapboxgl from 'mapbox-gl';
 
 import ScrollPercentage from 'react-scroll-percentage';
 
-const MARKER_SIZE = 14;
-const MARKER_CIRCLE = MARKER_SIZE / 2;
-
-const Marker = props => (
-  <svg
-    className="marker-svg"
-    xmlns="http://www.w3.org/2000/svg"
-    version="1.1"
-    height={MARKER_SIZE * 2}
-    width={MARKER_SIZE}
-  >
-    {['main', 'child-1', 'child-2'].map((circle, index) => (
-      <circle
-        key={circle}
-        className={`dot ${circle}`}
-        cx={MARKER_CIRCLE}
-        cy={MARKER_CIRCLE}
-        r={MARKER_CIRCLE}
-      />
-    ))}
-  </svg>
-);
-
 class MemberMap extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pitch: 20,
-      minPitch: 20,
-      pitchMultiplier: 40,
+      pitch: 10,
+      minPitch: 10,
+      pitchMultiplier: 45,
       hasAddedMembers: false
     };
   }
@@ -85,17 +62,12 @@ class MemberMap extends Component {
         geojson.features.forEach(marker => {
           var el = document.createElement('div');
           el.className = 'marker';
-          el.style.width = MARKER_SIZE + 'px';
-          el.style.height = MARKER_SIZE * 2 + 'px';
-          el.innerHTML = document.querySelector('.marker-svg').outerHTML;
 
           el.addEventListener('mouseenter', () => {
-            el.className = el.className + ' active';
             this.props.setCurrentMember(marker.properties);
           });
 
           el.addEventListener('mouseleave', () => {
-            el.className = el.className.replace(/ active/g, '');
             this.props.setCurrentMember(null);
           });
 
@@ -121,7 +93,6 @@ class MemberMap extends Component {
           })
         }
       >
-        <Marker />
         <div ref={el => (this.mapContainer = el)} />
       </ScrollPercentage>
     );
