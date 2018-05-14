@@ -65,13 +65,13 @@ class MemberMap extends Component {
         const features = [];
 
         members.forEach(member => {
-          if (member.coordinates) {
+          if (member.coords) {
             features.push({
               type: 'Feature',
               properties: member,
               geometry: {
                 type: 'Point',
-                coordinates: member.coordinates
+                coordinates: member.coords
               }
             });
           }
