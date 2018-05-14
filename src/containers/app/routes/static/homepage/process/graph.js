@@ -52,6 +52,8 @@ const Dots = ({ current, shouldShow, num }) => (
           />
         );
       }
+
+      return false;
     })}
   </div>
 );
@@ -75,6 +77,8 @@ const Graph = ({ data, sections, current }) => (
           />
         );
       }
+
+      return false;
     })}
   </div>
 );

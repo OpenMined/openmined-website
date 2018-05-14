@@ -30,8 +30,8 @@
         opacity: 1;
       }
       .repo-icon {
-        height: 48px;
-        width: 48px;
+        height: 40px;
+        width: 40px;
         margin-right: $small-space;
       }
       .info {
@@ -46,63 +46,10 @@
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
+          color: $medium-gray;
         }
       }
     }
-    // .project {
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: center;
-    //   align-items: center;
-    //   margin-bottom: $medium-space;
-    //   background: $white;
-    //   padding: $medium-space;
-    //   text-align: center;
-    //   border-radius: $extra-border-radius;
-    //   box-shadow: 0px $small-space $large-space rgba($black, 0.1);
-    //   cursor: pointer;
-    //   width: 100%;
-    //   height: $github-project-size * 0.35;
-    //   transition: opacity $anim-time $anim-func, transform $anim-time $anim-func;
-    //   opacity: 0.35;
-    //   @include tablet-up {
-    //     flex-basis: 45%;
-    //     width: $github-project-size;
-    //     height: $github-project-size;
-    //   }
-    //   @include widescreen-up {
-    //     flex-basis: auto;
-    //     width: $github-project-size;
-    //     height: $github-project-size;
-    //   }
-    //   &:hover {
-    //     transform: scale(1.05);
-    //   }
-    //   &.current {
-    //     opacity: 1;
-    //     &:hover {
-    //       transform: none;
-    //     }
-    //   }
-    //   .repo-icon {
-    //     height: 48px;
-    //     display: none;
-    //     @include tablet-up {
-    //       display: block;
-    //     }
-    //   }
-    //   .heading {
-    //     margin-top: $small-space;
-    //     @include tablet-up {
-    //       margin-top: $medium-space;
-    //     }
-    //   }
-    //   .description {
-    //     margin-top: 0px;
-    //     font-size: 0.9rem;
-    //     color: $medium-gray;
-    //   }
-    // }
   }
   .contributors {
     list-style-type: none;

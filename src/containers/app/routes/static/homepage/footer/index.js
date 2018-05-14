@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Column, Container, Heading } from 'openmined-ui';
+import { Row, Column, Container } from 'openmined-ui';
 import SectionHeading from '../../../../components/section-heading';
 import ImageButton from '../../../../components/image-button';
 import ExternalLink from '../../../../components/external-link';
@@ -55,27 +55,27 @@ const Movement = ({ movement, members }) => (
   </Row>
 );
 
-const Questions = ({ questions }) => (
-  <Row>
-    <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-      <SectionHeading level={3} title={questions.title} />
-    </Column>
-    <Column
-      sizes={{ small: 12, xlarge: 10 }}
-      offsets={{ xlarge: 1 }}
-      className="questions"
-    >
-      {questions.content.map(({ question, answer }, key) => {
-        return (
-          <div className="question" key={key}>
-            <p className="query">{question}</p>
-            <p className="answer">{answer}</p>
-          </div>
-        );
-      })}
-    </Column>
-  </Row>
-);
+// const Questions = ({ questions }) => (
+//   <Row>
+//     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
+//       <SectionHeading level={3} title={questions.title} />
+//     </Column>
+//     <Column
+//       sizes={{ small: 12, xlarge: 10 }}
+//       offsets={{ xlarge: 1 }}
+//       className="questions"
+//     >
+//       {questions.content.map(({ question, answer }, key) => {
+//         return (
+//           <div className="question" key={key}>
+//             <p className="query">{question}</p>
+//             <p className="answer">{answer}</p>
+//           </div>
+//         );
+//       })}
+//     </Column>
+//   </Row>
+// );
 
 const Footer = footer => (
   <div id="footer">
