@@ -10,7 +10,7 @@ $card-padding: $medium-space + $small-space;
   margin-bottom: $medium-space;
   border-radius: $border-radius;
   box-shadow: 0px $small-space $medium-space 0px rgba($black, 0.1);
-  @include desktop-up() {
+  @include desktop-up {
     height: $card-height;
   }
   .header {
@@ -19,14 +19,14 @@ $card-padding: $medium-space + $small-space;
       color: $light-gray;
       margin-bottom: $small-space / 2;
       @include capped-text(1px);
-      @include tablet-up() {
+      @include tablet-up {
         margin-bottom: $small-space;
       }
     }
     .heading {
       margin-top: 0px;
       color: $black;
-      @include tablet-up() {
+      @include tablet-up {
         font-size: 1.35rem;
       }
     }
@@ -42,7 +42,7 @@ $card-padding: $medium-space + $small-space;
     padding-left: 0px;
     margin-bottom: 0px;
     list-style-type: none;
-    @include desktop-up() {
+    @include desktop-up {
       position: absolute;
       bottom: $card-padding;
       left: $card-padding;

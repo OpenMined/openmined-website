@@ -15,12 +15,12 @@
   .header {
     display: flex;
     flex-direction: column;
-    @include tablet-up() {
+    @include tablet-up {
       flex-direction: row;
       justify-content: space-between;
       margin: $large-space 0px $medium-space 0px;
     }
-    @include widescreen-up() {
+    @include widescreen-up {
       margin: $xlarge-space 0px $large-space 0px;
     }
     .header-logo {
@@ -29,7 +29,7 @@
       img {
         height: 100%;
       }
-      @include tablet-up() {
+      @include tablet-up {
         margin: 0px;
       }
     }
@@ -39,7 +39,7 @@
       padding: 0px;
       display: flex;
       flex-direction: column;
-      @include tablet-up() {
+      @include tablet-up {
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
@@ -57,14 +57,14 @@
             color: $dark-gray;
           }
         }
-        @include tablet-up() {
+        @include tablet-up {
           margin-left: $medium-space;
           a {
             @include capped-text(1px);
             font-size: 0.9rem;
           }
         }
-        @include widescreen-up() {
+        @include widescreen-up {
           margin-left: $large-space;
           a {
             font-size: 1rem;
@@ -75,20 +75,20 @@
   }
   .header-content {
     margin-bottom: $large-space;
-    @include widescreen-up() {
+    @include widescreen-up {
       margin-bottom: $xlarge-space;
     }
     .title {
       color: $white;
       font-size: 1.25rem;
-      @include tablet-up() {
+      @include tablet-up {
         font-size: 1.75rem;
       }
     }
     .excerpt {
       line-height: 2rem;
       color: rgba($white, 0.75);
-      @include tablet-up() {
+      @include tablet-up {
         font-size: 1.1rem;
         line-height: 2.2rem;
       }

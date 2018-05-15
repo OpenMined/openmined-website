@@ -19,10 +19,10 @@
       cursor: pointer;
       opacity: 0.35;
       transition: opacity $anim-time $anim-func;
-      @include tablet-up() {
+      @include tablet-up {
         width: 48%;
       }
-      @include desktop-up() {
+      @include desktop-up {
         width: 32%;
       }
       &.current,

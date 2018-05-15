@@ -6,7 +6,7 @@ $blog-post-border: $small-space;
   margin-top: $large-space;
   .lesser {
     .blog-post {
-      @include desktop-up() {
+      @include desktop-up {
         height: 160px;
         .excerpt {
           display: none;
@@ -17,7 +17,7 @@ $blog-post-border: $small-space;
 }
 
 #posts-container {
-  @include desktop-up() {
+  @include desktop-up {
     margin-top: $large-space;
   }
 }
@@ -34,7 +34,7 @@ $blog-post-border: $small-space;
   justify-content: space-between;
   z-index: 0;
   overflow: hidden;
-  @include desktop-up() {
+  @include desktop-up {
     height: 340px;
   }
   &:after {

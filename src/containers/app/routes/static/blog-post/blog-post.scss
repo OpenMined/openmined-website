@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     margin: $medium-space 0px;
-    @include desktop-up() {
+    @include desktop-up {
       margin-bottom: 0px;
     }
     .avatar {
@@ -71,7 +71,7 @@
   }
   #the-content {
     margin-bottom: $large-space;
-    @include desktop-up() {
+    @include desktop-up {
       margin-bottom: $xlarge-space;
     }
     h2,
@@ -87,7 +87,7 @@
       border-left: 4px solid $light-gray;
       margin-left: 0px;
       padding-left: $large-space;
-      @include desktop-up() {
+      @include desktop-up {
         margin-left: $large-space;
         padding-left: $large-space;
       }
@@ -105,7 +105,7 @@
     a,
     div {
       line-height: 1.85em;
-      @include desktop-up() {
+      @include desktop-up {
         font-size: 18px;
         line-height: 2em;
       }

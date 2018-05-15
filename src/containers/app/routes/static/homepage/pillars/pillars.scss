@@ -14,7 +14,7 @@
     }
     .icon-dots {
       display: none;
-      @include desktop-up() {
+      @include desktop-up {
         display: flex;
         flex-direction: column;
         height: 100%;

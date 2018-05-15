@@ -20,7 +20,7 @@ $github-project-size: 270px;
       position: relative;
       display: flex;
       align-items: center;
-      @include desktop-up() {
+      @include desktop-up {
         &:before,
         &:after {
           position: absolute;

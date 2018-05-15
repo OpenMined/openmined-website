@@ -57,7 +57,7 @@ $hero-height: 800px;
   #steps {
     margin-top: $large-space;
     padding-bottom: $medium-space;
-    @include desktop-up() {
+    @include desktop-up {
       margin-top: $xlarge-space;
       padding-bottom: 0px;
     }

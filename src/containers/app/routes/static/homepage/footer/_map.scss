@@ -6,7 +6,7 @@ $member-map-dot: 10px;
   height: $member-map-height;
   margin-top: $large-space;
   display: none;
-  @include desktop-up() {
+  @include desktop-up {
     display: block;
   }
   // Hide the reference marker

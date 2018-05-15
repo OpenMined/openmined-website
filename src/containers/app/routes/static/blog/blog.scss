@@ -3,7 +3,7 @@
 #blog {
   #posts-content {
     margin-bottom: $large-space;
-    @include desktop-up() {
+    @include desktop-up {
       margin-bottom: $xlarge-space;
     }
     #digs-filter {

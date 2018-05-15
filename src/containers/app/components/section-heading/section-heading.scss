@@ -2,7 +2,7 @@
 
 .section-heading {
   margin-bottom: $medium-space;
-  @include tablet-up() {
+  @include tablet-up {
     display: flex;
     align-items: center;
   }
@@ -19,7 +19,7 @@
       rgba($light-gray, 0),
       rgba($light-gray, 1)
     );
-    @include tablet-up() {
+    @include tablet-up {
       display: block;
     }
     &.white {
@@ -29,7 +29,7 @@
   .button {
     margin-top: $medium-space;
     margin-bottom: 0px;
-    @include tablet-up() {
+    @include tablet-up {
       margin: 0px;
     }
   }
