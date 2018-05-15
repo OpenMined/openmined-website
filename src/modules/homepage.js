@@ -49,25 +49,23 @@ const fetchGithub = () => dispatch =>
   new Promise((resolve, reject) => {
     fetch(STATS_API_URL)
       .then(response => response.json())
-      .then(response => {
-        if (response.error) {
-          dispatch(handleRemoteError(response.error));
+      .then(({ error, repositories, members }) => {
+        if (error) {
+          dispatch(handleRemoteError(error));
 
-          reject(new Error(response.error));
+          reject(new Error(error));
+        } else {
+          dispatch({
+            type: GET_GITHUB_CONTENT,
+            repositories,
+            members
+          });
+
+          resolve({
+            repositories,
+            members
+          });
         }
-
-        const { repositories, members } = response.data;
-
-        dispatch({
-          type: GET_GITHUB_CONTENT,
-          repositories,
-          members
-        });
-
-        resolve({
-          repositories,
-          members
-        });
       })
       .catch(error => dispatch(handleRemoteError(error)));
   });
