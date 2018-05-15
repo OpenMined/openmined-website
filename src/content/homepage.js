@@ -317,23 +317,17 @@ export default {
     ctas: [
       {
         ...buttons.contribute,
-        count: 0,
-        precise: true
+        count: 0
       },
       {
         ...buttons.chat,
-        count: 2500,
-        precise: false
+        count: 0
       },
       {
-        ...buttons.donate,
-        count: 0,
-        precise: true
+        ...buttons.donate
       },
       {
-        ...buttons.newsletter,
-        count: 0,
-        precise: true
+        ...buttons.newsletter
       }
     ]
   },

@@ -18,8 +18,8 @@ export const WORDPRESS_API_URL = WORDPRESS_URL + '/wp-json';
 
 export const STATS_API_URL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3002/github'
-    : 'https://stats.openmined.org/github';
+    ? 'http://localhost:3002'
+    : 'https://stats.openmined.org';
 
 export const handleRemoteError = error =>
   addNotification({

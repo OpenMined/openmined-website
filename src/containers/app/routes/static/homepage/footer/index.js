@@ -14,11 +14,8 @@ const CallsToAction = ({ movement }) => (
     {movement.ctas.map((cta, key) => (
       <div className="button-container" key={key}>
         <ImageButton {...cta} color="white" />
-        {cta.count !== 0 && (
-          <span className="count">
-            {!cta.precise && '> '}
-            {cta.count.toLocaleString()} people
-          </span>
+        {cta.count && (
+          <span className="count">{cta.count.toLocaleString()} people</span>
         )}
       </div>
     ))}

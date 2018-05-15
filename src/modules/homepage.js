@@ -2,9 +2,11 @@ import { STATS_API_URL, handleRemoteError } from './index';
 import HOMEPAGE_CONTENT from '../content/homepage';
 
 export const GET_GITHUB_CONTENT = 'homepage/GET_GITHUB_CONTENT';
+export const GET_SLACK_CONTENT = 'homepage/GET_SLACK_CONTENT';
 
 const initialState = {
   githubContentLoaded: false,
+  slackContentLoaded: false,
   github: {
     repositories: [],
     members: []
@@ -40,6 +42,28 @@ export default (state = initialState, action) => {
         }
       };
 
+    case GET_SLACK_CONTENT:
+      return {
+        ...state,
+        slackContentLoaded: true,
+        content: {
+          ...state.content,
+          movement: {
+            ...state.content.movement,
+            ctas: state.content.movement.ctas.map(cta => {
+              if (cta.type === 'Slack') {
+                return {
+                  ...cta,
+                  count: action.slack.count
+                };
+              }
+
+              return cta;
+            })
+          }
+        }
+      };
+
     default:
       return state;
   }
@@ -47,13 +71,13 @@ export default (state = initialState, action) => {
 
 const fetchGithub = () => dispatch =>
   new Promise((resolve, reject) => {
-    fetch(STATS_API_URL)
+    fetch(STATS_API_URL + '/github')
       .then(response => response.json())
-      .then(({ error, repositories, members }) => {
-        if (error) {
-          dispatch(handleRemoteError(error));
+      .then(({ errorMessage, repositories, members }) => {
+        if (errorMessage) {
+          dispatch(handleRemoteError(errorMessage));
 
-          reject(new Error(error));
+          reject(new Error(errorMessage));
         } else {
           const shuffle = a => {
             for (let i = a.length - 1; i > 0; i--) {
@@ -83,5 +107,34 @@ const fetchGithub = () => dispatch =>
 export const getGithubData = () => {
   return async dispatch => {
     await dispatch(fetchGithub());
+  };
+};
+
+const fetchSlack = () => dispatch =>
+  new Promise((resolve, reject) => {
+    fetch(STATS_API_URL + '/slack')
+      .then(response => response.json())
+      .then(({ errorMessage, metadata }) => {
+        if (errorMessage) {
+          dispatch(handleRemoteError(errorMessage));
+
+          reject(new Error(errorMessage));
+        } else {
+          dispatch({
+            type: GET_SLACK_CONTENT,
+            slack: metadata
+          });
+
+          resolve({
+            slack: metadata
+          });
+        }
+      })
+      .catch(error => dispatch(handleRemoteError(error)));
+  });
+
+export const getSlackData = () => {
+  return async dispatch => {
+    await dispatch(fetchSlack());
   };
 };

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withWrapper } from 'create-react-server/wrapper';
 import { addNotification } from '../../../../../modules/notifications';
-import { getGithubData } from '../../../../../modules/homepage';
+import { getGithubData, getSlackData } from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
 import FooterLinks from '../../../components/footer-links';
@@ -18,6 +18,7 @@ import Footer from './footer/';
 class Homepage extends Component {
   static async getInitialProps(props) {
     await props.store.dispatch(getGithubData());
+    await props.store.dispatch(getSlackData());
   }
 
   render() {
