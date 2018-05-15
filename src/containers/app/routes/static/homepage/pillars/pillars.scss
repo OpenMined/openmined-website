@@ -6,8 +6,9 @@
     padding: $large-space 0px $medium-space 0px;
   }
   .pillar {
-    @include desktop-up {
-      &:last-of-type .pillar-content {
+    &:last-of-type .pillar-content {
+      margin-bottom: 0px;
+      @include desktop-up {
         margin-bottom: $xlarge-space + $medium-space;
       }
     }

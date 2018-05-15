@@ -20,29 +20,31 @@ $github-project-size: 270px;
       position: relative;
       display: flex;
       align-items: center;
-      &:before,
-      &:after {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        height: 1px;
-        content: '';
-      }
-      &:before {
-        left: -260px;
-        background: linear-gradient(
-          to right,
-          rgba($light-gray, 0),
-          rgba($light-gray, 1)
-        );
-      }
-      &:after {
-        right: -260px;
-        background: linear-gradient(
-          to left,
-          rgba($light-gray, 0),
-          rgba($light-gray, 1)
-        );
+      @include desktop-up() {
+        &:before,
+        &:after {
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          height: 1px;
+          content: '';
+        }
+        &:before {
+          left: -260px;
+          background: linear-gradient(
+            to right,
+            rgba($light-gray, 0),
+            rgba($light-gray, 1)
+          );
+        }
+        &:after {
+          right: -260px;
+          background: linear-gradient(
+            to left,
+            rgba($light-gray, 0),
+            rgba($light-gray, 1)
+          );
+        }
       }
       i {
         margin-right: $small-space;

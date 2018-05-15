@@ -22,6 +22,9 @@
     @include tablet-up() {
       display: block;
     }
+    &.white {
+      opacity: 0.5;
+    }
   }
   .button {
     margin-top: $medium-space;

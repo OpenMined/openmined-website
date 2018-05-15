@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin: $medium-space auto;
+    margin: 0px auto $medium-space auto;
     @include desktop-up {
       margin: $large-space auto;
     }

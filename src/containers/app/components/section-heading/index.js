@@ -8,7 +8,7 @@ import './section-heading.css';
 const SectionHeading = ({ level = 3, title, cta, color = 'black' }) => (
   <div className="section-heading">
     <Heading level={level}>{title}</Heading>
-    <span className="line" />
+    <span className={`line ${color}`} />
     {cta && <ImageButton {...cta} color={color} />}
   </div>
 );
