@@ -49,35 +49,33 @@ const fetchGithub = () => dispatch =>
   new Promise((resolve, reject) => {
     fetch(STATS_API_URL)
       .then(response => response.json())
-      .then(response => {
-        if (response.error) {
-          dispatch(handleRemoteError(response.error));
+      .then(({ error, repositories, members }) => {
+        if (error) {
+          dispatch(handleRemoteError(error));
 
-          reject(new Error(response.error));
+          reject(new Error(error));
+        } else {
+          const shuffle = a => {
+            for (let i = a.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+          };
+
+          members = shuffle(members);
+
+          dispatch({
+            type: GET_GITHUB_CONTENT,
+            repositories,
+            members
+          });
+
+          resolve({
+            repositories,
+            members
+          });
         }
-
-        const { repositories, members } = response.data;
-
-        const shuffle = a => {
-          for (let i = a.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [a[i], a[j]] = [a[j], a[i]];
-          }
-          return a;
-        };
-
-        const shuffledMembers = shuffle(members);
-
-        dispatch({
-          type: GET_GITHUB_CONTENT,
-          repositories,
-          members: shuffledMembers
-        });
-
-        resolve({
-          repositories,
-          members: shuffledMembers
-        });
       })
       .catch(error => dispatch(handleRemoteError(error)));
   });
