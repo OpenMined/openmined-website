@@ -58,15 +58,25 @@ const fetchGithub = () => dispatch =>
 
         const { repositories, members } = response.data;
 
+        const shuffle = a => {
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        };
+
+        const shuffledMembers = shuffle(members);
+
         dispatch({
           type: GET_GITHUB_CONTENT,
           repositories,
-          members
+          members: shuffledMembers
         });
 
         resolve({
           repositories,
-          members
+          members: shuffledMembers
         });
       })
       .catch(error => dispatch(handleRemoteError(error)));

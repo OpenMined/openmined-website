@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 
 import ScrollPercentage from 'react-scroll-percentage';
+import 'intersection-observer';
 
 class MemberMap extends Component {
   constructor(props) {
