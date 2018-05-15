@@ -10,6 +10,7 @@ $card-padding: $medium-space + $small-space;
   margin-bottom: $medium-space;
   border-radius: $border-radius;
   box-shadow: 0px $small-space $medium-space 0px rgba($black, 0.1);
+  will-change: transform;
   @include desktop-up {
     height: $card-height;
   }

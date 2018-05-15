@@ -41,6 +41,7 @@ $process-graph-small-factor: $process-graph-big-factor / 2;
       &.icon {
         width: $process-graph-node;
         height: $process-graph-node;
+        will-change: opacity;
         img {
           width: $process-graph-icon;
           height: $process-graph-icon;
@@ -48,6 +49,7 @@ $process-graph-small-factor: $process-graph-big-factor / 2;
           margin-left: (100% - $process-graph-icon) / 2;
           transition: filter $anim-time $anim-func,
             opacity $anim-time $anim-func;
+          will-change: opacity, filter;
         }
       }
       &.big {
@@ -118,6 +120,7 @@ $process-graph-small-factor: $process-graph-big-factor / 2;
       opacity: 0;
     }
     .dots-track {
+      will-change: opacity, transform;
       &:first-child:nth-last-child(3),
       &:first-child:nth-last-child(3) ~ .dots-track {
         &:first-of-type {

@@ -21,6 +21,7 @@ $process-timer-size: 6px;
     width: 0%;
     background: $primary-color;
     transition: height $anim-time $anim-func;
+    will-change: width;
     &.stopped {
       height: 0px;
       animation-play-state: paused;
