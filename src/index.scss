@@ -16,6 +16,11 @@ html {
   outline: none;
 }
 
+::selection {
+  background: $primary-color;
+  color: $white;
+}
+
 body {
   background: $white;
   color: $black;
