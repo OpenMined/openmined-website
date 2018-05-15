@@ -11,7 +11,7 @@ const Main = ({ tagline, description }) => (
   <Row>
     <Column sizes={{ small: 12 }}>
       <img src={logo} id="logo" alt="OpenMined" />
-      <Heading id="tagline" level={2}>
+      <Heading id="tagline" level={1}>
         {tagline}
       </Heading>
       <p id="description">{description}</p>

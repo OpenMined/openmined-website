@@ -14,9 +14,11 @@
       line-height: 2.5rem;
     }
   }
-  h6 {
+  .contribute {
     font-size: 0.9rem;
     color: $medium-gray;
+    margin-top: $medium-space;
+    @include capped-text();
   }
   .repos {
     padding: 0px;

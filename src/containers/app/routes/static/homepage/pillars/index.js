@@ -44,7 +44,7 @@ const PillarContent = ({ title, description, cards }) => (
     <Row>
       {cards.map((card, key) => (
         <Column sizes={{ small: 12, large: 6 }} key={key}>
-          <Card {...card} />
+          <Card {...card} level={5} />
         </Column>
       ))}
     </Row>

@@ -50,7 +50,7 @@ const Members = ({ members, currentMember }) => (
 const Movement = ({ movement, members, setCurrentMember, currentMember }) => (
   <Row>
     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-      <SectionHeading level={3} title={movement.title} />
+      <SectionHeading title={movement.title} level={3} />
     </Column>
     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
       <CallsToAction movement={movement} />

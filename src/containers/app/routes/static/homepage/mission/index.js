@@ -17,7 +17,7 @@ const Mission = ({ title, cta, content }) => (
     <Container>
       <Row>
         <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-          <SectionHeading title={title} cta={cta} />
+          <SectionHeading title={title} cta={cta} level={3} />
           {content.map((paragraph, key) => (
             <Paragraph {...paragraph} key={key} />
           ))}

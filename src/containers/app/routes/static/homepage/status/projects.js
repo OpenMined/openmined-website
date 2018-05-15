@@ -106,7 +106,7 @@ const Projects = ({ projects, current, setCurrent }) => {
       <Container>
         <Row>
           <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-            <SectionHeading level={3} title="Project Status" />
+            <SectionHeading title="Project Status" level={3} />
           </Column>
         </Row>
         <Row>

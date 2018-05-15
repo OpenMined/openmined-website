@@ -40,7 +40,7 @@ const Info = ({ repositories, info }) => (
     {info.repositories.length > 0 &&
       repositories.length > 0 && (
         <div>
-          <Heading level={6}>Contribute</Heading>
+          <p className="contribute">Contribute</p>
           <Repositories repositories={repositories} info={info} />
         </div>
       )}

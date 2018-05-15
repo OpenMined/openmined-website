@@ -104,7 +104,7 @@ class Process extends Component {
         <Container>
           <Row>
             <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-              <SectionHeading title={title} cta={cta} color="white" />
+              <SectionHeading title={title} cta={cta} color="white" level={3} />
             </Column>
           </Row>
           <StepContent
