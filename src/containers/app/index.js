@@ -10,6 +10,7 @@ import { removeNotification } from '../../modules/notifications';
 
 // UI Components
 import Notifications from './components/notifications';
+import Header from './components/header';
 
 // Routes
 import Homepage from './routes/static/homepage';
@@ -21,9 +22,45 @@ const RedirectToWordpress = () =>
   (window.location = WORDPRESS_URL + '/wp-login.php');
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      shouldShowHeader: false
+    };
+  }
+
   componentDidMount() {
     this.props.history.listen(() => {
       window.scrollTo(0, 0);
+    });
+
+    const supportPageOffset = window.pageXOffset !== undefined;
+    const isCSS1Compat = (document.compatMode || '') === 'CSS1Compat';
+
+    window.addEventListener('scroll', () => {
+      const scroll = {
+        x: supportPageOffset
+          ? window.pageXOffset
+          : isCSS1Compat
+            ? document.documentElement.scrollLeft
+            : document.body.scrollLeft,
+        y: supportPageOffset
+          ? window.pageYOffset
+          : isCSS1Compat
+            ? document.documentElement.scrollTop
+            : document.body.scrollTop
+      };
+
+      if (scroll.y >= 200 && !this.state.shouldShowHeader) {
+        this.setState({
+          shouldShowHeader: true
+        });
+      } else if (scroll.y < 200 && this.state.shouldShowHeader) {
+        this.setState({
+          shouldShowHeader: false
+        });
+      }
     });
   }
 
@@ -34,6 +71,7 @@ class App extends Component {
           notifications={this.props.notifications}
           removeFunc={this.props.removeNotification}
         />
+        <Header {...this.props.links} visible={this.state.shouldShowHeader} />
         <div id="content">
           <Switch>
             <Route exact path="/" component={Homepage} />
@@ -56,7 +94,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  notifications: state.notifications.notifications
+  notifications: state.notifications.notifications,
+  links: state.homepage.content.footer
 });
 
 const mapDispatchToProps = dispatch =>
