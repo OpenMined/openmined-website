@@ -26,6 +26,37 @@ try {
     );
   }
 
+  // NOTE: Currently this just redirects all former blog and dig posts to the new URL
+  // It will be a glorious day that we don't need this anymore...
+  express.get('*', (req, res, next) => {
+    if (req.path.indexOf('/blog') === -1 && req.path.indexOf('/digs') === -1) {
+      return next();
+    } else {
+      let params = req.path.split('/');
+      params = params.filter(n => n !== '' && n !== '[object%20Object]');
+
+      if (params.length === 1) {
+        // If we're just at the root of blog or digs
+        res.redirect(301, 'https://' + params[0] + '.openmined.org');
+      } else if (params.length === 2) {
+        // If we're on a blog post
+        res.redirect(
+          301,
+          'https://' + params[0] + '.openmined.org/' + params[1]
+        );
+      } else if (params.length === 3) {
+        // If we're on a tag or category
+        res.redirect(
+          301,
+          'https://' + params[0] + '.openmined.org/tag/' + params[2]
+        );
+      }
+
+      // We can't match - screw you guys, I'm going home.
+      res.redirect(301, 'https://www.openmined.org/');
+    }
+  });
+
   const crsMiddleware = createExpressMiddleware({
     port: process.env.PORT || 3000,
     app,
