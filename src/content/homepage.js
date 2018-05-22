@@ -335,11 +335,11 @@ export default {
     links: [
       {
         text: 'Blog',
-        link: '/blog'
+        link: 'https://blog.openmined.org'
       },
       {
         text: 'Weekly Digs',
-        link: '/digs'
+        link: 'https://digs.openmined.org'
       },
       {
         text: 'Brand Guide',

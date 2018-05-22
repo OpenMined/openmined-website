@@ -15,9 +15,14 @@ export const MainLinks = ({ linksClass, logo, links }) => (
     </li>
     {links &&
       links.map(({ link, text }, key) => {
+        const TheLink =
+          link.includes('http://') || link.includes('https://')
+            ? ExternalLink
+            : Link;
+
         return (
           <li key={key}>
-            <Link to={link}>{text}</Link>
+            <TheLink to={link}>{text}</TheLink>
           </li>
         );
       })}
