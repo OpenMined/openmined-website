@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
-import mapboxgl from 'mapbox-gl';
 
 import ScrollPercentage from 'react-scroll-percentage';
-import 'intersection-observer';
+
+const canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
+
+let mapboxgl;
+
+// TODO: Weird SSR thing... let's figure out a better solution!
+if (canUseDOM) {
+  mapboxgl = require('mapbox-gl');
+  require('intersection-observer');
+}
 
 class MemberMap extends Component {
   constructor(props) {
