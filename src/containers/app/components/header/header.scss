@@ -52,7 +52,7 @@ $header-logo-size: $header-height * 0.6;
           margin-right: $medium-space;
           font-size: 0.9rem;
           white-space: nowrap;
-          color: $black;
+          color: $off-black;
           transition: color $anim-time $anim-func;
           &:hover {
             color: $primary-color;

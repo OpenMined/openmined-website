@@ -1,13 +1,45 @@
 import React from 'react';
 import { Row, Column, Container } from 'openmined-ui';
+import moment from 'moment';
+import Tilt from 'react-tilt';
+import ExternalLink from '../../../../components/external-link';
 import SectionHeading from '../../../../components/section-heading';
+import Carousel from '../../../../components/carousel';
 
-const Blog = ({ posts }) => (
+const POST_HEIGHT = 250;
+
+/* eslint-disable camelcase */
+const Post = ({ more, url, title, custom_excerpt, published_at }) => (
+  <Tilt
+    className="post"
+    style={{ height: POST_HEIGHT }}
+    options={{ reverse: true, max: 10, scale: 1, speed: 250 }}
+  >
+    <ExternalLink to={more + url}>
+      <h5 className="title">{title}</h5>
+      <p className="excerpt">{custom_excerpt}</p>
+      <span className="date">Posted {moment(published_at).fromNow()}</span>
+    </ExternalLink>
+  </Tilt>
+);
+
+const Blog = ({ name, more, posts }) => (
   <div className="blog">
-    {posts &&
-      posts.map(post => {
-        return <p key={post.id}>{post.id}</p>;
-      })}
+    <div className="metadata">
+      <h4 className="title">{name}</h4>
+      <ExternalLink to={`https://feedly.com/i/subscription/feed/${more}/rss/`}>
+        <i className="fa fa-rss" aria-hidden="true" />
+      </ExternalLink>
+    </div>
+    {posts && (
+      <Carousel height={POST_HEIGHT}>
+        {posts.map((post, index) => <Post key={index} more={more} {...post} />)}
+      </Carousel>
+    )}
+    <ExternalLink className="read-more" to={more}>
+      <i className="fa fa-share" aria-hidden="true" />
+      <span>Read more blog posts</span>
+    </ExternalLink>
   </div>
 );
 
@@ -18,15 +50,23 @@ const LatestNews = ({ blog, digs }) => (
         <SectionHeading title="Latest News" level={3} />
       </Column>
     </Row>
-    <Row>
+    <Row id="blogs">
       <Column
         sizes={{ small: 12, large: 6, xlarge: 5 }}
         offsets={{ xlarge: 1 }}
       >
-        <Blog posts={blog} />
+        <Blog
+          name="OpenMined Blog"
+          more="https://blog.openmined.org"
+          posts={blog}
+        />
       </Column>
       <Column sizes={{ small: 12, large: 6, xlarge: 5 }}>
-        <Blog posts={digs} />
+        <Blog
+          name="Weekly Digs"
+          more="https://digs.openmined.org"
+          posts={digs}
+        />
       </Column>
     </Row>
   </Container>

@@ -26,7 +26,7 @@ $card-padding: $medium-space + $small-space;
     }
     .heading {
       margin-top: 0px;
-      color: $black;
+      color: $off-black;
       @include tablet-up {
         font-size: 1.35rem;
       }
@@ -58,7 +58,7 @@ $card-padding: $medium-space + $small-space;
         align-items: center;
         margin-bottom: $small-space;
         &:hover .text {
-          color: $black;
+          color: $off-black;
         }
         .icon {
           background: $black;
