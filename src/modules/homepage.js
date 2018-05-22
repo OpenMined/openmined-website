@@ -3,14 +3,17 @@ import HOMEPAGE_CONTENT from '../content/homepage';
 
 export const GET_GITHUB_CONTENT = 'homepage/GET_GITHUB_CONTENT';
 export const GET_SLACK_CONTENT = 'homepage/GET_SLACK_CONTENT';
+export const GET_GHOST_CONTENT = 'homepage/GET_GHOST_CONTENT';
 
 const initialState = {
   githubContentLoaded: false,
   slackContentLoaded: false,
+  ghostContentLoaded: false,
   github: {
     repositories: [],
     members: []
   },
+  ghost: {},
   content: HOMEPAGE_CONTENT
 };
 
@@ -62,6 +65,13 @@ export default (state = initialState, action) => {
             })
           }
         }
+      };
+
+    case GET_GHOST_CONTENT:
+      return {
+        ...state,
+        ghostContentLoaded: true,
+        ghost: action.ghost
       };
 
     default:
@@ -136,5 +146,34 @@ const fetchSlack = () => dispatch =>
 export const getSlackData = () => {
   return async dispatch => {
     await dispatch(fetchSlack());
+  };
+};
+
+const fetchGhost = () => dispatch =>
+  new Promise((resolve, reject) => {
+    fetch(STATS_API_URL + '/ghost')
+      .then(response => response.json())
+      .then(response => {
+        if (response.error) {
+          dispatch(handleRemoteError(response.error));
+
+          reject(new Error(response.error));
+        } else {
+          dispatch({
+            type: GET_GHOST_CONTENT,
+            ghost: response
+          });
+
+          resolve({
+            ghost: response
+          });
+        }
+      })
+      .catch(error => dispatch(handleRemoteError(error)));
+  });
+
+export const getGhostData = () => {
+  return async dispatch => {
+    await dispatch(fetchGhost());
   };
 };

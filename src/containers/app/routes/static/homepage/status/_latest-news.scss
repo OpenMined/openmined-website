@@ -1,0 +1,6 @@
+#latest-news {
+  margin-top: $large-space;
+  @include desktop-up {
+    margin-top: $xlarge-space;
+  }
+}

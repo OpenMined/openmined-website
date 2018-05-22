@@ -3,7 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withWrapper } from 'create-react-server/wrapper';
 import { addNotification } from '../../../../../modules/notifications';
-import { getGithubData, getSlackData } from '../../../../../modules/homepage';
+import {
+  getGithubData,
+  getSlackData,
+  getGhostData
+} from '../../../../../modules/homepage';
 import { Page } from 'openmined-ui';
 
 import FooterLinks from '../../../components/footer-links';
@@ -19,6 +23,7 @@ class Homepage extends Component {
   static async getInitialProps(props) {
     await props.store.dispatch(getGithubData());
     await props.store.dispatch(getSlackData());
+    await props.store.dispatch(getGhostData());
   }
 
   render() {
@@ -35,6 +40,7 @@ class Homepage extends Component {
     } = this.props.content;
 
     const { members, repositories } = this.props.github;
+    const { ghost } = this.props;
 
     return (
       <Page id="homepage">
@@ -43,7 +49,7 @@ class Homepage extends Component {
         <Mission {...mission} />
         <Pillars pillars={pillars} />
         <Process {...process} repositories={repositories} />
-        <Status {...status} repositories={repositories} />
+        <Status {...status} {...ghost} repositories={repositories} />
         <Footer questions={questions} movement={movement} members={members} />
         <FooterLinks {...footer} />
       </Page>
@@ -54,7 +60,7 @@ class Homepage extends Component {
 const mapStateToProps = state => ({
   content: state.homepage.content,
   github: state.homepage.github,
-  githubContentLoaded: state.homepage.githubContentLoaded
+  ghost: state.homepage.ghost
 });
 
 const mapDispatchToProps = dispatch =>

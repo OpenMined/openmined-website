@@ -4,6 +4,7 @@ import ImageButton from '../../../../components/image-button';
 import { matchRepositoryToName } from '../../../../../../helpers/repositories';
 
 import Projects from './projects';
+import LatestNews from './latest-news';
 
 import './status.css';
 
@@ -17,7 +18,7 @@ class Status extends Component {
   }
 
   render() {
-    const { repositories, projects, cta } = this.props;
+    const { repositories, projects, cta, blog, digs } = this.props;
 
     const matchedProjects = matchRepositoryToName(projects, repositories);
 
@@ -37,6 +38,7 @@ class Status extends Component {
             </Column>
           </Row>
         </Container>
+        <LatestNews blog={blog} digs={digs} />
       </div>
     );
   }

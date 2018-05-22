@@ -9,47 +9,13 @@ $github-project-size: 270px;
     padding: $xlarge-space + $medium-space 0px;
   }
   @import 'projects';
+  @import 'latest-news';
   .cta-container {
     display: flex;
     justify-content: center;
     margin-top: $medium-space;
     @include desktop-up {
       margin-top: $large-space;
-    }
-    .button {
-      position: relative;
-      display: flex;
-      align-items: center;
-      @include desktop-up {
-        &:before,
-        &:after {
-          position: absolute;
-          top: 50%;
-          width: 100%;
-          height: 1px;
-          content: '';
-        }
-        &:before {
-          left: -260px;
-          background: linear-gradient(
-            to right,
-            rgba($light-gray, 0),
-            rgba($light-gray, 1)
-          );
-        }
-        &:after {
-          right: -260px;
-          background: linear-gradient(
-            to left,
-            rgba($light-gray, 0),
-            rgba($light-gray, 1)
-          );
-        }
-      }
-      i {
-        margin-right: $small-space;
-        font-size: 1.1rem;
-      }
     }
   }
 }
