@@ -23,7 +23,7 @@ const Post = ({ more, url, title, custom_excerpt, published_at }) => (
   </Tilt>
 );
 
-const Blog = ({ name, more, posts }) => (
+const Blog = ({ name, more, mailchimp, posts }) => (
   <div className="blog">
     <div className="metadata">
       <h4 className="title">{name}</h4>
@@ -40,6 +40,10 @@ const Blog = ({ name, more, posts }) => (
       <i className="fa fa-share" aria-hidden="true" />
       <span>Read more blog posts</span>
     </ExternalLink>
+    <ExternalLink className="mailchimp" to={mailchimp}>
+      <i className="fa fa-envelope" aria-hidden="true" />
+      <span>Subcribe for updates</span>
+    </ExternalLink>
   </div>
 );
 
@@ -55,18 +59,10 @@ const LatestNews = ({ blog, digs }) => (
         sizes={{ small: 12, large: 6, xlarge: 5 }}
         offsets={{ xlarge: 1 }}
       >
-        <Blog
-          name="OpenMined Blog"
-          more="https://blog.openmined.org"
-          posts={blog}
-        />
+        <Blog {...blog} />
       </Column>
       <Column sizes={{ small: 12, large: 6, xlarge: 5 }}>
-        <Blog
-          name="Weekly Digs"
-          more="https://digs.openmined.org"
-          posts={digs}
-        />
+        <Blog {...digs} />
       </Column>
     </Row>
   </Container>

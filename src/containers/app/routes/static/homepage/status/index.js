@@ -18,7 +18,7 @@ class Status extends Component {
   }
 
   render() {
-    const { repositories, projects, cta, blog, digs } = this.props;
+    const { repositories, projects, cta, news } = this.props;
 
     const matchedProjects = matchRepositoryToName(projects, repositories);
 
@@ -38,7 +38,7 @@ class Status extends Component {
             </Column>
           </Row>
         </Container>
-        <LatestNews blog={blog} digs={digs} />
+        <LatestNews {...news} />
       </div>
     );
   }

@@ -13,7 +13,6 @@ const initialState = {
     repositories: [],
     members: []
   },
-  ghost: {},
   content: HOMEPAGE_CONTENT
 };
 
@@ -71,7 +70,22 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ghostContentLoaded: true,
-        ghost: action.ghost
+        content: {
+          ...state.content,
+          status: {
+            ...state.content.status,
+            news: {
+              blog: {
+                ...state.content.status.news.blog,
+                posts: action.ghost.blog
+              },
+              digs: {
+                ...state.content.status.news.digs,
+                posts: action.ghost.digs
+              }
+            }
+          }
+        }
       };
 
     default:

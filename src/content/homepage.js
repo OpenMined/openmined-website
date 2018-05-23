@@ -310,7 +310,21 @@ export default {
   },
   status: {
     projects: ['Grid', 'UnityWorker', 'PySyft'],
-    cta: buttons.contribute
+    cta: buttons.contribute,
+    news: {
+      blog: {
+        name: 'OpenMined Blog',
+        more: 'https://blog.openmined.org',
+        mailchimp: 'http://eepurl.com/cW1Fqj',
+        posts: []
+      },
+      digs: {
+        name: 'Weekly Digs',
+        more: 'https://digs.openmined.org',
+        mailchimp: 'http://eepurl.com/dvKtij',
+        posts: []
+      }
+    }
   },
   movement: {
     title: 'Join the Movement',

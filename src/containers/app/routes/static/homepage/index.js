@@ -49,7 +49,7 @@ class Homepage extends Component {
         <Mission {...mission} />
         <Pillars pillars={pillars} />
         <Process {...process} repositories={repositories} />
-        <Status {...status} {...ghost} repositories={repositories} />
+        <Status {...status} repositories={repositories} />
         <Footer questions={questions} movement={movement} members={members} />
         <FooterLinks {...footer} />
       </Page>
@@ -59,8 +59,7 @@ class Homepage extends Component {
 
 const mapStateToProps = state => ({
   content: state.homepage.content,
-  github: state.homepage.github,
-  ghost: state.homepage.ghost
+  github: state.homepage.github
 });
 
 const mapDispatchToProps = dispatch =>
