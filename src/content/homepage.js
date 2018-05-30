@@ -57,7 +57,7 @@ export default {
         subtitle: 'Step One',
         heading: 'Setup Worker',
         content:
-          'Also called a "Mine", the worker is where your personal data is stored. Using the worker, you can download models and train them from your own hardware.',
+          'Also called a "Mine", the worker is a server where your private data is stored. The worker downloads models and train them using federated learning and differential privacy.',
         colab: 'https://www.google.com/search?q=colab',
         local: 'https://www.google.com/search?q=local'
       },
@@ -66,33 +66,33 @@ export default {
         subtitle: 'Step Two',
         heading: 'Setup Client',
         content:
-          'Using the “Syft” project, you may create models for workers to train. All models are encrypted via multi-party computation or homomorphic encryption.',
+          'Using the “Syft” project, you may create models for workers to train. Models can be secured via multi-party computation or homomorphic encryption.',
         colab: 'https://www.google.com/search?q=colab',
         local: 'https://www.google.com/search?q=local'
       }
     ]
   },
   testimonials: [
-    {
-      name: 'Sample Company 1',
-      link: 'https://www.google.com',
-      image: sampleImage
-    },
-    {
-      name: 'Sample Company 2',
-      link: 'https://www.google.com',
-      image: sampleImage
-    },
-    {
-      name: 'Sample Company 3',
-      link: 'https://www.google.com',
-      image: sampleImage
-    },
-    {
-      name: 'Sample Company 4',
-      link: 'https://www.google.com',
-      image: sampleImage
-    }
+    // {
+    //   name: 'Sample Company 1',
+    //   link: 'https://www.google.com',
+    //   image: sampleImage
+    // },
+    // {
+    //   name: 'Sample Company 2',
+    //   link: 'https://www.google.com',
+    //   image: sampleImage
+    // },
+    // {
+    //   name: 'Sample Company 3',
+    //   link: 'https://www.google.com',
+    //   image: sampleImage
+    // },
+    // {
+    //   name: 'Sample Company 4',
+    //   link: 'https://www.google.com',
+    //   image: sampleImage
+    // }
   ],
   mission: {
     title: 'Vision & Mission',
@@ -132,7 +132,7 @@ export default {
         {
           link: 'https://www.google.com',
           subtitle: 'Secure',
-          heading: 'Homomorphic Computation',
+          heading: 'Homomorphic Encryption',
           content:
             'This is used when a model must be trained in an encrypted state. Here the model knows nothing of the data and the data owner knows nothing of the model.',
           colab: 'https://www.google.com/search?q=colab'
