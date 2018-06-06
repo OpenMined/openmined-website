@@ -5,8 +5,14 @@ import ExternalLink from '../../../../components/external-link';
 
 import './testimonials.css';
 
+const slug = name =>
+  name
+    .toLowerCase()
+    .split(' ')
+    .join('-');
+
 const Testimonial = ({ name, link, image }) => (
-  <ExternalLink to={link} className="testimonial">
+  <ExternalLink to={link} className={`testimonial ${slug(name)}`}>
     <img src={image} className="image" alt={name} />
   </ExternalLink>
 );

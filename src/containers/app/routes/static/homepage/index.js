@@ -40,7 +40,6 @@ class Homepage extends Component {
     } = this.props.content;
 
     const { members, repositories } = this.props.github;
-    const { ghost } = this.props;
 
     return (
       <Page id="homepage">

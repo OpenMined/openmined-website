@@ -1,5 +1,7 @@
 // Testimonial logos
-import sampleImage from '../containers/app/assets/logo-square-color.svg';
+import tensorFlowImage from '../containers/app/assets/tensorflow.svg';
+import pyTorchImage from '../containers/app/assets/pytorch.svg';
+import ipfsImage from '../containers/app/assets/ipfs.svg';
 
 // Image button icons
 import githubIcon from '../containers/app/assets/icons/github.svg';
@@ -73,26 +75,21 @@ export default {
     ]
   },
   testimonials: [
-    // {
-    //   name: 'Sample Company 1',
-    //   link: 'https://www.google.com',
-    //   image: sampleImage
-    // },
-    // {
-    //   name: 'Sample Company 2',
-    //   link: 'https://www.google.com',
-    //   image: sampleImage
-    // },
-    // {
-    //   name: 'Sample Company 3',
-    //   link: 'https://www.google.com',
-    //   image: sampleImage
-    // },
-    // {
-    //   name: 'Sample Company 4',
-    //   link: 'https://www.google.com',
-    //   image: sampleImage
-    // }
+    {
+      name: 'TensorFlow',
+      link: 'https://www.tensorflow.org/',
+      image: tensorFlowImage
+    },
+    {
+      name: 'IPFS',
+      link: 'https://ipfs.io/',
+      image: ipfsImage
+    },
+    {
+      name: 'PyTorch',
+      link: 'https://pytorch.org/',
+      image: pyTorchImage
+    }
   ],
   mission: {
     title: 'Vision & Mission',
