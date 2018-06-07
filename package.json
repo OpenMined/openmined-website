@@ -28,6 +28,7 @@
     "path": "^0.12.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-fullstory": "^1.0.3",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
     "react-render-html": "^0.6.0",
