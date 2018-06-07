@@ -13,7 +13,7 @@ const Paragraph = ({ text, strong }) => (
 );
 
 const Mission = ({ title, cta, content }) => (
-  <div id="mission">
+  <div id="mission" className="section-padding">
     <Container>
       <Row>
         <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>

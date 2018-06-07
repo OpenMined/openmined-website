@@ -23,7 +23,7 @@ class Status extends Component {
     const matchedProjects = matchRepositoryToName(projects, repositories);
 
     return (
-      <div id="status">
+      <div id="status" className="section-padding">
         {repositories.length > 0 && (
           <Projects
             projects={matchedProjects}

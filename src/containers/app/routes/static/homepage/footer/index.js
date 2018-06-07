@@ -64,28 +64,6 @@ const Movement = ({ movement, members, setCurrentMember, currentMember }) => (
   </Row>
 );
 
-// const Questions = ({ questions }) => (
-//   <Row>
-//     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-//       <SectionHeading level={3} title={questions.title} />
-//     </Column>
-//     <Column
-//       sizes={{ small: 12, xlarge: 10 }}
-//       offsets={{ xlarge: 1 }}
-//       className="questions"
-//     >
-//       {questions.content.map(({ question, answer }, key) => {
-//         return (
-//           <div className="question" key={key}>
-//             <p className="query">{question}</p>
-//             <p className="answer">{answer}</p>
-//           </div>
-//         );
-//       })}
-//     </Column>
-//   </Row>
-// );
-
 class Footer extends Component {
   constructor(props) {
     super(props);
@@ -97,9 +75,8 @@ class Footer extends Component {
 
   render() {
     return (
-      <div id="footer">
+      <div id="footer" className="section-padding">
         <Container>
-          {/* <Questions {...this.props} /> */}
           <Movement
             currentMember={this.state.currentMember}
             setCurrentMember={currentMember => this.setState({ currentMember })}

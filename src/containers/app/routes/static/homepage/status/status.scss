@@ -4,10 +4,6 @@ $timeline-item-height: 20px;
 $github-project-size: 270px;
 
 #status {
-  padding: $large-space 0px;
-  @include desktop-up {
-    padding: $xlarge-space + $medium-space 0px;
-  }
   @import 'projects';
   @import 'latest-news';
   .cta-container {

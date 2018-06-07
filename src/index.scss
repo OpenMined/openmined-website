@@ -36,3 +36,10 @@ body {
 
   overflow-x: hidden;
 }
+
+.section-padding {
+  margin-top: $large-space;
+  @include desktop-up {
+    margin-top: $xlarge-space;
+  }
+}

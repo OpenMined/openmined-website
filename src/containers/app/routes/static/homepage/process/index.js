@@ -100,7 +100,7 @@ class Process extends Component {
     const { repositories, title, cta, content, sections } = this.props;
 
     return (
-      <div id="process">
+      <div id="process" className="section-padding">
         <Container>
           <Row>
             <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>

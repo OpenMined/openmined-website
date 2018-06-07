@@ -4,7 +4,6 @@
   display: none;
   @include desktop-up {
     display: block;
-    padding-top: $xlarge-space + $medium-space;
   }
   .testimonial-list {
     display: flex;

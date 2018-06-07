@@ -1,13 +1,14 @@
 @import 'variables';
 
 #pillars {
-  padding: $medium-space 0px;
+  margin-top: $medium-space;
   @include desktop-up {
-    padding: $large-space 0px $medium-space 0px;
+    margin-top: $large-space;
+    margin-bottom: -$large-space + -$small-space;
   }
   .pillar {
     &:last-of-type .pillar-content {
-      margin-bottom: 0px;
+      margin-bottom: -$small-space;
       @include desktop-up {
         margin-bottom: $xlarge-space + $medium-space;
       }
@@ -29,7 +30,10 @@
       }
     }
     .pillar-content {
-      margin-bottom: $large-space;
+      margin-bottom: $medium-space;
+      @include desktop-up {
+        margin-bottom: $large-space;
+      }
       .description {
         color: $medium-gray;
         font-size: 1.1rem;

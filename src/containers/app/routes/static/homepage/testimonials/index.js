@@ -18,7 +18,7 @@ const Testimonial = ({ name, link, image }) => (
 );
 
 const Testimonials = ({ testimonials }) => (
-  <div id="testimonials">
+  <div id="testimonials" className="section-padding">
     <Container>
       <Row>
         <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>

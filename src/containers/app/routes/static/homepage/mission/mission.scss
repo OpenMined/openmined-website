@@ -1,10 +1,6 @@
 @import 'variables';
 
 #mission {
-  padding-top: $large-space;
-  @include desktop-up {
-    padding-top: $large-space + $small-space;
-  }
   p {
     font-size: 1.1rem;
     color: $medium-gray;
