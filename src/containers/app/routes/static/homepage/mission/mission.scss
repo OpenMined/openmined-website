@@ -5,7 +5,7 @@
     font-size: 1.1rem;
     color: $medium-gray;
     line-height: 2.25rem;
-    span {
+    strong {
       @supports (box-decoration-break: clone) {
         border-radius: $border-radius;
         background-color: $dark-gray;

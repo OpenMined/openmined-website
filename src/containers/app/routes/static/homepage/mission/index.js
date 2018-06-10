@@ -7,7 +7,7 @@ import './mission.css';
 
 const Paragraph = ({ text, strong }) => (
   <p>
-    {strong && <span>{text}</span>}
+    {strong && <strong>{text}</strong>}
     {!strong && text}
   </p>
 );
