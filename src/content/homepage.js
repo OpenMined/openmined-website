@@ -97,11 +97,11 @@ export default {
     content: [
       {
         text:
-          'Industry standard tools for artificial intelligence have been designed with several assumptions: data is centralized into a single compute cluster, the cluster exists in a secure cloud, and the resulting models will be owned by a central authority. Not only does this obstruct a user’s right to privacy and ownership of their information, but it also puts the potential for advancement in AI in the hands of those who control the most data. We envision a world in which AI tools do not restrict us to this scenario.'
+          'Industry standard tools for artificial intelligence have been designed with several assumptions: data is centralized into a single compute cluster, the cluster exists in a secure cloud, and the resulting models will be owned by a central authority.  We envision a world in which we are not restricted to this scenario - a world in which AI tools treat privacy, security, and multi-owner governance as first class citizens.'
       },
       {
         text:
-          'With OpenMined, an AI model can be governed by multiple owners and trained on an unseen, distributed dataset or simulated environment.',
+          'With OpenMined, an AI model can be governed by multiple owners and trained securely on an unseen, distributed dataset.',
         strong: true
       },
       {
@@ -119,20 +119,20 @@ export default {
         'Privacy is at the core of OpenMined - building tools that provides data owners autonomy during the model training process. This is done by utilizing two methods of privacy preservation: federated learning and differential privacy.',
       cards: [
         {
-          link: 'https://www.google.com',
+          // link: 'https://www.google.com',
           subtitle: 'Private',
           heading: 'Federated Learning',
           content:
-            'Instead of bringing data all to one place for training, federated learning is done by bringing the model to the data. This allows a data owner to maintain the only copy of their information.',
-          colab: 'https://www.google.com/search?q=colab'
+            'Instead of bringing data all to one place for training, federated learning is done by bringing the model to the data. This allows a data owner to maintain the only copy of their information.'
+          // colab: 'https://www.google.com/search?q=colab'
         },
         {
-          link: 'https://www.google.com',
+          // link: 'https://www.google.com',
           subtitle: 'Private',
           heading: 'Differential Privacy',
           content:
-            'Differential Privacy is a set of techniques for preventing a model from accidentally memorizing secrets present in a training dataset during the learning process.',
-          colab: 'https://www.google.com/search?q=colab'
+            'Differential Privacy is a set of techniques for preventing a model from accidentally memorizing secrets present in a training dataset during the learning process.'
+          // colab: 'https://www.google.com/search?q=colab'
         }
       ]
     },
@@ -144,20 +144,20 @@ export default {
         'OpenMined is building tools that allow models to be trained within insecure, distributed environments such as end user devices. We aim to support two methods of secure computation: multi-party computation and homomorphic encryption.',
       cards: [
         {
-          link: 'https://www.google.com',
+          // link: 'https://www.google.com',
           subtitle: 'Secure',
           heading: 'Multi-party Computation',
           content:
-            'When a model’s ownership is shared, multi-party computation allows for individuals to share a number without necessarily knowing its value. Calculations may only be performed if all owners allow it.',
-          colab: 'https://www.google.com/search?q=colab'
+            'When a model’s ownership is shared, multi-party computation allows for individuals to share a number without necessarily knowing its value. Calculations may only be performed if all owners allow it.'
+          // colab: 'https://www.google.com/search?q=colab'
         },
         {
-          link: 'https://www.google.com',
+          // link: 'https://www.google.com',
           subtitle: 'Secure',
           heading: 'Homomorphic Encryption',
           content:
-            'In situations where a model is not shared, homomorphic encryption allows for a number to be encrypted so that someone else can perform arithmetic using that number without knowing its value.',
-          colab: 'https://www.google.com/search?q=colab'
+            'In situations where a model is not shared, homomorphic encryption allows for a number to be encrypted so that someone else can perform arithmetic using that number without knowing its value.'
+          // colab: 'https://www.google.com/search?q=colab'
         }
       ]
     },
@@ -169,20 +169,20 @@ export default {
         'The OpenMined ecosystem allows for various systems of shared ownership, allowing variable control structures to be designed by model owners according to their own preferences. We allow for two systems of governance: consensus and threshold governance.',
       cards: [
         {
-          link: 'https://www.google.com',
+          // link: 'https://www.google.com',
           subtitle: 'Goverance',
           heading: 'Concensus Governance',
           content:
-            'The default governance structure is one in which a group of data or model owners must all agree to perform training or inference in order for it to occur.',
-          colab: 'https://www.google.com/search?q=colab'
+            'The default governance structure is one in which a group of data or model owners must all agree to perform training or inference in order for it to occur.'
+          // colab: 'https://www.google.com/search?q=colab'
         },
         {
-          link: 'https://www.google.com',
+          // link: 'https://www.google.com',
           subtitle: 'Goverance',
           heading: 'Threshold Governance',
           content:
-            'An alternative governance structure is one in which a minimum threshold of data or model owners must agree to perform training or inference in order for it to occur.',
-          colab: 'https://www.google.com/search?q=colab'
+            'An alternative governance structure is one in which a minimum threshold of data or model owners must agree to perform training or inference in order for it to occur.'
+          // colab: 'https://www.google.com/search?q=colab'
         }
       ]
     }

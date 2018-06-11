@@ -5,6 +5,7 @@
   @include desktop-up {
     display: block;
   }
+  padding-top: $large-space;
   .testimonial-list {
     display: flex;
     justify-content: space-around;
