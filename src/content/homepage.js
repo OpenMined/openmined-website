@@ -116,7 +116,7 @@ export default {
       icon: computerIcon,
       title: 'Private',
       description:
-        'Privacy is at the core of OpenMined - building tools that provides data owners autonomy during the model training process. This is done by utilizing two methods of privacy preservation: federated learning and differential privacy.',
+        'Privacy is at the core of OpenMined - building tools that allow data owners to keep their data private during the model training process. This is done by utilizing two methods of privacy preservation: federated learning and differential privacy.',
       cards: [
         {
           // link: 'https://www.google.com',
@@ -148,7 +148,7 @@ export default {
           subtitle: 'Secure',
           heading: 'Multi-party Computation',
           content:
-            'When a model’s ownership is shared, multi-party computation allows for individuals to share a number without necessarily knowing its value. Calculations may only be performed if all owners allow it.'
+            'When a model has multiple owners, multi-party computation allows for individuals to share control of a model without seeing its contents such that no sole owner can use or train it.'
           // colab: 'https://www.google.com/search?q=colab'
         },
         {
@@ -156,7 +156,7 @@ export default {
           subtitle: 'Secure',
           heading: 'Homomorphic Encryption',
           content:
-            'In situations where a model is not shared, homomorphic encryption allows for a number to be encrypted so that someone else can perform arithmetic using that number without knowing its value.'
+            'When a model has a single owner, homomorphic encryption allows an owner to encrypt their model so that untrusted 3rd parties can train or use the model without being able to steal it.'
           // colab: 'https://www.google.com/search?q=colab'
         }
       ]
