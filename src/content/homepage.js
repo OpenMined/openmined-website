@@ -318,7 +318,7 @@ export default {
     ]
   },
   status: {
-    projects: ['Grid', 'UnityWorker', 'PySyft'],
+    projects: ['PySyft', 'Grid', 'UnityWorker'],
     cta: buttons.contribute,
     news: {
       blog: {

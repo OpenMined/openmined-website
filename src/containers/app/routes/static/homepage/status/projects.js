@@ -80,19 +80,25 @@ const Issues = ({ issues = [], link }) => (
 
 const ProjectSelector = ({ projects, current, setCurrent }) => (
   <div className="projects">
-    {projects.map(({ shortName, name, description }, index) => (
-      <div
-        className={current === index ? 'project current' : 'project'}
-        onClick={() => setCurrent(index)}
-        key={index}
-      >
-        <RepoIcon repo={shortName} />
-        <div className="info">
-          <Heading level={4}>{name}</Heading>
-          <p className="description">{description}</p>
-        </div>
-      </div>
-    ))}
+    {projects.map(({ shortName, name, description }, index) => {
+      if (shortName) {
+        return (
+          <div
+            className={current === index ? 'project current' : 'project'}
+            onClick={() => setCurrent(index)}
+            key={index}
+          >
+            <RepoIcon repo={shortName} />
+            <div className="info">
+              <Heading level={4}>{name}</Heading>
+              <p className="description">{description}</p>
+            </div>
+          </div>
+        );
+      }
+
+      return null;
+    })}
   </div>
 );
 

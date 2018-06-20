@@ -2,7 +2,7 @@ export const matchRepositoryToName = (projects, repositories) => {
   const matchSingle = project =>
     repositories.find(
       elem => equalizeNames(elem.name) === equalizeNames(project)
-    );
+    ) || {};
 
   if (typeof projects === 'string') {
     return matchSingle(projects);
