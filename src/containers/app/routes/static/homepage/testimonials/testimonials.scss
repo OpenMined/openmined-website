@@ -1,0 +1,30 @@
+@import 'variables';
+
+#testimonials {
+  display: none;
+  @include desktop-up {
+    display: block;
+  }
+  padding-top: $large-space;
+  .testimonial-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .testimonial {
+      height: 40px;
+      // IPFS just doesn't look right...
+      &.ipfs .image {
+        margin-top: 5px;
+      }
+      .image {
+        height: 100%;
+        margin: 0px auto;
+        transition: filter $anim-time $anim-func;
+        filter: grayscale(100%);
+        &:hover {
+          filter: grayscale(0%);
+        }
+      }
+    }
+  }
+}

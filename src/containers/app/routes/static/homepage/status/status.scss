@@ -1,0 +1,17 @@
+@import 'variables';
+
+$timeline-item-height: 20px;
+$github-project-size: 270px;
+
+#status {
+  @import 'projects';
+  @import 'latest-news';
+  .cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: $medium-space;
+    @include desktop-up {
+      margin-top: $large-space;
+    }
+  }
+}

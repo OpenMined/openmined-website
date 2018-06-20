@@ -29,10 +29,10 @@ $notification-padding: 10px;
     cursor: default;
     &.success {
       background: $success-color;
-      color: $black;
+      color: $off-black;
       .close {
         background: darken($success-color, 5%);
-        color: $black;
+        color: $off-black;
       }
     }
     &.error {

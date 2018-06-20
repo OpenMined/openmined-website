@@ -1,0 +1,23 @@
+@import 'variables';
+
+$process-graph-info-height: 400px;
+
+#process {
+  background: linear-gradient(to bottom, $dark-gray, darken($dark-gray, 7%));
+  padding-top: $large-space;
+  @include desktop-up {
+    padding-top: $xlarge-space;
+  }
+  h3 {
+    color: $white;
+  }
+  @import 'step-selector';
+  .step-content {
+    margin-top: $medium-space;
+    @include desktop-up {
+      margin-top: $large-space;
+    }
+    @import 'graph';
+    @import 'info';
+  }
+}

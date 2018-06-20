@@ -15,7 +15,7 @@
       padding: 0px;
       display: flex;
       flex-direction: column;
-      @include desktop-up() {
+      @include desktop-up {
         flex-direction: row;
         align-items: center;
       }
@@ -24,7 +24,7 @@
           a {
             height: 40px;
             margin: 0px 0px $medium-space 0px;
-            @include desktop-up() {
+            @include desktop-up {
               margin: 0px;
             }
             img {
@@ -44,7 +44,7 @@
           &:hover {
             color: $primary-color;
           }
-          @include desktop-up() {
+          @include desktop-up {
             margin: 2px 0px 0px $medium-space;
             height: auto;
             font-size: 0.9rem;
@@ -69,7 +69,7 @@
           &:hover {
             color: $white;
           }
-          @include desktop-up() {
+          @include desktop-up {
             font-size: 1.25rem;
             margin-left: $medium-space;
             display: inline;

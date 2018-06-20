@@ -17,8 +17,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         notifications: [
-          ...state.notifications.slice(0, action.index),
-          ...state.notifications.slice(action.index + 1)
+          ...state.notifications.slice(0, action.id),
+          ...state.notifications.slice(action.id + 1)
         ]
       };
 
@@ -27,34 +27,30 @@ export default (state = initialState, action) => {
   }
 };
 
-export const addNotification = notification => {
-  notification.id = guid();
-
-  return dispatch => {
+export const addNotification = notification => (dispatch, getState) =>
+  new Promise(resolve => {
     dispatch({
       type: ADD_NOTIFICATION,
       notification
     });
-  };
-};
 
-export const removeNotification = id => {
-  return (dispatch, getState) => {
-    getState().notifications.notifications.forEach((item, index) => {
-      if (item.id === id) {
-        dispatch({
-          type: REMOVE_NOTIFICATION,
-          index: index
-        });
-      }
-    });
-  };
-};
+    if (!notification.sticky) {
+      const index = getState().notifications.notifications.length - 1;
 
-const guid = () => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = (Math.random() * 16) | 0;
-    var v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
+      setTimeout(() => {
+        dispatch(removeNotification(index));
+      }, 3000);
+    }
+
+    resolve(notification);
   });
-};
+
+export const removeNotification = id => dispatch =>
+  new Promise(resolve => {
+    dispatch({
+      type: REMOVE_NOTIFICATION,
+      id
+    });
+
+    resolve({});
+  });

@@ -16,9 +16,14 @@ html {
   outline: none;
 }
 
+::selection {
+  background: $primary-color;
+  color: $white;
+}
+
 body {
   background: $white;
-  color: $black;
+  color: $off-black;
 
   font-family: $body-font;
   font-weight: $normal-weight;
@@ -30,4 +35,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   overflow-x: hidden;
+}
+
+.section-padding {
+  margin-top: $large-space;
+  @include desktop-up {
+    margin-top: $xlarge-space;
+  }
 }

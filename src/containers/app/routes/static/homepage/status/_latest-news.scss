@@ -1,0 +1,82 @@
+$blog-post-width: 340px;
+
+#latest-news {
+  margin-top: $large-space;
+  @include desktop-up {
+    margin-top: $xlarge-space;
+  }
+  #blogs {
+    margin-bottom: -$large-space;
+    .blog {
+      margin-bottom: $large-space;
+      @include tablet-up {
+        margin-top: $medium-space;
+      }
+      .metadata {
+        margin-bottom: $medium-space;
+        display: flex;
+        align-items: center;
+        .title {
+          margin: 0px;
+          color: $medium-gray;
+        }
+        a {
+          margin-left: $medium-space;
+          margin-top: 3px;
+          font-size: 1.5rem;
+          color: $warning-color;
+          &:hover {
+            color: darken($warning-color, 7%);
+          }
+        }
+      }
+      .post {
+        position: relative;
+        display: block;
+        width: $blog-post-width;
+        background: $white;
+        padding: $medium-space;
+        margin-right: $medium-space;
+        border-radius: $border-radius;
+        box-shadow: 0px $small-space $medium-space 0px rgba($black, 0.1);
+        .title {
+          color: $off-black;
+          margin: 0px;
+          max-height: 60px;
+          overflow: hidden;
+          @extend .not-capped;
+        }
+        .excerpt {
+          color: $medium-gray;
+          height: 100px;
+        }
+        .date {
+          position: absolute;
+          left: $medium-space;
+          bottom: $medium-space;
+          font-size: 0.9rem;
+          color: $light-gray;
+        }
+      }
+      .read-more,
+      .mailchimp {
+        display: block;
+        i {
+          font-size: 1.35rem;
+        }
+        span {
+          font-size: 1.1rem;
+          font-weight: $bold-weight;
+          margin-left: $small-space;
+        }
+      }
+      .mailchimp {
+        margin-top: $small-space;
+        color: $medium-gray;
+        &:hover {
+          color: darken($medium-gray, 7%);
+        }
+      }
+    }
+  }
+}
