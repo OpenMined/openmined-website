@@ -10,5 +10,11 @@
     text-align: center;
     color: rgba($white, 0.25);
     cursor: default;
+    a {
+      color: rgba($white, 0.75);
+      &:hover {
+        color: $white;
+      }
+    }
   }
 }
