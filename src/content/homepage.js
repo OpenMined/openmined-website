@@ -55,30 +55,34 @@ export default {
       'OpenMined is an open-source community focused on researching, developing, and promoting tools for secure, privacy-preserving, value-aligned artificial intelligence.',
     steps: [
       {
-        link: 'https://www.google.com',
+        link:
+          'https://colab.research.google.com/drive/1-Jb_E_nDuBGHIJ_psI95k-ukh-P_aly-',
         subtitle: 'Step One',
         heading: 'Setup Worker',
         content:
           'Also called a "Mine", the worker is a server where your private data is stored. The worker downloads models and train them using federated learning and differential privacy.',
-        colab: 'https://www.google.com/search?q=colab',
-        local: 'https://www.google.com/search?q=local'
+        colab:
+          'https://colab.research.google.com/drive/1-Jb_E_nDuBGHIJ_psI95k-ukh-P_aly-'
+        // local: 'https://www.google.com/search?q=local'
       },
       {
-        link: 'https://www.google.com',
+        link:
+          'https://colab.research.google.com/drive/1Je1rk7olA9uTWWaqvvt4_gXf7yX1rTBm',
         subtitle: 'Step Two',
         heading: 'Setup Client',
         content:
           'Using the “Syft” project, you may create models for workers to train. Models can be secured via multi-party computation or homomorphic encryption.',
-        colab: 'https://www.google.com/search?q=colab',
-        local: 'https://www.google.com/search?q=local'
+        colab:
+          'https://colab.research.google.com/drive/1Je1rk7olA9uTWWaqvvt4_gXf7yX1rTBm'
+        // local: 'https://www.google.com/search?q=local'
       }
     ]
   },
   testimonials: [
     {
-      name: 'TensorFlow',
-      link: 'https://www.tensorflow.org/',
-      image: tensorFlowImage
+      name: 'PyTorch',
+      link: 'https://pytorch.org/',
+      image: pyTorchImage
     },
     {
       name: 'IPFS',
@@ -86,9 +90,9 @@ export default {
       image: ipfsImage
     },
     {
-      name: 'PyTorch',
-      link: 'https://pytorch.org/',
-      image: pyTorchImage
+      name: 'TensorFlow',
+      link: 'https://www.tensorflow.org/',
+      image: tensorFlowImage
     }
   ],
   mission: {
