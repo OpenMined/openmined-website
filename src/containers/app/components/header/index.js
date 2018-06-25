@@ -48,7 +48,7 @@ export const SocialLinks = ({ socialClass, social }) => (
         return (
           <li key={key}>
             <ExternalLink to={link}>
-              <i className={`fa ${icon}`} />
+              <i className={`fa ${icon}`} aria-hidden="true" />
             </ExternalLink>
           </li>
         );

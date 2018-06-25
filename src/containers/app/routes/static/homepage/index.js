@@ -11,13 +11,14 @@ import {
 import { Page } from 'openmined-ui';
 
 import FooterLinks from '../../../components/footer-links';
-import Hero from './hero/';
-import Testimonials from './testimonials/';
-import Mission from './mission/';
-import Pillars from './pillars/';
-import Process from './process/';
-import Status from './status/';
-import Footer from './footer/';
+import Hero from './hero';
+import Testimonials from './testimonials';
+import Mission from './mission';
+import Pillars from './pillars';
+import Process from './process';
+import Milestones from './milestones';
+import Status from './status';
+import Footer from './footer';
 
 class Homepage extends Component {
   static async getInitialProps(props) {
@@ -33,6 +34,7 @@ class Homepage extends Component {
       mission,
       pillars,
       process,
+      milestones,
       status,
       questions,
       movement,
@@ -48,6 +50,7 @@ class Homepage extends Component {
         <Mission {...mission} />
         <Pillars pillars={pillars} />
         <Process {...process} repositories={repositories} />
+        <Milestones {...milestones} />
         <Status {...status} repositories={repositories} />
         <Footer questions={questions} movement={movement} members={members} />
         <FooterLinks {...footer} />

@@ -15,6 +15,23 @@ import lockIcon from '../containers/app/assets/icons/lock.svg';
 import computerIcon from '../containers/app/assets/icons/computer.svg';
 import nodesIcon from '../containers/app/assets/icons/nodes.svg';
 
+// Milestone icons
+const doneIcon = {
+  icon: 'fa-check',
+  color: 'success',
+  text: 'Done'
+};
+const progressIcon = {
+  icon: 'fa-refresh',
+  color: 'primary',
+  text: 'In Progress'
+};
+const plannedIcon = {
+  icon: 'fa-minus',
+  color: 'light-gray',
+  text: 'Planned'
+};
+
 const buttons = {
   contribute: {
     type: 'Github',
@@ -314,6 +331,69 @@ export default {
         name: 'mines',
         icon: 'mine',
         num: 3
+      }
+    ]
+  },
+  milestones: {
+    title: 'Milestones',
+    stages: [doneIcon, progressIcon, plannedIcon],
+    milestones: [
+      {
+        title: 'Private Grid in Python',
+        status: progressIcon,
+        subtitle:
+          'Privacy-preserved federated learning and secure prediction in PyTorch',
+        description:
+          'As the main offering of OpenMined, data scientists should have the ability to incorporate federated learning and secure prediction into their existing deep learning infrastructure. This allows for training to be done in a private cloud while minimizing the risk of leaking intellectual property or private training data.',
+        features: [
+          {
+            status: doneIcon,
+            text: 'Virtual workers',
+            description:
+              'learning environment for using OpenMined without requiring access to an external network'
+          },
+          {
+            status: doneIcon,
+            text: 'Socket workers',
+            description:
+              'for training and prediction over a cluster of machines connected using socket connections'
+          },
+          {
+            status: progressIcon,
+            text: 'Federated learning',
+            description: 'for arbitrary PyTorch models'
+          },
+          {
+            status: progressIcon,
+            text: 'Multi-party computation',
+            description: 'training and prediction for arbitrary PyTorch models'
+          },
+          {
+            status: progressIcon,
+            text: 'Secure aggregation for federated learning',
+            description: 'using secure multi-party computation'
+          },
+          {
+            status: progressIcon,
+            text: 'Differential privacy',
+            description: 'for arbitrary PyTorch models using PATE'
+          }
+        ]
+      },
+      {
+        title: 'Browser Training and Secure Prediction',
+        status: plannedIcon,
+        subtitle:
+          'Privacy-preserved federated learning and secure prediction of models in the browser',
+        description:
+          'Federated learning can be done in the browser with a Javascript port of the Syft project. This allows for data scientists to create a private federated learning compute grid to receive gradients from any client or server-side JS environment. Not only does this allow for the model to remain private from the user, but it also allows the user’s data to remain totally private as well.'
+      },
+      {
+        title: 'Public OpenMined Grid',
+        status: plannedIcon,
+        subtitle: 'Public or private environments for federated learning',
+        description:
+          'With identical technical functionality to the private grid, the public grid is an open marketplace for individuals to offer their data to be trained on and for models to be offered for secure prediction in web applications.'
       }
     ]
   },

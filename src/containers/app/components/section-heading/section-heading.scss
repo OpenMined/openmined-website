@@ -5,6 +5,7 @@
   @include tablet-up {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
   }
   &.white {
     .line {
