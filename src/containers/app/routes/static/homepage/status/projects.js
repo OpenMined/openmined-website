@@ -64,7 +64,7 @@ const Issues = ({ issues = [], link }) => (
     {issues.length > 0 &&
       issues.map(({ url, title, number, author, createdAt, comments }, key) => (
         <li className="issue" key={key}>
-          <i className="fa fa-github" />
+          <i className="fa fa-github" aria-hidden="true" />
           <ExternalLink to={url}>
             <p className="title">{title}</p>
             <p className="meta">

@@ -1,15 +1,13 @@
 import React from 'react';
 import { Heading } from 'openmined-ui';
 
-import ImageButton from '../image-button';
-
 import './section-heading.css';
 
-const SectionHeading = ({ level = 3, title, cta, color = 'black' }) => (
+const SectionHeading = ({ level = 3, title, color = 'black', children }) => (
   <div className={`section-heading ${color}`}>
     <Heading level={level}>{title}</Heading>
     <span className="line" />
-    {cta && <ImageButton {...cta} color={color} />}
+    {children && React.cloneElement(children, { color })}
   </div>
 );
 
