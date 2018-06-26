@@ -1,13 +1,13 @@
 @import 'variables';
 
 $notification-width: 300px;
-$notification-close-size: 20px;
+$notification-close-size: 40px;
 $notification-padding: 10px;
 
 #notifications {
   position: fixed;
   bottom: 0px;
-  right: 0px;
+  left: 0px;
   margin: 0px;
   padding: 0px $notification-padding;
   z-index: $notifications-zindex;
@@ -47,12 +47,13 @@ $notification-padding: 10px;
       left: 0px;
       height: 100%;
       width: $notification-close-size;
-      padding: 0px;
       background: darken($primary-color, 5%);
-      color: $white;
+      color: rgba($white, 0.5);
       border: 0px;
+      padding: 0px;
       border-radius: $border-radius 0px 0px $border-radius;
       cursor: pointer;
+      font-size: 1.5rem;
     }
   }
 }
