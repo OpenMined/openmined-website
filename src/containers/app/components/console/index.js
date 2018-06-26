@@ -17,7 +17,6 @@ const copyText = (code, addNotification) => {
     document.execCommand('copy');
     document.body.removeChild(textArea);
 
-    // TODO: We should really improve the look and animation of notifications in openmined-ui
     addNotification({
       text: 'Copied to clipboard!',
       type: 'success'
