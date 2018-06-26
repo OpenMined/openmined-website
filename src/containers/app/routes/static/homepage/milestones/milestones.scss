@@ -12,10 +12,12 @@ $milestone-large-icon: $milestone-small-icon * 2;
     justify-content: center;
     &.small {
       width: $milestone-small-icon;
+      min-width: $milestone-small-icon;
       height: $milestone-small-icon;
     }
     &.large {
       width: $milestone-large-icon;
+      min-width: $milestone-large-icon;
       height: $milestone-large-icon;
       i {
         font-size: 1.5rem;
@@ -36,22 +38,81 @@ $milestone-large-icon: $milestone-small-icon * 2;
     padding: 0px;
     margin: 0px;
     display: flex;
-    margin-top: $medium-space;
+    flex-wrap: wrap;
     @include tablet-up {
       margin-top: 0px;
     }
     li {
       display: flex;
-      margin-left: $medium-space;
+      margin-top: $small-space;
+      margin-right: $medium-space;
       align-items: center;
-      &:first-of-type {
-        margin-left: 0px;
+      &:last-of-type {
+        margin-right: 0px;
+      }
+      @include tablet-up {
+        margin-top: 0px;
       }
       span {
         @include capped-text(1px);
         margin-left: $small-space;
         font-size: 0.9rem;
         color: $dark-gray;
+      }
+    }
+  }
+  .milestone {
+    margin-top: $medium-space;
+    &.current {
+      .content {
+        display: block;
+      }
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      .info {
+        margin-left: $medium-space;
+        .title {
+          @extend .not-capped;
+          margin: 0px;
+        }
+        .subtitle {
+          color: $medium-gray;
+        }
+      }
+    }
+    .content {
+      display: none;
+      margin-bottom: $large-space;
+      @include desktop-up {
+        margin-left: $milestone-large-icon + $medium-space;
+      }
+      .description {
+        margin-bottom: $medium-space;
+      }
+      .features {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+        li {
+          display: flex;
+          margin-top: $small-space;
+          @include desktop-up {
+            align-items: center;
+          }
+          .stage-icon {
+            margin-top: -4px;
+            @include desktop-up {
+              margin-top: 0px;
+            }
+          }
+          span {
+            margin-left: $small-space;
+          }
+        }
       }
     }
   }
