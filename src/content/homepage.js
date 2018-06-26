@@ -60,7 +60,7 @@ export default {
         subtitle: 'Step One',
         heading: 'Setup Worker',
         content:
-          'Also called a "Mine", the worker is a server where your private data is stored. The worker downloads models and train them using federated learning and differential privacy.',
+          'Also called a "Mine", the worker is a server where your private data is stored. The worker downloads models and trains them using federated learning and differential privacy.',
         colab:
           'https://colab.research.google.com/drive/1-Jb_E_nDuBGHIJ_psI95k-ukh-P_aly-'
         // local: 'https://www.google.com/search?q=local'
