@@ -64,6 +64,9 @@ $milestone-large-icon: $milestone-small-icon * 2;
   .milestone {
     margin-top: $medium-space;
     &.current {
+      .header .arrow i {
+        transform: rotate(90deg);
+      }
       .content {
         display: block;
       }
@@ -73,13 +76,30 @@ $milestone-large-icon: $milestone-small-icon * 2;
       align-items: center;
       cursor: pointer;
       user-select: none;
+      .stage-icon {
+        align-self: flex-start;
+        @include tablet-up {
+          align-self: center;
+        }
+      }
       .info {
         margin-left: $medium-space;
         .title {
           @extend .not-capped;
           margin: 0px;
+          font-size: 1.35rem;
         }
         .subtitle {
+          color: $medium-gray;
+        }
+      }
+      .arrow {
+        width: $large-space;
+        text-align: right;
+        flex-grow: 1;
+        i {
+          transition: transform $anim-func $anim-time;
+          font-size: 2rem;
           color: $medium-gray;
         }
       }
@@ -92,6 +112,8 @@ $milestone-large-icon: $milestone-small-icon * 2;
       }
       .description {
         margin-bottom: $medium-space;
+        color: $dark-gray;
+        line-height: 1.75rem;
       }
       .features {
         list-style-type: none;
@@ -111,6 +133,7 @@ $milestone-large-icon: $milestone-small-icon * 2;
           }
           span {
             margin-left: $small-space;
+            color: $dark-gray;
           }
         }
       }

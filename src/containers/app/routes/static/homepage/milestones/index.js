@@ -38,6 +38,9 @@ const Milestone = ({
         </Heading>
         <span className="subtitle">{subtitle}</span>
       </div>
+      <div className="arrow">
+        <i className="fa fa-caret-right" aria-hidden="true" />
+      </div>
     </div>
     <div className="content">
       <p className="description">{description}</p>
