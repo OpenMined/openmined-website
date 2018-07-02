@@ -3,16 +3,19 @@ import RepoIcon from '../../../../components/repo-icon';
 import { KeyframeStyles, DotsTrack } from '../../../../components/svg-dots';
 
 const nodeWithChildren = (node, classes) => {
-  const genChild = size => (
-    <li className={`node has-children ${size} ${classes}`} />
+  const genChild = (size, key) => (
+    <li
+      className={`node has-children ${size} ${classes}`}
+      key={`child-node-${key}`}
+    />
   );
 
   return [
-    genChild('small'),
-    genChild('big'),
+    genChild('small', 0),
+    genChild('big', 1),
     node,
-    genChild('big'),
-    genChild('small')
+    genChild('big', 2),
+    genChild('small', 3)
   ];
 };
 
@@ -78,7 +81,7 @@ const Graph = ({ data, sections, current }) => (
         );
       }
 
-      return false;
+      return null;
     })}
   </div>
 );

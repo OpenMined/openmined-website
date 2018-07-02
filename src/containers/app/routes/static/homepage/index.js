@@ -20,10 +20,10 @@ import Status from './status';
 import Footer from './footer';
 
 class Homepage extends Component {
-  static async getInitialProps(props) {
-    await props.store.dispatch(getGithubData());
-    await props.store.dispatch(getSlackData());
-    await props.store.dispatch(getGhostData());
+  componentWillMount() {
+    this.props.getGithubData();
+    this.props.getSlackData();
+    this.props.getGhostData();
   }
 
   render() {
@@ -64,7 +64,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addNotification }, dispatch);
+  bindActionCreators(
+    { addNotification, getGithubData, getSlackData, getGhostData },
+    dispatch
+  );
 
 export default connect(
   mapStateToProps,
