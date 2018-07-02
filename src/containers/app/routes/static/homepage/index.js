@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withWrapper } from 'create-react-server/wrapper';
 import { addNotification } from '../../../../../modules/notifications';
 import {
   getGithubData,
@@ -67,6 +66,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ addNotification }, dispatch);
 
-export default withWrapper(
-  connect(mapStateToProps, mapDispatchToProps)(Homepage)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Homepage);

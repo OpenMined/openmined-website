@@ -1,23 +1,23 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router } from 'react-router-dom';
-import { history } from './store';
-// import registerServiceWorker from './registerServiceWorker';
-import { unregister } from './registerServiceWorker';
-import createApp from './app';
+import { Provider } from 'react-redux';
+import generateStore from './store';
+import registerServiceWorker from './registerServiceWorker';
+
+import App from './containers/app';
 
 import './index.css';
 
+const { store, history } = generateStore();
+
 render(
   <Router history={history}>
-    {createApp({
-      state: window.__INITIAL__STATE__,
-      props: window.__INITIAL__PROPS__
-    })}
+    <Provider store={store}>
+      <App />
+    </Provider>
   </Router>,
   document.querySelector('#root')
 );
 
-// Disabled until we find a better caching strategy
-// registerServiceWorker();
-unregister();
+registerServiceWorker();

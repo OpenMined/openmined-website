@@ -7,15 +7,13 @@
   "extends": [
     "standard",
     "standard-react",
-    "plugin:flowtype/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "prettier",
-    "prettier/flowtype",
     "prettier/react",
     "prettier/standard"
   ],
-  "plugins": ["flowtype", "prettier"],
+  "plugins": ["prettier"],
   "parser": "babel-eslint",
   "rules": {
     "prettier/prettier": 2,
@@ -25,7 +23,6 @@
     "no-useless-constructor": 1,
     "no-mixed-operators": 0,
     "standard/no-callback-literal": 0,
-    "flowtype/no-types-missing-file-annotation": 0,
     "react/no-unused-prop-types": 0,
     "import/named": 0,
     "import/no-named-as-default": 0,
