@@ -191,15 +191,15 @@ export default {
       cards: [
         {
           // link: 'https://www.google.com',
-          subtitle: 'Goverance',
-          heading: 'Concensus Governance',
+          subtitle: 'Governance',
+          heading: 'Consensus Governance',
           content:
             'The default governance structure is one in which a group of data or model owners must all agree to perform training or inference in order for it to occur.'
           // colab: 'https://www.google.com/search?q=colab'
         },
         {
           // link: 'https://www.google.com',
-          subtitle: 'Goverance',
+          subtitle: 'Governance',
           heading: 'Threshold Governance',
           content:
             'An alternative governance structure is one in which a minimum threshold of data or model owners must agree to perform training or inference in order for it to occur.'
