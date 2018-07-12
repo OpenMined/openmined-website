@@ -34,7 +34,10 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn build && yarn deploy:s3 && yarn deploy:cloudfront",
+    "deploy:s3": "aws s3 sync build/ s3://openmined.org --cache-control max-age=172800 --delete",
+    "deploy:cloudfront": "aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id ERTRGINZVVHN8 --paths /index.html"
   },
   "devDependencies": {
     "husky": "^0.14.3",
