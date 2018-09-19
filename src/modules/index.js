@@ -8,12 +8,10 @@ export const SITE_URL =
     ? 'http://localhost:3000'
     : 'https://www.openmined.org';
 
-// export const STATS_API_URL =
-//   process.env.NODE_ENV === 'development'
-//     ? 'http://localhost:3002'
-//     : 'https://stats.openmined.org';
-
-export const STATS_API_URL = 'https://stats.openmined.org';
+export const STATS_API_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3002'
+    : 'https://stats.openmined.org';
 
 export const handleRemoteError = error =>
   addNotification({
