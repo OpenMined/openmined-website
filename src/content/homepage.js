@@ -420,12 +420,6 @@ export default {
         more: 'https://blog.openmined.org',
         mailchimp: 'http://eepurl.com/cW1Fqj',
         posts: []
-      },
-      digs: {
-        name: 'Weekly Digs',
-        more: 'https://digs.openmined.org',
-        mailchimp: 'http://eepurl.com/dvKtij',
-        posts: []
       }
     }
   },
@@ -453,10 +447,6 @@ export default {
       {
         text: 'Blog',
         link: 'https://blog.openmined.org'
-      },
-      {
-        text: 'Weekly Digs',
-        link: 'https://digs.openmined.org'
       },
       {
         text: 'Brand Guide',

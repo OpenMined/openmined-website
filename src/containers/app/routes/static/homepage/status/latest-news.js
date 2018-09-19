@@ -47,7 +47,7 @@ const Blog = ({ name, more, mailchimp, posts }) => (
   </div>
 );
 
-const LatestNews = ({ blog, digs }) => (
+const LatestNews = ({ blog }) => (
   <Container id="latest-news">
     <Row>
       <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
@@ -55,14 +55,8 @@ const LatestNews = ({ blog, digs }) => (
       </Column>
     </Row>
     <Row id="blogs">
-      <Column
-        sizes={{ small: 12, large: 6, xlarge: 5 }}
-        offsets={{ xlarge: 1 }}
-      >
+      <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
         <Blog {...blog} />
-      </Column>
-      <Column sizes={{ small: 12, large: 6, xlarge: 5 }}>
-        <Blog {...digs} />
       </Column>
     </Row>
   </Container>

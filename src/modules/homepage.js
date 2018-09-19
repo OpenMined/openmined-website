@@ -78,10 +78,6 @@ export default (state = initialState, action) => {
               blog: {
                 ...state.content.status.news.blog,
                 posts: action.ghost.blog
-              },
-              digs: {
-                ...state.content.status.news.digs,
-                posts: action.ghost.digs
               }
             }
           }
