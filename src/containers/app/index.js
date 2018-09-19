@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
-import { withWrapper } from 'create-react-server/wrapper';
 import FullStory from 'react-fullstory';
 
 // Action Creators
@@ -26,32 +26,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.history.listen(() => {
-      window.scrollTo(0, 0);
-    });
-
-    const supportPageOffset = window.pageXOffset !== undefined;
-    const isCSS1Compat = (document.compatMode || '') === 'CSS1Compat';
-
     window.addEventListener('scroll', () => {
-      const scroll = {
-        x: supportPageOffset
-          ? window.pageXOffset
-          : isCSS1Compat
-            ? document.documentElement.scrollLeft
-            : document.body.scrollLeft,
-        y: supportPageOffset
-          ? window.pageYOffset
-          : isCSS1Compat
-            ? document.documentElement.scrollTop
-            : document.body.scrollTop
-      };
+      const scrollTop =
+        document.body.scrollTop + document.documentElement.scrollTop;
 
-      if (scroll.y >= 200 && !this.state.shouldShowHeader) {
+      if (scrollTop >= 200 && !this.state.shouldShowHeader) {
         this.setState({
           shouldShowHeader: true
         });
-      } else if (scroll.y < 200 && this.state.shouldShowHeader) {
+      } else if (scrollTop < 200 && this.state.shouldShowHeader) {
         this.setState({
           shouldShowHeader: false
         });
@@ -88,4 +71,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ removeNotification }, dispatch);
 
-export default withWrapper(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);
