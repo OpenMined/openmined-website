@@ -359,7 +359,7 @@ export default {
               'for training and prediction over a cluster of machines connected using socket connections'
           },
           {
-            status: progressIcon,
+            status: doneIcon,
             text: 'Federated learning',
             description: 'for arbitrary PyTorch models'
           },
@@ -382,11 +382,25 @@ export default {
       },
       {
         title: 'Browser Training and Secure Prediction',
-        status: plannedIcon,
+        status: progressIcon,
         subtitle:
           'Privacy-preserved federated learning and secure prediction of models in the browser',
         description:
-          'Federated learning can be done in the browser with a Javascript port of the Syft project. This allows for data scientists to create a private federated learning compute grid to receive gradients from any client or server-side JS environment. Not only does this allow for the model to remain private from the user, but it also allows the user’s data to remain totally private as well.'
+          'Federated learning can be done in the browser with a Javascript port of the Syft project. This allows for data scientists to create a private federated learning compute grid to receive gradients from any client or server-side JS environment. Not only does this allow for the model to remain private from the user, but it also allows the user’s data to remain totally private as well.',
+        features: [
+          {
+            status: progressIcon,
+            text: 'Deep learning web client',
+            description:
+              'built in Javascript to train and predict in the browser'
+          },
+          {
+            status: progressIcon,
+            text: 'Integration with PySyft',
+            description:
+              'to allow for training and prediction across Python and Javascript'
+          }
+        ]
       },
       {
         title: 'Public OpenMined Grid',
