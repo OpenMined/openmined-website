@@ -97,15 +97,15 @@ export default (state = initialState, action) => {
 };
 
 const fetchGithub = () => dispatch =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     fetch(process.env.REACT_APP_STATS_API_URL + '/github')
       .then(response => response.json())
-      .then(({ errorMessage, repositories, members }) => {
-        if (errorMessage) {
-          dispatch(handleRemoteError(errorMessage));
-
-          reject(new Error(errorMessage));
+      .then(response => {
+        if (response.error) {
+          throw new Error(response.error);
         } else {
+          let { members, repositories } = response;
+
           const shuffle = a => {
             for (let i = a.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
@@ -138,22 +138,20 @@ export const getGithubData = () => {
 };
 
 const fetchSlack = () => dispatch =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     fetch(process.env.REACT_APP_STATS_API_URL + '/slack')
       .then(response => response.json())
-      .then(({ errorMessage, metadata }) => {
-        if (errorMessage) {
-          dispatch(handleRemoteError(errorMessage));
-
-          reject(new Error(errorMessage));
+      .then(response => {
+        if (response.error) {
+          throw new Error(response.error);
         } else {
           dispatch({
             type: GET_SLACK_CONTENT,
-            slack: metadata
+            slack: response.metadata
           });
 
           resolve({
-            slack: metadata
+            slack: response.metadata
           });
         }
       })
@@ -167,14 +165,12 @@ export const getSlackData = () => {
 };
 
 const fetchGhost = () => dispatch =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     fetch(process.env.REACT_APP_STATS_API_URL + '/ghost')
       .then(response => response.json())
       .then(response => {
         if (response.error) {
-          dispatch(handleRemoteError(response.error));
-
-          reject(new Error(response.error));
+          throw new Error(response.error);
         } else {
           dispatch({
             type: GET_GHOST_CONTENT,
