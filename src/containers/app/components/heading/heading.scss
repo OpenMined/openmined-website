@@ -1,0 +1,24 @@
+@import '../../../../variables';
+
+// TODO: More specific selectors
+.heading {
+  line-height: $header-lineheight;
+  margin-top: $medium-space;
+  margin-bottom: $small-space;
+  @include capped-text();
+  &.not-capped {
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: $bold-weight;
+  }
+}
+
+@for $i from 1 through 6 {
+  &h#{$i} {
+    font-size: map-get($header-styles, h#{$i}) *
+      map-get($header-factors, h#{$i});
+    @include tablet-up {
+      font-size: map-get($header-styles, h#{$i});
+    }
+  }
+}

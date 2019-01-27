@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Column, Container } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
 
 import MemberMap from './map';
 
@@ -7,7 +7,7 @@ import SectionHeading from '../../../../components/section-heading';
 import ImageButton from '../../../../components/image-button';
 import ExternalLink from '../../../../components/external-link';
 
-import './footer.css';
+import './footer.scss';
 
 const CallsToAction = ({ movement }) => (
   <div className="ctas">

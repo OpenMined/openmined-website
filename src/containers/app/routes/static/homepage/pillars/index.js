@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Column, Container } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
 
 import {
   ColorFilter,
@@ -10,7 +10,7 @@ import {
 import SectionHeading from '../../../../components/section-heading';
 import Card from '../../../../components/card';
 
-import './pillars.css';
+import './pillars.scss';
 
 const IconDots = ({ colors, icon, title }) => {
   const iconFilter = filterName(colors[0], colors[1], 'icon');
@@ -68,7 +68,9 @@ const Pillars = ({ pillars }) => (
   <div id="pillars">
     <KeyframeStyles axis="vertical" direction="forwards" />
     <Container>
-      {pillars.map((pillar, key) => <Pillar {...pillar} key={key} />)}
+      {pillars.map((pillar, key) => (
+        <Pillar {...pillar} key={key} />
+      ))}
     </Container>
   </div>
 );

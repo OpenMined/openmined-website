@@ -1,4 +1,5 @@
-import { STATS_API_URL, handleRemoteError } from './index';
+import { addNotification } from './notifications';
+
 import HOMEPAGE_CONTENT from '../content/homepage';
 
 export const GET_GITHUB_CONTENT = 'homepage/GET_GITHUB_CONTENT';
@@ -15,6 +16,12 @@ const initialState = {
   },
   content: HOMEPAGE_CONTENT
 };
+
+const handleRemoteError = error =>
+  addNotification({
+    text: error,
+    type: 'error'
+  });
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -91,7 +98,7 @@ export default (state = initialState, action) => {
 
 const fetchGithub = () => dispatch =>
   new Promise((resolve, reject) => {
-    fetch(STATS_API_URL + '/github')
+    fetch(process.env.REACT_APP_STATS_API_URL + '/github')
       .then(response => response.json())
       .then(({ errorMessage, repositories, members }) => {
         if (errorMessage) {
@@ -132,7 +139,7 @@ export const getGithubData = () => {
 
 const fetchSlack = () => dispatch =>
   new Promise((resolve, reject) => {
-    fetch(STATS_API_URL + '/slack')
+    fetch(process.env.REACT_APP_STATS_API_URL + '/slack')
       .then(response => response.json())
       .then(({ errorMessage, metadata }) => {
         if (errorMessage) {
@@ -161,7 +168,7 @@ export const getSlackData = () => {
 
 const fetchGhost = () => dispatch =>
   new Promise((resolve, reject) => {
-    fetch(STATS_API_URL + '/ghost')
+    fetch(process.env.REACT_APP_STATS_API_URL + '/ghost')
       .then(response => response.json())
       .then(response => {
         if (response.error) {

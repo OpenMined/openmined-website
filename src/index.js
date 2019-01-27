@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import App from './containers/app';
 
-import './index.css';
+import './index.scss';
 
 const { store, history } = generateStore();
 

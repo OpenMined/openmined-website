@@ -1,10 +1,10 @@
 import React from 'react';
-import { Row, Column, Container } from 'openmined-ui';
+import { Row, Column, Container } from '../grid';
 import { MainLinks, SocialLinks } from '../header';
 
 import logo from '../../assets/logo-blackbg.svg';
 
-import './footer-links.css';
+import './footer-links.scss';
 
 export default ({ links, social }) => (
   <div id="footer-links">

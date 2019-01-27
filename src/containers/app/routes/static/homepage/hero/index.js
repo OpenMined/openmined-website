@@ -1,11 +1,12 @@
 import React from 'react';
-import { Row, Column, Container, Heading } from 'openmined-ui';
+import BackgroundGradient from '../../../../components/background-gradient';
+import { Row, Column, Container } from '../../../../components/grid';
+import Heading from '../../../../components/heading';
 import Card from '../../../../components/card';
 
 import logo from '../../../../assets/logo-gradientbg.svg';
-import background from '../../../../assets/background-gradient.svg';
 
-import './hero.css';
+import './hero.scss';
 
 const Main = ({ tagline, description }) => (
   <Row>
@@ -32,18 +33,7 @@ const Steps = ({ steps }) => (
 
 const Hero = hero => (
   <div id="hero">
-    {/* TODO: This is a temporary fix until we can get this moved over to openmined-ui */}
-    <div
-      className="background-gradient"
-      style={{
-        background: `url(${background})`,
-        backgroundBlendMode: 'normal',
-        filter: 'none',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    />
+    <BackgroundGradient />
     <Container>
       <Main {...hero} />
       <Steps {...hero} />

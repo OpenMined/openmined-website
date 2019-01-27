@@ -7,7 +7,7 @@ import {
   getSlackData,
   getGhostData
 } from '../../../../../modules/homepage';
-import { Page } from 'openmined-ui';
+import Page from '../../../components/page';
 
 import FooterLinks from '../../../components/footer-links';
 import Hero from './hero';

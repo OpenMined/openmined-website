@@ -1,0 +1,151 @@
+@import '../../../../variables';
+
+/*
+  Based on: http://flexboxgrid.com/
+  Grid system ported to SASS by: Patrick Cason <me@patrickcason.com>
+
+  Row classes:
+    - reverse
+    - small, medium, large, xlarge
+      - BREAK-start
+      - BREAK-center
+      - BREAK-end
+      - BREAK-top
+      - BREAK-middle
+      - BREAK-bottom
+      - BREAK-around
+      - BREAK-between
+
+  Column classes:
+    - small, medium, large, xlarge
+      - BREAK-[1 thru # of columns]
+      - BREAK-offset-[1 thru # of columns]
+      - BREAK-auto
+      - BREAK-first
+      - BREAK-last
+
+  Features:
+    - Dynamic number of columns
+    - Full @media breakpoint support
+    - Nesting
+    - Auto-width columns
+    - Offsets
+    - Standard flexbox parent element controls (justify-content & align-items)
+    - Order overrides
+    - Child order reversal
+    - 100% flexbox compliant
+*/
+
+$columns: 12;
+$gutter-width: 30px;
+$half-gutter-width: $gutter-width * 0.5;
+$gutter-compensation: $half-gutter-width * -1;
+
+@mixin column-sizes($name) {
+  @for $i from 1 through $columns {
+    &.#{$name}-#{$i} {
+      flex-basis: 100% * ($i / $columns);
+      max-width: 100% * ($i / $columns);
+    }
+    &.#{$name}-offset-#{$i} {
+      margin-left: 100% * ($i / $columns);
+    }
+  }
+  &.#{$name}-auto {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+  }
+  &.#{$name}-first {
+    order: -1;
+  }
+  &.#{$name}-last {
+    order: 1;
+  }
+}
+
+@mixin row-sizes($name) {
+  &.#{$name}-start {
+    justify-content: flex-start;
+    text-align: start;
+  }
+  &.#{$name}-center {
+    justify-content: center;
+    text-align: center;
+  }
+  &.#{$name}-end {
+    justify-content: flex-end;
+    text-align: end;
+  }
+  &.#{$name}-top {
+    align-items: flex-start;
+  }
+  &.#{$name}-middle {
+    align-items: center;
+  }
+  &.#{$name}-bottom {
+    align-items: flex-end;
+  }
+  &.#{$name}-around {
+    justify-content: space-around;
+  }
+  &.#{$name}-between {
+    justify-content: space-between;
+  }
+}
+
+// TODO: More specific selectors
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  @include desktop-up {
+    width: 1000px;
+  }
+  @include widescreen-up {
+    width: 1400px;
+  }
+  &.full {
+    @include desktop-up {
+      width: 100%;
+    }
+  }
+  .row {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: $gutter-compensation;
+    margin-left: $gutter-compensation;
+    @include row-sizes(small);
+    @include tablet-up {
+      @include row-sizes(medium);
+    }
+    @include desktop-up {
+      @include row-sizes(large);
+    }
+    @include widescreen-up {
+      @include row-sizes(xlarge);
+    }
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+    .column {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      padding-right: $half-gutter-width;
+      padding-left: $half-gutter-width;
+      @include column-sizes(small);
+      @include tablet-up {
+        @include column-sizes(medium);
+      }
+      @include desktop-up {
+        @include column-sizes(large);
+      }
+      @include widescreen-up {
+        @include column-sizes(xlarge);
+      }
+    }
+  }
+}

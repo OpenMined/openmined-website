@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './notifications.css';
+import './notifications.scss';
 
 const Notification = ({ removeFunc, index, text, type }) => (
   <li className={'notification ' + (type || 'primary')}>

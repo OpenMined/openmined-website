@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { BackgroundGradient, Page } from 'openmined-ui';
+import BackgroundGradient from '../../components/background-gradient';
+import Page from '../../components/page';
 
-import './not-found.css';
+import './not-found.scss';
 
 export default class NotFound extends Component {
   static notFound = true;

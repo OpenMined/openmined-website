@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from 'openmined-ui';
+import { Button } from '../button';
 
-import './console.css';
+import './console.scss';
 
 const copyText = (code, addNotification) => {
   var textArea = document.createElement('textarea');

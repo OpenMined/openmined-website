@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Column, Container } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
 import moment from 'moment';
 import Tilt from 'react-tilt';
 import ExternalLink from '../../../../components/external-link';
@@ -33,7 +33,9 @@ const Blog = ({ name, more, mailchimp, posts }) => (
     </div>
     {posts && (
       <Carousel height={POST_HEIGHT}>
-        {posts.map((post, index) => <Post key={index} more={more} {...post} />)}
+        {posts.map((post, index) => (
+          <Post key={index} more={more} {...post} />
+        ))}
       </Carousel>
     )}
     <ExternalLink className="read-more" to={more}>
