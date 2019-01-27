@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { connectRouter } from 'connected-react-router';
 import notifications from './notifications';
 import homepage from './homepage';
 
-export default combineReducers({
-  routing: routerReducer,
-  notifications,
-  homepage
-});
+export default history =>
+  combineReducers({
+    router: connectRouter(history),
+    notifications,
+    homepage
+  });

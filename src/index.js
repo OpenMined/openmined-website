@@ -1,22 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import generateStore from './store';
+import configureStore, { history } from './store';
 import registerServiceWorker from './registerServiceWorker';
 
 import App from './containers/app';
 
 import './index.scss';
 
-const { store, history } = generateStore();
+const store = configureStore();
 
 render(
-  <Router history={history}>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
       <App />
-    </Provider>
-  </Router>,
+    </ConnectedRouter>
+  </Provider>,
   document.querySelector('#root')
 );
 
