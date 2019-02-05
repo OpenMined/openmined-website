@@ -26,7 +26,7 @@ const Buttons = ({ buttons }) => (
     <Column sizes={{ small: 12 }}>
       <div id="hero-buttons">
         {buttons.map(button => (
-          <ImageButton {...button} color="white" key={button.type} />
+          <ImageButton {...button} key={button.type} />
         ))}
       </div>
     </Column>
