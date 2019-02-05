@@ -1,5 +1,7 @@
 # OpenMined Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f789ef18-3605-420b-a90f-a86b6995747c/deploy-status)](https://app.netlify.com/sites/openmined/deploys)
+
 Welcome to the OpenMined website! It's our goal here to accurately and beautifully explain the vision of the OpenMined project to all contributors past, present, and future.
 
 ## Design Disclaimer
@@ -15,10 +17,3 @@ To run locally with hot reloading, run `yarn start`. To run locally with server-
 ## Contributing
 
 Please read the "Design Disclaimer" above first before trying to contribute. We welcome any and all visual issues, bugs, typos, and obvious mistakes to be submitted by pull request. For all other changes, please first open a Github issue on this repository and it will be reviewed by a member of the design and marketing team before development is approved.
-
-## Deployment
-
-Deployment is controlled by OpenMined admins with AWS access. Because this is only a limited number of people, deployment will be done at their discretion. Access to the OpenMined AWS account is limited and will likely permanently remain limited. This runs on AWS. It uses Fargate (ECS), Application ELB, Codepipeline, and Codebuild. The live site is redeployed whenever a change is made to `master`.
-
-* [Codepipeline setup](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html)
-* [Fargate (ECS) setup](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html)
