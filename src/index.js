@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import configureStore, { history } from './store';
-import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 
 import App from './containers/app';
 
@@ -20,4 +20,4 @@ render(
   document.querySelector('#root')
 );
 
-registerServiceWorker();
+unregister();
