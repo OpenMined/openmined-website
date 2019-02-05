@@ -1,10 +1,10 @@
 import React from 'react';
-import { Row, Column, Container } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
 
 import SectionHeading from '../../../../components/section-heading';
 import ImageButton from '../../../../components/image-button';
 
-import './mission.css';
+import './mission.scss';
 
 const Paragraph = ({ text, strong }) => (
   <p>

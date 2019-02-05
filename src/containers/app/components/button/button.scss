@@ -1,0 +1,93 @@
+@import '../../../../variables';
+
+$button-font-size: 0.9rem;
+$button-padding: 15px;
+$button-hover: 5%;
+
+// TODO: More specific selectors
+.button,
+button,
+input[type='submit'] {
+  display: inline-block;
+  background: $primary-color;
+  color: $white;
+  @include capped-text(1.5px);
+  font-weight: $extra-bold-weight;
+  font-size: $button-font-size;
+  white-space: nowrap;
+  border: 0px;
+  margin-bottom: $small-space;
+  padding: $button-padding;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background $anim-time $anim-func;
+  &:hover {
+    background: darken($primary-color, $button-hover);
+    color: $white;
+  }
+  &.success {
+    background: $success-color;
+    color: $black;
+    &:hover {
+      background: darken($success-color, $button-hover);
+    }
+  }
+  &.error {
+    background: $alert-color;
+    &:hover {
+      background: darken($alert-color, $button-hover);
+    }
+  }
+  &.white {
+    background: $white;
+    color: $black;
+    &:hover {
+      background: darken($white, $button-hover);
+    }
+  }
+  &.black {
+    background: $off-black;
+    &:hover {
+      background: lighten($off-black, $button-hover);
+    }
+  }
+  &.small {
+    font-size: $button-font-size * 0.8;
+    padding: $button-padding * 0.8;
+  }
+  &.large {
+    font-size: $button-font-size * 1.2;
+    padding: $button-padding * 1.2;
+  }
+  &.expanded {
+    width: 100%;
+  }
+  &.centered {
+    display: block;
+    margin: 0px auto $small-space auto;
+  }
+  &.dark-gray {
+    background: $dark-gray;
+    &:hover {
+      background: lighten($dark-gray, $button-hover);
+    }
+  }
+  &.medium-gray {
+    background: $medium-gray;
+    &:hover {
+      background: lighten($medium-gray, $button-hover);
+    }
+  }
+  &.light-gray {
+    background: $light-gray;
+    color: $black;
+    &:hover {
+      background: darken($light-gray, $button-hover);
+    }
+  }
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

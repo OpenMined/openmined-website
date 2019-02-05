@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Row, Column, Container } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
 import ImageButton from '../../../../components/image-button';
 import { matchRepositoryToName } from '../../../../../../helpers/repositories';
 
 import Projects from './projects';
 import LatestNews from './latest-news';
 
-import './status.css';
+import './status.scss';
 
 class Status extends Component {
   constructor(props) {

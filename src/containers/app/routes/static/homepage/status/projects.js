@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import { Row, Column, Container, Heading } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
+import Heading from '../../../../components/heading';
 
 import SectionHeading from '../../../../components/section-heading';
 import RepoIcon from '../../../../components/repo-icon';

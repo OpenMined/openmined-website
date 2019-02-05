@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from 'openmined-ui';
+import Heading from '../../../../components/heading';
 
 import ExternalLink from '../../../../components/external-link';
 import RepoIcon from '../../../../components/repo-icon';
@@ -37,13 +37,12 @@ const Info = ({ repositories, info }) => (
   <div className="info">
     <Heading level={5}>{info.title}</Heading>
     <p className="description">{info.description}</p>
-    {info.repositories.length > 0 &&
-      repositories.length > 0 && (
-        <div>
-          <p className="contribute">Contribute</p>
-          <Repositories repositories={repositories} info={info} />
-        </div>
-      )}
+    {info.repositories.length > 0 && repositories.length > 0 && (
+      <div>
+        <p className="contribute">Contribute</p>
+        <Repositories repositories={repositories} info={info} />
+      </div>
+    )}
   </div>
 );
 

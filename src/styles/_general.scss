@@ -1,0 +1,18 @@
+$body-font: 'Overpass', sans-serif;
+$monospace-font: 'PT Mono', monospace;
+
+$normal-weight: 400;
+$bold-weight: 700;
+$extra-bold-weight: 900;
+
+$small-space: 10px;
+$medium-space: $small-space * 2;
+$large-space: $medium-space * 2;
+$xlarge-space: $large-space * 2;
+
+$border-radius: 5px;
+$extra-border-radius: 2 * $border-radius;
+$round-radius: 1000px;
+
+$anim-time: 200ms;
+$anim-func: ease-in-out;

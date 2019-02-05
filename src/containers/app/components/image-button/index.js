@@ -1,7 +1,7 @@
 import React from 'react';
 import ExternalLink from '../external-link';
 
-import './image-button.css';
+import './image-button.scss';
 
 const ImageButton = ({ link, text, icon, color = 'black', inverted }) => (
   <ExternalLink

@@ -4,7 +4,7 @@ import ExternalLink from '../external-link';
 
 import logo from '../../assets/logo-square-color.svg';
 
-import './header.css';
+import './header.scss';
 
 export const MainLinks = ({ linksClass, logo, links }) => (
   <ul className={linksClass}>

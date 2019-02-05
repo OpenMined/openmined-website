@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Column, Container, Heading } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
+import Heading from '../../../../components/heading';
 
 import SectionHeading from '../../../../components/section-heading';
 
-import './milestones.css';
+import './milestones.scss';
 
 const StageIcon = ({ icon, color, size = 'small' }) => (
   <div className={`stage-icon ${size} ${color}`}>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Row, Column, Container } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
 
 import ExternalLink from '../../../../components/external-link';
 
-import './testimonials.css';
+import './testimonials.scss';
 
 const slug = name =>
   name

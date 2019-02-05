@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from 'openmined-ui';
+import Heading from '../heading';
 import Tilt from 'react-tilt';
 
 import ExternalLink from '../external-link';
@@ -7,7 +7,7 @@ import ExternalLink from '../external-link';
 import colabIcon from '../../assets/icons/colab.svg';
 import localIcon from '../../assets/icons/local.svg';
 
-import './card.css';
+import './card.scss';
 
 const ContentLink = ({ link, icon, text }) => (
   <li className="content-link">

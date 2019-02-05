@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Column, Container } from 'openmined-ui';
+import { Row, Column, Container } from '../../../../components/grid';
 
 import Info from './info';
 import Graph from './graph';
@@ -7,7 +7,7 @@ import Graph from './graph';
 import SectionHeading from '../../../../components/section-heading';
 import ImageButton from '../../../../components/image-button';
 
-import './process.css';
+import './process.scss';
 
 const StepContent = ({ graph, sections, current, repositories }) => (
   <Row className="step-content">
@@ -33,8 +33,7 @@ const StepSelector = ({
     <div
       className={`step-progress${playing ? '' : ' stopped'}`}
       style={{
-        animation: `progress ${duration /
-          1000 *
+        animation: `progress ${(duration / 1000) *
           content.length}s linear infinite`
       }}
     />

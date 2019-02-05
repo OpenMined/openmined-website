@@ -1,7 +1,7 @@
 import React from 'react';
-import { Heading } from 'openmined-ui';
+import Heading from '../heading';
 
-import './section-heading.css';
+import './section-heading.scss';
 
 const SectionHeading = ({ level = 3, title, color = 'black', children }) => (
   <div className={`section-heading ${color}`}>
