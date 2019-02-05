@@ -1,3 +1,7 @@
+// Hero icons
+import getStartedIcon from '../containers/app/assets/icons/get-started.svg';
+import paperIcon from '../containers/app/assets/icons/paper.svg';
+
 // Testimonial logos
 import tensorFlowImage from '../containers/app/assets/tensorflow.svg';
 import pyTorchImage from '../containers/app/assets/pytorch.svg';
@@ -33,6 +37,18 @@ const plannedIcon = {
 };
 
 const buttons = {
+  tutorials: {
+    type: 'Tutorials',
+    text: 'Get Started',
+    icon: getStartedIcon,
+    link: 'https://github.com/OpenMined/PySyft/tree/master/examples/tutorials'
+  },
+  whitepaper: {
+    type: 'Whitepaper',
+    text: 'Read Whitepaper',
+    icon: paperIcon,
+    link: 'https://arxiv.org/abs/1811.04017'
+  },
   contribute: {
     type: 'Github',
     text: 'Start Contributing',
@@ -70,6 +86,7 @@ export default {
     tagline: 'Building Safe Artificial Intelligence',
     description:
       'OpenMined is an open-source community focused on researching, developing, and promoting tools for secure, privacy-preserving, value-aligned artificial intelligence.',
+    buttons: [buttons.tutorials, buttons.whitepaper],
     steps: [
       {
         link:

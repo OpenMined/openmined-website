@@ -1,6 +1,6 @@
 @import '../../../../../../variables';
 
-$hero-height: 800px;
+$hero-height: 885px;
 
 #hero {
   position: relative;
@@ -52,6 +52,24 @@ $hero-height: 800px;
     }
     @include widescreen-up {
       width: 55%;
+    }
+  }
+  #hero-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: $medium-space;
+    @include tablet-up {
+      flex-direction: row;
+      justify-content: center;
+    }
+    @include desktop-up {
+      margin-top: $large-space;
+    }
+    .button {
+      @include tablet-up {
+        margin: 0px $small-space;
+        width: 220px;
+      }
     }
   }
   #steps {

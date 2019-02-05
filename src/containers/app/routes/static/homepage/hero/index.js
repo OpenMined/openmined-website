@@ -3,6 +3,7 @@ import BackgroundGradient from '../../../../components/background-gradient';
 import { Row, Column, Container } from '../../../../components/grid';
 import Heading from '../../../../components/heading';
 import Card from '../../../../components/card';
+import ImageButton from '../../../../components/image-button';
 
 import logo from '../../../../assets/logo-gradientbg.svg';
 
@@ -16,6 +17,18 @@ const Main = ({ tagline, description }) => (
         {tagline}
       </Heading>
       <p id="description">{description}</p>
+    </Column>
+  </Row>
+);
+
+const Buttons = ({ buttons }) => (
+  <Row>
+    <Column sizes={{ small: 12 }}>
+      <div id="hero-buttons">
+        {buttons.map(button => (
+          <ImageButton {...button} color="white" key={button.type} />
+        ))}
+      </div>
     </Column>
   </Row>
 );
@@ -36,6 +49,7 @@ const Hero = hero => (
     <BackgroundGradient />
     <Container>
       <Main {...hero} />
+      <Buttons {...hero} />
       <Steps {...hero} />
     </Container>
   </div>
