@@ -386,7 +386,7 @@ export default {
             description: 'training and prediction for arbitrary PyTorch models'
           },
           {
-            status: progressIcon,
+            status: doneIcon,
             text: 'Secure aggregation for federated learning',
             description: 'using secure multi-party computation'
           },
