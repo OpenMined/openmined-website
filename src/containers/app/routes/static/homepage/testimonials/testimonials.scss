@@ -12,10 +12,6 @@
     align-items: center;
     .testimonial {
       height: 40px;
-      // IPFS just doesn't look right...
-      &.ipfs .image {
-        margin-top: 5px;
-      }
       .image {
         height: 100%;
         margin: 0px auto;
