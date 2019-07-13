@@ -421,7 +421,7 @@ export default {
     ]
   },
   status: {
-    projects: ['PySyft', 'Grid', 'UnityWorker'],
+    projects: ['PySyft', 'Grid'],
     cta: buttons.contribute,
     news: {
       blog: {
