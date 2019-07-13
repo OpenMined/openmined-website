@@ -5,7 +5,6 @@ import Info from './info';
 import Graph from './graph';
 
 import SectionHeading from '../../../../components/section-heading';
-import ImageButton from '../../../../components/image-button';
 
 import './process.scss';
 
@@ -97,16 +96,14 @@ class Process extends Component {
   }
 
   render() {
-    const { repositories, title, cta, content, sections } = this.props;
+    const { repositories, title, content, sections } = this.props;
 
     return (
       <div id="process" className="section-padding">
         <Container>
           <Row>
             <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-              <SectionHeading title={title} color="white" level={3}>
-                <ImageButton {...cta} />
-              </SectionHeading>
+              <SectionHeading title={title} color="white" level={3} />
             </Column>
           </Row>
           <StepContent

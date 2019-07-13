@@ -10,7 +10,6 @@ import ipfsImage from '../containers/app/assets/ipfs.svg';
 // Image button icons
 import githubIcon from '../containers/app/assets/icons/github.svg';
 import openCollectiveIcon from '../containers/app/assets/icons/open-collective.svg';
-import youtubeIcon from '../containers/app/assets/icons/youtube.svg';
 import slackIcon from '../containers/app/assets/icons/slack.svg';
 import emailIcon from '../containers/app/assets/icons/email.svg';
 
@@ -60,12 +59,6 @@ const buttons = {
     text: 'Donate',
     icon: openCollectiveIcon,
     link: 'https://opencollective.com/openmined'
-  },
-  watchIntro: {
-    type: 'YouTube',
-    text: 'Watch Intro',
-    icon: youtubeIcon,
-    link: 'https://www.youtube.com/watch?v=sXFmKquiVnk'
   },
   chat: {
     type: 'Slack',
@@ -227,7 +220,6 @@ export default {
   ],
   process: {
     title: 'How it Works',
-    cta: buttons.watchIntro,
     content: [
       {
         heading: 'Create',
