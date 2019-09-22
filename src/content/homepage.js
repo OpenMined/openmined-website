@@ -458,6 +458,10 @@ export default {
         link: 'https://blog.openmined.org'
       },
       {
+        text: 'Store',
+        link: 'https://store.openmined.org'
+      },
+      {
         text: 'Brand Guide',
         link: '/assets/openmined-brand-guide.pdf'
       }
