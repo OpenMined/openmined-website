@@ -41,9 +41,6 @@ class Homepage extends Component {
     } = this.props.content;
 
     const { members, repositories } = this.props.github;
-    const { ready } = this.props;
-
-    console.log(ready);
 
     return (
       <Page id="homepage">
@@ -54,12 +51,7 @@ class Homepage extends Component {
         <Process {...process} repositories={repositories} />
         <Milestones {...milestones} />
         <Status {...status} repositories={repositories} />
-        <Footer
-          questions={questions}
-          movement={movement}
-          members={members}
-          ready={ready}
-        />
+        <Footer questions={questions} movement={movement} members={members} />
         <FooterLinks {...footer} />
       </Page>
     );
