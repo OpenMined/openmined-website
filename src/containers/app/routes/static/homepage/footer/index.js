@@ -47,7 +47,13 @@ const Members = ({ members, currentMember }) => (
   </ul>
 );
 
-const Movement = ({ movement, members, setCurrentMember, currentMember }) => (
+const Movement = ({
+  movement,
+  members,
+  setCurrentMember,
+  currentMember,
+  ready
+}) => (
   <Row>
     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
       <SectionHeading title={movement.title} level={3} />
@@ -55,12 +61,16 @@ const Movement = ({ movement, members, setCurrentMember, currentMember }) => (
     <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
       <CallsToAction movement={movement} />
     </Column>
-    <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-      <Members currentMember={currentMember} members={members} />
-    </Column>
-    <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-      <MemberMap setCurrentMember={setCurrentMember} members={members} />
-    </Column>
+    {ready && (
+      <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
+        <Members currentMember={currentMember} members={members} />
+      </Column>
+    )}
+    {ready && (
+      <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
+        <MemberMap setCurrentMember={setCurrentMember} members={members} />
+      </Column>
+    )}
   </Row>
 );
 
