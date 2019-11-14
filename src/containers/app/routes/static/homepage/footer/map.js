@@ -56,6 +56,7 @@ class MemberMap extends Component {
 
         members.forEach(member => {
           if (member.coords) {
+            console.log(member.coords);
             features.push({
               type: 'Feature',
               properties: member,
