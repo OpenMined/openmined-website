@@ -5,7 +5,7 @@ import paperIcon from '../containers/app/assets/icons/paper.svg';
 // Testimonial logos
 import tensorFlowImage from '../containers/app/assets/tensorflow.svg';
 import pyTorchImage from '../containers/app/assets/pytorch.svg';
-import ipfsImage from '../containers/app/assets/ipfs.svg';
+import kerasImage from '../containers/app/assets/keras.svg';
 
 // Image button icons
 import githubIcon from '../containers/app/assets/icons/github.svg';
@@ -36,17 +36,17 @@ const plannedIcon = {
 };
 
 const buttons = {
-  tutorials: {
-    type: 'Tutorials',
+  getStarted: {
+    type: 'Introduction',
     text: 'Get Started',
     icon: getStartedIcon,
-    link: 'https://github.com/OpenMined/PySyft/tree/master/examples/tutorials'
+    link: 'https://www.udacity.com/course/secure-and-private-ai--ud185'
   },
-  whitepaper: {
-    type: 'Whitepaper',
-    text: 'Read Whitepaper',
+  tutorials: {
+    type: 'Tutorials',
+    text: 'View Tutorials',
     icon: paperIcon,
-    link: 'https://arxiv.org/abs/1811.04017'
+    link: 'https://github.com/OpenMined/PySyft/tree/master/examples/tutorials'
   },
   contribute: {
     type: 'Github',
@@ -76,50 +76,44 @@ const buttons = {
 
 export default {
   hero: {
-    tagline: 'Building Safe Artificial Intelligence',
+    tagline: 'Answer questions using data you cannot see',
     description:
-      'OpenMined is an open-source community focused on researching, developing, and promoting tools for secure, privacy-preserving, value-aligned artificial intelligence.',
-    buttons: [buttons.tutorials, buttons.whitepaper],
+      'OpenMined is an open-source community whose goal is to make the world more privacy-preserving by lowering the barrier-to-entry to private AI technologies.',
+    buttons: [buttons.getStarted, buttons.tutorials],
     steps: [
       {
-        link:
-          'https://colab.research.google.com/drive/1-Jb_E_nDuBGHIJ_psI95k-ukh-P_aly-',
-        subtitle: 'Step One',
-        heading: 'Setup Worker',
+        link: 'https://github.com/OpenMined/PySyft',
+        subtitle: 'Library',
+        heading: 'PySyft',
         content:
-          'Also called a "Mine", the worker is a server where your private data is stored. The worker downloads models and trains them using federated learning and differential privacy.',
-        colab:
-          'https://colab.research.google.com/drive/1-Jb_E_nDuBGHIJ_psI95k-ukh-P_aly-'
-        // local: 'https://www.google.com/search?q=local'
+          'PySyft is a Python library for secure, private machine learning. PySyft extends PyTorch, Tensorflow, and Keras with capabilities for remote execution, federated learning, differential privacy, homomorphic encryption, and multi-party computation.',
+        github: 'https://github.com/OpenMined/PySyft'
       },
       {
-        link:
-          'https://colab.research.google.com/drive/1Je1rk7olA9uTWWaqvvt4_gXf7yX1rTBm',
-        subtitle: 'Step Two',
-        heading: 'Setup Client',
+        link: 'https://github.com/OpenMined/PyGrid/',
+        subtitle: 'Platform',
+        heading: 'PyGrid',
         content:
-          'Using the “Syft” project, you may create models for workers to train. Models can be secured via multi-party computation or homomorphic encryption.',
-        colab:
-          'https://colab.research.google.com/drive/1Je1rk7olA9uTWWaqvvt4_gXf7yX1rTBm'
-        // local: 'https://www.google.com/search?q=local'
+          'PyGrid is a platform for private AI using PySyft, enabling one to privately host models and datasets in the cloud for encrypted, federated prediction and training.',
+        github: 'https://github.com/OpenMined/PyGrid/'
       }
     ]
   },
   testimonials: [
+    {
+      name: 'TensorFlow',
+      link: 'https://www.tensorflow.org/',
+      image: tensorFlowImage
+    },
     {
       name: 'PyTorch',
       link: 'https://pytorch.org/',
       image: pyTorchImage
     },
     {
-      name: 'IPFS',
-      link: 'https://ipfs.io/',
-      image: ipfsImage
-    },
-    {
-      name: 'TensorFlow',
-      link: 'https://www.tensorflow.org/',
-      image: tensorFlowImage
+      name: 'Keras',
+      link: 'https://keras.io/',
+      image: kerasImage
     }
   ],
   mission: {
@@ -144,25 +138,25 @@ export default {
   pillars: [
     {
       colors: ['yellow', 'green'],
-      icon: computerIcon,
-      title: 'Private',
+      icon: nodesIcon,
+      title: 'Remote Execution',
       description:
-        'Privacy is at the core of OpenMined - building tools that allow data owners to keep their data private during the model training process. This is done by utilizing two methods of privacy preservation: federated learning and differential privacy.',
+        'Privacy-preserving analysis begins with analysis on data you can’t see. Thus, it begins with the ability to run arbitrary computations on data which is inside a machine to which you don’t have access, otherwise known as remote execution. We extend PyTorch and Tensorflow with this ability to run remotely on an unseen machine.',
       cards: [
         {
           // link: 'https://www.google.com',
-          subtitle: 'Private',
+          subtitle: 'Remote Execution',
           heading: 'Federated Learning',
           content:
-            'Instead of bringing data all to one place for training, federated learning is done by bringing the model to the data. This allows a data owner to maintain the only copy of their information.'
+            'Federated learning is a type of remote execution wherein models are sent to remote data-holding machines (such as smart phones or IoT devices) for local training. This eliminates the need to store sensitive training data on a central server.'
           // colab: 'https://www.google.com/search?q=colab'
         },
         {
           // link: 'https://www.google.com',
-          subtitle: 'Private',
-          heading: 'Differential Privacy',
+          subtitle: 'Remote Execution',
+          heading: 'On-device Prediction',
           content:
-            'Differential Privacy is a set of techniques for preventing a model from accidentally memorizing secrets present in a training dataset during the learning process.'
+            'On-device prediction is a special case of remote execution wherein models are used within an application locally instead of moving a dataset to the cloud for classification.'
           // colab: 'https://www.google.com/search?q=colab'
         }
       ]
@@ -170,13 +164,13 @@ export default {
     {
       colors: ['green', 'blue'],
       icon: lockIcon,
-      title: 'Secure',
+      title: 'Encrypted Computation',
       description:
-        'OpenMined is building tools that allow models to be trained within insecure, distributed environments such as end user devices. We aim to support two methods of secure computation: multi-party computation and homomorphic encryption.',
+        'With naive remote execution, you divulge the computations you wish to perform by sending them to the foreign machine. Encrypted computation allows you to keep your computations secret even in a foreign environment you don’t control. We extend PyTorch and Tensorflow with the ability to run in an encrypted state.',
       cards: [
         {
           // link: 'https://www.google.com',
-          subtitle: 'Secure',
+          subtitle: 'Encrypted Computation',
           heading: 'Multi-party Computation',
           content:
             'When a model has multiple owners, multi-party computation allows for individuals to share control of a model without seeing its contents such that no sole owner can use or train it.'
@@ -184,7 +178,7 @@ export default {
         },
         {
           // link: 'https://www.google.com',
-          subtitle: 'Secure',
+          subtitle: 'Encrypted Computation',
           heading: 'Homomorphic Encryption',
           content:
             'When a model has a single owner, homomorphic encryption allows an owner to encrypt their model so that untrusted 3rd parties can train or use the model without being able to steal it.'
@@ -194,25 +188,25 @@ export default {
     },
     {
       colors: ['blue', 'black'],
-      icon: nodesIcon,
-      title: 'Governance',
+      icon: computerIcon,
+      title: 'Differential Privacy',
       description:
-        'The OpenMined ecosystem allows for various systems of shared ownership, allowing variable control structures to be designed by model owners according to their own preferences. We allow for two systems of governance: consensus and threshold governance.',
+        'Eventually you must request the results of your remote (or encrypted) analysis to be revealed (i.e., statistical results, a trained model, prediction, or synthetic dataset). Differential Privacy helps us answer the question, “If I were to reveal this datapoint, what’s the maximum amount of private information I may leak?” and obfuscate the data appropriately. We extend PyTorch and Tensorflow with the ability to perform differential privacy automatically.',
       cards: [
         {
           // link: 'https://www.google.com',
-          subtitle: 'Governance',
-          heading: 'Consensus Governance',
+          subtitle: 'Differential Privacy',
+          heading: 'Published techniques',
           content:
-            'The default governance structure is one in which a group of data or model owners must all agree to perform training or inference in order for it to occur.'
+            'We incorporate standard techniques for differentially private ML including PATE, DP-SGD, Moments Accountant, as well as Laplace and Exponential mechanisms.'
           // colab: 'https://www.google.com/search?q=colab'
         },
         {
           // link: 'https://www.google.com',
-          subtitle: 'Governance',
-          heading: 'Threshold Governance',
+          subtitle: 'Differential Privacy',
+          heading: 'Automatic DP',
           content:
-            'An alternative governance structure is one in which a minimum threshold of data or model owners must agree to perform training or inference in order for it to occur.'
+            'We automatically track what operations you perform and add the appropriate amount of noise. This "autograd for DP" allows you to try out your own non-standard privacy functions to find optimal privacy/utility.'
           // colab: 'https://www.google.com/search?q=colab'
         }
       ]
@@ -225,13 +219,13 @@ export default {
         heading: 'Create',
         title: 'Create a model',
         description:
-          'A data scientist creates a model in a framework such as PyTorch, Tensorflow, or Keras, defines a training bounty they are willing to pay for it to be trained, and requests a specific kind of private training data (i.e., personal health information, social media posts, smart-home metadata, etc.)',
+          'A data scientist creates a model using PyTorch, TensorFlow, or Keras, and defines a training configuration (number of epochs, alpha, etc.).',
         repositories: ['PySyft'],
         graph: {
           nodes: {
             scientist: 'active',
             grid: 'active',
-            mines: 'inactive'
+            workers: 'inactive'
           },
           dots: {
             zone: 1,
@@ -241,16 +235,16 @@ export default {
         }
       },
       {
-        heading: 'Distribute',
-        title: 'Distribute via OpenGrid',
+        heading: 'Host',
+        title: 'Host a model on PyGrid',
         description:
-          'Upon submission, the model is encrypted/shared and uploaded to an OpenGrid network. This could be a private network within an enterprise or the public OpenGrid our community actively supports.',
-        repositories: ['Grid'],
+          'Using PySyft, a data scientist uploads their private model to a secure Grid node in the cloud. It can now be accessed by devices, which download the model for local training.',
+        repositories: ['PySyft', 'PyGrid'],
         graph: {
           nodes: {
             scientist: 'inactive',
             grid: 'active blinking',
-            mines: 'inactive'
+            workers: 'inactive'
           },
           dots: {}
         }
@@ -259,13 +253,13 @@ export default {
         heading: 'Train',
         title: 'Users train the model',
         description:
-          'Members of the OpenGrid network, who we call "miners", anonymously pull down the encrypted model from OpenGrid should they have the correct data required by the model. They then train the encrypted/shared model locally on their device.',
-        repositories: ['Grid', 'PySyft'],
+          'In parallel, many different devices update their local models by training on local data. These devices could be a mobile phone (Android or iOS), web browser, IoT device (Raspberry Pi), or another cloud machine.',
+        repositories: ['syft.js'],
         graph: {
           nodes: {
             scientist: 'inactive',
             grid: 'active still',
-            mines: 'active red'
+            workers: 'active red'
           },
           dots: {
             zone: 3,
@@ -275,16 +269,16 @@ export default {
         }
       },
       {
-        heading: 'Reward',
-        title: 'Reward the miners',
+        heading: 'Average',
+        title: 'Average the results',
         description:
-          'With each party remaining unknown to the other, the miner uploads a new version of the model based on their local training. Their submission is rewarded proportionate to how much they improve the accuracy of the model.',
-        repositories: ['Grid'],
+          'After a certain amount of training, models are averaged into a new global model which privately aggregates intelligence collected by local models.',
+        repositories: ['PyGrid'],
         graph: {
           nodes: {
             scientist: 'inactive',
             grid: 'active still',
-            mines: 'active green'
+            workers: 'active green'
           },
           dots: {
             zone: 3,
@@ -297,13 +291,13 @@ export default {
         heading: 'Deliver',
         title: 'Deliver the results securely',
         description:
-          "Once a success criteria is met, the model is decrypted by a private key or share held only by the data scientist. All the while, neither party has access to each other's data or intellectual property.",
-        repositories: ['Grid', 'PySyft'],
+          'Once a success criteria is met, the model is delivered back to the model owner. Mission accomplished!',
+        repositories: ['PySyft'],
         graph: {
           nodes: {
             scientist: 'active finished',
             grid: 'active still',
-            mines: 'inactive green'
+            workers: 'inactive green'
           },
           dots: {
             zone: 1,
@@ -337,8 +331,8 @@ export default {
       },
       {
         type: 'nodes',
-        name: 'mines',
-        icon: 'mine',
+        name: 'workers',
+        icon: 'syft.js',
         num: 3
       }
     ]
@@ -348,80 +342,171 @@ export default {
     stages: [doneIcon, progressIcon, plannedIcon],
     milestones: [
       {
-        title: 'Private Grid in Python',
+        title: 'Encrypted Machine Learning as a Service (EMLaaS)',
         status: progressIcon,
         subtitle:
-          'Privacy-preserved federated learning and secure prediction in PyTorch',
+          'Encrypted machine learning spread across any device or language',
         description:
-          'As the main offering of OpenMined, data scientists should have the ability to incorporate federated learning and secure prediction into their existing deep learning infrastructure. This allows for training to be done in a private cloud while minimizing the risk of leaking intellectual property or private training data.',
+          'As model owner and a data owner can use their model and data to make a prediction, without the model owner disclosing their model, and without the data owner disclosing their data.',
         features: [
           {
             status: doneIcon,
-            text: 'Virtual workers',
+            text: 'Basic encrypted prediction',
             description:
-              'learning environment for using OpenMined without requiring access to an external network'
-          },
-          {
-            status: doneIcon,
-            text: 'Socket workers',
-            description:
-              'for training and prediction over a cluster of machines connected using socket connections'
-          },
-          {
-            status: doneIcon,
-            text: 'Federated learning',
-            description: 'for arbitrary PyTorch models'
+              'is the ability for two parties to predict on encrypted data using an encrypted model in Python.'
           },
           {
             status: progressIcon,
-            text: 'Multi-party computation',
-            description: 'training and prediction for arbitrary PyTorch models'
-          },
-          {
-            status: doneIcon,
-            text: 'Secure aggregation for federated learning',
-            description: 'using secure multi-party computation'
+            text: 'Scalability',
+            description:
+              'for the encrypted prediction server to serve large numbers of models simultaneously.'
           },
           {
             status: progressIcon,
-            text: 'Differential privacy',
-            description: 'for arbitrary PyTorch models using PATE'
+            text: 'Javascript encrypted prediction',
+            description:
+              'is the ability for a web browser or Javascript server to make an encrypted prediction using an encrypted model hosted in the cloud.'
+          },
+          {
+            status: progressIcon,
+            text: 'Android encrypted prediction',
+            description:
+              'for an Android smartphone to make an encrypted prediction using an encrypted model hosted in the cloud.'
+          },
+          {
+            status: plannedIcon,
+            text: 'iOS encrypted prediction',
+            description:
+              'for an iOS smartphone to make an encrypted prediction using an encrypted model hosted in the cloud.'
           }
         ]
       },
       {
-        title: 'Browser Training and Secure Prediction',
+        title: 'Privacy-Preserving Data Science Platform',
         status: progressIcon,
         subtitle:
-          'Privacy-preserved federated learning and secure prediction of models in the browser',
+          'Privacy-preserved training and prediction in PyTorch, Tensorflow, and Keras',
         description:
-          'Federated learning can be done in the browser with a Javascript port of the Syft project. This allows for data scientists to create a private federated learning compute grid to receive gradients from any client or server-side JS environment. Not only does this allow for the model to remain private from the user, but it also allows the user’s data to remain totally private as well.',
+          'This allows a data scientist to train AI models on data to which they do not have access, eliminating the need for a data scientist to obtain a copy of a dataset in order to work with it.',
         features: [
           {
-            status: progressIcon,
-            text: 'Deep learning web client',
+            status: doneIcon,
+            text: 'Hosting data',
             description:
-              'built in Javascript to train and predict in the browser'
+              'that allows a private data owner to host their data within a secure cloud machine.'
+          },
+          {
+            status: doneIcon,
+            text: 'Secure search',
+            description:
+              'that allows a data scientist to search and filter through private datasets hosted on a secure cloud machine.'
+          },
+          {
+            status: doneIcon,
+            text: 'Remote execution',
+            description:
+              'giving the ability for a data scientist to leverage PyTorch, Tensorflow, and Keras on remote datasets they do not have access to.'
           },
           {
             status: progressIcon,
-            text: 'Integration with PySyft',
+            text: 'Privacy budgeting',
             description:
-              'to allow for training and prediction across Python and Javascript'
+              'to automatically track the privacy budget ("epsilon value") spent when doing data science on remote data.'
+          },
+          {
+            status: progressIcon,
+            text: 'Data compliance application',
+            description:
+              'allowing a compliance offer to review all requests for data (including statistical results) and be empowered with metadata necessary to make a correct decision.'
+          },
+          {
+            status: progressIcon,
+            text: 'Private NLP library',
+            description:
+              'is a specialty library empowering remote processing of natural language data.'
+          },
+          {
+            status: plannedIcon,
+            text: 'Global authentication server',
+            description:
+              'for doing joins across multiple data repos owned by different owners, we need a single, secure entity resolution server.'
+          },
+          {
+            status: plannedIcon,
+            text: 'Cold storage',
+            description:
+              'of private data which also allows for private, encrypted queries against secure attributes.'
+          },
+          {
+            status: plannedIcon,
+            text: 'Automate synthetic data',
+            description:
+              'is the ability to request synthetic and example data regarding a remote data resource in a privacy budget-aware way.'
+          },
+          {
+            status: plannedIcon,
+            text: 'Scalability',
+            description:
+              'is the ability for such data servers to scale to thousands of concurrent data scientists.'
           }
         ]
       },
       {
-        title: 'Public OpenMined Grid',
-        status: plannedIcon,
-        subtitle: 'Public or private environments for federated learning',
+        title: 'Federated Learning',
+        status: progressIcon,
+        subtitle:
+          'Training and prediction on the device where data lives, rather than in the cloud',
         description:
-          'With identical technical functionality to the private grid, the public grid is an open marketplace for individuals to offer their data to be trained on and for models to be offered for secure prediction in web applications.'
+          'This allows an existing smartphone or IoT application to get smarter over time by training on local data and then aggregating smarter models instead of aggregating training datasets.',
+        features: [
+          {
+            status: doneIcon,
+            text: 'Basic model hosting',
+            description:
+              'is the ability to host a model in the cloud which can be downloaded and trained.'
+          },
+          {
+            status: progressIcon,
+            text: 'Javascript model hosting',
+            description:
+              'is the ability to host a model in the cloud for secure training or local training exclusively using a Javascript stack (Node.js).'
+          },
+          {
+            status: progressIcon,
+            text: 'Federated learning workflow',
+            description:
+              'is the ability for a user to specify a federated learning configuration such as # of epochs, learning rate plan, and asynchronous training limits.'
+          },
+          {
+            status: progressIcon,
+            text: 'Federated learning Javascript client',
+            description:
+              'is the ability for a Javascript runtime to download a model from a Grid server, perform local training, and upload a finished result.'
+          },
+          {
+            status: progressIcon,
+            text: 'Federated learning Android client',
+            description:
+              'is the ability for a Kotlin runtime to download a model from a Grid server, perform local training, and upload a finished result.'
+          },
+          {
+            status: plannedIcon,
+            text: 'Federated learning iOS client',
+            description:
+              'is the ability for an Swift runtime to download a model from a Grid server, perform local training, and upload a finished result.'
+          },
+          {
+            status: plannedIcon,
+            text: 'Scalability',
+            description:
+              'is the ability for the federated learning server to scale up to serve tens of thousands of clients simultaneously.'
+          }
+        ]
       }
     ]
   },
   status: {
-    projects: ['PySyft', 'Grid'],
+    projects: ['PySyft', 'PyGrid', 'syft.js'],
     cta: buttons.contribute,
     news: {
       blog: {

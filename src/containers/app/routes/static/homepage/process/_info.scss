@@ -42,6 +42,9 @@
         padding: $small-space / 1.5;
         background: $black;
         border-radius: $border-radius;
+        img {
+          max-width: 100%;
+        }
       }
       .name {
         @include capped-text(1px);

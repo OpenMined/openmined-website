@@ -20,13 +20,13 @@ const ContentLink = ({ link, icon, text }) => (
   </li>
 );
 
-const CardContent = ({ subtitle, level, heading, content }) => (
+const CardContent = ({ subtitle, level, heading, content, hasLinks }) => (
   <div className="card-content">
     <div className="header">
       <p className="subtitle">{subtitle}</p>
       <Heading level={level}>{heading}</Heading>
     </div>
-    <p className="content">{content}</p>
+    <p className={`content ${!hasLinks && 'no-links'}`}>{content}</p>
   </div>
 );
 
@@ -38,14 +38,18 @@ const Card = ({
   content,
   colab,
   local,
+  github,
   axis
 }) => {
+  const hasLinks = Boolean(colab) || Boolean(local) || Boolean(github);
+
   const cardContent = (
     <CardContent
       subtitle={subtitle}
       level={level}
       heading={heading}
       content={content}
+      hasLinks={hasLinks}
     />
   );
 
@@ -61,14 +65,19 @@ const Card = ({
         </ExternalLink>
       )}
       {!link && cardContent}
-      <ul className="links">
-        {colab && (
-          <ContentLink link={colab} icon={colabIcon} text="Try on Colab" />
-        )}
-        {local && (
-          <ContentLink link={local} icon={localIcon} text="Run Locally" />
-        )}
-      </ul>
+      {hasLinks && (
+        <ul className="links">
+          {colab && (
+            <ContentLink link={colab} icon={colabIcon} text="Try on Colab" />
+          )}
+          {local && (
+            <ContentLink link={local} icon={localIcon} text="Run Locally" />
+          )}
+          {github && (
+            <ContentLink link={github} icon={localIcon} text="View on Github" />
+          )}
+        </ul>
+      )}
     </Tilt>
   );
 };

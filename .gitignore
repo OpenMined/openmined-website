@@ -18,6 +18,7 @@
 
 # prefer yarn
 package-lock.json
+yarn.lock
 
 # prefer sass
 /src/**/*.css

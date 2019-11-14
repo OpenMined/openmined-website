@@ -1,11 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#5CB5A4;}
-</style>
-<path class="st0" d="M12,3.5C2,3.5,2,4.3,2,5.2c0,0.3,0,0.5,0.4,0.7L8.8,14v4.8c0,1.5,2.5,1.6,3.2,1.6s3.2-0.1,3.2-1.6V14L21.7,6
-	C22,5.8,22,5.5,22,5.2C22,4.3,22,3.5,12,3.5z M13.4,13.5v5c-0.3,0.1-0.7,0.2-1.4,0.2c-0.6,0-1.1-0.1-1.4-0.2v-5L5.2,6.5
-	C6.6,6.7,8.8,6.8,12,6.8s5.4-0.1,6.8-0.2L13.4,13.5z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="162px" height="154px" viewBox="0 0 162 154" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>syft</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="syft" fill-rule="nonzero">
+            <polygon id="Path" fill="#C8BC87" points="120.67 65.73 95.84 47.7 120.67 55.75"></polygon>
+            <polygon id="Path" fill="#DABA81" points="119.71 49.37 115.62 36.81 81.04 36.81"></polygon>
+            <polygon id="Path" fill="#EFBD79" points="112.75 31.03 102.76 17.26 60.36 31.03"></polygon>
+            <polygon id="Path" fill="#FDC073" points="80.83 0 35.27 33.09 98.25 12.64"></polygon>
+            <polygon id="Path" fill="#F2AA70" points="75.11 40.95 50.32 58.97 65.63 37.87"></polygon>
+            <polygon id="Path" fill="#ED9769" points="35.39 69.66 59.28 36.81 46.08 36.81"></polygon>
+            <polygon id="Path" fill="#DF7D6A" points="23.52 43 23.52 87.51 39.69 37.74"></polygon>
+            <polygon id="Path" fill="#C55A73" points="17.74 112 17.74 45.85 0.35 58.48"></polygon>
+            <polygon id="Path" fill="#C55875" points="31.63 84.68 37.47 76.65 46.91 105.74"></polygon>
+            <polygon id="Path" fill="#B3577E" points="24.58 102.96 52.48 123.23 28.65 90.42"></polygon>
+            <polygon id="Path" fill="#896C96" points="87.29 153.11 24.47 132.69 31.1 153.11"></polygon>
+            <polygon id="Path" fill="#A15F89" points="23.52 109.32 23.52 126.31 65.81 140.05"></polygon>
+            <polygon id="Path" fill="#5CADB2" points="109.13 153.11 147.95 99.67 130.59 153.11"></polygon>
+            <polygon id="Path" fill="#66A3AD" points="128.88 116.08 86.59 146.81 102.76 152.05"></polygon>
+            <polygon id="Path" fill="#7696A5" points="108.75 123.56 70.2 136.1 80.85 143.84"></polygon>
+            <polygon id="Path" fill="#8D8598" points="90.37 123.46 59.8 123.46 65.63 131.49"></polygon>
+            <polygon id="Path" fill="#92C29F" points="137.12 102.96 126.45 110.71 126.45 70.1"></polygon>
+            <polygon id="Path" fill="#AACC98" points="141.73 98.42 151.72 84.66 125.54 48.64"></polygon>
+            <polygon id="Path" fill="#B8CF97" points="161.34 58.48 115.82 25.41 154.69 78.92"></polygon>
+            <polygon id="Path" fill="#87B4A2" points="120.67 113.62 120.67 87.55 111.19 116.7"></polygon>
+        </g>
+    </g>
 </svg>

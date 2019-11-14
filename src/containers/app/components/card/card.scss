@@ -41,6 +41,9 @@ $card-padding: $medium-space + $small-space;
     line-height: 2.25rem;
     max-height: 175px;
     overflow: hidden;
+    &.no-links {
+      max-height: 100%;
+    }
   }
   .links {
     padding-left: 0px;
