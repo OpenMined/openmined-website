@@ -9,13 +9,13 @@ import Carousel from '../../../../components/carousel';
 const POST_HEIGHT = 250;
 
 /* eslint-disable camelcase */
-const Post = ({ more, url, title, custom_excerpt, published_at }) => (
+const Post = ({ url, title, custom_excerpt, published_at }) => (
   <Tilt
     className="post"
     style={{ height: POST_HEIGHT }}
     options={{ reverse: true, max: 10, scale: 1, speed: 250 }}
   >
-    <ExternalLink to={more + url}>
+    <ExternalLink to={url}>
       <h5 className="title">{title}</h5>
       <p className="excerpt">{custom_excerpt}</p>
       <span className="date">Posted {moment(published_at).fromNow()}</span>
@@ -33,9 +33,11 @@ const Blog = ({ name, more, mailchimp, posts }) => (
     </div>
     {posts && (
       <Carousel height={POST_HEIGHT}>
-        {posts.map((post, index) => (
-          <Post key={index} more={more} {...post} />
-        ))}
+        {posts
+          .sort((a, b) => moment(b.published_at) - moment(a.published_at))
+          .map((post, index) => (
+            <Post key={index} more={more} {...post} />
+          ))}
       </Carousel>
     )}
     <ExternalLink className="read-more" to={more}>
@@ -58,6 +60,7 @@ const LatestNews = ({ blog }) => (
     </Row>
     <Row id="blogs">
       <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
+        {console.log(blog)}
         <Blog {...blog} />
       </Column>
     </Row>

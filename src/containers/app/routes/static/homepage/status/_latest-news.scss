@@ -49,6 +49,7 @@ $blog-post-width: 340px;
         .excerpt {
           color: $medium-gray;
           height: 100px;
+          overflow-y: hidden;
         }
         .date {
           position: absolute;
