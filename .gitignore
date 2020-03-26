@@ -16,9 +16,9 @@
 .env.test.local
 .env.production.local
 
-# prefer PNPM
+# lock
 package-lock.json
-yarn.lock
+pnpm-lock.yaml
 
 # prefer sass
 /src/**/*.css
