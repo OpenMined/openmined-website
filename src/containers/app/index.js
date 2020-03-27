@@ -9,6 +9,7 @@ import FullStory from 'react-fullstory';
 import { removeNotification } from '../../modules/notifications';
 
 // UI Components
+import Dialog from './components/dialog';
 import Notifications from './components/notifications';
 import Header from './components/header';
 
@@ -20,8 +21,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    if (localStorage.getItem('covid-dialog') === null) {
+      localStorage.setItem('covid-dialog', true);
+    }
+
     this.state = {
-      shouldShowHeader: false
+      shouldShowHeader: false,
+      showingCovidModal: localStorage.getItem('covid-dialog') === 'true',
     };
   }
 
@@ -32,19 +38,64 @@ class App extends Component {
 
       if (scrollTop >= 200 && !this.state.shouldShowHeader) {
         this.setState({
-          shouldShowHeader: true
+          shouldShowHeader: true,
         });
       } else if (scrollTop < 200 && this.state.shouldShowHeader) {
         this.setState({
-          shouldShowHeader: false
+          shouldShowHeader: false,
         });
       }
     });
   }
 
   render() {
+    const covidCopy = {
+      title: 'Help us empower COVID-19 apps with privacy',
+      content: (
+        <>
+          <p>
+            <b>Privacy is a human right.</b> Fighting the Coronavirus pandemic
+            is a global responsiblity, but that doesn't mean app developers
+            should compromise the safety, privacy, and security of their users.
+          </p>
+          <p>
+            OpenMined is providing <b>free open-source support</b> for all
+            COVID-19 app developers to protect their user's data privacy
+            properly. We are seeking to assist all develoeprs fighting the
+            Coronavirus pandemic to augment their approach with
+            privacy-preserving techniques.
+          </p>
+        </>
+      ),
+      cta: 'Ready to join the fight?',
+      buttons: [
+        {
+          text: 'Join our mission',
+          color: 'primary',
+          link:
+            'https://blog.openmined.org/providing-opensource-privacy-for-covid19/',
+        },
+        {
+          text: 'Read our roadmap',
+          color: 'light-gray',
+          link: 'https://blog.openmined.org/covid-app-privacy-advice/',
+        },
+      ],
+    };
+
     return (
       <div id="app">
+        <Dialog
+          overlay
+          {...covidCopy}
+          isOpen={this.state.showingCovidModal}
+          toggle={() => {
+            const newState = !this.state.showingCovidModal;
+
+            localStorage.setItem('covid-dialog', newState);
+            this.setState({ showingCovidModal: newState });
+          }}
+        />
         <Notifications
           notifications={this.props.notifications}
           removeFunc={this.props.removeNotification}
@@ -63,17 +114,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   notifications: state.notifications.notifications,
-  links: state.homepage.content.footer
+  links: state.homepage.content.footer,
 });
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ removeNotification }, dispatch);
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

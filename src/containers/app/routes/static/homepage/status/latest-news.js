@@ -60,7 +60,6 @@ const LatestNews = ({ blog }) => (
     </Row>
     <Row id="blogs">
       <Column sizes={{ small: 12, xlarge: 10 }} offsets={{ xlarge: 1 }}>
-        {console.log(blog)}
         <Blog {...blog} />
       </Column>
     </Row>
