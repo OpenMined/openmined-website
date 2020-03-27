@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../button';
+import Button from '../button';
 
 import './console.scss';
 
@@ -19,12 +19,12 @@ const copyText = (code, addNotification) => {
 
     addNotification({
       text: 'Copied to clipboard!',
-      type: 'success'
+      type: 'success',
     });
   } catch (err) {
     addNotification({
       text: "Your browser is old and doesn't support copying to the clipboard.",
-      type: 'error'
+      type: 'error',
     });
   }
 };

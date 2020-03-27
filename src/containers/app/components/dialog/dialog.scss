@@ -1,0 +1,87 @@
+@import '../../../../variables';
+
+.dialog {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $off-black;
+    z-index: $overlay-zindex;
+    opacity: 0.5;
+  }
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    border-radius: $extra-border-radius;
+    box-shadow: 0px $small-space $large-space rgba($black, 0.25);
+    padding: $medium-space;
+    z-index: $dialog-zindex;
+    @include tablet-up {
+      width: 80%;
+      padding: $large-space;
+    }
+    @include widescreen-up {
+      width: 60%;
+    }
+    .flex {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      @include desktop-up {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      margin-bottom: $medium-space;
+      .title {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+      .close-icon {
+        margin-bottom: $medium-space;
+        color: $light-gray;
+        font-size: 2em;
+        cursor: pointer;
+        transition: color $anim-time $anim-func;
+        @include desktop-up {
+          margin-bottom: 0px;
+        }
+        &:hover {
+          color: $medium-gray;
+        }
+      }
+    }
+    .content {
+      font-size: 1.1rem;
+      line-height: 2.25rem;
+    }
+    .cta {
+      text-align: center;
+      margin-bottom: $medium-space;
+      @include tablet-up {
+        margin-top: $large-space;
+        margin-bottom: $large-space;
+      }
+    }
+    .button-flex {
+      display: flex;
+      flex-direction: column;
+      @include tablet-up {
+        flex-direction: row;
+        justify-content: center;
+      }
+      .button {
+        text-align: center;
+        @include tablet-up {
+          margin: 0px $small-space 0px $small-space;
+        }
+      }
+    }
+  }
+}

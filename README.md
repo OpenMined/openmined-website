@@ -12,7 +12,7 @@ Generally speaking, design and copy changes (other than bugs and typos) should b
 
 This is a React application based on the [Create React App](https://github.com/facebookincubator/create-react-app) starter application. For information on Create React App, or to get the project running on your machine, **please refer to their documentation**.
 
-To run locally with hot reloading, run `yarn start`. To run locally with server-side rendering enabled, run `yarn build` and then `yarn serve` to start the server.
+To run locally with hot reloading, run `npm run start`. To run locally with server-side rendering enabled, run `npm run build` and then `npm run serve` to start the server.
 
 ## Contributing
 
