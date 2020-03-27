@@ -55,13 +55,13 @@ class App extends Component {
         <>
           <p>
             <b>Privacy is a human right.</b> Fighting the Coronavirus pandemic
-            is a global responsiblity, but that doesn't mean app developers
+            is a global responsibility, but that doesn't mean app developers
             should compromise the safety, privacy, and security of their users.
           </p>
           <p>
             OpenMined is providing <b>free open-source support</b> for all
             COVID-19 app developers to protect their user's data privacy
-            properly. We are seeking to assist all develoeprs fighting the
+            properly. We are seeking to assist all developers fighting the
             Coronavirus pandemic to augment their approach with
             privacy-preserving techniques.
           </p>
