@@ -17,6 +17,8 @@
     left: 50%;
     width: 90%;
     height: auto;
+    max-height: 90%;
+    overflow-y: auto;
     transform: translate(-50%, -50%);
     background-color: $white;
     border-radius: $extra-border-radius;
