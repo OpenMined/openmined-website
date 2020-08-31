@@ -5,11 +5,12 @@ import { addNotification } from '../../../../../modules/notifications';
 import {
   getGithubData,
   getSlackData,
-  getGhostData
+  getGhostData,
 } from '../../../../../modules/homepage';
 import Page from '../../../components/page';
 
 import FooterLinks from '../../../components/footer-links';
+import Pricon from './pricon';
 import Hero from './hero';
 import Testimonials from './testimonials';
 import Mission from './mission';
@@ -37,13 +38,14 @@ class Homepage extends Component {
       status,
       questions,
       movement,
-      footer
+      footer,
     } = this.props.content;
 
     const { members, repositories } = this.props.github;
 
     return (
       <Page id="homepage">
+        <Pricon />
         <Hero {...hero} addNotification={this.props.addNotification} />
         <Testimonials testimonials={testimonials} />
         <Mission {...mission} />
@@ -58,19 +60,16 @@ class Homepage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   content: state.homepage.content,
   github: state.homepage.github,
-  ready: state.homepage.githubContentLoaded
+  ready: state.homepage.githubContentLoaded,
 });
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     { addNotification, getGithubData, getSlackData, getGhostData },
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Homepage);
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
