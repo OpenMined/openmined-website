@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Column, Container } from '../../../../components/grid';
-import ImageButton from '../../../../components/image-button';
-import { matchRepositoryToName } from '../../../../../../helpers/repositories';
+// import { Row, Column, Container } from '../../../../components/grid';
+// import ImageButton from '../../../../components/image-button';
+// import { matchRepositoryToName } from '../../../../../../helpers/repositories';
 
-import Projects from './projects';
+// import Projects from './projects';
 import LatestNews from './latest-news';
 
 import './status.scss';
@@ -13,22 +13,23 @@ class Status extends Component {
     super(props);
 
     this.state = {
-      currentProject: 0
+      currentProject: 0,
     };
   }
 
   render() {
-    const { repositories, projects, cta, news } = this.props;
+    // const { repositories, projects, cta, news } = this.props;
+    const { news } = this.props;
 
-    const matchedProjects = matchRepositoryToName(projects, repositories);
+    // const matchedProjects = matchRepositoryToName(projects, repositories);
 
     return (
       <div id="status" className="section-padding">
-        {repositories.length > 0 && (
+        {/* {repositories.length > 0 && (
           <Projects
             projects={matchedProjects}
             current={this.state.currentProject}
-            setCurrent={index => this.setState({ currentProject: index })}
+            setCurrent={(index) => this.setState({ currentProject: index })}
           />
         )}
         <Container>
@@ -37,7 +38,7 @@ class Status extends Component {
               <ImageButton {...cta} inverted />
             </Column>
           </Row>
-        </Container>
+        </Container> */}
         <LatestNews {...news} />
       </div>
     );

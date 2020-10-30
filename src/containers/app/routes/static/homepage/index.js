@@ -10,13 +10,13 @@ import {
 import Page from '../../../components/page';
 
 import FooterLinks from '../../../components/footer-links';
-import Pricon from './pricon';
+// import Pricon from './pricon';
 import Hero from './hero';
 import Testimonials from './testimonials';
 import Mission from './mission';
 import Pillars from './pillars';
-import Process from './process';
-import Milestones from './milestones';
+// import Process from './process';
+// import Milestones from './milestones';
 import Status from './status';
 import Footer from './footer';
 
@@ -33,8 +33,8 @@ class Homepage extends Component {
       testimonials,
       mission,
       pillars,
-      process,
-      milestones,
+      // process,
+      // milestones,
       status,
       questions,
       movement,
@@ -45,13 +45,13 @@ class Homepage extends Component {
 
     return (
       <Page id="homepage">
-        <Pricon />
+        {/* <Pricon /> */}
         <Hero {...hero} addNotification={this.props.addNotification} />
         <Testimonials testimonials={testimonials} />
         <Mission {...mission} />
         <Pillars pillars={pillars} />
-        <Process {...process} repositories={repositories} />
-        <Milestones {...milestones} />
+        {/* <Process {...process} repositories={repositories} /> */}
+        {/* <Milestones {...milestones} /> */}
         <Status {...status} repositories={repositories} />
         <Footer questions={questions} movement={movement} members={members} />
         <FooterLinks {...footer} />

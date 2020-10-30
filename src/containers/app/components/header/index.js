@@ -16,7 +16,9 @@ export const MainLinks = ({ linksClass, logo, links }) => (
     {links &&
       links.map(({ link, text }, key) => {
         const TheLink =
-          link.includes('http://') || link.includes('https://')
+          link.includes('http://') ||
+          link.includes('https://') ||
+          link.includes('/assets')
             ? ExternalLink
             : Link;
 
