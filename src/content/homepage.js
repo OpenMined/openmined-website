@@ -135,31 +135,18 @@ export default {
     title: 'Vision & Mission',
     cta: buttons.donate,
     content: [
-      // {
-      //   text:
-      //     'Industry standard workflows for data science have been designed with several assumptions: data is centralized by those who collect it, the data and all its derivations are considered private, and the external use of that data should be tightly controlled or outright rejected.  This leads to a reality where innovation and competitiveness are stifled by intellectual property, against the best interests of humanity.  We envision a world in which we are not restricted to this scenario - a world in which data science tools treat privacy, security, and data integrity as first-class citizens.',
-      // },
-      // {
-      //   text:
-      //     'With OpenMined, people and organizations can host private datasets, allowing data scientists to train or query on data they "cannot see".',
-      //   strong: true,
-      // },
-      // {
-      //   text:
-      //     'The mission of the OpenMined community is to create an accessible ecosystem of privacy tools in the best interests of humanity. We do this by extending popular libraries like PyTorch and TensorFlow with advanced techniques in cryptography and differential privacy.',
-      // },
       {
         text:
-          'Industry standard tools for artificial intelligence have been designed with several assumptions: data is centralized into a single compute cluster, the cluster exists in a secure cloud, and the resulting models will be owned by a central authority.  We envision a world in which we are not restricted to this scenario - a world in which AI tools treat privacy, security, and multi-owner governance as first class citizens.',
+          'Today, workflows for data science have been designed with several assumptions: data is centralized by those who collect it, the data (and all its derivations) are considered private, and any external use of that data should be tightly controlled or outright rejected.  All of these problems work against the best interests of humanity.  Data science should be used to advance scientific progress while also prioritizing privacy, security, and data integrity.',
       },
       {
         text:
-          'With OpenMined, an AI model can be governed by multiple owners and trained securely on an unseen, distributed dataset.',
+          'With OpenMined, people and organizations can host private datasets, allowing data scientists to train or query on data they "cannot see". The data owners retain complete control: data is never copied, moved, or shared.',
         strong: true,
       },
       {
         text:
-          'The mission of the OpenMined community is to create an accessible ecosystem of tools for private, secure, multi-owner governed AI. We do this by extending popular libraries like TensorFlow and PyTorch with advanced techniques in cryptography and private machine learning.',
+          'The mission of the OpenMined community is to create an accessible ecosystem of privacy tools and education. We do this by extending popular libraries like PyTorch with advanced techniques in cryptography and differential privacy.',
       },
     ],
   },
