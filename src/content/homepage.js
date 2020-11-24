@@ -112,7 +112,7 @@ export default {
     //     github: 'https://github.com/OpenMined/PyGrid/',
     //   },
     // ],
-    video: 'https://www.youtube-nocookie.com/embed/DppXfA6C8L8',
+    video: 'https://www.youtube-nocookie.com/embed/-b0CQFr6xyA',
   },
   testimonials: [
     {
