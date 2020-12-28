@@ -8,6 +8,10 @@ import './not-found.scss';
 export default class NotFound extends Component {
   static notFound = true;
 
+  componentDidMount() {
+    window.plausible('404', { props: { path: document.location.pathname } });
+  }
+
   render() {
     return (
       <Page
