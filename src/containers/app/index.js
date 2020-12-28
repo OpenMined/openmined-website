@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
-import FullStory from 'react-fullstory';
 
 // Action Creators
 import { removeNotification } from '../../modules/notifications';
@@ -50,7 +49,6 @@ class App extends Component {
           removeFunc={this.props.removeNotification}
         />
         <Header {...this.props.links} visible={this.state.shouldShowHeader} />
-        <FullStory org="CMKMM" />
         <div id="content">
           <Switch>
             <Route exact path="/" component={Homepage} />
