@@ -52,7 +52,7 @@ const buttons = {
     type: 'Introduction',
     text: 'Learn Private AI',
     icon: paperIcon,
-    link: 'https://www.udacity.com/course/secure-and-private-ai--ud185',
+    link: 'https://courses.openmined.org',
   },
   joinTheCommunity: {
     type: 'Community',
