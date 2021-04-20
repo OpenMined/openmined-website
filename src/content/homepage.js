@@ -58,7 +58,7 @@ const buttons = {
     type: 'Community',
     text: 'Join the Community',
     icon: getStartedIcon,
-    link: 'https://placements.openmined.org',
+    link: 'https://slack.openmined.org',
   },
   contribute: {
     type: 'Github',
