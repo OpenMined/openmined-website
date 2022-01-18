@@ -91,7 +91,7 @@ export default {
     // tagline: 'Answer questions using data you cannot see',
     tagline: "Let's Solve Privacy",
     description:
-      'OpenMined is an open-source community whose goal is to make the world more privacy-preserving by lowering the barrier-to-entry to private AI technologies.',
+      'OpenMined is an open-source community whose goal is to make the world more privacy-preserving by lowering the barrier-to-entry to private AI technologies',
     // buttons: [buttons.getStarted, buttons.tutorials],
     buttons: [buttons.learnPrivateAI, buttons.joinTheCommunity],
     // steps: [
