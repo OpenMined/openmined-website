@@ -165,7 +165,7 @@ export default {
           subtitle: 'HOST YOUR DATA FOR STUDY',
           heading: 'PyGrid Server',
           content:
-            '<a href="https://github.com/OpenMined/PySyft/tree/dev/packages/grid">PyGrid</a> is a server for private data. It’s like a website server except a web server is designed to host public data for people to download. PyGrid is designed to host private data for people to use to answer questions, but not be able download.',
+            'PyGrid is a server for private data. It’s like a website server except a web server is designed to host public data for people to download. PyGrid is designed to host private data for people to use to answer questions, but not be able download.',
 //           github: 'https://github.com/OpenMined/PySyft/tree/dev/packages/grid'
         },
         {
