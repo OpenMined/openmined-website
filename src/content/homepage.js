@@ -137,16 +137,18 @@ export default {
     content: [
       {
         text:
-          'Today, workflows for data science have been designed with several assumptions: data is centralized by those who collect it, the data (and all its derivations) are considered private, and any external use of that data should be tightly controlled or outright rejected.  All of these problems work against the best interests of humanity.  Data science should be used to advance scientific progress while also prioritizing privacy, security, and data integrity.',
+          'Everyone has questions they want to answer, and society constructs flows of information to help the right information reach the right people who need it while preventing information from flowing to those who might mis-use it. We call this goal Structured Transparency. However, this process is broken in several key ways. Chief among them is the requirement that someone must acquire a copy of a piece of data in order to learn insights from it. This creates tradeoffs between the benefits of sharing information with someone (innovation, insights, scientific discovery, increased accountability, etc.), and the risks that they might mis-use it (privacy invasion, IP theft, blackmail, etc.). These tradeoffs mean that sometimes good things don’t happen because information can’t be shared, and other times, bad things happen because too much information must be shared for some overriding reason.',
       },
       {
         text:
-          'With OpenMined, people and organizations can host private datasets, allowing data scientists to train or query on data they "cannot see". The data owners retain complete control: data is never copied, moved, or shared.',
+          'We are building software that alleviates this core problem by making it possible for one person to answer a question using data owned by another, without ever seeing or acquiring a copy of that data.',
         strong: true,
       },
       {
         text:
-          'The mission of the OpenMined community is to create an accessible ecosystem of privacy tools and education. We do this by extending popular libraries like PyTorch with advanced techniques in cryptography and differential privacy.',
+          'We call this process Remote Data Science. The advent of remote data science means that, in a huge variety of domains across society, current tradeoffs between sharing data and protecting that data will be broken. Researchers will make medical advances without patients disclosing medical information. Citizens will provide feedback to governments without disclosing their individual preferences. Products will improve based on private data of customers without customers needing to disclose information about their lives to corporations. It means 1000x more data in every scientific field. It means organizations will be made accountable for actions performed in private without needing to disclose IP, trade secrets, or private data. It means more information flows that help society, and less information flows that hurt society, and we’re very excited about it.',
+      },
+      {text: 'We are a charity that is fiscally hosted by the Open Collective Foundation 501(c)(3), and to accomplish our ambitious mission, we have three programs:',
       },
     ],
   },
