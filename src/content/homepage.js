@@ -215,15 +215,15 @@ export default {
           subtitle: 'PUBLIC SECTOR',
           heading: 'The UN PET Lab',
           content:
-            'We incorporate standard techniques for differentially private ML including PATE, DP-SGD, Moments Accountant, as well as Laplace and Exponential mechanisms.',
+            'We’ve been working with the UN PET Lab to pilot PySyft and PyGrid on the UN Global Platform, forming a Federated Data Network across 5 participating national statistics offices.',
           // colab: 'https://www.google.com/search?q=colab'
         },
         {
           // link: 'https://www.google.com',
-          subtitle: 'Differential Privacy',
-          heading: 'Automatic DP',
+          subtitle: 'COMMUNITY',
+          heading: 'PriCon 2020',
           content:
-            'We automatically track what operations you perform and add the appropriate amount of noise. This "autograd for DP" allows you to try out your own non-standard privacy functions to find optimal privacy/utility.',
+            'In 2020, we hosted a conference bringing together privacy experts from all around the world!',
           // colab: 'https://www.google.com/search?q=colab'
         },
       ],
