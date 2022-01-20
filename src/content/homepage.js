@@ -181,25 +181,25 @@ export default {
     {
       colors: ['green', 'blue'],
       icon: lockIcon,
-      title: 'Encrypted Computation',
+      title: 'OUR EDUCATE PROGRAM',
       description:
-        'With naive remote execution, you divulge the computations you wish to perform by sending them to the foreign machine. Encrypted computation allows you to keep your computations secret even in a foreign environment you don’t control. We extend PyTorch and Tensorflow with the ability to run in an encrypted state.',
+        'Remote Data Science is a brand new field of study, and this means that a critical part of our mission is educating data owners on how to host their data and data scientists on how to use PySyft to study it. We have 3 courses so far. Two of them are:',
       cards: [
         {
           // link: 'https://www.google.com',
-          subtitle: 'Encrypted Computation',
-          heading: 'Multi-party Computation',
+          subtitle: 'TECHNICAL COURSE',
+          heading: 'Intro to Remote Data Science',
           content:
-            'When a model has multiple owners, multi-party computation allows for individuals to share control of a model without seeing its contents such that no sole owner can use or train it.',
-          // colab: 'https://www.google.com/search?q=colab'
+            'If you want to jump straight into the technology and learn how to host your data in a PyGrid server so that others can do data science on it, this course is for you. Perfect for data scientists, statisticians, engineers, and researchers.',
+          colab: 'https://courses.openmined.org/courses/introduction-to-remote-data-science'
         },
         {
           // link: 'https://www.google.com',
-          subtitle: 'Encrypted Computation',
-          heading: 'Homomorphic Encryption',
+          subtitle: 'NON-TECHNICAL COURSE',
+          heading: 'OUR PRIVACY OPPORTUNITY',
           content:
-            'When a model has a single owner, homomorphic encryption allows an owner to encrypt their model so that untrusted 3rd parties can train or use the model without being able to steal it.',
-          // colab: 'https://www.google.com/search?q=colab'
+            'If you want to spend a day learning about all the ways in which the public, private, and civil sectors will innovate using remote data science, this course is for you. Perfect for entrepreneurs, investors, and policymakers.',
+          colab: 'https://courses.openmined.org/courses/our-privacy-opportunity'
         },
       ],
     },
