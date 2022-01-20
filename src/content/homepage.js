@@ -89,9 +89,9 @@ const buttons = {
 export default {
   hero: {
     // tagline: 'Answer questions using data you cannot see',
-    tagline: "Let's Solve Privacy",
+    tagline: "A world where every good question is answered",
     description:
-      'OpenMined is an open-source community whose goal is to make the world more privacy-preserving by lowering the barrier-to-entry to private AI technologies',
+      'We’re on a mission to help each member of society to answer their most important questions by empowering them to learn from data owned and governed by others.',
     // buttons: [buttons.getStarted, buttons.tutorials],
     buttons: [buttons.learnPrivateAI, buttons.joinTheCommunity],
     // steps: [
