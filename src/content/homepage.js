@@ -50,7 +50,7 @@ const buttons = {
   // },
   learnPrivateAI: {
     type: 'Introduction',
-    text: 'Learn',
+    text: 'Take a Course',
     icon: paperIcon,
     link: 'https://courses.openmined.org',
   },
