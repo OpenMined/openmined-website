@@ -166,7 +166,7 @@ export default {
           heading: 'PyGrid Server',
           content:
             'PyGrid is a server for private data. It’s like a website server except a web server is designed to host public data for people to download. PyGrid is designed to host private data for people to use to answer questions, but not be able download.',
-          // colab: 'https://www.google.com/search?q=colab'
+          colab: 'https://github.com/OpenMined/PySyft/tree/dev/packages/grid'
         },
         {
           // link: 'https://www.google.com',
@@ -174,7 +174,7 @@ export default {
           heading: 'PySyft Library',
           content:
             'If you want to perform data science on data hosted in someone else’s PyGrid server, PySyft is the NumPy-based library you use to do it.',
-          // colab: 'https://www.google.com/search?q=colab'
+          colab: 'https://github.com/OpenMined/PySyft'
         },
       ],
     },
