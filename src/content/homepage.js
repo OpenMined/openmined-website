@@ -166,7 +166,7 @@ export default {
           heading: 'PyGrid Server',
           content:
             'PyGrid is a server for private data. It’s like a website server except a web server is designed to host public data for people to download. PyGrid is designed to host private data for people to use to answer questions, but not be able download.',
-          colab: 'https://github.com/OpenMined/PySyft/tree/dev/packages/grid'
+          github: 'https://github.com/OpenMined/PySyft/tree/dev/packages/grid'
         },
         {
           // link: 'https://www.google.com',
@@ -174,7 +174,7 @@ export default {
           heading: 'PySyft Library',
           content:
             'If you want to perform data science on data hosted in someone else’s PyGrid server, PySyft is the NumPy-based library you use to do it.',
-          colab: 'https://github.com/OpenMined/PySyft'
+          github: 'https://github.com/OpenMined/PySyft'
         },
       ],
     },
@@ -191,7 +191,7 @@ export default {
           heading: 'Intro to Remote Data Science',
           content:
             'If you want to jump straight into the technology and learn how to host your data in a PyGrid server so that others can do data science on it, this course is for you. Perfect for data scientists, statisticians, engineers, and researchers.',
-          colab: 'https://courses.openmined.org/courses/introduction-to-remote-data-science'
+          local: 'https://courses.openmined.org/courses/introduction-to-remote-data-science'
         },
         {
           // link: 'https://www.google.com',
@@ -199,7 +199,7 @@ export default {
           heading: 'OUR PRIVACY OPPORTUNITY',
           content:
             'If you want to spend a day learning about all the ways in which the public, private, and civil sectors will innovate using remote data science, this course is for you. Perfect for entrepreneurs, investors, and policymakers.',
-          colab: 'https://courses.openmined.org/courses/our-privacy-opportunity'
+          local: 'https://courses.openmined.org/courses/our-privacy-opportunity'
         },
       ],
     },
