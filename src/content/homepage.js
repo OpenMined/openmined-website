@@ -156,24 +156,24 @@ export default {
     {
       colors: ['yellow', 'green'],
       icon: nodesIcon,
-      title: 'Remote Execution',
+      title: 'OUR BUILD PROGRAM',
       description:
-        'Privacy-preserving analysis begins with analysis on data you can’t see. Thus, it begins with the ability to run arbitrary computations on data which is inside a machine to which you don’t have access, otherwise known as remote execution. We extend PyTorch and Tensorflow with this ability to run remotely on an unseen machine.',
+        'At the core of OpenMined is the free, open source software we build which makes it all possible. With contributions from over 350 people over the last 4+ years, our flagship library is called PySyft, which is supported by subsystems and command line tools such as PyGrid and HAGrid.',
       cards: [
         {
           // link: 'https://www.google.com',
-          subtitle: 'Remote Execution',
-          heading: 'Federated Learning',
+          subtitle: 'HOST YOUR DATA FOR STUDY',
+          heading: 'PyGrid Server',
           content:
-            'Federated learning is a type of remote execution wherein models are sent to remote data-holding machines (such as smart phones or IoT devices) for local training. This eliminates the need to store sensitive training data on a central server.',
+            'PyGrid is a server for private data. It’s like a website server except a web server is designed to host public data for people to download. PyGrid is designed to host private data for people to use to answer questions, but not be able download.',
           // colab: 'https://www.google.com/search?q=colab'
         },
         {
           // link: 'https://www.google.com',
-          subtitle: 'Remote Execution',
-          heading: 'On-device Prediction',
+          subtitle: 'STUDY DATA REMOTELY',
+          heading: 'PySyft Library',
           content:
-            'On-device prediction is a special case of remote execution wherein models are used within an application locally instead of moving a dataset to the cloud for classification.',
+            'If you want to perform data science on data hosted in someone else’s PyGrid server, PySyft is the NumPy-based library you use to do it.',
           // colab: 'https://www.google.com/search?q=colab'
         },
       ],
