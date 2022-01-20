@@ -220,10 +220,10 @@ export default {
         },
         {
           // link: 'https://www.google.com',
-          subtitle: 'COMMUNITY',
-          heading: 'PriCon 2020',
+          subtitle: 'PRIVATE SECTOR',
+          heading: 'Twitter',
           content:
-            'In 2020, we hosted a conference bringing together privacy experts from all around the world!',
+            'In early 2022, we announced a partnership with Twitter to advance algorithmic transparency, exploring how PySyft can be used to empower external researchers to perform research on internal algorithms.',
           // colab: 'https://www.google.com/search?q=colab'
         },
       ],
