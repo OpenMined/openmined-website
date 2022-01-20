@@ -50,7 +50,7 @@ const buttons = {
   // },
   learnPrivateAI: {
     type: 'Introduction',
-    text: 'Learn Private AI',
+    text: 'Learn Remote Data Science',
     icon: paperIcon,
     link: 'https://courses.openmined.org',
   },
