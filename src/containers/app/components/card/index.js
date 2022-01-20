@@ -71,7 +71,7 @@ const Card = ({
             <ContentLink link={colab} icon={colabIcon} text="Try on Colab" />
           )}
           {local && (
-            <ContentLink link={local} icon={localIcon} text="Run Locally" />
+            <ContentLink link={local} icon={localIcon} text="View Course" />
           )}
           {github && (
             <ContentLink link={github} icon={localIcon} text="View on Github" />
