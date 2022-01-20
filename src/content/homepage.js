@@ -188,7 +188,7 @@ export default {
         {
           // link: 'https://www.google.com',
           subtitle: 'TECHNICAL COURSE',
-          heading: 'Intro to Remote Data Science',
+          heading: 'Remote Data Science',
           content:
             'If you want to jump straight into the technology and learn how to host your data in a PyGrid server so that others can do data science on it, this course is for you. Perfect for data scientists, statisticians, engineers, and researchers.',
           local: 'https://courses.openmined.org/courses/introduction-to-remote-data-science'
