@@ -166,7 +166,7 @@ export default {
           heading: 'PyGrid Server',
           content:
             'PyGrid is a server for private data. It’s like a website server except a web server is designed to host public data for people to download. PyGrid is designed to host private data for people to use to answer questions, but not be able download.',
-          github: 'https://github.com/OpenMined/PySyft/tree/dev/packages/grid'
+//           github: 'https://github.com/OpenMined/PySyft/tree/dev/packages/grid'
         },
         {
           // link: 'https://www.google.com',
@@ -174,7 +174,7 @@ export default {
           heading: 'PySyft Library',
           content:
             'If you want to perform data science on data hosted in someone else’s PyGrid server, PySyft is the NumPy-based library you use to do it.',
-          github: 'https://github.com/OpenMined/PySyft'
+//           github: 'https://github.com/OpenMined/PySyft'
         },
       ],
     },
@@ -191,7 +191,7 @@ export default {
           heading: 'Remote Data Science',
           content:
             'If you want to jump straight into the technology and learn how to host your data in a PyGrid server so that others can do data science on it, this course is for you. Perfect for data scientists, statisticians, engineers, and researchers.',
-          local: 'https://courses.openmined.org/courses/introduction-to-remote-data-science'
+//           local: 'https://courses.openmined.org/courses/introduction-to-remote-data-science'
         },
         {
           // link: 'https://www.google.com',
@@ -199,21 +199,21 @@ export default {
           heading: 'OUR PRIVACY OPPORTUNITY',
           content:
             'If you want to spend a day learning about all the ways in which the public, private, and civil sectors will innovate using remote data science, this course is for you. Perfect for entrepreneurs, investors, and policymakers.',
-          local: 'https://courses.openmined.org/courses/our-privacy-opportunity'
+//           local: 'https://courses.openmined.org/courses/our-privacy-opportunity'
         },
       ],
     },
     {
       colors: ['blue', 'black'],
       icon: computerIcon,
-      title: 'Differential Privacy',
+      title: 'OUR IMPACT PROGRAM',
       description:
-        'Eventually you must request the results of your remote (or encrypted) analysis to be revealed (i.e., statistical results, a trained model, prediction, or synthetic dataset). Differential Privacy helps us answer the question, “If I were to reveal this datapoint, what’s the maximum amount of private information I may leak?” and obfuscate the data appropriately. We extend PyTorch and Tensorflow with the ability to perform differential privacy automatically.',
+        'New technology needs to be demonstrated. Our impact program partners with public, private, and civil society organizations looking to pilot our software in novel use cases.',
       cards: [
         {
           // link: 'https://www.google.com',
-          subtitle: 'Differential Privacy',
-          heading: 'Published techniques',
+          subtitle: 'PUBLIC SECTOR',
+          heading: 'The UN PET Lab',
           content:
             'We incorporate standard techniques for differentially private ML including PATE, DP-SGD, Moments Accountant, as well as Laplace and Exponential mechanisms.',
           // colab: 'https://www.google.com/search?q=colab'
