@@ -1,5 +1,8 @@
 import './App.css';
 
+import bg_ball_orange from './img/bg_ball_orange.png';
+import bg_ball_blue from './img/bg_ball_blue.png';
+
 import icon_github from './img/icon_github.svg';
 import icon_linkedin from './img/icon_linkedin.svg';
 import icon_pencil from './img/icon_pencil.svg';
@@ -23,7 +26,14 @@ import tile_us_exec_order from './img/tile_us_exec_order.png';
 
 function App() {
   return (
-    <div>
+    <div
+      id="main"
+      style={{
+        backgroundImage: `url(${bg_ball_blue}), url(${bg_ball_orange})`,
+        backgroundPosition: 'left 200px, right 400px',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <header
         id="header"
         className="flex justify-between items-center p-4 border-b"
@@ -58,7 +68,7 @@ function App() {
         </div>
       </header>
 
-      <main className="p-4">
+      <main>
         <div id="intro" className="mb-8">
           <img
             id="body_logo"
@@ -89,8 +99,8 @@ function App() {
         </div>
 
         <h2 className="font-bold mb-2">Learn about the Community</h2>
-        <div id="learn" className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="learn_panel flex flex-col p-4 h-full">
+        <div id="learn" className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+          <div className="learn_panel flex flex-col pt-4 h-full">
             <a
               target="_blank"
               rel="noopener"
@@ -114,7 +124,7 @@ function App() {
             </a>
           </div>
 
-          <div className="learn_panel flex flex-col p-4 h-full">
+          <div className="learn_panel flex flex-col pt-4 h-full">
             <a
               target="_blank"
               rel="noopener"
@@ -137,7 +147,7 @@ function App() {
             </a>
           </div>
 
-          <div className="learn_panel flex flex-col p-4 h-full">
+          <div className="learn_panel flex flex-col pt-4 h-full">
             <a
               target="_blank"
               rel="noopener"
@@ -164,7 +174,7 @@ function App() {
 
         <div className="get-involved-container">
           <div className="get-involved-buttons">
-            <h2>Get Involved</h2>
+            <h2 className="mb-2">Get Involved</h2>
             <a
               target="_blank"
               rel="noopener"
@@ -196,7 +206,7 @@ function App() {
         </div>
 
         <h2 className="font-bold mb-2">Partnerships</h2>
-        <div id="partnerships" className="p-4">
+        <div id="partnerships" className="pt-4 pb-4">
           <div className="main_partnerships flex justify-around">
             <a
               target="_blank"
