@@ -14,7 +14,7 @@
 }
 
 @for $i from 1 through 6 {
-  &h#{$i} {
+  h#{$i} {
     font-size: map-get($header-styles, h#{$i}) *
       map-get($header-factors, h#{$i});
     @include tablet-up {
