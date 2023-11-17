@@ -7,7 +7,7 @@ import icon_slack from '../img/icon_slack.svg';
 export default () => {
   const icons = [
     { href: 'https://slack.openmined.org/', icon: icon_slack },
-    { href: 'httpL//github.com/OpenMined/pysyft', icon: icon_github },
+    { href: 'https://github.com/OpenMined/pysyft', icon: icon_github },
     {
       href: 'https://www.linkedin.com/company/openmined/',
       icon: icon_linkedin,
