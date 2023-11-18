@@ -6,35 +6,35 @@ export default () => {
   const collaborations = [
     {
       img: tile_jacinda_ardern_openmined,
-      imgLink: 'https://www.christchurchcall.com',
+      imgLink: 'https://twitter.com/openminedorg/status/1573519112348770304',
       alt: 'CCIAO',
-      heading: 'Christchurch call',
+      heading: 'Christchurch Call Initiative on Algorithmic Outcomes',
       description:
-        'The Christchurch Call is a community of over 120 governments, online service providers, and civil society organisations acting together to eliminate terrorist and violent extremist content online.',
-      readMoreLink: 'https://www.christchurchcall.com',
+        'The Christchurch Call is a community of over 120 governments, online service providers, and civil society organisations acting together to eliminate terrorist and violent extremist content online, "Working with an open-source non-profit organisation called OpenMined, the Algorithms Initiative will develop and test ground-breaking privacy-enhancing software infrastructure to address those challenges and help us move forward work under the Call."',
+      readMoreLink: 'https://twitter.com/openminedorg/status/1573519112348770304',
     },
     {
       img: tile_ai_taskforce,
       imgLink:
         'https://www.gov.uk/government/publications/frontier-ai-taskforce-second-progress-report/frontier-ai-taskforce-second-progress-report',
       alt: 'UK Frontier AI Taskforce (Now UK AI Safety Institute)',
-      heading: 'Frontier AI Taskforce',
+      heading: 'UK AI Safety Institute (formerly the Frontier AI Taskforce)',
       description:
-        'The Taskforce is a start-up inside government, delivering on the mission given to us by the Prime Minister: to build an AI research team that can evaluate risks at the frontier of AI. We are now 18 weeks old.',
+        'The Institute is the first state-backed organisation focused on advanced AI safety for the public interest. Its mission is to minimise surprise to the UK and humanity from rapid and unexpected advances in AI, "We are working with OpenMined to develop and deploy technical infrastructure that will facilitate AI safety research across governments and AI research organisations."',
       readMoreLink:
         'https://www.gov.uk/government/publications/frontier-ai-taskforce-second-progress-report/frontier-ai-taskforce-second-progress-report',
     },
-    // {
-    //   img: tile_us_exec_order,
-    //   imgLink:
-    //     'https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/',
-    //   alt: 'Executive Order on the Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence',
-    //   heading: 'White House Executive Order',
-    //   description:
-    //     'President Biden is issuing a landmark Executive Order to ensure that America leads the way in seizing the promise and managing the risks of artificial intelligence (AI).',
-    //   readMoreLink:
-    //     'https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/',
-    // },
+    {
+      img: tile_us_exec_order,
+      imgLink:
+        'https://www.whitehouse.gov/wp-content/uploads/2023/03/National-Strategy-to-Advance-Privacy-Preserving-Data-Sharing-and-Analytics.pdf',
+      alt: 'NATIONAL STRATEGY TO ADVANCE PRIVACY-PRESERVING DATA SHARING AND ANALYTICS',
+      heading: 'United Nations and US Census Bureau (feat. in USA\'s National Strategy Report)',
+      description:
+        '"In 2022, the UN PET Lab ran a pilot study to test the ability to query data across a network made up of the countries and the UN without seeing the data itself. They did this by deploying an open-source software called PySyft and loading in open trade data..."',
+      readMoreLink:
+        'https://www.whitehouse.gov/wp-content/uploads/2023/03/National-Strategy-to-Advance-Privacy-Preserving-Data-Sharing-and-Analytics.pdf',
+    },
   ];
   return (
     <section className="max-w-[1152px] mx-auto">

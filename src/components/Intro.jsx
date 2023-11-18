@@ -12,24 +12,21 @@ export default () => (
     />
     <p className="mb-4 font-medium text-2xl leading-9 text-[#2D2B3A]">
       Over the last 20 years, a handful of AI algorithms have come to directly
-      control over 12 billion hours a day of people's time, equating roughly to
+      guide over 12 billion hours a day of people's time, equating roughly to
       9.3% of the waking human experience.
     </p>
     <p className="font-[Roboto] font-normal">
       Now, frontier AI systems are emerging with the potential to push beyond
-      this 9.3% and enhance or automate all intellectual labor around the world
-      with super intelligent capabilities. However, we are largely blind to AI's
-      true effects upon the world because researchers can't access sufficient AI
-      models or datasets at 1st, 2nd, or 3rd parties.
+      this 9.3% and enhance or automate intellectual labor around the world
+      with superintelligent capabilities. However, we are largely blind to AI's
+      full effect upon the world because researchers can't sufficiently access AI
+      models or datasets at 1st or 3rd parties.
     </p>
     <p className="font-[Roboto] font-normal">
       16,000+ members strong and 6+ years old, OpenMined is a non-profit on a
       mission to help AI researchers understand and predict AI's impact on
-      society.
-    </p>
-    <p className="font-[Roboto] font-normal">
-      By building AI governance infrastructure that helps researchers access
-      production AI systems and datasets — to study AI's impact on the world.
+      society. We do this by building AI governance infrastructure using privacy enhancing technologies that helps researchers access
+       AI systems and datasets — to study AI's impact on the world.
     </p>
   </div>
 );

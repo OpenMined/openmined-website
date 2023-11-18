@@ -7,7 +7,7 @@ export default () => {
       link: 'https://blog.openmined.org/work-on-ais-most-exciting-frontier-no-phd-required/',
       buttonText: '1:1 Mentorship',
     },
-    { link: 'https://slack.openmined.org/', buttonText: 'Join' },
+    { link: 'https://slack.openmined.org/', buttonText: 'Join OpenMined' },
   ];
 
   return (

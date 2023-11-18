@@ -10,7 +10,7 @@ import logo_x from '../img/logo_x.png';
 export default () => {
   const mainPartnerships = [
     {
-      link: 'https://www.gov.uk/government/publications/ai-safety-institute-overview',
+      link: 'https://www.gov.uk/government/publications/frontier-ai-taskforce-second-progress-report/frontier-ai-taskforce-second-progress-report',
       logo: logo_aisi,
       alt: 'UK AI Safety Institute (Formerly UK Frontier AI Taskforce)',
     },
@@ -20,17 +20,17 @@ export default () => {
       alt: 'UN PETLab',
     },
     {
-      link: 'https://www.christchurchcall.com/',
+      link: 'https://twitter.com/openminedorg/status/1573519112348770304',
       logo: logo_cciao,
       alt: 'The Christchurch Call',
     },
   ];
   const partnerships = [
-    { link: 'https://deepmind.google/', logo: logo_deepmind, alt: 'DeepMind' },
-    { link: 'https://google.com/', logo: logo_google, alt: 'Google' },
-    { link: 'https://microsoft.com/', logo: logo_microsoft, alt: 'Microsoft' },
-    { link: 'https://meta.com/', logo: logo_meta, alt: 'Meta' },
-    { link: 'https://x.com/', logo: logo_x, alt: 'X' },
+    { link: 'https://www.nist.gov/news-events/news/2022/11/winners-announced-first-phase-uk-us-privacy-enhancing-technologies-prize', logo: logo_deepmind, alt: 'DeepMind' },
+    { link: 'https://developers.googleblog.com/2021/01/how-were-helping-developers-with-differential-privacy.html', logo: logo_google, alt: 'Google' },
+    { link: 'https://blogs.microsoft.com/on-the-issues/2022/09/20/christchurch-call-responsible-ai-online-extremism/', logo: logo_microsoft, alt: 'Microsoft' },
+    { link: 'https://ai.meta.com/blog/facebook-ai-openmined-partner-on-new-pytorch-privacy-and-machine-learning-courses/', logo: logo_meta, alt: 'Meta' },
+    { link: 'https://blog.openmined.org/announcing-our-partnership-with-twitter-to-advance-algorithmic-transparency/', logo: logo_x, alt: 'X' },
   ];
   return (
     <section className="px-6 max-w-[1152px] mx-auto">
