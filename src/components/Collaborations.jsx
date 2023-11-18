@@ -24,17 +24,17 @@ export default () => {
       readMoreLink:
         'https://www.gov.uk/government/publications/frontier-ai-taskforce-second-progress-report/frontier-ai-taskforce-second-progress-report',
     },
-    {
-      img: tile_us_exec_order,
-      imgLink:
-        'https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/',
-      alt: 'Executive Order on the Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence',
-      heading: 'White House Executive Order',
-      description:
-        'President Biden is issuing a landmark Executive Order to ensure that America leads the way in seizing the promise and managing the risks of artificial intelligence (AI).',
-      readMoreLink:
-        'https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/',
-    },
+    // {
+    //   img: tile_us_exec_order,
+    //   imgLink:
+    //     'https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/',
+    //   alt: 'Executive Order on the Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence',
+    //   heading: 'White House Executive Order',
+    //   description:
+    //     'President Biden is issuing a landmark Executive Order to ensure that America leads the way in seizing the promise and managing the risks of artificial intelligence (AI).',
+    //   readMoreLink:
+    //     'https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/',
+    // },
   ];
   return (
     <section className="max-w-[1152px] mx-auto">
