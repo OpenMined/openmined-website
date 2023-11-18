@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.0c1d65eb.css",
-    "main.js": "/static/js/main.bcd52d4f.js",
+    "main.js": "/static/js/main.d225684f.js",
     "static/js/787.2f4f142f.chunk.js": "/static/js/787.2f4f142f.chunk.js",
     "static/media/tile_jacinda_ardern_openmined.png": "/static/media/tile_jacinda_ardern_openmined.78e3f2f71fb84cc5b746.png",
     "static/media/bg_ball_blue.png": "/static/media/bg_ball_blue.99369d5849de50603aca.png",
@@ -23,11 +23,11 @@
     "static/media/icon_linkedin.svg": "/static/media/icon_linkedin.3eac277d0e6c963ca19b54834af09d2c.svg",
     "static/media/icon_x.svg": "/static/media/icon_x.a5397153b02550c55368c85592905414.svg",
     "main.0c1d65eb.css.map": "/static/css/main.0c1d65eb.css.map",
-    "main.bcd52d4f.js.map": "/static/js/main.bcd52d4f.js.map",
+    "main.d225684f.js.map": "/static/js/main.d225684f.js.map",
     "787.2f4f142f.chunk.js.map": "/static/js/787.2f4f142f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0c1d65eb.css",
-    "static/js/main.bcd52d4f.js"
+    "static/js/main.d225684f.js"
   ]
 }
