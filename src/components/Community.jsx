@@ -32,7 +32,7 @@ export default () => {
       <h2 className="font-bold mb-2">Learn about the Community</h2>
       <div id="learn" className="grid grid-cols-1 md:grid-cols-3 gap-16">
         {items.map(({ heading, link, icon, text, buttonText }) => (
-          <div className="border-t border-black min-h-[200px] flex flex-col flex-grow pt-4 h-full gap-2">
+          <div className="border-t border-black min-h-[200px] flex flex-col flex-grow pt-4 gap-2">
             <img src={icon} className="h-10 mr-auto" />
             <h3>{heading}</h3>
             <p class="flex-grow">{text}</p>
