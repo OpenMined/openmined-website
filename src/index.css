@@ -142,13 +142,6 @@ p {
   position: relative;
   border-radius: 0.25rem; /* Rounded corners */
 }
-.get-involved-buttons a::after {
-  content: '↗';
-  position: absolute;
-  right: 1em;
-  top: 50%;
-  transform: translateY(-50%);
-}
 
 .get-involved-buttons a:hover {
   background: white;
@@ -262,12 +255,6 @@ p {
 }
 
 .button-link {
-  text-decoration: none; /* Removes underline from links */
-  color: inherit; /* Inherits text color from the button */
-  display: inline-block; /* Keeps the link block-level */
-}
-
-.button-link button {
-  width: 100%; /* Ensures the button fills the anchor */
-  /* Keep all your existing button styles */
+  text-decoration: none;
+  display: inline-flex;
 }
