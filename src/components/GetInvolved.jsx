@@ -2,12 +2,13 @@ import slide_1 from '../img/slide_1.jpg';
 
 export default () => {
   const items = [
+    { link: '/careers', buttonText: 'Careers' },
     { link: 'https://courses.openmined.org/', buttonText: 'Self Study' },
     {
       link: 'https://blog.openmined.org/work-on-ais-most-exciting-frontier-no-phd-required/',
       buttonText: '1:1 Mentorship',
     },
-    { link: 'https://slack.openmined.org/', buttonText: 'Join OpenMined' },
+    { link: 'https://slack.openmined.org/', buttonText: 'OpenMined Slack' },
   ];
 
   return (

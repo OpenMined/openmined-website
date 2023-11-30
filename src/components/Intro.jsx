@@ -28,5 +28,17 @@ export default () => (
       society. We do this by building AI governance infrastructure using privacy enhancing technologies that helps researchers access
        AI systems and datasets — to study AI's impact on the world.
     </p>
+
+    <div className="get-involved-buttons">
+    <a
+      target="_blank"
+      rel="noopener"
+      href="/careers"
+      className="button-link justify-between items-center"
+    >
+      <span>We're Hiring</span>
+    </a>
   </div>
+  </div>
+
 );

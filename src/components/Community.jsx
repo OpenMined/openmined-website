@@ -20,7 +20,7 @@ export default () => {
     },
     {
       heading: 'Who',
-      link: 'https://www.linkedin.com/company/openmined/',
+      link: '/careers',
       icon: icon_linkedin,
       text: 'We are hiring! Connect with us on Linkedin and see available job postings.',
       buttonText: 'Apply Now',
@@ -35,7 +35,7 @@ export default () => {
           <div className="border-t border-black min-h-[200px] flex flex-col flex-grow pt-4 gap-2">
             <img src={icon} className="h-10 mr-auto" />
             <h3>{heading}</h3>
-            <p class="flex-grow">{text}</p>
+            <p className="flex-grow">{text}</p>
             <a
               target="_blank"
               rel="noopener"
