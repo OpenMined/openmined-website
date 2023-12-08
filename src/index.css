@@ -1,5 +1,5 @@
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Define other default styles */
@@ -18,7 +18,7 @@ main h2 {
 }
 
 p {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400; /* Regular font weight for paragraph text */
 }
 
