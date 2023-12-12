@@ -1,7 +1,7 @@
 import bg_ball_orange from './img/bg_ball_orange.png';
 import bg_ball_blue from './img/bg_ball_blue.png';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header';
 import Home from './routes/Home';

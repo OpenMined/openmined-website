@@ -20,7 +20,7 @@ export default () => {
     },
     {
       heading: 'Who',
-      link: '/careers',
+      link: '/#/careers',
       icon: icon_linkedin,
       text: 'We are hiring! Connect with us on Linkedin and see available job postings.',
       buttonText: 'Apply Now',

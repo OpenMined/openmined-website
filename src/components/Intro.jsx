@@ -33,7 +33,7 @@ export default () => (
     <a
       target="_blank"
       rel="noopener"
-      href="/careers"
+      href="/#/careers"
       className="button-link justify-between items-center"
     >
       <span>We're Hiring</span>
