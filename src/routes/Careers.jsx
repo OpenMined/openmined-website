@@ -7,7 +7,7 @@ export default () => {
       title: 'Senior Software Engineer (Remote)',
       location: 'Global Remote',
       department: 'Engineering',
-      link: '/careers/software-engineer',
+      link: '/#/careers/software-engineer',
     },
   ];
   return (

@@ -42,7 +42,7 @@ export default () => {
       </p>
       <br />
 
-      <LinkButton href="/careers/software-engineer-form">Apply Now!</LinkButton>
+      <LinkButton href="/#/careers/software-engineer-form">Apply Now!</LinkButton>
 
       <br />
       <h3 className="text-2xl">Role</h3>
@@ -129,7 +129,7 @@ export default () => {
       </p>
       <br />
 
-      <LinkButton href="/careers/software-engineer-form">Apply Now!</LinkButton>
+      <LinkButton href="/#/careers/software-engineer-form">Apply Now!</LinkButton>
     </section>
   );
 };
