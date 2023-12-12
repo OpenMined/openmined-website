@@ -17,11 +17,11 @@ export default () => {
 
   return (
     <header className="flex justify-between items-center p-6 pr-0 md:p-10 pb-0">
-      <img
+      <a href="/"><img
         src={logo_openmined_wide_bw}
         alt="OpenMined"
         className="h-8 sm:h-10"
-      />
+      /></a>
       <div className="flex items-center justify-end p-4 gap-4 flex-shrink-0">
         <span className="uppercase hidden sm:block">Connect:</span>
         {icons.map(({ href, icon }) => (

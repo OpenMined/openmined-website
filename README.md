@@ -1,7 +1,5 @@
 # OpenMined Website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f789ef18-3605-420b-a90f-a86b6995747c/deploy-status)](https://app.netlify.com/sites/openmined/deploys)
-
 Welcome to the OpenMined website! It's our goal here to accurately and beautifully explain the vision of the OpenMined project to all contributors past, present, and future.
 
 ## Design Disclaimer
