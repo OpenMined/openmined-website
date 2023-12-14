@@ -258,3 +258,15 @@ p {
   text-decoration: none;
   display: inline-flex;
 }
+
+.job-ad a {
+  text-decoration: underline;
+}
+
+.job-ad a:hover {
+  text-decoration: none;
+}
+
+.link-button {
+  text-decoration: none !important;
+}
