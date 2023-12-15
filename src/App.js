@@ -5,9 +5,18 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header';
 import Home from './routes/Home';
-import SWE from './routes/SWE';
 import Careers from './routes/Careers';
+import SWE from './routes/SWE';
 import SWEForm from './routes/SWEForm';
+
+import DSEU from './routes/DSEU';
+import DSEUForm from './routes/DSEUForm';
+
+import DD from './routes/DD';
+import DDForm from './routes/DDForm';
+
+import PAEU from './routes/PAEU';
+import PAEUForm from './routes/PAEUForm';
 
 import logo_openmined from './img/logo_openmined.png';
 
@@ -33,9 +42,39 @@ function App() {
               element={<SWE />}
             />
             <Route
-              key="swe"
+              key="sweform"
               path="/careers/software-engineer-form"
               element={<SWEForm />}
+            />
+            <Route
+              key="dseu"
+              path="/careers/data-scientist-eu"
+              element={<DSEU />}
+            />
+            <Route
+              key="dseuform"
+              path="/careers/data-scientist-eu-form"
+              element={<DSEUForm />}
+            />
+            <Route
+              key="dd"
+              path="/careers/director-of-development"
+              element={<DD />}
+            />
+            <Route
+              key="ddform"
+              path="/careers/director-of-development-form"
+              element={<DDForm />}
+            />
+            <Route
+              key="paeu"
+              path="/careers/policy-advisor-eu"
+              element={<PAEU />}
+            />
+            <Route
+              key="paeuform"
+              path="/careers/policy-advisor-eu-form"
+              element={<PAEUForm />}
             />
           </Routes>
         </main>
