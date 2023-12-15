@@ -175,12 +175,7 @@ export default () => {
       <p>
         We view this transition as analogous to the birth of a new internet, one
         ﬁlled with non-public information capable of answering some of life's
-        most important questions. Our most important mission is to ensure that
-        such a vast distributed network of information is stewarded in the
-        public interest, avoiding key failure modes such as private monopoly.
-        This is a nuanced strategy with implications as to the types and sources
-        of funding OpenMined is willing to receive. Aspects of this strategy
-        will be discussed during the hiring process.
+        most important questions.
       </p>
       <br />
       <LinkButton href="/#/careers/director-of-development-form">

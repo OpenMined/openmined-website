@@ -9,24 +9,24 @@ export default () => {
       department: 'Engineering',
       link: '/#/careers/software-engineer',
     },
-    {
-      title: 'EU Policy Advisor (Remote)',
-      location: 'EU Remote',
-      department: 'Policy',
-      link: '/#/careers/policy-advisor-eu',
-    },
-    {
-      title: 'Director of Development (Remote)',
-      location: 'Global Remote',
-      department: 'Policy',
-      link: '/#/careers/director-of-development',
-    },
-    {
-      title: 'Data Scientist (Remote)',
-      location: 'EU Remote',
-      department: 'Product',
-      link: '/#/careers/data-scientist-eu',
-    },
+    // {
+    //   title: 'EU Policy Advisor (Remote)',
+    //   location: 'EU Remote',
+    //   department: 'Policy',
+    //   link: '/#/careers/policy-advisor-eu',
+    // },
+    // {
+    //   title: 'Director of Development (Remote)',
+    //   location: 'Global Remote',
+    //   department: 'Policy',
+    //   link: '/#/careers/director-of-development',
+    // },
+    // {
+    //   title: 'Data Scientist (Remote)',
+    //   location: 'EU Remote',
+    //   department: 'Product',
+    //   link: '/#/careers/data-scientist-eu',
+    // },
   ];
   return (
     <section className="flex flex-col gap-4 flex-grow px-6 py-2 max-w-[1152px] mx-auto mb-16 md:mb-[144px]">

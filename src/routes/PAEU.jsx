@@ -135,12 +135,7 @@ export default () => {
       <p>
         We view this transition as analogous to the creation of a new layer of
         the internet, one ﬁlled with non-public information capable of answering
-        some of life's most important questions. Our most important mission is
-        to ensure that such a vast distributed network of information is
-        stewarded in the public interest, avoiding key failure modes such as
-        private monopoly. This is a nuanced strategy with various policy
-        implications. Aspects of this strategy will be discussed during the
-        hiring process.
+        some of life's most important questions.
       </p>
 
       <br />
