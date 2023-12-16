@@ -11,10 +11,16 @@ export default () => (
       className="h-[90px] w-[90px] items-center mb-4"
     />
     <p className="mb-4 font-medium text-2xl leading-9 text-[#2D2B3A]">
+      We facilitate access to digital inforamtion that normally can't be accessed
+      by providing free open source software to help external researchers ask questions
+      about non-public information, and the owners of non-public information to answer them without
+      divulging anything else.
+    </p>
+    <p className="font-[Roboto] font-normal">
       Over the last 20 years, a handful of AI algorithms have come to directly
       guide over 12 billion hours a day of people's time, equating roughly to
       9.3% of the waking human experience.
-    </p>
+    </p>    
     <p className="font-[Roboto] font-normal">
       Now, frontier AI systems are emerging with the potential to push beyond
       this 9.3% and enhance or automate intellectual labor around the world
