@@ -16,7 +16,7 @@ export default () => {
         <strong>
           If you want to democratize access to cutting edge AI, while averting
           potential harmful impacts on society, OpenMined is the place for you.
-          We’re building{' '}
+          We're building{' '}
           <a href="https://github.com/OpenMined/PySyft" target="_blank">
             PySyft
           </a>
@@ -60,9 +60,9 @@ export default () => {
 
       <p>
         We think this external access problem is really really important, and
-        we’ve started on solving the first step, AI auditing. If you want to
+        we've started on solving the first step, AI auditing. If you want to
         help solve this problem and unlock 1000x more data in every scientific
-        field, we’d love to talk to you.
+        field, we'd love to talk to you.
       </p>
       <br />
 

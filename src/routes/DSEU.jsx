@@ -121,7 +121,38 @@ export default () => {
           Cloud).
         </li>
       </ul>
+      <br />
+      <h3 className="text-2xl">About OpenMined</h3>
+      <p>
+        Over the last 20 years, a handful of AI algorithms have come to directly
+        guide over 12 billion hours a day of people's time, equating roughly to
+        9.3% of the waking human experience.
+      </p>
+      <br />
+      <p>
+        Now, frontier AI systems are emerging with the potential to push beyond
+        this 9.3% and enhance or automate intellectual labor around the world
+        with superintelligent capabilities. However, we are largely blind to
+        AI's full effect upon the world because researchers can't sufficiently
+        access AI models or datasets at 1st or 3rd parties.
+      </p>
+      <br />
 
+      <p>
+        16,000+ members strong and 6+ years old, OpenMined is a non-profit on a
+        mission to help AI researchers understand and predict AI's impact on
+        society. We do this by building AI governance infrastructure using
+        privacy enhancing technologies that helps researchers access AI systems
+        and datasets — to study AI's impact on the world.
+      </p>
+      <br />
+
+      <p>
+        We think this external access problem is really really important, and
+        we've started on solving the first step, AI auditing. If you want to
+        help solve this problem and unlock 1000x more data in every scientific
+        field, we'd love to talk to you.
+      </p>
       <br />
       <LinkButton href="/#/careers/data-scientist-eu-form">
         Apply Now!
