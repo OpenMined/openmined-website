@@ -18,6 +18,9 @@ import DDForm from './routes/DDForm';
 import PAEU from './routes/PAEU';
 import PAEUForm from './routes/PAEUForm';
 
+import TPM from './routes/TPM';
+import TPMForm from './routes/TPMForm';
+
 import logo_openmined from './img/logo_openmined.png';
 
 function App() {
@@ -75,6 +78,16 @@ function App() {
               key="paeuform"
               path="/careers/policy-advisor-eu-form"
               element={<PAEUForm />}
+            />
+            <Route
+              key="tpm"
+              path="/careers/technical-product-manager"
+              element={<TPM />}
+            />
+            <Route
+              key="tpmform"
+              path="/careers/technical-product-manager-form"
+              element={<TPMForm />}
             />
           </Routes>
         </main>
