@@ -15,8 +15,8 @@ import DSEUForm from './routes/DSEUForm';
 import DD from './routes/DD';
 import DDForm from './routes/DDForm';
 
-import PAEU from './routes/PAEU';
-import PAEUForm from './routes/PAEUForm';
+import RS from './routes/RS';
+import RSForm from './routes/RSForm';
 
 import TPM from './routes/TPM';
 import TPMForm from './routes/TPMForm';
@@ -70,14 +70,14 @@ function App() {
               element={<DDForm />}
             />
             <Route
-              key="paeu"
-              path="/careers/policy-advisor-eu"
-              element={<PAEU />}
+              key="rs"
+              path="/careers/research-scientist"
+              element={<RS />}
             />
             <Route
-              key="paeuform"
-              path="/careers/policy-advisor-eu-form"
-              element={<PAEUForm />}
+              key="rsform"
+              path="/careers/research-scientist-form"
+              element={<RSForm />}
             />
             <Route
               key="tpm"
