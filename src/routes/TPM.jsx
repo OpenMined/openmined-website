@@ -19,17 +19,16 @@ export default () => {
         development and execution of our remote data science and networking
         product, PySyft. You will drive the product direction and roadmapping,
         collaborating with Engineers, UX Designers and UX Researchers to deliver
-        a high-quality product that meets our users’ needs.
+        a high-quality product that meets our users' needs.
       </p>
       <br />
       <p>
-        In this role, you will have a front seat in interfacing with OpenMined’s
+        In this role, you will have a front seat in interfacing with OpenMined's
         strategic partners in government, academia and industry. You will work
         closely with them to collect new product priorities, align on a
         deployment strategy and ensure a successful integration with PySyft.
         This is a unique opportunity to build infrastructure that was never
-        created before, get involved with cutting edge R&D projects to help
-        create what we think will be the internet of the future.
+        created before and get involved with cutting edge R&D projects.
       </p>
       <br />
 
@@ -59,7 +58,7 @@ export default () => {
         </li>
         <li>
           <strong>User-focused Development:</strong> Develop a deep
-          understanding of PySyft users’ needs through research, feedback, and
+          understanding of PySyft users' needs through research, feedback, and
           data analysis. Use insights to make informed product decisions and
           improvements.
         </li>

@@ -9,18 +9,18 @@ export default () => {
       department: 'Engineering',
       link: '/#/careers/software-engineer',
     },
-    // {
-    //   title: 'EU Policy Advisor (Remote)',
-    //   location: 'EU Remote',
-    //   department: 'Policy',
-    //   link: '/#/careers/policy-advisor-eu',
-    // },
-    // {
-    //   title: 'Director of Development (Remote)',
-    //   location: 'Global Remote',
-    //   department: 'Policy',
-    //   link: '/#/careers/director-of-development',
-    // },
+    {
+      title: 'Research Scientist (Remote)',
+      location: 'Global Remote',
+      department: 'Product',
+      link: '/#/careers/research-scientist',
+    },
+    {
+      title: 'Director of Development (Remote)',
+      location: 'Global Remote',
+      department: 'Policy',
+      link: '/#/careers/director-of-development',
+    },
     // {
     //   title: 'Data Scientist (Remote)',
     //   location: 'EU Remote',
