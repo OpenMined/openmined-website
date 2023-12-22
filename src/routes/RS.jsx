@@ -35,19 +35,19 @@ export default () => {
 
       <ul style={{ listStyleType: 'circle', paddingLeft: '30px' }}>
         <li>
-          <strong>Build Global Academic Partnerships:</strong>
+          <strong>Build Global Academic Partnerships: </strong>
           Establish and nurture collaborative relationships with leading
           academic institutions worldwide.
         </li>
 
         <li>
-          <strong>Lead Reproducibility Initiatives:</strong>Lead the publication
-          of reproducibility studies across various research domains, showcasing
-          the practical applications and benefits of PySyft.
+          <strong>Lead Reproducibility Initiatives: </strong>Lead the
+          publication of reproducibility studies across various research
+          domains, showcasing the practical applications and benefits of PySyft.
         </li>
 
         <li>
-          <strong>Drive Technological Integration:</strong>Blend cutting-edge
+          <strong>Drive Technological Integration: </strong>Blend cutting-edge
           technology with traditional research methodologies, thereby
           contributing to more reliable and impactful scientific discoveries.
         </li>

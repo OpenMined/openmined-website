@@ -41,8 +41,7 @@ export default () => {
         Unlike typical Data Scientist roles, where you work with pre-existing
         libraries - this role gives you the chance to directly contribute on the
         product side, based on your unique experience and learnings from
-        engaging with various institutions, to help create what we think will be
-        the internet of the future.
+        engaging with various institutions.
       </p>
       <br />
 
