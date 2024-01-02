@@ -108,9 +108,6 @@ export default () => {
         <li>
           Passion or experience working with AI Safety or language models.
         </li>
-        <li>
-          Passion or experience working with AI Safety or language models.
-        </li>
         <li>Contributions to open-source projects.</li>
       </ul>
       <br />
