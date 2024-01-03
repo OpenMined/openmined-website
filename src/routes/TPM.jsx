@@ -17,7 +17,12 @@ export default () => {
       <p>
         As a Technical Product Manager, you will be responsible for leading the
         development and execution of our remote data science and networking
-        product, PySyft. You will drive the product direction and roadmapping,
+        product,{' '}
+        <a href="https://github.com/OpenMined/PySyft" target="_blank">
+          PySyft
+        </a>{' '}
+        (9.1K Github stars, currently deployed at Microsoft, United Nations, and
+        more). You will drive the product direction and roadmapping,
         collaborating with Engineers, UX Designers and UX Researchers to deliver
         a high-quality product that meets our users' needs.
       </p>
