@@ -17,10 +17,13 @@ export default () => {
         As an Applied Research Scientist, your primary responsibility will be to
         lead our Research Reproducibility program. This innovative program aims
         to demonstrate the effectiveness of OpenMined's premier software,
-        PySyft, in enhancing research reproducibility. PySyft's unique
-        capability enables independent researchers to replicate studies using
-        sensitive data that must remain confidential, thereby potentially
-        revolutionizing the pace of research advancements.
+        <a href="https://github.com/OpenMined/PySyft" target="_blank">
+          PySyft
+        </a>
+        , in enhancing research reproducibility. PySyft's unique capability
+        enables independent researchers to replicate studies using sensitive
+        data that must remain confidential, thereby potentially revolutionizing
+        the pace of research advancements.
       </p>
       <br />
 

@@ -16,9 +16,13 @@ export default () => {
 
       <p>
         As an Applied Data Science, you will take the lead in building novel
-        applications of remote data science via PySyft, ranging from auditing
-        proprietary AI systems in alignment with most recent regulatory calls
-        for auditing artificial intelligence-powered platforms (
+        applications of remote data science via{' '}
+        <a href="https://github.com/OpenMined/PySyft" target="_blank">
+          PySyft
+        </a>
+        , ranging from auditing proprietary AI systems in alignment with most
+        recent regulatory calls for auditing artificial intelligence-powered
+        platforms (
         <a
           href="https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/13626-Digital-Services-Act-conducting-independent-audits_en"
           target="_blank"
