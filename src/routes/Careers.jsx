@@ -17,9 +17,9 @@ export default () => {
     },
     {
       title: 'Data Scientist (Remote)',
-      location: 'EU Remote',
+      location: 'Global Remote',
       department: 'Product',
-      link: '/#/careers/data-scientist-eu',
+      link: '/#/careers/data-scientist',
     },
     {
       title: 'Technical Product Manager (Remote)',
