@@ -5,7 +5,7 @@ export default () => {
     <section className="job-ad flex flex-col px-6 max-w-[1152px] mx-auto mb-6">
       <h2 className="font-bold mb-2">Applied Data Scientist (Remote)</h2>
       <p>
-        <strong>Location:</strong> EU Remote
+        <strong>Location:</strong> Global Remote
       </p>
       <p>
         <strong>Department:</strong> Product

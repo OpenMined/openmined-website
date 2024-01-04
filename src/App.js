@@ -55,6 +55,11 @@ function App() {
               element={<DSEU />}
             />
             <Route
+              key="dseu"
+              path="/careers/data-scientist"
+              element={<DSEU />}
+            />
+            <Route
               key="dseuform"
               path="/careers/data-scientist-eu-form"
               element={<DSEUForm />}
