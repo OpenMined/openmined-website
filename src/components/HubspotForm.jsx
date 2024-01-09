@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import logo_img_loading from '../img/logo_om_main_transparent.png';
 
-export default ({ hubspotFormId }) => {
+export default ({ hubspotFormId, formName }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,8 +24,21 @@ export default ({ hubspotFormId }) => {
           portalId: '6487402',
           formId: hubspotFormId,
           target: '#form',
-          onFormReady: function () {
+          onFormReady: function (form) {
             setLoading(false);
+
+            // Add an event listener for form submissions
+            form.onFormSubmit = function () {
+              // Trigger a custom event in Plausible
+              window.plausible('HubSpot Form Submitted', {
+                props: {
+                  formId: hubspotFormId,
+                  formName: formName,
+                  pageUrl: window.location.href,
+                  referrer: document.referrer,
+                },
+              });
+            };
           },
         });
       }
