@@ -4,6 +4,26 @@ import logo_img_loading from '../img/logo_om_main_transparent.png';
 export default ({ hubspotFormId, formName }) => {
   const [loading, setLoading] = useState(true);
 
+  async function handleFormSubmit() {
+    console.log('Sending Plausible tracking event...');
+    await plausibleTrackEvent();
+    console.log('Form ready to submit');
+  }
+
+  function plausibleTrackEvent() {
+    return new Promise((resolve) => {
+      window.plausible('HubSpot Form Submitted', {
+        props: {
+          formId: hubspotFormId,
+          formName: formName,
+          pageUrl: window.location.href,
+          referrer: document.referrer,
+        },
+      });
+      resolve();
+    });
+  }
+
   useEffect(() => {
     // Create script element
     const script = document.createElement('script');
@@ -25,19 +45,9 @@ export default ({ hubspotFormId, formName }) => {
           formId: hubspotFormId,
           target: '#form',
           onFormReady: function (form) {
-            setLoading(false);
-
-            // Add an event listener for form submissions
-            form.onFormSubmit = function () {
-              // Trigger a custom event in Plausible
-              window.plausible('HubSpot Form Submitted', {
-                props: {
-                  formId: hubspotFormId,
-                  formName: formName,
-                  pageUrl: window.location.href,
-                  referrer: document.referrer,
-                },
-              });
+            form.onBeforeFormSubmit = async function () {
+              await handleFormSubmit();
+              console.log('finished onbeforeformsubmit');
             };
           },
         });
