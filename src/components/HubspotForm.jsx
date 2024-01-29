@@ -5,9 +5,7 @@ export default ({ hubspotFormId, formName }) => {
   const [loading, setLoading] = useState(true);
 
   async function handleFormSubmit() {
-    console.log('Sending Plausible tracking event...');
     await plausibleTrackEvent();
-    console.log('Form ready to submit');
   }
 
   function plausibleTrackEvent() {
@@ -44,11 +42,11 @@ export default ({ hubspotFormId, formName }) => {
           portalId: '6487402',
           formId: hubspotFormId,
           target: '#form',
-          onFormReady: function (form) {
-            form.onBeforeFormSubmit = async function () {
-              await handleFormSubmit();
-              console.log('finished onbeforeformsubmit');
-            };
+          onBeforeFormSubmit: async function () {
+            await handleFormSubmit();
+          },
+          onFormReady: function () {
+            setLoading(false);
           },
         });
       }
