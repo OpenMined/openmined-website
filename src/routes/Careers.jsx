@@ -27,12 +27,6 @@ export default () => {
       department: 'Product',
       link: '/#/careers/technical-product-manager',
     },
-    {
-      title: 'Director of Development (Remote)',
-      location: 'Global Remote',
-      department: 'Policy',
-      link: '/#/careers/director-of-development',
-    },
   ];
   return (
     <section className="flex flex-col gap-4 flex-grow px-6 py-2 max-w-[1152px] mx-auto mb-16 md:mb-[144px]">

@@ -12,9 +12,6 @@ import SWEForm from './routes/SWEForm';
 import DSEU from './routes/DSEU';
 import DSEUForm from './routes/DSEUForm';
 
-import DD from './routes/DD';
-import DDForm from './routes/DDForm';
-
 import RS from './routes/RS';
 import RSForm from './routes/RSForm';
 
@@ -63,16 +60,6 @@ function App() {
               key="dseuform"
               path="/careers/data-scientist-eu-form"
               element={<DSEUForm />}
-            />
-            <Route
-              key="dd"
-              path="/careers/director-of-development"
-              element={<DD />}
-            />
-            <Route
-              key="ddform"
-              path="/careers/director-of-development-form"
-              element={<DDForm />}
             />
             <Route
               key="rs"
