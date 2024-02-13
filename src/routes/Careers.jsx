@@ -10,12 +10,6 @@ export default () => {
       link: '/#/careers/software-engineer',
     },
     {
-      title: 'Research Scientist (Remote)',
-      location: 'Global Remote',
-      department: 'Product',
-      link: '/#/careers/research-scientist',
-    },
-    {
       title: 'Data Scientist (Remote)',
       location: 'Global Remote',
       department: 'Product',

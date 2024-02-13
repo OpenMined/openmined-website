@@ -12,9 +12,6 @@ import SWEForm from './routes/SWEForm';
 import DSEU from './routes/DSEU';
 import DSEUForm from './routes/DSEUForm';
 
-import RS from './routes/RS';
-import RSForm from './routes/RSForm';
-
 import TPM from './routes/TPM';
 import TPMForm from './routes/TPMForm';
 
@@ -60,16 +57,6 @@ function App() {
               key="dseuform"
               path="/careers/data-scientist-eu-form"
               element={<DSEUForm />}
-            />
-            <Route
-              key="rs"
-              path="/careers/research-scientist"
-              element={<RS />}
-            />
-            <Route
-              key="rsform"
-              path="/careers/research-scientist-form"
-              element={<RSForm />}
             />
             <Route
               key="tpm"
