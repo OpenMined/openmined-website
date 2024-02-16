@@ -1,23 +1,33 @@
-import bg_ball_orange from './img/bg_ball_orange.png';
-import bg_ball_blue from './img/bg_ball_blue.png';
-
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
-
 import Header from './components/Header';
 import Home from './routes/Home';
 import Careers from './routes/Careers';
 import SWE from './routes/SWE';
+import DSEU from './routes/DSEU';
+import TPM from './routes/TPM';
+import GI from './routes/GI';
+import TPMForm from './routes/TPMForm';
+import GIForm from './routes/GIForm';
+import DSEUForm from './routes/DSEUForm';
 import SWEForm from './routes/SWEForm';
 
-import DSEU from './routes/DSEU';
-import DSEUForm from './routes/DSEUForm';
-
-import TPM from './routes/TPM';
-import TPMForm from './routes/TPMForm';
-
 import logo_openmined from './img/logo_openmined.png';
+import bg_ball_orange from './img/bg_ball_orange.png';
+import bg_ball_blue from './img/bg_ball_blue.png';
 
 function App() {
+  const careerForms = [
+    { name: 'software-engineer', component: <SWE />, form: <SWEForm /> },
+    { name: 'data-scientist', component: <DSEU />, form: <DSEUForm /> },
+    { name: 'data-scientist-eu', component: <DSEU /> },
+    {
+      name: 'technical-product-manager',
+      component: <TPM />,
+      form: <TPMForm />,
+    },
+    { name: 'general-interest', component: <GI />, form: <GIForm /> },
+  ];
+
   return (
     <Router>
       <div
@@ -33,41 +43,22 @@ function App() {
           <Routes>
             <Route key="home" exact path="/" element={<Home />} />
             <Route key="careers" path="/careers" element={<Careers />} />
-            <Route
-              key="swe"
-              path="/careers/software-engineer"
-              element={<SWE />}
-            />
-            <Route
-              key="sweform"
-              path="/careers/software-engineer-form"
-              element={<SWEForm />}
-            />
-            <Route
-              key="dseu"
-              path="/careers/data-scientist-eu"
-              element={<DSEU />}
-            />
-            <Route
-              key="dseu"
-              path="/careers/data-scientist"
-              element={<DSEU />}
-            />
-            <Route
-              key="dseuform"
-              path="/careers/data-scientist-eu-form"
-              element={<DSEUForm />}
-            />
-            <Route
-              key="tpm"
-              path="/careers/technical-product-manager"
-              element={<TPM />}
-            />
-            <Route
-              key="tpmform"
-              path="/careers/technical-product-manager-form"
-              element={<TPMForm />}
-            />
+            {careerForms.map((entry) => (
+              <>
+                <Route
+                  key={entry.name}
+                  path={`/careers/${entry.name}`}
+                  element={entry.component}
+                />
+                {entry.form ? (
+                  <Route
+                    key={`${entry.name}-form`}
+                    path={`/careers/${entry.name}-form`}
+                    element={entry.form}
+                  />
+                ) : null}
+              </>
+            ))}
           </Routes>
         </main>
         <footer
