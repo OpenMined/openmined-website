@@ -270,3 +270,11 @@ p {
 .link-button {
   text-decoration: none !important;
 }
+
+.section-headers > h3:first-of-type {
+  padding-top: 1.75rem;
+}
+
+.section-headers > h3:not(:first-of-type) {
+  padding-top: 2rem;
+}
