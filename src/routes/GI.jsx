@@ -8,7 +8,7 @@ export default () => (
         <strong>Location:</strong> Global Remote
       </p>
       <p>
-        <strong>Department:</strong> Product
+        <strong>Department:</strong> TBD
       </p>
     </hgroup>
     <h3 className="text-2xl">Job Description</h3>
