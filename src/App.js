@@ -19,7 +19,7 @@ function App() {
   const careerForms = [
     { name: 'software-engineer', component: <SWE />, form: <SWEForm /> },
     { name: 'data-scientist', component: <DSEU />, form: <DSEUForm /> },
-    { name: 'data-scientist-eu', component: <DSEU /> },
+    { name: 'data-scientist-eu', component: <DSEU />, form: <DSEUForm /> },
     {
       name: 'technical-product-manager',
       component: <TPM />,
