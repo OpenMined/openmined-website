@@ -14,7 +14,7 @@ export default () => (
       We facilitate access to non-public data, AIs, and APIs.
     </p>
     <p className="font-[Roboto] font-normal">
-      Access to non-public data, AIs, and APIs is hard because of concerns like privacy, security, and IP. If you need more access, or you need to offer more access to others, we we build free, open-source, privacy enhancing software that can help. 
+      Access to non-public data, AIs, and APIs is hard because of concerns like privacy, security, and IP. If you need more access, or you need to offer more access to others, we build free, open-source, privacy enhancing software that can help. 
     </p>
     <p className="font-[Roboto] font-normal">
       16,000+ members strong and 6+ years old, OpenMined is a non-profit on a
