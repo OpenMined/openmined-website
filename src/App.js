@@ -4,9 +4,9 @@ import Home from './routes/Home';
 import Careers from './routes/Careers';
 import SWE from './routes/SWE';
 import DSEU from './routes/DSEU';
-import TPM from './routes/TPM';
+// import TPM from './routes/TPM';
 import GI from './routes/GI';
-import TPMForm from './routes/TPMForm';
+// import TPMForm from './routes/TPMForm';
 import GIForm from './routes/GIForm';
 import DSEUForm from './routes/DSEUForm';
 import SWEForm from './routes/SWEForm';
@@ -20,11 +20,11 @@ function App() {
     { name: 'software-engineer', component: <SWE />, form: <SWEForm /> },
     { name: 'data-scientist', component: <DSEU />, form: <DSEUForm /> },
     { name: 'data-scientist-eu', component: <DSEU />, form: <DSEUForm /> },
-    {
-      name: 'technical-product-manager',
-      component: <TPM />,
-      form: <TPMForm />,
-    },
+    // {
+    //   name: 'technical-product-manager',
+    //   component: <TPM />,
+    //   form: <TPMForm />,
+    // },
     { name: 'general-interest', component: <GI />, form: <GIForm /> },
   ];
 
