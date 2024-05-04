@@ -2,10 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="./om.css" rel="stylesheet" />
-
-    <!-- Titles -->
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
     <title>
       OpenMined - Building AI governance infrastructure to facilitate AI safety research across the
       globe
@@ -38,8 +37,18 @@
     />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="%sveltekit.assets%/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="%sveltekit.assets%/assets/favicon-16x16.png"
+    />
 
     <!-- Images -->
     <meta property="og:image" content="https://openmined.org/og-banner.jpg" />
@@ -56,13 +65,13 @@
     <!-- iOS -->
     <meta name="application-name" content="OpenMined" />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#5bbad5" />
-
-    <!-- Font Awesome -->
-    <script src="https://use.fontawesome.com/8824112a14.js"></script>
-
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%sveltekit.assets%/assets/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="%sveltekit.assets%/assets/manifest.json" />
+    <link rel="mask-icon" href="%sveltekit.assets%/assets/safari-pinned-tab.svg" color="#5bbad5" />
     <!-- Plausible Analytics -->
     <script
       async
@@ -78,12 +87,11 @@
         };
     </script>
   </head>
-  <body>
-    <noscript
-      >You need to enable JavaScript to use OpenMined website. Not a fan of that? Contribute at
-      https://github.com/OpenMined/openmined-website to make the web world a little bit
-      better.</noscript
-    >
-    <div id="root"></div>
+  <body data-sveltekit-preload-data="hover">
+    <noscript>
+      You need to enable JavaScript to use OpenMined website. Not a fan of that? Contribute at
+      https://github.com/OpenMined/openmined-website to make the web world a little bit better.
+    </noscript>
+    <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>

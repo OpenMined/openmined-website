@@ -1,5 +1,5 @@
 {
-    "rules": {
-      "react/jsx-no-target-blank": "off"
-    }
+  "rules": {
+    "react/jsx-no-target-blank": "off"
   }
+}

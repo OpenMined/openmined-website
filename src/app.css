@@ -1,0 +1,342 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: Rubik;
+    src: local('Rubik'), url(./fonts/Rubik.woff2) format('woff2'),
+      url(./fonts/Rubik.ttf) format('truetype');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: Rubik;
+    src: local('Rubik'), url(./fonts/Rubik-Italic.woff2) format('woff2'),
+      url(./fonts/Rubik-Italic.ttf) format('truetype');
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: Roboto;
+    src: local('Roboto'), url(./fonts/Roboto.woff2) format('woff2'),
+      url(./fonts/Roboto.ttf) format('truetype');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: Roboto;
+    src: local('Roboto'), url(./fonts/Roboto-Italic.woff2) format('woff2'),
+      url(./fonts/Roboto-Italic.ttf) format('truetype');
+    font-style: italic;
+    font-display: swap;
+  }
+
+  html,
+  body {
+    @apply overscroll-none;
+  }
+
+  body {
+    @apply font-roboto scroll-smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-rubik font-bold;
+  }
+
+  p {
+    @apply font-roboto font-normal;
+  }
+
+  h2 {
+    @apply text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+}
+
+/* Define other default styles */
+/* h1, */
+/* h2, */
+/* h3, */
+/* h4, */
+/* h5, */
+/* h6 { */
+/*   font-family: 'Rubik', sans-serif; */
+/*   font-weight: 700; /1* Assuming you want headings to be bold *1/ */
+/* } */
+
+/* main h2 { */
+/*   font-size: 2em; */
+/* } */
+
+/* p { */
+/*   font-family: 'Roboto', sans-serif; */
+/*   font-weight: 400; /1* Regular font weight for paragraph text *1/ */
+/* } */
+
+/* #footer { */
+/*   background: #2d2b3a; */
+/*   color: white; */
+/*   height: 3em; */
+/* } */
+/* #footer a { */
+/*   color: white; */
+/*   text-decoration: none; */
+/* } */
+
+/* #footer a:hover { */
+/*   text-decoration: underline; */
+/* } */
+
+/* #header { */
+/*   height: 5em; */
+/* } */
+
+/* #header { */
+/*   height: 5em; */
+/* } */
+
+/* #body_logo { */
+/*   margin: 0 auto 2em auto; */
+/*   height: auto; */
+/*   max-height: 9em; */
+/* } */
+
+/* #header_logo { */
+/*   height: auto; */
+/*   width: auto; */
+/*   max-height: 1.5rem; */
+/* } */
+
+/* #connect_logos { */
+/*   display: flex; */
+/*   align-items: center; */
+/* } */
+
+/* #connect_logos span { */
+/*   font-size: 0.8rem; */
+/*   line-height: 1; */
+/* } */
+/* #partnerships { */
+/*   border-top: 1px solid black; */
+/*   border-bottom: 1px solid black; */
+/* } */
+
+/* .main_partnerships img { */
+/*   height: auto; */
+/*   max-height: 10em; */
+/* } */
+
+/* #connect_logos a { */
+/*   padding: 0.5rem; */
+/*   display: inline-flex; */
+/*   align-items: center; */
+/*   justify-content: center; */
+/* } */
+
+/* #connect_logos a:last-child { */
+/*   margin-right: 0; */
+/* } */
+
+/* .svg-icon { */
+/*   filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(270deg) brightness(0%) */
+/*     contrast(100%); */
+/* } */
+
+/* .learn_panel { */
+/*   padding: 1rem; */
+/*   border-top: 1px solid black; */
+/*   border-right: none; */
+/*   border-bottom: none; */
+/*   border-left: none; */
+/*   border-radius: 0; */
+/*   min-height: 200px; */
+/* } */
+
+/* .learn_panel img { */
+/*   height: 2rem; */
+/*   width: auto; */
+/*   margin-right: 1rem; */
+/* } */
+
+/* .learn_panel h3 { */
+/*   font-weight: bold; */
+/* } */
+
+/* .get-involved-container { */
+/*   display: flex; */
+/*   flex-wrap: wrap; */
+/*   width: auto; */
+/*   gap: 5%; */
+/* } */
+
+/* .get-involved-container h2 { */
+/*   margin-bottom: 1em; */
+/*   padding-bottom: 0.2em; */
+/*   border-bottom: 1px solid black; */
+/* } */
+
+/* .get-involved-buttons { */
+/*   flex: 1 1 45%; */
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   padding: 1em; */
+/* } */
+/* .get-involved-buttons a { */
+/*   background: #2d2b3a; */
+/*   color: white; */
+/*   transition: background-color 0.3s, color 0.3s; */
+/*   padding: 1em; */
+/*   margin-bottom: 1em; */
+/*   border: none; */
+/*   font-size: 1.2em; */
+/*   text-align: left; */
+/*   position: relative; */
+/*   border-radius: 0.25rem; /1* Rounded corners *1/ */
+/* } */
+
+/* .get-involved-buttons a:hover { */
+/*   background: white; */
+/*   color: #2d2b3a; */
+/* } */
+
+/* .get-involved-image { */
+/*   flex: 1 1 45%; */
+/*   padding: 1em; */
+/* } */
+/* .get-involved-image img { */
+/*   width: 100%; */
+/*   height: auto; */
+/*   border-radius: 0.3125em; */
+/* } */
+/* @media (max-width: 768px) { */
+/*   .get-involved-container { */
+/*     flex-direction: column; */
+/*   } */
+/*   .get-involved-buttons, */
+/*   .get-involved-image { */
+/*     flex-basis: 100%; */
+/*   } */
+/* } */
+
+/* .logo-container { */
+/*   display: flex; */
+/*   flex-wrap: nowrap; */
+/*   justify-content: space-around; */
+/*   align-items: center; */
+/* } */
+
+/* .logo-container { */
+/*   display: flex; */
+/*   align-items: center; */
+/* } */
+
+/* .logo-container img { */
+/*   height: 5rem; */
+/*   width: auto; */
+/* } */
+
+/* /1* Media query for mobile screens *1/ */
+/* @media (max-width: 768px) { */
+/*   .logo-container { */
+/*     flex-wrap: wrap; /1* Allow wrapping in mobile mode *1/ */
+/*   } */
+/*   .logo-container img { */
+/*     flex-basis: 100%; /1* Make each logo take the full width on mobile *1/ */
+/*     justify-content: center; /1* Center logos horizontally *1/ */
+/*     margin-bottom: 1rem; /1* Add some space between the logos *1/ */
+/*   } */
+/* } */
+
+/* .centered-paragraph { */
+/*   text-align: center; /1* Center the text *1/ */
+/* } */
+
+/* #news { */
+/*   display: grid; */
+/*   grid-template-columns: repeat(1, 1fr); */
+/*   gap: 2rem; /1* Increase gap between grid items *1/ */
+/* } */
+
+/* @media (min-width: 768px) { */
+/*   #news { */
+/*     grid-template-columns: repeat( */
+/*       3, */
+/*       1fr */
+/*     ); /1* 3 columns on medium devices and up *1/ */
+/*   } */
+/* } */
+
+/* .news_panel { */
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   padding: 1rem; /1* Add padding inside each news panel *1/ */
+/*   min-height: 500px; */
+/* } */
+
+/* .news_panel img { */
+/*   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /1* Drop shadow for images *1/ */
+/* } */
+
+/* .news_panel h3 { */
+/*   margin-bottom: 0.5rem; /1* Space below the heading *1/ */
+/* } */
+
+/* .news_panel p { */
+/*   flex-grow: 1; /1* Allow paragraph to fill available space *1/ */
+/*   font-size: 0.875rem; /1* Smaller font size for paragraph text *1/ */
+/*   margin-bottom: 1rem; /1* Space above the 'Read more' button *1/ */
+/* } */
+
+/* .news_panel a { */
+/*   text-decoration: none; /1* Remove underline from links *1/ */
+/* } */
+
+/* .read-more-button { */
+/*   display: block; */
+/*   text-align: center; */
+/*   background-color: #2d2b3a; /1* Dark grey background *1/ */
+/*   color: white; /1* White text *1/ */
+/*   padding: 0.5rem 1rem; /1* Padding for size *1/ */
+/*   border-radius: 0.25rem; /1* Rounded corners *1/ */
+/*   transition: background-color 0.3s; /1* Smooth transition for hover effect *1/ */
+/* } */
+
+/* .read-more-button:hover { */
+/*   background-color: #4b489d; /1* Lighter grey on hover *1/ */
+/* } */
+
+/* .button-link { */
+/*   text-decoration: none; */
+/*   display: inline-flex; */
+/* } */
+
+/* .job-ad a { */
+/*   text-decoration: underline; */
+/* } */
+
+/* .job-ad a:hover { */
+/*   text-decoration: none; */
+/* } */
+
+/* .link-button { */
+/*   text-decoration: none !important; */
+/* } */
+
+/* .section-headers > h3:first-of-type { */
+/*   padding-top: 1.75rem; */
+/* } */
+
+/* .section-headers > h3:not(:first-of-type) { */
+/*   padding-top: 2rem; */
+/* } */
