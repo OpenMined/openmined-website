@@ -3,6 +3,7 @@ import logo_openmined_wide_bw from '../img/logo_openmined_wide_bw.png';
 import icon_github from '../img/icon_github.svg';
 import icon_linkedin from '../img/icon_linkedin.svg';
 import icon_slack from '../img/icon_slack.svg';
+import Button from './LinkButton'
 
 export default () => {
   const icons = [
@@ -29,6 +30,7 @@ export default () => {
             <img src={icon} className="svg-icon h-6" />
           </a>
         ))}
+        <Button href="https://donate.stripe.com/fZe03H0aLdAO59e9AA">Donate</Button>
       </div>
     </header>
   );
