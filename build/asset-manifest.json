@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.cd65b35e.css",
-    "main.js": "/static/js/main.1d791a74.js",
+    "main.js": "/static/js/main.62cc878f.js",
     "static/js/453.30029e87.chunk.js": "/static/js/453.30029e87.chunk.js",
     "static/media/tile_jacinda_ardern_openmined.png": "/static/media/tile_jacinda_ardern_openmined.78e3f2f71fb84cc5b746.png",
     "static/media/bg_ball_blue.png": "/static/media/bg_ball_blue.99369d5849de50603aca.png",
@@ -14,21 +14,21 @@
     "static/media/logo_cciao.png": "/static/media/logo_cciao.540a50673f48f6883ccc.png",
     "static/media/logo_unpetlab.png": "/static/media/logo_unpetlab.fa08feb4d5264c5a0ea0.png",
     "static/media/logo_openmined.png": "/static/media/logo_openmined.9faea3e4bee0ce85b4f0.png",
-    "static/media/logo_openmined_wide_bw.png": "/static/media/logo_openmined_wide_bw.be5c4f42b291bcf05372.png",
     "static/media/logo_meta.png": "/static/media/logo_meta.29af0bd2ef62b952ae00.png",
     "static/media/logo_google.png": "/static/media/logo_google.d983f2573c384cf87b20.png",
     "static/media/logo_microsoft.png": "/static/media/logo_microsoft.6b06d249ef47b2596862.png",
+    "static/media/logo_openmined_black.svg": "/static/media/logo_openmined_black.0499d68f6ebb955d9aaa43e5b7672488.svg",
     "index.html": "/index.html",
     "static/media/icon_slack.svg": "/static/media/icon_slack.09dc1fc87e55c97acbb71f054e31d273.svg",
     "static/media/icon_github.svg": "/static/media/icon_github.1d9b1da67b0db2f4d47980c875972669.svg",
     "static/media/icon_linkedin.svg": "/static/media/icon_linkedin.3eac277d0e6c963ca19b54834af09d2c.svg",
     "static/media/icon_x.svg": "/static/media/icon_x.a5397153b02550c55368c85592905414.svg",
     "main.cd65b35e.css.map": "/static/css/main.cd65b35e.css.map",
-    "main.1d791a74.js.map": "/static/js/main.1d791a74.js.map",
+    "main.62cc878f.js.map": "/static/js/main.62cc878f.js.map",
     "453.30029e87.chunk.js.map": "/static/js/453.30029e87.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cd65b35e.css",
-    "static/js/main.1d791a74.js"
+    "static/js/main.62cc878f.js"
   ]
 }
