@@ -29,7 +29,7 @@ export default () => {
 
   return (
     <section className="flex flex-col px-6 gap-12 max-w-[1152px] mx-auto mb-16 md:mb-[144px]">
-      <h2 className="font-bold mb-2">Learn about the Community</h2>
+      <h2 className="font-bold mb-2">Learn about PySyft</h2>
       <div id="learn" className="grid grid-cols-1 md:grid-cols-3 gap-16">
         {items.map(({ heading, link, icon, text, buttonText }) => (
           <div className="border-t border-black min-h-[200px] flex flex-col flex-grow pt-4 gap-2">
