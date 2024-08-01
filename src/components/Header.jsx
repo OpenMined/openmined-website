@@ -32,7 +32,7 @@ export default () => {
             <img src={icon} className="svg-icon h-4 md:h-6" />
           </a>
         ))}
-        <Button href="https://donate.stripe.com/fZe03H0aLdAO59e9AA">
+        <Button href="https://buy.stripe.com/cN2g2F2iT1S6eJOfYZ">
           <span className="text-sm md:text-base">Donate</span>
         </Button>
       </div>
