@@ -26,7 +26,7 @@ export default () => {
       <div id="learn" className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-black">
         {items.map(({ heading, link, text, buttonText }) => (
           <div className="flex flex-col flex-grow pt-4 gap-2">
-            <h3>{heading}</h3>
+            <h3 className="font-bold">{heading}</h3>
             <p className="flex-grow">{text}</p>
             <a
               target="_blank"
